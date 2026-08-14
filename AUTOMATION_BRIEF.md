@@ -208,12 +208,13 @@ de la URL pública del PDF ya subido (sección 3bis).
 
 Al terminar, enviar los archivos a Jorge (vía SendUserFile) con una nota
 breve indicando qué toca hacer: 1) copiar el post + subir la imagen a
-LinkedIn, 2) pegar el HTML del artículo en WordPress y publicar. Recordar que
-todo lo demás (leads, envío del PDF) es 100% automático y no requiere ninguna
-acción suya.
+LinkedIn, 2) revisar el borrador ya creado en WordPress (ver sección 9) y
+darle a Publicar. Recordar que todo lo demás (leads, envío del PDF) es 100%
+automático y no requiere ninguna acción suya.
 
 **Nunca publicar nada automáticamente** (ni en LinkedIn ni en WordPress ni en
-Klaviyo) — el output es siempre para que Jorge revise y publique él mismo.
+Klaviyo) — el artículo se sube a WordPress como BORRADOR, nunca publicado
+directamente; el output es siempre para que Jorge revise y dé el clic final.
 
 ## 7. Entorno de ejecución (nube)
 
@@ -239,6 +240,45 @@ que falte para cada uno (sin duplicar los que ya existen). Ejecutar sin
 argumentos; es seguro correrlo tantas veces como se quiera (idempotente).
 Alternativa puntual para un solo título nuevo: `scripts/create_klaviyo_segment.py
 "Título exacto del PDF"`.
+
+## 9. Borrador en WordPress (esto NO lo hace la rutina en la nube)
+
+Igual que con Klaviyo, la rutina en la nube nunca recibe las credenciales de
+WordPress (por seguridad) — solo genera `articulo-blog.html` dentro de
+`content/<día>/`. Subirlo a WordPress es un paso local/manual, tan simple
+como una orden:
+
+```
+python3 scripts/publish_to_wordpress.py content/<carpeta-del-día>
+```
+
+Esto crea la entrada en WordPress como **borrador** (`status: draft`, nunca
+publicado directamente) usando la REST API de WP con Basic Auth + Application
+Password. El script extrae el `<h1>` del HTML como título del post y sube el
+resto del cuerpo tal cual (incluido el bloque del formulario de captura).
+Jorge revisa el borrador en el editor de WordPress y le da a Publicar cuando
+esté conforme.
+
+Credenciales en `.env` local (nunca en el repo ni en la rutina en la nube):
+`WP_URL`, `WP_USERNAME`, `WP_APP_PASSWORD` (contraseña de aplicación de
+WordPress, generada en `Usuarios → Perfil → Contraseñas de aplicación` — no
+es la contraseña de acceso normal, y es revocable en cualquier momento sin
+afectar al login).
+
+**Nota de infraestructura:** en este sitio en concreto (Hostinger), la
+funcionalidad de Application Passwords viene desactivada por defecto a nivel
+de hosting. Se reactivó con un snippet PHP vía el plugin WPCode
+(`Fragmentos de código`) con estos dos filtros a prioridad alta para ganarle
+la partida al filtro que lo bloqueaba:
+
+```php
+add_filter( 'wp_is_application_passwords_available', '__return_true', 9999 );
+add_filter( 'wp_is_application_passwords_available_for_user', '__return_true', 9999 );
+```
+
+Si en el futuro deja de funcionar (p. ej. tras una actualización de Hostinger
+que reintroduzca el bloqueo con prioridad aún más alta), revisar primero que
+ese snippet siga activo en WPCode antes de investigar nada más.
 
 **A propósito, la rutina en la nube NO ejecuta este script ni tiene la
 `KLAVIYO_API_KEY`** — esa clave da acceso de escritura a toda la cuenta de
