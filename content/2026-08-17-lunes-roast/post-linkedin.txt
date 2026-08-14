@@ -1,0 +1,18 @@
+Auditaba el SEO de una tienda de moda que factura más de 2M€/mes. Buen presupuesto en paid, equipo con cabeza... y el tráfico orgánico completamente congelado desde hacía año y medio.
+
+Cuando encontré el motivo, me dio hasta vergüenza ajena por ellos — porque es uno de los errores más comunes (y más caros) que veo en auditorías a ecommerce.
+
+Sus filtros de talla y color generaban URLs del tipo ?talla=m&color=rojo. Cada combinación era una URL nueva, rastreable e indexable por Google.
+
+Resultado: en vez de UNA categoría fuerte compitiendo por su keyword principal, tenían más de 40 clones de la misma página compitiendo entre sí. Google, sin saber cuál mostrar, repartía la relevancia entre todas... y no posicionaba bien ninguna.
+
+¿Cómo lo detectas tú en 5 minutos? Busca en Google:
+site:tudominio.com inurl:?
+
+Si te salen decenas (o cientos) de URLs con parámetros indexadas, tienes el mismo problema.
+
+Lo que está en juego: seis semanas después de arreglarlo, esa categoría pasó de la posición 14 a la posición 4 para su keyword más rentable. No es un ajuste cosmético — es tráfico y ventas que, mientras tanto, se están yendo a la competencia.
+
+La solución tiene 3 pasos muy concretos — y un matiz que casi todo el mundo se salta y que puede dejarte peor de lo que estabas si lo haces mal. Lo explico con capturas reales en la guía gratuita 👇 (enlace al artículo en comentarios)
+
+#SEO #Ecommerce #WordPress #Shopify
