@@ -24,6 +24,29 @@ Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 | Jueves | Cambio de algoritmo / tendencia SEO reciente explicada para ecommerce |
 | Viernes | Pregunta abierta a la comunidad + resumen rápido de la semana |
 
+## 1bis. No repetir tema — registro obligatorio en `TEMAS_TRATADOS.md`
+
+Antes de elegir el tema del día, **lee `TEMAS_TRATADOS.md`** (raíz del repo)
+y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
+
+- Elige un tema que no esté ya cubierto — ni con el mismo título literal, ni
+  con el mismo fondo (p. ej. "duplicación por parámetros de filtro" y
+  "duplicación por versión con/sin www" son temas distintos, pero dos roasts
+  sobre parámetros de filtro en tiendas distintas SÍ cuentan como repetido:
+  lo que no se repite es el **error/mito/hallazgo de fondo**, no el nombre
+  de la marca o el redactado).
+- Si al revisar la tabla no encuentras ningún tema libre y razonable para el
+  ángulo de hoy (muy improbable a corto plazo, pero puede pasar tras muchas
+  semanas), no repitas uno igualmente — genera el resto del contenido normal
+  pero avisa explícitamente a Jorge en la entrega de que hace falta que le
+  pase un tema nuevo para ese ángulo.
+- **Al terminar** de generar todo el contenido del día, añade una fila nueva
+  al final de la tabla correspondiente en `TEMAS_TRATADOS.md` (fecha, tema,
+  nota breve de la solución/ángulo) y haz commit+push de ese archivo junto
+  con la carpeta `content/<día>/` (mismo commit o el siguiente, pero siempre
+  el mismo día). Nunca lo dejes para "el próximo día" — si no se registra en
+  el momento, se pierde el propósito del control.
+
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
@@ -201,6 +224,7 @@ Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `imagen-post.png`
 - `articulo-blog.html`
 - `<slug-del-título>.pdf` (nuevo cada día, nombre descriptivo — ver sección 3bis)
+- Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — ver sección 1bis)
 
 **Orden importante**: genera y haz commit+push del PDF (y de toda la carpeta)
 ANTES de dar el artículo por terminado, porque el HTML del artículo depende
