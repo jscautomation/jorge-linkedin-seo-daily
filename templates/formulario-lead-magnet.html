@@ -1,0 +1,165 @@
+<!-- ============================================================
+     Formulario de captura de leads — PDF lead magnet
+     ------------------------------------------------------------
+     Este bloque es FIJO: se pega UNA VEZ en cada artículo del
+     blog (o se guarda como "bloque reutilizable" en WordPress).
+     Lo único que cambia cada día son las dos líneas marcadas
+     con 👉 en el CONFIG del script — las rellena automáticamente
+     la automatización diaria (tarea 5).
+
+     No contiene ninguna clave secreta: usa el Company ID público
+     de Klaviyo, seguro para exponer en el navegador.
+
+     Marca: degradado naranja de jorgesegoviaciscar.com (135°,
+     #FFA135 → #FF5A1F) + logo real alojado en tu propia web.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  // ------------------------------------------------------------
+  // 👉 CONFIG: estos dos valores los cambia la automatización
+  //    diaria antes de publicar cada artículo. El resto del
+  //    formulario nunca se toca.
+  // ------------------------------------------------------------
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "PDF_TITULO_AQUI", // 👉 sustituir cada día
+    pdfUrl: "PDF_URL_AQUI"        // 👉 sustituir cada día
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "revision": "2024-10-15"
+      },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: {
+                    pdf_titulo: CONFIG.pdfTitulo,
+                    pdf_url: CONFIG.pdfUrl
+                  }
+                }
+              }
+            }
+          },
+          relationships: {
+            list: { data: { type: "list", id: CONFIG.listId } }
+          }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "revision": "2024-10-15"
+      },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: {
+              pdf_titulo: CONFIG.pdfTitulo,
+              pdf_url: CONFIG.pdfUrl
+            },
+            metric: {
+              data: {
+                type: "metric",
+                attributes: { name: "Solicitó Lead Magnet" }
+              }
+            },
+            profile: {
+              data: {
+                type: "profile",
+                attributes: { email: email }
+              }
+            }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () {
+        msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = "📥 Descargar PDF";
+      });
+  });
+})();
+</script>
