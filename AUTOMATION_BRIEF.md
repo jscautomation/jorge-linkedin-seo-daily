@@ -255,7 +255,11 @@ python3 scripts/publish_to_wordpress.py content/<carpeta-del-día>
 Esto crea la entrada en WordPress como **borrador** (`status: draft`, nunca
 publicado directamente) usando la REST API de WP con Basic Auth + Application
 Password. El script extrae el `<h1>` del HTML como título del post y sube el
-resto del cuerpo tal cual (incluido el bloque del formulario de captura).
+resto del cuerpo envuelto en un bloque nativo de Gutenberg
+(`<!-- wp:html -->...<!-- /wp:html -->`) — **imprescindible**: sin ese
+envoltorio, WordPress aplica `wpautop` al contenido y mete etiquetas `<p>`
+dentro del `<script>` del formulario, rompiéndolo (el síntoma es que el
+formulario se queda colgado en "Cargando..." y nunca deja descargar el PDF).
 Jorge revisa el borrador en el editor de WordPress y le da a Publicar cuando
 esté conforme.
 
