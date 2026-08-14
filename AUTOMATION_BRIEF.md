@@ -229,9 +229,16 @@ Klaviyo) — el output es siempre para que Jorge revise y publique él mismo.
 ## 8. Segmento de Klaviyo por PDF (esto NO lo hace la rutina en la nube)
 
 Cada PDF descargado queda perfectamente identificable en Klaviyo (evento
-"Solicitó Lead Magnet" con la propiedad `pdf_titulo`), y existe un script
-(`scripts/create_klaviyo_segment.py "Título exacto del PDF"`) que crea un
-segmento "Descargó: <título>" en 2 segundos.
+"Solicitó Lead Magnet" con la propiedad `pdf_titulo`). Un segmento en
+Klaviyo es dinámico: una vez existe, se actualiza solo con cada nueva
+descarga — pero el segmento en sí hay que crearlo una vez por título.
+
+Herramienta recomendada: `scripts/sync_klaviyo_segments.py` — revisa TODO
+el historial de descargas, saca los títulos distintos, y crea el segmento
+que falte para cada uno (sin duplicar los que ya existen). Ejecutar sin
+argumentos; es seguro correrlo tantas veces como se quiera (idempotente).
+Alternativa puntual para un solo título nuevo: `scripts/create_klaviyo_segment.py
+"Título exacto del PDF"`.
 
 **A propósito, la rutina en la nube NO ejecuta este script ni tiene la
 `KLAVIYO_API_KEY`** — esa clave da acceso de escritura a toda la cuenta de
