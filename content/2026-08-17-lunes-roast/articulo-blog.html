@@ -1,0 +1,151 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>El error SEO que le costó a una tienda de moda un tercio de su tráfico orgánico (y que detectas en 5 minutos)</h1>
+
+<p>Hace unas semanas auditaba el SEO de un ecommerce de moda que factura más de 2 millones de euros al mes. Buen presupuesto en paid, equipo con cabeza... y el tráfico orgánico completamente congelado desde hacía año y medio.</p>
+
+<p>El motivo, cuando lo encontré, daba un poco de vergüenza ajena — porque es de los errores más comunes (y más caros) que veo en auditorías a ecommerce.</p>
+
+<h2>El problema: una categoría troceada en 40 clones</h2>
+
+<p>Sus filtros de talla y color generaban URLs como <code>?talla=m&amp;color=rojo</code>. Cada combinación de filtro creaba una URL nueva, y todas ellas eran rastreables e indexables por Google.</p>
+
+<p>El resultado: en vez de tener <strong>una</strong> categoría fuerte compitiendo por su keyword principal, tenían más de 40 variantes de la misma página compitiendo entre sí. Google, al no saber cuál mostrar, terminaba repartiendo la relevancia entre todas... y no posicionando bien ninguna.</p>
+
+<h2>Cómo lo detectas tú en 5 minutos</h2>
+
+<p>Busca en Google:</p>
+<pre>site:tudominio.com inurl:?</pre>
+<p>Si te aparecen decenas o cientos de URLs con parámetros indexadas, tienes el mismo problema.</p>
+
+<h2>Lo que está en juego</h2>
+
+<p>En este caso, seis semanas después de arreglarlo, la categoría principal pasó de la <strong>posición 14 a la posición 4</strong> para su keyword más rentable. No es un ajuste cosmético — es tráfico y ventas que ahora mismo se están yendo a la competencia.</p>
+
+<p>La solución tiene 3 pasos muy concretos (qué tocar exactamente, en qué orden, y cómo evitar el error habitual al hacerlo mal, que empeora las cosas en vez de arreglarlas). Los explico con capturas de pantalla reales en la guía gratuita — te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "El error que está matando tu SEO (y cómo arreglarlo)",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-17-lunes-roast/el-error-que-esta-matando-tu-seo.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>
