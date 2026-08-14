@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Genera el PDF lead magnet: "Los 12 errores SEO que más dinero cuestan a un ecommerce"
-Marca: navy (#1B2A4A) + naranja (#FF6B35)
-v2 — diseño más denso: 2 errores por página, tarjetas con color, badges circulares.
+Genera el PDF lead magnet (portada con degradado + foto + logo, tarjetas de
+contenido, cierre con CTA de las 2 fases). Mismo sistema visual siempre —
+lo que cambia cada día es el CONFIG de abajo (título, intro, puntos).
+
+Uso: python3 scripts/generate_lead_magnet_pdf.py [ruta_de_salida.pdf]
+Todas las rutas son relativas al repo (funciona igual en Windows local que
+en el sandbox Linux de la ejecución en la nube).
 """
+import sys
+from pathlib import Path
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
@@ -11,26 +17,108 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle,
-    HRFlowable, Frame, PageTemplate, BaseDocTemplate, NextPageTemplate, KeepTogether
+    Paragraph, Spacer, PageBreak, Table, TableStyle,
+    HRFlowable, Frame, PageTemplate, BaseDocTemplate, NextPageTemplate
 )
 from reportlab.pdfgen import canvas as pdfcanvas
 
-NAVY = colors.HexColor("#1A1A1A")       # ahora usado como "acento oscuro" de marca (texto del logo)
-NAVY_LIGHT = colors.HexColor("#2A2A2A")
-ORANGE = colors.HexColor("#FF5A1F")     # extremo oscuro del degradado de marca
-GRAD_START = colors.HexColor("#FFA135")
-GRAD_END = colors.HexColor("#FF5A1F")
-ORANGE_LIGHT = colors.HexColor("#FFE4D6")
+REPO_ROOT = Path(__file__).resolve().parent.parent
+GRADIENT_BG_PATH = str(REPO_ROOT / "assets" / "branding" / "gradient_bg.png")
+LOGO_PATH = str(REPO_ROOT / "assets" / "branding" / "logo.png")
+PHOTO_PATH = str(REPO_ROOT / "assets" / "branding" / "foto-jorge-circle.png")
+
+NAVY = colors.HexColor("#1A1A1A")
+ORANGE = colors.HexColor("#FF5A1F")
 CARD_BG = colors.HexColor("#F4F6FA")
 GRAY = colors.HexColor("#5b6b85")
 INK = colors.HexColor("#212c42")
 WHITE = colors.white
 
-OUTPUT_PATH = r"C:\Users\Usuario\Desktop\Youtube_Auto\linkedin-seo-automation\assets\pdf\checklist-12-errores-seo-ecommerce.pdf"
-GRADIENT_BG_PATH = r"C:\Users\Usuario\Desktop\Youtube_Auto\linkedin-seo-automation\assets\branding\gradient_bg.png"
-LOGO_PATH = r"C:\Users\Usuario\Desktop\Youtube_Auto\linkedin-seo-automation\assets\branding\logo.png"
-PHOTO_PATH = r"C:\Users\Usuario\Desktop\Youtube_Auto\linkedin-seo-automation\assets\branding\foto-jorge-circle.png"
+# ==================================================================
+# 👉 CONFIG: esto cambia cada día. El resto del archivo (estilos,
+#    layout, funciones) es fijo — no tocar salvo rediseño explícito.
+# ==================================================================
+COVER_TITLE_HTML = "Los 12 errores SEO<br/>que más dinero cuestan<br/>a un ecommerce"
+COVER_SUBTITLE = "La checklist que uso en cada auditoría SEO a tiendas online de facturación alta (WordPress y Shopify)"
+COVER_TAG = "CHECKLIST SEO · ECOMMERCE"  # etiqueta pequeña arriba a la izquierda de la portada
+
+INTRO_TITLE = "Antes de empezar"
+INTRO_PARAGRAPHS = [
+    "Soy Jorge Segovia, consultor SEO especializado en ecommerce. Llevo años haciendo auditorías SEO "
+    "completas —de más de 100 páginas— a tiendas online de facturación alta, la mayoría en Shopify y "
+    "WordPress.",
+    "Cada vez que abro una cuenta nueva me encuentro los mismos errores una y otra vez: fallos que llevan "
+    "meses, a veces años, frenando el tráfico orgánico y las ventas, y que casi nadie detecta porque no "
+    "dan la cara a simple vista.",
+    "Esta checklist reúne los que más impacto tienen en el negocio. Para cada uno te explico por qué "
+    "ocurre, cómo detectarlo tú mismo en 5 minutos, y qué hacer para arreglarlo.",
+]
+STAT_NUMBER = "12"
+STAT_LABEL = "ERRORES REALES<br/>DE AUDITORÍAS SEO<br/>A ECOMMERCE"
+
+# Lista de puntos — 1 o varios, según el documento (este archivo trae los 12
+# del checklist original como EJEMPLO por defecto; en la ejecución diaria se
+# sustituyen por los puntos reales del tema de ese día — ver AUTOMATION_BRIEF.md § 3bis).
+POINTS = [
+    ("Categorías de producto bloqueadas o sin indexar",
+     "Al crear filtros de categoría (talla, color, precio) muchas plataformas generan automáticamente reglas de robots.txt o etiquetas noindex que terminan bloqueando también categorías principales por error de configuración.",
+     "En Google Search Console → Cobertura, busca “Excluida por etiqueta noindex” o “Bloqueada por robots.txt” y revisa si aparecen categorías importantes.",
+     "Audita el robots.txt y las etiquetas noindex categoría por categoría, dejando indexables solo las que tengan volumen de búsqueda real."),
+    ("Contenido duplicado por parámetros de filtro",
+     "Los filtros de color, talla o precio generan URLs como ?color=rojo&talla=m que Google rastrea como páginas nuevas con el mismo contenido que la categoría original.",
+     "Busca en Google “site:tudominio.com inurl:?” y cuenta cuántas URLs con parámetros aparecen indexadas.",
+     "Usa canonical hacia la URL de categoría limpia y configura los parámetros como no indexables en Search Console."),
+    ("Arquitectura SEO no transaccional",
+     "La estructura de categorías se diseña copiando el catálogo interno (marca, proveedor, temporada) en vez de cómo busca la gente realmente en Google.",
+     "Compara tus categorías actuales con un keyword research de intención transaccional en tu sector: si faltan categorías para búsquedas de alto volumen, ahí está el problema.",
+     "Rediseña el árbol de categorías alrededor de las keywords transaccionales reales de tu sector, no de tu catálogo interno."),
+    ("Paginación mal gestionada",
+     "Al listar productos en varias páginas no se gestiona correctamente el canonical ni el contenido de cada página, y Google trata la categoría como contenido “delgado”.",
+     "Abre la página 2 o 3 de cualquier categoría y mira el código fuente: busca la etiqueta canonical, ¿apunta a sí misma o siempre a la página 1?",
+     "Cada página paginada debe ser autocanonical (canonical a sí misma) y aportar valor único, no ser un simple corta-pega de la primera."),
+    ("Productos agotados devueltos como 404",
+     "Cuando un producto se agota o se descataloga, la plataforma elimina la URL directamente sin gestionar la transición ni el tráfico o enlaces que recibía.",
+     "En Search Console → Cobertura, revisa cuántas URLs “No encontradas (404)” corresponden a productos que antes tenían tráfico o enlaces.",
+     "Mantén la página con un mensaje de “agotado” + productos similares, o redirige (301) a la categoría padre si es definitivo."),
+    ("Core Web Vitals en rojo por imágenes sin optimizar",
+     "Las fotos de producto se suben a resolución completa, sin comprimir y sin carga diferida (lazy load), disparando los tiempos de carga.",
+     "Pasa tu URL de producto por PageSpeed Insights (gratis) y mira el LCP: si supera 2.5 segundos, tienes un problema real.",
+     "Comprime las imágenes (formato WebP), activa lazy load y sirve tamaños responsive según el dispositivo."),
+    ("Breadcrumbs sin datos estructurados",
+     "Se implementan visualmente para el usuario, pero sin el marcado schema.org BreadcrumbList, así que Google no puede aprovecharlos en resultados de búsqueda.",
+     "Pega la URL de un producto en el Rich Results Test de Google y comprueba si detecta “BreadcrumbList”.",
+     "Añade el marcado JSON-LD de BreadcrumbList; la mayoría de plugins SEO de WordPress lo generan automáticamente si lo activas."),
+    ("Meta titles y descriptions duplicados o autogenerados",
+     "La plataforma genera el title automáticamente con el mismo patrón para todos los productos (ej. “Nombre producto | Tienda”), sin optimizar keyword ni diferenciar.",
+     "Exporta el listado de title tags con Screaming Frog (gratis hasta 500 URLs) y filtra por duplicados.",
+     "Personaliza el title con la keyword principal más un atributo diferenciador (color, talla, uso) en vez del patrón genérico."),
+    ("Canonicals mal configurados",
+     "Por error de plantilla, muchas variantes de producto o incluso categorías completas canonicalizan hacia la home del sitio.",
+     "En Screaming Frog, exporta la columna “Canonical Link Element” y busca cuántas URLs apuntan a la home sin ser la home.",
+     "Corrige la plantilla para que cada página canonicalice hacia sí misma, salvo casos justificados (variantes de color/talla del mismo producto)."),
+    ("Categorías sin contenido único (“thin content”)",
+     "La categoría solo muestra el listado de productos, sin ningún texto que le dé a Google señales claras sobre de qué trata la página.",
+     "Entra en una categoría importante y comprueba si hay al menos 150-300 palabras de texto único, no solo productos.",
+     "Añade un bloque de texto SEO (arriba o abajo del listado) centrado en la keyword transaccional de esa categoría."),
+    ("Productos huérfanos sin enlazado interno",
+     "Los productos nuevos o de baja rotación no reciben enlaces desde categorías, artículos de blog u otras páginas relevantes del sitio.",
+     "En Screaming Frog, filtra por “Inlinks” y localiza productos con 0 o 1 enlace interno recibido.",
+     "Enlaza esos productos desde categorías relacionadas, artículos de blog y bloques de “productos relacionados”."),
+    ("Sitemap XML desactualizado",
+     "El sitemap se generó una vez y no se actualiza dinámicamente, o incluye URLs descatalogadas o marcadas como noindex.",
+     "Abre tu sitemap.xml y comprueba aleatoriamente 10 URLs: ¿siguen existiendo y son indexables?",
+     "Usa un sitemap dinámico (la mayoría de plugins SEO lo generan automáticamente) y envíalo actualizado en Search Console."),
+]
+
+FOOTER_TITLE = "Los 12 errores SEO que más dinero cuestan a un ecommerce"  # pie de página en las páginas de contenido
+CTA_TITLE = "¿Cuáles de estos errores tiene tu ecommerce?"
+CTA_BODY = "Lo descubrimos en una auditoría SEO completa, diseñada para ecommerce de facturación alta."
+
+# 👉 ruta de salida: por CLI (recomendado en la ejecución diaria) o por defecto
+OUTPUT_PATH = sys.argv[1] if len(sys.argv) > 1 else str(
+    REPO_ROOT / "assets" / "pdf" / "checklist-12-errores-seo-ecommerce.pdf"
+)
+# ==================================================================
 
 styles = getSampleStyleSheet()
 
@@ -95,57 +183,6 @@ style_intro_stat_lbl = ParagraphStyle(
     fontSize=9, leading=12, textColor=WHITE, alignment=TA_CENTER
 )
 
-ERRORS = [
-    ("Categorías de producto bloqueadas o sin indexar",
-     "Al crear filtros de categoría (talla, color, precio) muchas plataformas generan automáticamente reglas de robots.txt o etiquetas noindex que terminan bloqueando también categorías principales por error de configuración.",
-     "En Google Search Console → Cobertura, busca \u201cExcluida por etiqueta noindex\u201d o \u201cBloqueada por robots.txt\u201d y revisa si aparecen categorías importantes.",
-     "Audita el robots.txt y las etiquetas noindex categoría por categoría, dejando indexables solo las que tengan volumen de búsqueda real."),
-    ("Contenido duplicado por parámetros de filtro",
-     "Los filtros de color, talla o precio generan URLs como ?color=rojo&talla=m que Google rastrea como páginas nuevas con el mismo contenido que la categoría original.",
-     "Busca en Google \u201csite:tudominio.com inurl:?\u201d y cuenta cuántas URLs con parámetros aparecen indexadas.",
-     "Usa canonical hacia la URL de categoría limpia y configura los parámetros como no indexables en Search Console."),
-    ("Arquitectura SEO no transaccional",
-     "La estructura de categorías se diseña copiando el catálogo interno (marca, proveedor, temporada) en vez de cómo busca la gente realmente en Google.",
-     "Compara tus categorías actuales con un keyword research de intención transaccional en tu sector: si faltan categorías para búsquedas de alto volumen, ahí está el problema.",
-     "Rediseña el árbol de categorías alrededor de las keywords transaccionales reales de tu sector, no de tu catálogo interno."),
-    ("Paginación mal gestionada",
-     "Al listar productos en varias páginas no se gestiona correctamente el canonical ni el contenido de cada página, y Google trata la categoría como contenido \u201cdelgado\u201d.",
-     "Abre la página 2 o 3 de cualquier categoría y mira el código fuente: busca la etiqueta canonical, ¿apunta a sí misma o siempre a la página 1?",
-     "Cada página paginada debe ser autocanonical (canonical a sí misma) y aportar valor único, no ser un simple corta-pega de la primera."),
-    ("Productos agotados devueltos como 404",
-     "Cuando un producto se agota o se descataloga, la plataforma elimina la URL directamente sin gestionar la transición ni el tráfico o enlaces que recibía.",
-     "En Search Console → Cobertura, revisa cuántas URLs \u201cNo encontradas (404)\u201d corresponden a productos que antes tenían tráfico o enlaces.",
-     "Mantén la página con un mensaje de \u201cagotado\u201d + productos similares, o redirige (301) a la categoría padre si es definitivo."),
-    ("Core Web Vitals en rojo por imágenes sin optimizar",
-     "Las fotos de producto se suben a resolución completa, sin comprimir y sin carga diferida (lazy load), disparando los tiempos de carga.",
-     "Pasa tu URL de producto por PageSpeed Insights (gratis) y mira el LCP: si supera 2.5 segundos, tienes un problema real.",
-     "Comprime las imágenes (formato WebP), activa lazy load y sirve tamaños responsive según el dispositivo."),
-    ("Breadcrumbs sin datos estructurados",
-     "Se implementan visualmente para el usuario, pero sin el marcado schema.org BreadcrumbList, así que Google no puede aprovecharlos en resultados de búsqueda.",
-     "Pega la URL de un producto en el Rich Results Test de Google y comprueba si detecta \u201cBreadcrumbList\u201d.",
-     "Añade el marcado JSON-LD de BreadcrumbList; la mayoría de plugins SEO de WordPress lo generan automáticamente si lo activas."),
-    ("Meta titles y descriptions duplicados o autogenerados",
-     "La plataforma genera el title automáticamente con el mismo patrón para todos los productos (ej. \u201cNombre producto | Tienda\u201d), sin optimizar keyword ni diferenciar.",
-     "Exporta el listado de title tags con Screaming Frog (gratis hasta 500 URLs) y filtra por duplicados.",
-     "Personaliza el title con la keyword principal más un atributo diferenciador (color, talla, uso) en vez del patrón genérico."),
-    ("Canonicals mal configurados",
-     "Por error de plantilla, muchas variantes de producto o incluso categorías completas canonicalizan hacia la home del sitio.",
-     "En Screaming Frog, exporta la columna \u201cCanonical Link Element\u201d y busca cuántas URLs apuntan a la home sin ser la home.",
-     "Corrige la plantilla para que cada página canonicalice hacia sí misma, salvo casos justificados (variantes de color/talla del mismo producto)."),
-    ("Categorías sin contenido único (\u201cthin content\u201d)",
-     "La categoría solo muestra el listado de productos, sin ningún texto que le dé a Google señales claras sobre de qué trata la página.",
-     "Entra en una categoría importante y comprueba si hay al menos 150-300 palabras de texto único, no solo productos.",
-     "Añade un bloque de texto SEO (arriba o abajo del listado) centrado en la keyword transaccional de esa categoría."),
-    ("Productos huérfanos sin enlazado interno",
-     "Los productos nuevos o de baja rotación no reciben enlaces desde categorías, artículos de blog u otras páginas relevantes del sitio.",
-     "En Screaming Frog, filtra por \u201cInlinks\u201d y localiza productos con 0 o 1 enlace interno recibido.",
-     "Enlaza esos productos desde categorías relacionadas, artículos de blog y bloques de \u201cproductos relacionados\u201d."),
-    ("Sitemap XML desactualizado",
-     "El sitemap se generó una vez y no se actualiza dinámicamente, o incluye URLs descatalogadas o marcadas como noindex.",
-     "Abre tu sitemap.xml y comprueba aleatoriamente 10 URLs: ¿siguen existiendo y son indexables?",
-     "Usa un sitemap dinámico (la mayoría de plugins SEO lo generan automáticamente) y envíalo actualizado en Search Console."),
-]
-
 
 def rounded_card(c, x, y, w, h, radius=8, fill=CARD_BG, accent=ORANGE):
     c.saveState()
@@ -161,8 +198,7 @@ def cover_bg(c: pdfcanvas.Canvas, doc):
     c.drawImage(GRADIENT_BG_PATH, 0, 0, width=doc.pagesize[0], height=doc.pagesize[1])
     c.setFillColor(WHITE)
     c.setFont("Helvetica-Bold", 8.5)
-    c.drawString(20 * mm, doc.pagesize[1] - 18 * mm, "CHECKLIST SEO · ECOMMERCE")
-    # logo sobre chip blanco (el naranja del logo se pierde sobre fondo naranja)
+    c.drawString(20 * mm, doc.pagesize[1] - 18 * mm, COVER_TAG)
     logo_w, logo_h = 32 * mm, 22.7 * mm
     pad = 4 * mm
     chip_x = doc.pagesize[0] - logo_w - 16 * mm - pad
@@ -170,7 +206,6 @@ def cover_bg(c: pdfcanvas.Canvas, doc):
     c.setFillColor(WHITE)
     c.roundRect(chip_x, chip_y, logo_w + 2 * pad, logo_h + 2 * pad, 6, stroke=0, fill=1)
     c.drawImage(LOGO_PATH, chip_x + pad, chip_y + pad, width=logo_w, height=logo_h, mask="auto")
-    # foto circular junto al logo
     photo_d = logo_h + 2 * pad
     photo_x = chip_x - photo_d - 5 * mm
     photo_y = chip_y
@@ -188,7 +223,7 @@ def content_bg(c: pdfcanvas.Canvas, doc):
     c.rect(0, doc.pagesize[1] - 6 * mm, doc.pagesize[0], 6 * mm, fill=1, stroke=0)
     c.setFillColor(GRAY)
     c.setFont("Helvetica", 8)
-    c.drawString(20 * mm, 10 * mm, "Los 12 errores SEO que más dinero cuestan a un ecommerce")
+    c.drawString(20 * mm, 10 * mm, FOOTER_TITLE)
     c.drawRightString(doc.pagesize[0] - 20 * mm, 10 * mm, f"{doc.page - 1}")
     logo_w, logo_h = 16 * mm, 11.4 * mm
     c.drawImage(LOGO_PATH, doc.pagesize[0] - logo_w - 20 * mm, doc.pagesize[1] - logo_h - 12 * mm,
@@ -217,18 +252,6 @@ def cta_bg(c: pdfcanvas.Canvas, doc):
 
 
 def error_badge_flowable_table(num, title, why, detect, fix, card_h_mm=112):
-    """Build one error block as a fixed-height table so 2 fit per page cleanly."""
-    num_style = ParagraphStyle(
-        "num", parent=styles["Normal"], fontName="Helvetica-Bold",
-        fontSize=15, leading=15, textColor=WHITE, alignment=TA_CENTER
-    )
-
-    def badge_canvas(c, w, h):
-        c.saveState()
-        c.setFillColor(ORANGE)
-        c.circle(w / 2, h / 2, 10, stroke=0, fill=1)
-        c.restoreState()
-
     inner = [
         [Paragraph("POR QUÉ OCURRE", style_label)],
         [Paragraph(why, style_body)],
@@ -289,6 +312,7 @@ def error_badge_flowable_table(num, title, why, detect, fix, card_h_mm=112):
 
 
 def build():
+    Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)
     doc = BaseDocTemplate(OUTPUT_PATH, pagesize=A4,
                            leftMargin=20 * mm, rightMargin=20 * mm,
                            topMargin=18 * mm, bottomMargin=18 * mm)
@@ -307,14 +331,13 @@ def build():
 
     # ---------- COVER ----------
     story.append(Spacer(1, 70 * mm))
-    story.append(Paragraph("Los 12 errores SEO<br/>que más dinero cuestan<br/>a un ecommerce", style_h1_cover))
+    story.append(Paragraph(COVER_TITLE_HTML, style_h1_cover))
     story.append(Spacer(1, 10))
-    story.append(Paragraph(
-        "La checklist que uso en cada auditoría SEO a tiendas online de facturación alta (WordPress y Shopify)",
-        style_sub_cover))
+    story.append(Paragraph(COVER_SUBTITLE, style_sub_cover))
     story.append(Spacer(1, 60))
-    author_table = Table([[Paragraph("JORGE SEGOVIA<br/><font color='#5a4433' size=9>Consultor SEO para Ecommerce</font>", style_author_cover)]],
-                          colWidths=[None])
+    author_table = Table([[Paragraph(
+        "JORGE SEGOVIA<br/><font color='#5a4433' size=9>Consultor SEO para Ecommerce</font>", style_author_cover)]],
+        colWidths=[None])
     author_table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), WHITE),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
@@ -329,28 +352,15 @@ def build():
     story.append(PageBreak())
 
     # ---------- INTRO ----------
-    story.append(Paragraph("Antes de empezar", style_h2))
-    intro_left = [
-        Paragraph(
-            "Soy Jorge Segovia, consultor SEO especializado en ecommerce. Llevo años haciendo auditorías SEO "
-            "completas —de más de 100 páginas— a tiendas online de facturación alta, la mayoría en Shopify y "
-            "WordPress.",
-            style_intro),
-        Spacer(1, 8),
-        Paragraph(
-            "Cada vez que abro una cuenta nueva me encuentro los mismos errores una y otra vez: fallos que llevan "
-            "meses, a veces años, frenando el tráfico orgánico y las ventas, y que casi nadie detecta porque no "
-            "dan la cara a simple vista.",
-            style_intro),
-        Spacer(1, 8),
-        Paragraph(
-            "Esta checklist reúne los 12 que más impacto tienen en el negocio. Para cada uno te explico por qué "
-            "ocurre, cómo detectarlo tú mismo en 5 minutos, y qué hacer para arreglarlo.",
-            style_intro),
-    ]
+    story.append(Paragraph(INTRO_TITLE, style_h2))
+    intro_left = []
+    for i, p in enumerate(INTRO_PARAGRAPHS):
+        intro_left.append(Paragraph(p, style_intro))
+        if i < len(INTRO_PARAGRAPHS) - 1:
+            intro_left.append(Spacer(1, 8))
     stat_cell = Table([
-        [Paragraph("12", style_intro_stat_num)],
-        [Paragraph("ERRORES REALES<br/>DE AUDITORÍAS SEO<br/>A ECOMMERCE", style_intro_stat_lbl)],
+        [Paragraph(STAT_NUMBER, style_intro_stat_num)],
+        [Paragraph(STAT_LABEL, style_intro_stat_lbl)],
     ], colWidths=[42 * mm])
     stat_cell.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), ORANGE),
@@ -374,25 +384,23 @@ def build():
     story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#e2e6ee")))
     story.append(PageBreak())
 
-    # ---------- ERRORS (2 per page) ----------
-    for i in range(0, len(ERRORS), 2):
-        pair = ERRORS[i:i + 2]
+    # ---------- PUNTOS (2 por página) ----------
+    for i in range(0, len(POINTS), 2):
+        pair = POINTS[i:i + 2]
         for j, (title, why, detect, fix) in enumerate(pair):
             num = i + j + 1
             story.append(error_badge_flowable_table(num, title, why, detect, fix))
             if j == 0 and len(pair) > 1:
                 story.append(Spacer(1, 10))
-        if i + 2 < len(ERRORS):
+        if i + 2 < len(POINTS):
             story.append(PageBreak())
 
     # ---------- CTA ----------
     story.append(NextPageTemplate("CTA"))
     story.append(PageBreak())
     story.append(Spacer(1, 20 * mm))
-    story.append(Paragraph("¿Cuáles de estos 12 errores tiene tu ecommerce?", style_cta_title))
-    story.append(Paragraph(
-        "Lo descubrimos en una auditoría SEO completa, diseñada para ecommerce de facturación alta.",
-        style_cta_body))
+    story.append(Paragraph(CTA_TITLE, style_cta_title))
+    story.append(Paragraph(CTA_BODY, style_cta_body))
     story.append(Spacer(1, 22))
 
     def phase_badge(n):
@@ -425,9 +433,10 @@ def build():
     story.append(phase_table)
     story.append(Spacer(1, 26))
     story.append(Paragraph("jorge@jscautomation.es · jorgesegoviaciscar.com", style_cta_body))
-    story.append(Spacer(1, 30))
-    recap = " · ".join(f"{idx+1}. {name}" for idx, (name, *_r) in enumerate(ERRORS))
-    story.append(Paragraph(recap, style_recap))
+    if len(POINTS) > 1:
+        story.append(Spacer(1, 30))
+        recap = " · ".join(f"{idx + 1}. {name}" for idx, (name, *_r) in enumerate(POINTS))
+        story.append(Paragraph(recap, style_recap))
 
     doc.build(story)
     print(f"PDF generado: {OUTPUT_PATH}")
