@@ -77,24 +77,72 @@ Reglas de diseño ya validadas con Jorge — no cambiarlas sin que lo pida:
 - Logos grandes y legibles, panel simple (sin diagramas complejos de flechas
   salvo que encaje mejor para un tema muy concreto).
 
+## 3bis. PDF del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
+
+**Importante**: Jorge no quiere que se repita el mismo PDF semana tras
+semana. Cada día se genera un PDF nuevo, centrado en el tema exacto del post
+de ese día (no una checklist genérica de 12 puntos salvo que el ángulo del
+día lo justifique).
+
+Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
+principio del archivo (sección CONFIG) según el tema de hoy:
+
+- `COVER_TITLE_HTML`: título de portada (con `<br/>` para saltos de línea),
+  específico del tema del día — no reutilices el título del checklist salvo
+  que el ángulo de hoy sea literalmente ese.
+- `COVER_SUBTITLE`, `COVER_TAG`, `STAT_NUMBER`, `STAT_LABEL`: ajusta al
+  contenido — si el documento trata sobre un único hallazgo/mito/tendencia,
+  `STAT_NUMBER` puede ser "1" (o el número de puntos reales que tenga) y
+  `STAT_LABEL` describir de qué es ese número.
+- `POINTS`: lista de 1 a varios puntos `(título, por qué ocurre, cómo
+  detectarlo, cómo arreglarlo)`. Para el roast del lunes, normalmente 1 punto
+  (desarrollo en profundidad del error del día). Para otros formatos, usa el
+  número de puntos que tenga sentido con el contenido real del post (nunca
+  inventes puntos de relleno solo por completar una lista).
+- `FOOTER_TITLE`, `CTA_TITLE`, `CTA_BODY`: ajusta el texto, mantén el CTA de
+  las 2 fases (Fase 1 / Fase 2) tal cual, es fijo.
+
+Ejecuta pasando la ruta de salida como argumento:
+```
+python3 scripts/generate_lead_magnet_pdf.py content/<carpeta-del-día>/lead-magnet.pdf
+```
+
+**No hay emojis que evitar aquí** (reportlab usa fuentes PDF estándar,
+soportan acentos y símbolos normales sin problema — la limitación de fuentes
+es solo para `generate_post_image.py`).
+
+### Cómo se aloja el PDF (automático, sin que Jorge suba nada)
+
+Jorge no tiene forma de recibir un PDF nuevo cada día y subirlo él mismo sin
+que deje de ser "automático" — así que el PDF se aloja usando el propio
+repositorio de GitHub, que ya es público. En cuanto hagas commit y push (paso
+8 de la sección 6), el PDF queda disponible en:
+
+```
+https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/lead-magnet.pdf
+```
+
+Usa exactamente esa URL (con la carpeta del día correcta) como `pdfUrl` en el
+formulario del artículo (ver sección 4). Como el commit+push ocurre en el
+mismo run antes de que Jorge publique nada, la URL ya estará viva cuando
+alguien la use.
+
 ## 4. Artículo de blog (HTML para WordPress)
 
 Usar como plantilla `content/2026-08-17-lunes-roast/articulo-blog.html`
 (estructura de headings + párrafos + el bloque de formulario ya integrado al
-final, sin tocar el `<script>` del formulario más que las dos líneas de
-`pdfTitulo` / `pdfUrl`, que de momento son siempre las mismas:
+final, sin tocar el `<script>` del formulario más que estas dos líneas, que
+**sí cambian cada día**:
 
-- `pdfTitulo`: "Los 12 errores SEO que más dinero cuestan a un ecommerce"
-- `pdfUrl`: "https://jorgesegoviaciscar.com/wp-content/uploads/2026/08/checklist-12-errores-seo-ecommerce.pdf"
-
-(Si en el futuro hay un PDF distinto por tema, avisar a Jorge — hoy en día se
-reutiliza siempre el mismo checklist.)
+- `pdfTitulo`: el mismo texto que uses en `COVER_TITLE_HTML` del PDF de hoy
+  (versión en texto plano, sin `<br/>`).
+- `pdfUrl`: la URL de raw.githubusercontent.com del PDF de hoy (ver sección
+  3bis) — nunca reutilices la URL de un día anterior.
 
 Estructura del artículo: título H1 descriptivo, 3-5 secciones H2 breves que
 desarrollan el ángulo del día en más profundidad que el post, ejemplos
 concretos, y termina con el bloque de formulario ya montado (copiar tal cual
-desde la plantilla, sin modificar el HTML/CSS/JS salvo pdfTitulo/pdfUrl si
-cambiaran).
+desde la plantilla, solo cambiando pdfTitulo/pdfUrl).
 
 ## 5. Formulario de captura (fijo, no tocar salvo instrucción expresa)
 
@@ -110,8 +158,13 @@ Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `post-linkedin.txt`
 - `imagen-post.png`
 - `articulo-blog.html`
+- `lead-magnet.pdf` (nuevo cada día — ver sección 3bis)
 
-Al terminar, enviar los 3 archivos a Jorge (vía SendUserFile) con una nota
+**Orden importante**: genera y haz commit+push del PDF (y de toda la carpeta)
+ANTES de dar el artículo por terminado, porque el HTML del artículo depende
+de la URL pública del PDF ya subido (sección 3bis).
+
+Al terminar, enviar los archivos a Jorge (vía SendUserFile) con una nota
 breve indicando qué toca hacer: 1) copiar el post + subir la imagen a
 LinkedIn, 2) pegar el HTML del artículo en WordPress y publicar. Recordar que
 todo lo demás (leads, envío del PDF) es 100% automático y no requiere ninguna
