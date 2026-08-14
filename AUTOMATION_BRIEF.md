@@ -105,10 +105,20 @@ principio del archivo (sección CONFIG) según el tema de hoy:
 - `FOOTER_TITLE`, `CTA_TITLE`, `CTA_BODY`: ajusta el texto, mantén el CTA de
   las 2 fases (Fase 1 / Fase 2) tal cual, es fijo.
 
-Ejecuta pasando la ruta de salida como argumento:
+Ejecuta pasando la ruta de salida como argumento. **El nombre del archivo
+debe ser un slug del título del PDF (nunca el genérico "lead-magnet.pdf")**,
+porque es literalmente el nombre que le queda guardado al usuario cuando lo
+descarga — un nombre genérico repetido cada día es una mala experiencia y
+además pisaría descargas anteriores en su carpeta de Descargas:
+
 ```
-python3 scripts/generate_lead_magnet_pdf.py content/<carpeta-del-día>/lead-magnet.pdf
+python3 scripts/generate_lead_magnet_pdf.py content/<carpeta-del-día>/<slug-del-titulo>.pdf
 ```
+
+Ejemplo: si `COVER_TITLE_HTML` es "Duplicado no es<br/>penalización<br/>(es
+otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
+sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
+la hay).
 
 **No hay emojis que evitar aquí** (reportlab usa fuentes PDF estándar,
 soportan acentos y símbolos normales sin problema — la limitación de fuentes
@@ -122,7 +132,7 @@ repositorio de GitHub, que ya es público. En cuanto hagas commit y push (paso
 8 de la sección 6), el PDF queda disponible en:
 
 ```
-https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/lead-magnet.pdf
+https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/<slug-del-titulo>.pdf
 ```
 
 Usa exactamente esa URL (con la carpeta del día correcta) como `pdfUrl` en el
@@ -190,7 +200,7 @@ Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `post-linkedin.txt`
 - `imagen-post.png`
 - `articulo-blog.html`
-- `lead-magnet.pdf` (nuevo cada día — ver sección 3bis)
+- `<slug-del-título>.pdf` (nuevo cada día, nombre descriptivo — ver sección 3bis)
 
 **Orden importante**: genera y haz commit+push del PDF (y de toda la carpeta)
 ANTES de dar el artículo por terminado, porque el HTML del artículo depende
@@ -215,3 +225,19 @@ Klaviyo) — el output es siempre para que Jorge revise y publique él mismo.
   generada al repositorio (mismo remoto del que se clonó), como red de
   seguridad por si la entrega directa fallara. Usa un mensaje de commit tipo
   `Contenido diario: <fecha> (<ángulo del día>)`.
+
+## 8. Segmento de Klaviyo por PDF (esto NO lo hace la rutina en la nube)
+
+Cada PDF descargado queda perfectamente identificable en Klaviyo (evento
+"Solicitó Lead Magnet" con la propiedad `pdf_titulo`), y existe un script
+(`scripts/create_klaviyo_segment.py "Título exacto del PDF"`) que crea un
+segmento "Descargó: <título>" en 2 segundos.
+
+**A propósito, la rutina en la nube NO ejecuta este script ni tiene la
+`KLAVIYO_API_KEY`** — esa clave da acceso de escritura a toda la cuenta de
+Klaviyo y no hay forma segura de dársela al entorno en la nube ahora mismo
+(la definición de la rutina no soporta secretos, solo prompt de texto plano).
+Así que este paso queda pendiente de ejecutarse en una sesión local (por
+Jorge pidiéndoselo a Claude, o por Claude si nota que hay un PDF nuevo sin
+segmento) — no se te ocurra a ti, rutina en la nube, intentar llamar a la API
+de Klaviyo con una clave puesta a mano en este prompt.
