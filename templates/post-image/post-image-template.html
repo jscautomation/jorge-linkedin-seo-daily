@@ -1,0 +1,184 @@
+<!-- ============================================================
+     Plantilla de imagen de post — estilo "workflow" (adaptado de
+     referencia). Se renderiza abriendo este archivo en el
+     navegador a 1080x1080 y capturando una screenshot.
+
+     👉 Lo único que cambia cada día son los valores del array
+     STEPS y TITLE_LINE1 / TITLE_LINE2 en el <script> de abajo.
+     ============================================================ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px;
+    height: 1080px;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+  }
+  #canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background: #ffffff;
+  }
+  #diagram-panel {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    height: 560px;
+    background: #f4f4f4;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #diagram-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+  }
+  .node {
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+    width: 168px;
+    padding: 16px 10px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .node .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .node .label {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #2b2b2b;
+    font-weight: 600;
+  }
+  .connector {
+    width: 34px;
+    height: 2px;
+    background: #cfcfcf;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .connector::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border-left: 8px solid #cfcfcf;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+  #panel-tag {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: #8a8a8a;
+    text-transform: uppercase;
+  }
+  #title-block {
+    position: absolute;
+    left: 40px;
+    bottom: 70px;
+    max-width: 760px;
+  }
+  #title-block .line {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  #title-block .line1 { color: #0d0d0d; }
+  #title-block .line2 { color: #FF5A1F; }
+  #photo-wrap {
+    position: absolute;
+    right: 60px;
+    bottom: 90px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 8px solid #FF5A1F;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    background: #fff;
+  }
+  #photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div id="canvas">
+    <div id="diagram-panel">
+      <div id="panel-tag">EL ROAST DE HOY</div>
+      <div id="diagram-row"></div>
+    </div>
+    <div id="title-block">
+      <div class="line line1" id="title-line1"></div>
+      <div class="line line2" id="title-line2"></div>
+    </div>
+    <div id="photo-wrap">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia">
+    </div>
+  </div>
+
+<script>
+  // ------------------------------------------------------------
+  // 👉 CONFIG: esto cambia cada día
+  // ------------------------------------------------------------
+  var TITLE_LINE1 = "40 CLONES DE";
+  var TITLE_LINE2 = "UNA CATEGORÍA";
+
+  var STEPS = [
+    { icon: "🎛️", bg: "#FFE4D6", label: "Filtro de talla / color" },
+    { icon: "🔗", bg: "#E3F0FF", label: "URL con parámetros" },
+    { icon: "🤖", bg: "#E9E4FF", label: "Google indexa cada una" },
+    { icon: "📉", bg: "#FFE0E0", label: "Autoridad repartida" },
+    { icon: "❌", bg: "#FFF0C2", label: "Categoría no rankea" }
+  ];
+
+  document.getElementById("title-line1").textContent = TITLE_LINE1;
+  document.getElementById("title-line2").textContent = TITLE_LINE2;
+
+  var row = document.getElementById("diagram-row");
+  STEPS.forEach(function (step, i) {
+    var node = document.createElement("div");
+    node.className = "node";
+    node.innerHTML =
+      '<div class="icon" style="background:' + step.bg + '">' + step.icon + '</div>' +
+      '<div class="label">' + step.label + '</div>';
+    row.appendChild(node);
+    if (i < STEPS.length - 1) {
+      var conn = document.createElement("div");
+      conn.className = "connector";
+      row.appendChild(conn);
+    }
+  });
+</script>
+</body>
+</html>
