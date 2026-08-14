@@ -69,12 +69,17 @@ def publish_draft(content_dir: Path):
     html = article_path.read_text(encoding="utf-8")
     title, body = extract_title_and_body(html)
 
+    # Envuelto en un bloque nativo "wp:html" de Gutenberg: así WordPress
+    # respeta el HTML tal cual y NO le aplica wpautop (que si no, mete <p>
+    # dentro del <script> del formulario y rompe el JavaScript).
+    block_content = f"<!-- wp:html -->\n{body}\n<!-- /wp:html -->"
+
     resp = requests.post(
         f"{wp_url.rstrip('/')}/wp-json/wp/v2/posts",
         auth=(wp_user, wp_pass),
         json={
             "title": title,
-            "content": body,
+            "content": block_content,
             "status": "draft",
         },
     )
