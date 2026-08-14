@@ -1,0 +1,19 @@
+"El contenido duplicado te penaliza." Lo he escuchado en reuniones con clientes que facturan millones. Y no es verdad — y esa diferencia importa más de lo que parece.
+
+El mito: mucha gente cree que si Google detecta URLs duplicadas (variantes de producto, filtros, versiones con y sin parámetros), te "castiga" con una penalización, como si fuera una multa.
+
+La realidad: Google lo dice explícitamente en su propia documentación. No hay una penalización algorítmica por contenido duplicado en el 99% de los casos. Lo que hace es más simple y más peligroso: agrupa las versiones duplicadas, elige UNA como canónica para mostrar en resultados, y las demás simplemente... desaparecen del juego. No te penaliza. Te ignora.
+
+Por qué importa la diferencia: si crees que es una penalización, buscas el remedio equivocado (desindexar todo, poner disclaimers raros, borrar contenido). Si entiendes que es un problema de "no sé cuál de estas versiones es la buena", la solución es otra completamente distinta.
+
+Qué hacer en su lugar:
+→ Usa canonical tags que apunten SIEMPRE a la versión que quieres posicionar, no a la que Google "elija" por defecto
+→ Consolida los enlaces internos hacia esa única versión (si enlazas a 5 variantes distintas, estás diluyendo tu propia señal)
+→ Si son duplicados sin ningún valor real, usa una redirección 301 en vez de solo un canonical
+→ En Search Console → Páginas, "Página alternativa con etiqueta canónica correcta" NO es un error — es Google confirmando que está funcionando bien
+
+Este es uno de los mitos SEO más caros en ecommerce, porque lleva a arreglar el síntoma equivocado. Te dejo una guía corta con cómo distinguir un duplicado bien gestionado de uno que te está costando tráfico 👇
+
+[ENLACE AL ARTÍCULO DEL BLOG]
+
+#SEO #Ecommerce #WordPress #Shopify
