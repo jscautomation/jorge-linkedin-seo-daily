@@ -29,7 +29,10 @@ Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
-4. **La solución real** — 2-4 bullets accionables, útiles aunque no seas cliente
+4. **Por qué importa / qué está en juego** — deja claro el coste de no arreglarlo,
+   pero SIN dar los pasos de la solución (ver regla de la sección 4 — aplica
+   igual aquí: la solución completa vive solo en el PDF, ni el post ni el
+   artículo deben regalarla)
 5. **Prueba** (cifra de mejora, cuando aplique)
 6. **CTA** al PDF: enlace al artículo del blog (el enlace real lo añade Jorge al publicar)
 
@@ -138,6 +141,35 @@ final, sin tocar el `<script>` del formulario más que estas dos líneas, que
   (versión en texto plano, sin `<br/>`).
 - `pdfUrl`: la URL de raw.githubusercontent.com del PDF de hoy (ver sección
   3bis) — nunca reutilices la URL de un día anterior.
+
+### 🚫 Regla crítica: el artículo NUNCA da la solución completa
+
+El artículo (y el post de LinkedIn) están para enganchar y generar la
+necesidad de descargar el PDF — **no para resolver el problema por sí
+solos**. Si el lector se va con la solución completa sin rellenar el
+formulario, no hay ningún motivo para que descargue el PDF ni deje su email,
+y se rompe todo el embudo de captación de leads.
+
+Lo que SÍ puede llevar el artículo (esto genera confianza y demuestra que
+Jorge sabe de lo que habla, sin regalar la solución):
+- El problema explicado en profundidad: qué es, por qué ocurre, por qué
+  importa/cuesta dinero.
+- Cómo detectarlo/diagnosticarlo tú mismo (esto es diagnóstico, no arreglo —
+  compartirlo está bien, de hecho genera más ganas de saber cómo arreglarlo).
+- El contexto o caso (anonimizado) que da pie al post.
+
+Lo que el artículo NUNCA debe incluir:
+- Los pasos concretos de la solución/arreglo (nada de listas tipo "así lo
+  arreglas: 1... 2... 3...").
+- Cualquier cosa que, si el lector la copia, resuelva el problema sin
+  necesitar el PDF.
+
+En su lugar, cierra el artículo con un párrafo que teasee la solución sin
+darla (p.ej. "La solución tiene 3 pasos muy concretos que explico con
+capturas de pantalla y ejemplos reales en la guía gratuita — te la dejo
+abajo, tarda 30 segundos en llegarte por email") y el bloque del formulario
+justo después. La solución paso a paso vive ÚNICAMENTE dentro del PDF
+(sección `POINTS` → campo "cómo arreglarlo" de `generate_lead_magnet_pdf.py`).
 
 Estructura del artículo: título H1 descriptivo, 3-5 secciones H2 breves que
 desarrollan el ángulo del día en más profundidad que el post, ejemplos
