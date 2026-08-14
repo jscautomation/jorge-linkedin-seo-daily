@@ -1,0 +1,13 @@
+Una tienda de moda que factura +2M€/mes llevaba año y medio regalando tráfico SEO a la competencia. El motivo daba un poco de vergüenza ajena.
+
+Contexto: ecommerce en WordPress, +3.000 productos, presupuesto sano en paid... pero el orgánico congelado desde hacía 18 meses.
+
+El roast: sus filtros de talla y color estaban generando miles de URLs tipo ?talla=m&color=rojo, y Google las indexaba todas como si fueran páginas distintas. Básicamente estaban troceando la autoridad de una sola categoría entre 40 clones. Google no sabía cuál mostrar... así que no mostraba ninguna bien.
+
+La solución: canonical hacia la categoría limpia + parámetros excluidos en Search Console. 6 semanas después: de posición 14 a posición 4 en su keyword más rentable.
+
+Este es 1 de los 12 errores que me encuentro una y otra vez auditando ecommerce. Te dejo la checklist completa —con cómo detectar cada uno en 5 minutos, aunque no seas cliente mío— en el artículo 👇
+
+[ENLACE AL ARTÍCULO DEL BLOG]
+
+#SEO #Ecommerce #WordPress #Shopify
