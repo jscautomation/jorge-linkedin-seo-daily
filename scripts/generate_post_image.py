@@ -39,9 +39,9 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 # 👉 CONFIG: esto cambia cada día
 # ------------------------------------------------------------
-TITLE_LINE1 = "TUS FILTROS ESTÁN"
-TITLE_LINE2 = "MATANDO TU SEO"
-SUBTITLE = "Cómo detectarlo (y arreglarlo) en 5 minutos >>"
+TITLE_LINE1 = "ROBOTS.TXT NO"
+TITLE_LINE2 = "DESINDEXA NADA"
+SUBTITLE = "El mito que deja URLs zombi en Google >>"
 PANEL_TAG = "HERRAMIENTAS DE HOY"
 TOOL_LOGOS = [
     {"path": str(TOOL_LOGO_DIR / "gsc.png"), "label": "Search Console"},
