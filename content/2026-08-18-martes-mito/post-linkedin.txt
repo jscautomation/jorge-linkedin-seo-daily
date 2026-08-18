@@ -1,0 +1,13 @@
+"Bloqueé esas URLs por robots.txt, así que ya no están en Google." Lo he escuchado en auditorías más veces de las que me gustaría — y casi nunca es verdad.
+
+Es uno de los mitos SEO más extendidos en ecommerce, sobre todo con la navegación por filtros (talla, color, precio): bloquear por robots.txt parece la forma rápida de "limpiar" el índice de URLs que no interesan.
+
+Pero robots.txt controla el RASTREO, no la INDEXACIÓN. Son cosas distintas. Si una URL bloqueada tiene enlaces (internos o externos) apuntando a ella, Google puede indexarla igual — solo que sin poder leer su contenido. El resultado: la ves en resultados de búsqueda con un snippet vacío, tipo "No hay información disponible para esta página". No la sacaste del índice. La dejaste ahí, pero ciega.
+
+Y hay un problema todavía mayor: si en algún momento quieres arreglarlo de verdad con un noindex o un canonical en esa URL, bloquearla por robots.txt es contraproducente — Google nunca vuelve a rastrearla, así que nunca llega a ver esa etiqueta. Te quedas exactamente en el mismo sitio en el que llevas meses.
+
+¿Cómo lo detectas tú en 2 minutos? En Google Search Console, ve a Páginas y busca la categoría "Indexada, aunque bloqueada por robots.txt". Si tienes URLs ahí, tienes este problema.
+
+La secuencia correcta para sacar de verdad esas URLs del índice — y el orden en el que hay que hacerlo, porque hacerlo al revés no funciona — la explico paso a paso en la guía gratuita 👇 (enlace al artículo en comentarios)
+
+#SEO #Ecommerce #WordPress #Shopify
