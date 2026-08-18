@@ -2,8 +2,10 @@
 
 Este documento es la única fuente de verdad que necesita la ejecución programada
 de cada mañana (L-V, 8:00 Europe/Madrid). Contiene todo lo acordado con Jorge:
-marca, formato, estructura y qué entregar. No se publica nada automáticamente —
-solo se prepara el contenido y se envía a Jorge para que él publique.
+marca, formato, estructura y qué entregar. Nada se deja publicado en vivo de
+forma automática — el borrador de WordPress sí se crea solo (ver sección 9),
+pero el post de LinkedIn y el clic final de "Publicar" en WordPress siempre
+son de Jorge.
 
 ## 0. Contexto del negocio
 
@@ -233,12 +235,16 @@ de la URL pública del PDF ya subido (sección 3bis).
 Al terminar, enviar los archivos a Jorge (vía SendUserFile) con una nota
 breve indicando qué toca hacer: 1) copiar el post + subir la imagen a
 LinkedIn, 2) revisar el borrador ya creado en WordPress (ver sección 9) y
-darle a Publicar. Recordar que todo lo demás (leads, envío del PDF) es 100%
-automático y no requiere ninguna acción suya.
+darle a Publicar. Recordar que todo lo demás (leads, envío del PDF, y desde
+que hay credenciales de WordPress configuradas — ver sección 9 — la subida
+del borrador) es 100% automático y no requiere ninguna acción suya salvo el
+clic final de Publicar.
 
-**Nunca publicar nada automáticamente** (ni en LinkedIn ni en WordPress ni en
-Klaviyo) — el artículo se sube a WordPress como BORRADOR, nunca publicado
-directamente; el output es siempre para que Jorge revise y dé el clic final.
+**Nunca publicar nada automáticamente en el sentido de "dejarlo en vivo"**
+(ni en LinkedIn, ni en WordPress, ni en Klaviyo) — desde que hay credenciales
+de WordPress disponibles, el artículo SÍ se sube solo a WordPress, pero
+siempre como BORRADOR (`status: draft`), nunca publicado directamente; la
+rutina nunca pulsa "Publicar" por Jorge, eso es siempre su clic final.
 
 ## 7. Entorno de ejecución (nube)
 
@@ -265,12 +271,21 @@ argumentos; es seguro correrlo tantas veces como se quiera (idempotente).
 Alternativa puntual para un solo título nuevo: `scripts/create_klaviyo_segment.py
 "Título exacto del PDF"`.
 
-## 9. Borrador en WordPress (esto NO lo hace la rutina en la nube)
+## 9. Borrador en WordPress (SÍ lo hace la rutina en la nube, desde el 18/08/2026)
 
-Igual que con Klaviyo, la rutina en la nube nunca recibe las credenciales de
-WordPress (por seguridad) — solo genera `articulo-blog.html` dentro de
-`content/<día>/`. Subirlo a WordPress es un paso local/manual, tan simple
-como una orden:
+A diferencia de Klaviyo (sección 8), Jorge decidió explícitamente asumir el
+riesgo de exposición y configuró `WP_URL`, `WP_USERNAME` y `WP_APP_PASSWORD`
+como **variables de entorno** en el entorno de Claude Code que usa esta
+rutina (no en el repo, no en este brief, no en el prompt — solo en la config
+del entorno). Motivo del cambio: los entornos de Claude Code en la nube NO
+tienen un almacén de secretos dedicado (cualquier sesión que use ese mismo
+entorno podría leer esas variables) — es una exposición mayor que la de antes
+(cero), pero Jorge la consideró aceptable porque es una contraseña de
+**aplicación** de WordPress: revocable en cualquier momento sin afectar al
+login normal, y sin alcance fuera de la REST API de posts de ese sitio.
+
+**Paso a ejecutar cada día, justo después del commit+push del paso 12,
+ANTES de la entrega final (paso 13):**
 
 ```
 python3 scripts/publish_to_wordpress.py content/<carpeta-del-día>
@@ -287,11 +302,20 @@ formulario se queda colgado en "Cargando..." y nunca deja descargar el PDF).
 Jorge revisa el borrador en el editor de WordPress y le da a Publicar cuando
 esté conforme.
 
-Credenciales en `.env` local (nunca en el repo ni en la rutina en la nube):
-`WP_URL`, `WP_USERNAME`, `WP_APP_PASSWORD` (contraseña de aplicación de
-WordPress, generada en `Usuarios → Perfil → Contraseñas de aplicación` — no
-es la contraseña de acceso normal, y es revocable en cualquier momento sin
-afectar al login).
+**Si el script falla** (credenciales que faltan o han caducado, WordPress
+caído, etc.): no es un error bloqueante — continúa con el resto del proceso
+con normalidad, y en la entrega final al usuario indica explícitamente que
+el borrador NO se creó solo esta vez, con el motivo exacto del fallo (la
+línea `FAIL (...)` o `ERROR: ...` que imprime el script), para que Jorge lo
+suba él mismo con el mismo comando desde su sesión local si quiere.
+
+Credenciales: `WP_URL`, `WP_USERNAME`, `WP_APP_PASSWORD` (contraseña de
+aplicación de WordPress, generada en `Usuarios → Perfil → Contraseñas de
+aplicación` — no es la contraseña de acceso normal, y es revocable en
+cualquier momento sin afectar al login). Viven como variables de entorno del
+entorno de Claude Code (para la rutina en la nube) y también en un `.env`
+local (para cuando Jorge lo ejecuta él mismo) — nunca en el repo ni en este
+brief.
 
 **Nota de infraestructura:** en este sitio en concreto (Hostinger), la
 funcionalidad de Application Passwords viene desactivada por defecto a nivel
