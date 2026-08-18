@@ -1,0 +1,151 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>El mito del robots.txt: por qué bloquear una URL no la saca de Google</h1>
+
+<p>"Bloqueé esas URLs por robots.txt, así que ya no están en Google." Lo he escuchado en auditorías más veces de las que me gustaría — y casi nunca es verdad.</p>
+
+<h2>El mito</h2>
+
+<p>Es uno de los mitos SEO más extendidos en ecommerce, sobre todo con la navegación por filtros (talla, color, precio): bloquear por robots.txt parece la forma rápida de "limpiar" el índice de URLs que no interesan.</p>
+
+<h2>Lo que realmente hace robots.txt</h2>
+
+<p>robots.txt controla el <strong>rastreo</strong>, no la <strong>indexación</strong>. Son cosas distintas, y la confusión entre ambas es la raíz del problema.</p>
+
+<p>Si una URL bloqueada tiene enlaces (internos o externos) apuntando a ella, Google puede indexarla igual — solo que sin poder leer su contenido, porque tiene prohibido rastrearla. El resultado: la ves en resultados de búsqueda con un snippet vacío, del tipo "No hay información disponible para esta página". No la sacaste del índice. La dejaste ahí, pero ciega.</p>
+
+<h2>Por qué esto empeora las cosas</h2>
+
+<p>Aquí está la parte que más caro sale: si en algún momento quieres arreglarlo de verdad con una etiqueta noindex o un canonical en esa URL, bloquearla por robots.txt es contraproducente. Google nunca vuelve a rastrearla, así que nunca llega a ver esa etiqueta. Te quedas exactamente en el mismo sitio en el que llevas meses, pensando que ya está resuelto.</p>
+
+<h2>Cómo lo detectas tú en 2 minutos</h2>
+
+<p>En Google Search Console, ve a <strong>Páginas</strong> y busca la categoría "Indexada, aunque bloqueada por robots.txt". Si tienes URLs ahí, tienes exactamente este problema.</p>
+
+<h2>Por qué importa</h2>
+
+<p>Cada URL "zombi" de estas compite en el índice de Google con snippets vacíos y sin señal clara, diluye el crawl budget que Google dedica a tu sitio, y — lo más importante — te da una falsa sensación de que el problema ya está resuelto cuando en realidad sigue ahí, mes tras mes.</p>
+
+<p>Sacar de verdad una URL del índice requiere una secuencia de 3 pasos en un orden muy concreto — invertir ese orden es precisamente el error que deja el problema a medias (o lo empeora). Lo explico paso a paso en la guía gratuita de abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "El mito del robots.txt: por qué no desindexa tus URLs de filtros",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-18-martes-mito/el-mito-del-robots-txt.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>
