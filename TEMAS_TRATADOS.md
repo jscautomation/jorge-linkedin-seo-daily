@@ -19,7 +19,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 
 | Fecha | Mito | Nota / qué dice Google realmente |
 |---|---|---|
-| — | — | (aún sin publicar; se retiró el ejemplo de prueba "el contenido duplicado no penaliza" — libre para reutilizarse) |
+| 2026-08-18 | "Bloquear por robots.txt evita que Google indexe esa URL" | Falso: robots.txt controla rastreo, no indexación. Una URL bloqueada con enlaces puede seguir indexada (sin snippet), y bloquearla impide que Google vea un noindex/canonical puesto ahí. Solución: quitar bloqueo → noindex → confirmar en Search Console → opcionalmente rebloquear |
 
 ## Miércoles — Auditoría exprés a marca pública
 
