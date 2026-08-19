@@ -1,0 +1,163 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>Por qué Google puede estar mostrando la web de otro país a tus clientes (el caso real de una marca de calzado global)</h1>
+
+<p>Hace unos meses, una marca de calzado que se vende en medio Europa hizo lo que sobre el papel es una jugada inteligente: en vez de mantener un dominio distinto para cada país (clarks.de, clarks.fr, clarks.es...), los unificó todos bajo un único dominio con una carpeta por mercado. Menos mantenimiento, más autoridad concentrada, arquitectura más limpia.</p>
+
+<p>El problema es que, durante meses después del cambio, si buscabas algo en Google desde España, muchas veces no aterrizabas en la versión española de la web. Aterrizabas en la francesa. O en la alemana. Y esto no es un rumor: está documentado públicamente por SISTRIX, la herramienta de analítica SEO, que analizó la migración con datos reales.</p>
+
+<h2>El caso: una migración internacional que salió mal por un solo detalle</h2>
+
+<p>La reestructuración en sí no fue el problema. Mover contenido de varios dominios de país a uno solo, organizado por carpetas, es una estrategia de SEO internacional perfectamente válida y muy habitual en marcas grandes.</p>
+
+<p>Lo que falló fue algo mucho más pequeño y mucho más fácil de pasar por alto: al lanzar el nuevo dominio, las etiquetas <strong>hreflang</strong> no estaban. Ni en el HTML de las páginas, ni en las cabeceras HTTP, ni en el sitemap. Ninguna de las tres ubicaciones donde Google va a buscarlas.</p>
+
+<h2>Qué es hreflang y qué pasa cuando falta</h2>
+
+<p>Hreflang es la etiqueta que le dice a Google "esta página en concreto es la versión en español para España; aquí tienes la francesa, aquí la alemana, aquí la italiana". Sin ella, Google no tiene ese mapa — y tiene que adivinar qué versión mostrar a cada persona usando señales mucho más débiles: la IP desde la que navega, el historial de esa URL, los enlaces que recibe cada versión.</p>
+
+<p>Esas señales fallan con más frecuencia de la que parece. Y cuando fallan a esta escala — un dominio entero, varios mercados, migrado de golpe — el resultado no es "algún despiste puntual". Es un problema sistemático.</p>
+
+<h2>Los números que dejó esta migración (públicos, verificables)</h2>
+
+<p>Según el análisis de SISTRIX sobre esta migración, en España el <strong>61%</strong> de las palabras clave que posicionaban lo hacían con una URL perteneciente a otro mercado. En Francia, el <strong>68%</strong>. En Italia, el <strong>62%</strong>. En Alemania, el <strong>64%</strong>.</p>
+
+<p>Dicho de otra forma: en cada uno de esos cuatro países, la mayoría de las búsquedas no mostraban la ficha de producto pensada para ese mercado. Mostraban la de otro idioma, con otra moneda, con una URL que no era la que ese usuario debería haber visto. Y, según los mismos datos, el matiz de las referencias cruzadas entre idiomas les siguió dando problemas incluso después de añadir hreflang por primera vez — no es un fallo que se arregla marcando una casilla.</p>
+
+<h2>Cómo comprobar si tu ecommerce tiene el mismo problema</h2>
+
+<p>Si vendes en más de un país o en más de un idioma, esto se comprueba en menos de cinco minutos:</p>
+
+<p>Abre el código fuente de cualquier página de tu web (clic derecho → "Ver código fuente", o Ctrl+U) y busca, dentro del <code>&lt;head&gt;</code>, líneas parecidas a <code>&lt;link rel="alternate" hreflang="es" href="..."/&gt;</code>. Si no aparece ninguna, no tienes hreflang implementado — al menos no en el HTML. También puede estar en las cabeceras HTTP de la respuesta o listado dentro de tu sitemap.xml, así que conviene revisar las tres ubicaciones antes de descartarlo.</p>
+
+<p>Si tu web tiene varias versiones de idioma o país y no encuentras hreflang en ninguna de esas tres ubicaciones, es muy probable que Google esté repartiendo tu tráfico entre mercados igual que le pasó a esta marca — solo que, sin mirarlo, no te enteras hasta que la analítica deja de cuadrar.</p>
+
+<h2>Por qué esto sale caro</h2>
+
+<p>Una migración internacional no es barata: implica tiempo de desarrollo, redirecciones, revisión de contenido en cada idioma, y casi siempre unas semanas de nerviosismo mientras Google vuelve a rastrear todo. Todo ese esfuerzo estaba pensado para consolidar autoridad y mejorar la experiencia por mercado.</p>
+
+<p>Si al final de ese proceso Google sigue mostrando la versión equivocada a la mayoría de tus visitas en varios países, no solo no has ganado nada: además, cada visita que aterriza en el idioma o la moneda que no le corresponde es una venta con muchas más papeletas de perderse antes de siquiera llegar al carrito.</p>
+
+<p>Implementar hreflang correctamente tiene varios matices concretos — el orden en el que hay que declarar las referencias cruzadas entre idiomas, qué hacer con el x-default, y cómo evitar que entre en conflicto con tus etiquetas canonical — que son precisamente los que se saltó (o resolvió mal) esta migración. Los explico paso a paso, con ejemplos de código, en la guía gratuita — te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "Hreflang bien hecho: la guía para no mezclar tus mercados en Google",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-19-miercoles-auditoria/hreflang-bien-hecho-no-mezclar-mercados.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>

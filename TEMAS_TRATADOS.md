@@ -25,7 +25,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 
 | Fecha | Marca auditada | Hallazgo |
 |---|---|---|
-| — | — | (aún sin publicar) |
+| 2026-08-19 | Clarks (calzado, migración internacional a dominio único por carpetas de país) | Hreflang ausente (ni HTML, ni cabeceras HTTP, ni sitemap) tras la migración → según datos públicos de SISTRIX, 61% (ES), 68% (FR), 62% (IT) y 64% (DE) de las keywords posicionaban con URL de otro mercado. Solución: hreflang recíproco por URL (incl. self-referencing), x-default correcto, y canonical siempre a sí mismo (nunca contradiciendo al hreflang) |
 
 ## Jueves — Tendencia / cambio de algoritmo
 
