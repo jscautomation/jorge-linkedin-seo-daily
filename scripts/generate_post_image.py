@@ -39,14 +39,13 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 # 👉 CONFIG: esto cambia cada día
 # ------------------------------------------------------------
-TITLE_LINE1 = "ROBOTS.TXT NO"
-TITLE_LINE2 = "DESINDEXA NADA"
-SUBTITLE = "El mito que deja URLs zombi en Google >>"
+TITLE_LINE1 = "HREFLANG AUSENTE,"
+TITLE_LINE2 = "PAIS EQUIVOCADO"
+SUBTITLE = "Auditoria exprés: como Clarks mezclo sus mercados >>"
 PANEL_TAG = "HERRAMIENTAS DE HOY"
 TOOL_LOGOS = [
     {"path": str(TOOL_LOGO_DIR / "gsc.png"), "label": "Search Console"},
     {"path": str(TOOL_LOGO_DIR / "screamingfrog.png"), "label": "Screaming Frog"},
-    {"path": str(TOOL_LOGO_DIR / "wordpress.png"), "label": "WordPress"},
 ]
 
 

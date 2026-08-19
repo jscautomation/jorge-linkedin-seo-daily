@@ -1,0 +1,15 @@
+Hay una marca de calzado que seguramente tienes en el armario — se vende en medio Europa — que hace unos meses migró todas sus webs de país (clarks.de, clarks.fr, clarks.es...) a un solo dominio con una carpeta por mercado. Sobre el papel, la jugada correcta.
+
+En la práctica: durante meses, si buscabas algo en Google España, muchas veces no aterrizabas en la versión española. Aterrizabas en la francesa. O en la alemana.
+
+Hice la auditoría exprés (es 100% pública, cualquiera puede comprobarlo) y el motivo es de manual: al lanzar el nuevo dominio, las etiquetas hreflang no estaban. Ni en el HTML, ni en las cabeceras HTTP, ni en el sitemap. Cero señal para que Google supiera qué versión mostrar a quién.
+
+El resultado, según los datos que publicó SISTRIX analizando esta migración: en España, el 61% de las palabras clave posicionaban con una URL de OTRO mercado. En Francia, el 68%. En Italia, el 62%. En Alemania, el 64%.
+
+Traducido: la mayoría de sus búsquedas en cada país mostraban la ficha equivocada — idioma equivocado, moneda equivocada, URL equivocada. Con lo que cuesta una migración internacional, tirar así la autoridad que traían los dominios antiguos duele especialmente.
+
+¿Cómo lo compruebas tú en tu propia web multi-país en 2 minutos? Abre el código fuente de cualquier página y busca en el <head> etiquetas <link rel="alternate" hreflang="...">. Si no aparecen, o siempre apuntan a la home en vez de a la página equivalente en el otro idioma, tienes el mismo problema.
+
+Implementar hreflang bien tiene su miga — hay un matiz con las referencias cruzadas entre idiomas que casi nadie hace bien a la primera (y que, según SISTRIX, a esta misma marca le siguió dando problemas meses después de "arreglarlo"). Lo explico paso a paso, con ejemplos de código, en la guía gratuita 👇 (enlace al artículo en comentarios)
+
+#SEO #Ecommerce #WordPress #Shopify
