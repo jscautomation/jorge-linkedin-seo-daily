@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Genera la imagen del post de LinkedIn en el estilo "workflow":
-panel gris con mini-diagrama de pasos arriba, titular negro+naranja
-abajo a la izquierda, foto circular con borde naranja abajo a la derecha.
+Genera la imagen del post de LinkedIn en el estilo "stat hero": dato/cifra
+gigante arriba como titular de impacto, título negro+naranja debajo, tira
+fina de logos de herramientas, y barra inferior en naranja corporativo con
+la foto de Jorge + el CTA al PDF gratuito en línea.
 
-Uso: edita TITLE_LINE1 / TITLE_LINE2 / STEPS más abajo y ejecuta.
+Uso: edita TITLE_LINE1 / TITLE_LINE2 / STAT_NUMBER / STAT_LABEL / SUBTITLE /
+TOOL_LOGOS más abajo y ejecuta.
 """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -39,10 +41,12 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 # 👉 CONFIG: esto cambia cada día
 # ------------------------------------------------------------
+PANEL_TAG = "TENDENCIA SEO · ECOMMERCE"   # etiqueta pequeña arriba (tema del día)
+STAT_NUMBER = "83%"                        # cifra grande de impacto (titular visual)
+STAT_LABEL = "de las búsquedas con IA no dan ni un clic"
 TITLE_LINE1 = "FICHA DE PRODUCTO"
 TITLE_LINE2 = "GOOGLE YA NO TE VE"
 SUBTITLE = "GRATIS: la guía PDF con la solución completa >>"
-PANEL_TAG = "HERRAMIENTAS DE HOY"
 TOOL_LOGOS = [
     {"path": str(TOOL_LOGO_DIR / "google-search-console.png"), "label": "Search Console"},
     {"path": str(TOOL_LOGO_DIR / "yoast-seo.png"), "label": "Yoast SEO"},
@@ -74,82 +78,97 @@ def draw_multiline_center(draw, xy, text, f, fill, line_spacing=4):
         y += heights[i] + line_spacing
 
 
+def circular_photo(diameter, border, border_color=ORANGE, centering=(0.5, 0.3)):
+    photo = Image.open(PHOTO_PATH).convert("RGB")
+    photo = ImageOps.fit(photo, (diameter, diameter), centering=centering)
+    mask = Image.new("L", (diameter, diameter), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, diameter, diameter), fill=255)
+    ring_d = diameter + border * 2
+    ring = Image.new("RGBA", (ring_d, ring_d), (0, 0, 0, 0))
+    ImageDraw.Draw(ring).ellipse((0, 0, ring_d, ring_d), fill=border_color + (255,))
+    ring.paste(photo, (border, border), mask)
+    return ring, ring_d
+
+
+def wrap_two_lines(text):
+    """Reparte un texto en 2 líneas lo más equilibradas posible (por palabras)."""
+    words = text.split(" ")
+    best_split, best_diff = 1, None
+    for i in range(1, len(words)):
+        a = " ".join(words[:i])
+        b = " ".join(words[i:])
+        diff = abs(len(a) - len(b))
+        if best_diff is None or diff < best_diff:
+            best_diff, best_split = diff, i
+    return " ".join(words[:best_split]) + "\n" + " ".join(words[best_split:])
+
+
+def tool_chip(img, draw, cx, cy, diameter, tool, label_size=19, label_gap=24):
+    chip_box = (cx - diameter / 2, cy - diameter / 2, cx + diameter / 2, cy + diameter / 2)
+    draw.ellipse(chip_box, fill=WHITE, outline=NODE_BORDER, width=1)
+    logo = Image.open(tool["path"]).convert("RGBA")
+    pad = int(diameter * 0.21)
+    logo_d = int(diameter) - pad * 2
+    logo = logo.resize((logo_d, logo_d), Image.LANCZOS)
+    img.paste(logo, (int(cx - diameter / 2 + pad), int(cy - diameter / 2 + pad)), logo)
+    f_label = font(FONT_BOLD, label_size)
+    draw.text((cx, cy + diameter / 2 + label_gap), tool["label"], font=f_label, fill=NODE_LABEL, anchor="mm")
+
+
 def build():
     img = Image.new("RGB", (W, H), WHITE)
     draw = ImageDraw.Draw(img)
 
-    # ---- Panel del diagrama ----
-    panel_box = (40, 40, W - 40, 460)
-    rounded_rect(draw, panel_box, 18, fill=PANEL_BG)
+    # ---- Etiqueta del tema, centrada arriba ----
+    f_tag = font(FONT_BOLD, 16)
+    draw.text((W / 2, 56), PANEL_TAG, font=f_tag, fill=TAG_GRAY, anchor="mm")
 
-    f_tag = font(FONT_BOLD, 15)
-    draw.text((64, 58), PANEL_TAG, font=f_tag, fill=TAG_GRAY)
+    # ---- Cifra de impacto, gigante, como titular visual principal ----
+    f_stat = font(FONT_TITLE, 210)
+    draw_multiline_center(draw, (W / 2, 220), STAT_NUMBER, f_stat, ORANGE, line_spacing=0)
 
-    # ---- Panel simple: logos de herramientas centrados, sin conectores ----
-    n = len(TOOL_LOGOS)
-    chip_d = 220
-    gap = 60
-    total_w = n * chip_d + (n - 1) * gap
-    start_x = (W - total_w) / 2
-    panel_cy = (panel_box[1] + panel_box[3]) / 2 + 6
+    f_stat_label = font(FONT_BOLD, 30)
+    draw_multiline_center(draw, (W / 2, 355), wrap_two_lines(STAT_LABEL), f_stat_label, (74, 74, 74), line_spacing=6)
 
-    f_label = font(FONT_BOLD, 24)
-    x = start_x
-    for tool in TOOL_LOGOS:
-        cx = x + chip_d / 2
-        chip_box = (x, panel_cy - chip_d / 2, x + chip_d, panel_cy + chip_d / 2)
-        draw.ellipse(chip_box, fill=WHITE, outline=NODE_BORDER, width=1)
-        logo = Image.open(tool["path"]).convert("RGBA")
-        pad = 46
-        logo_d = chip_d - pad * 2
-        logo = logo.resize((logo_d, logo_d), Image.LANCZOS)
-        img.paste(logo, (int(x + pad), int(panel_cy - chip_d / 2 + pad)), logo)
-        draw.text((cx, panel_cy + chip_d / 2 + 36), tool["label"], font=f_label, fill=NODE_LABEL, anchor="mm")
-        x += chip_d + gap
+    # ---- Titular (negro + línea 2 resaltada tipo marcador) ----
+    f_title = font(FONT_TITLE, 62)
+    draw_multiline_center(draw, (W / 2, 460), TITLE_LINE1, f_title, INK, line_spacing=8)
 
-    # ---- Titular (grande, con sombra + línea 2 resaltada tipo marcador) ----
-    f_title = font(FONT_TITLE, 82)
-
-    # Línea 1: negro con sombra suave para dar profundidad y que "salte" de la página.
-    shadow_offset = 4
-    draw.text((40 + shadow_offset, 500 + shadow_offset), TITLE_LINE1, font=f_title, fill=(0, 0, 0, 60))
-    draw.text((40, 500), TITLE_LINE1, font=f_title, fill=INK)
-
-    # Línea 2: bloque naranja tipo "resaltador" con texto en blanco — máximo contraste.
     bbox2 = draw.textbbox((0, 0), TITLE_LINE2, font=f_title)
     text_w2 = bbox2[2] - bbox2[0]
     pad_x, pad_y = 20, 16
-    line2_y = 650
-    highlight_box = (40 - pad_x, line2_y - pad_y, 40 + text_w2 + pad_x, line2_y + 82 + pad_y)
+    line2_cy = 560
+    highlight_box = (W / 2 - text_w2 / 2 - pad_x, line2_cy - 39 - pad_y, W / 2 + text_w2 / 2 + pad_x, line2_cy + 39 + pad_y)
     rounded_rect(draw, highlight_box, 10, fill=ORANGE)
-    draw.text((40, line2_y - bbox2[1]), TITLE_LINE2, font=f_title, fill=WHITE)
+    draw_multiline_center(draw, (W / 2, line2_cy), TITLE_LINE2, f_title, WHITE, line_spacing=0)
 
-    # ---- Subtítulo de apoyo (rellena el hueco bajo el título, da contexto) ----
-    f_subtitle = font(FONT_BOLD, 30)
-    subtitle_y = highlight_box[3] + 34
-    draw.text((40, subtitle_y), SUBTITLE, font=f_subtitle, fill=(74, 74, 74))
+    # ---- Tira fina de herramientas ----
+    n = len(TOOL_LOGOS)
+    chip_d = 130
+    gap = 46
+    total_w = n * chip_d + (n - 1) * gap
+    start_x = (W - total_w) / 2
+    chips_cy = 720
+    x = start_x
+    for tool in TOOL_LOGOS:
+        tool_chip(img, draw, x + chip_d / 2, chips_cy, chip_d, tool)
+        x += chip_d + gap
 
-    # ---- Foto circular con borde naranja ----
-    # Banda propia, claramente separada del bloque de texto (nunca se tocan).
-    photo_d = 185
-    border = 8
-    photo = Image.open(PHOTO_PATH).convert("RGB")
-    photo = ImageOps.fit(photo, (photo_d, photo_d), centering=(0.5, 0.3))
-    mask = Image.new("L", (photo_d, photo_d), 0)
-    mdraw = ImageDraw.Draw(mask)
-    mdraw.ellipse((0, 0, photo_d, photo_d), fill=255)
+    # ---- Barra inferior en naranja corporativo: foto + CTA al PDF en línea ----
+    bar_top = 900
+    rounded_rect(draw, (40, bar_top, W - 40, H - 40), 16, fill=ORANGE)
 
-    ring_d = photo_d + border * 2
-    ring = Image.new("RGBA", (ring_d, ring_d), (0, 0, 0, 0))
-    rdraw = ImageDraw.Draw(ring)
-    rdraw.ellipse((0, 0, ring_d, ring_d), fill=ORANGE + (255,))
-    ring.paste(photo, (border, border), mask)
+    bar_cy = bar_top + (H - 40 - bar_top) / 2
+    ring, ring_d = circular_photo(110, 6, border_color=WHITE)
+    img.paste(ring, (60, int(bar_cy - ring_d / 2)), ring)
 
-    # Banda inferior propia (empieza claramente por debajo del bloque naranja del título).
-    photo_band_top = 855
-    px = W - 60 - ring_d
-    py = photo_band_top
-    img.paste(ring, (int(px), int(py)), ring)
+    f_cta = font(FONT_BOLD, 27)
+    cta_text = wrap_two_lines(SUBTITLE)
+    cta_lines = cta_text.split("\n")
+    spacing = 8
+    line_h = draw.textbbox((0, 0), "Ag", font=f_cta)[3]
+    total_h = len(cta_lines) * line_h + (len(cta_lines) - 1) * spacing
+    draw.multiline_text((60 + ring_d + 26, bar_cy - total_h / 2), cta_text, font=f_cta, fill=WHITE, spacing=spacing)
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     img.save(OUT_PATH)

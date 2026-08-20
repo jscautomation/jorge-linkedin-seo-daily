@@ -1,3 +1,5 @@
+FICHA DE PRODUCTO: GOOGLE YA NO TE VE.
+
 El 83% de las búsquedas con AI Overviews en Google terminan sin un clic. Y sigo viendo ecommerce peleando por el top 3 como si fuera 2019.
 
 El tráfico informacional se desploma en toda la industria — Google ya resume la respuesta él mismo. Pero la ficha de producto es la excepción: ahí Google sigue mandando tráfico real, y está apostando fuerte por el Product schema para sus nuevas interfaces de compra (Shopping, carrito universal, citas en AI Overviews).
