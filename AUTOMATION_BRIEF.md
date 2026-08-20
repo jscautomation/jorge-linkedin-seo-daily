@@ -51,6 +51,13 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
 
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
+0. **Titular de apertura** (desde el 20/08/2026, obligatorio): la primera línea
+   del post — sola, en su propio párrafo, antes del hook — es un titular corto
+   y contundente que refleje el mismo golpe de efecto que el titular visual de
+   la imagen (`TITLE_LINE1` + `TITLE_LINE2`, ver sección 3). Normalmente en
+   mayúsculas y cerrado en punto, como frase autoconclusiva — p.ej. "FICHA DE
+   PRODUCTO: GOOGLE YA NO TE VE." El texto y la imagen deben "decir lo mismo"
+   a primer golpe de vista.
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
@@ -64,26 +71,89 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
 Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras — si no
 hay un dato real verificable, no se afirma un resultado concreto.
 
+**Longitud** (desde el 20/08/2026): apunta a 150-200 palabras en total, no a
+230+. Mismo esqueleto de 6-7 puntos, pero compacto — si un párrafo puede decir
+lo mismo en menos frases, recorta antes de añadir matices extra.
+
 ## 3. Imagen del post
 
 Todas las rutas del proyecto son **relativas al repo** (funciona igual en local
 que en el sandbox Linux de la ejecución en la nube). Nunca uses rutas
 absolutas tipo `C:\...`.
 
-Usar `scripts/generate_post_image.py` como base. Antes de ejecutar, edita solo
-estas variables al principio del archivo:
+Usar `scripts/generate_post_image.py` como base. **Estructura vigente desde el
+20/08/2026 — "stat hero"** (sustituye al antiguo estilo "workflow" de panel
+gris arriba; no volver a ese estilo salvo que Jorge lo pida explícitamente):
+etiqueta del tema arriba centrada, cifra de impacto gigante como titular
+visual, título negro+naranja debajo, tira fina de logos de herramientas, y
+barra inferior en **naranja corporativo** con la foto de Jorge + el CTA al PDF.
 
+Antes de ejecutar, edita solo estas variables al principio del archivo:
+
+- `PANEL_TAG`: etiqueta pequeña centrada arriba del todo — el tema/ángulo del
+  día (p.ej. "TENDENCIA SEO · ECOMMERCE", "ROAST SEO · ECOMMERCE").
+- `STAT_NUMBER` / `STAT_LABEL`: la cifra de impacto que hace de titular visual
+  principal (p.ej. "83%" / "de las búsquedas con IA no dan ni un clic"). Usa
+  un dato público real y verificable relevante al ángulo de hoy cuando exista
+  (el de la tendencia, el % del mito, el hallazgo cuantificado de la
+  auditoría...). Si ese día no hay una cifra pública sólida que encaje, usa en
+  su lugar un número corto igual de relevante (p.ej. el nº de puntos del PDF,
+  "40" de las URLs clon, etc.) — nunca lo dejes vacío, es el elemento más
+  grande de toda la imagen.
 - `TITLE_LINE1` / `TITLE_LINE2`: titular descriptivo del post (no genérico), 2
   líneas, en mayúsculas. La línea 2 sale resaltada en naranja automáticamente.
-- `SUBTITLE`: una frase corta de apoyo/CTA (p.ej. "Cómo detectarlo en 5 minutos >>").
-- `PANEL_TAG`: normalmente "HERRAMIENTAS DE HOY".
-- `TOOL_LOGOS`: 2-3 herramientas realmente relevantes al tema del día. Si el logo
-  no existe ya en `assets/branding/tool-logos/`, descárgalo así (con `-L` para
-  seguir redirecciones):
-  ```
-  curl -sL -o assets/branding/tool-logos/<nombre>.png \
-    "https://www.google.com/s2/favicons?domain=<dominio-de-la-herramienta>&sz=128"
-  ```
+  Debe ser coherente con el titular de apertura del texto del post (sección 2,
+  punto 0) — mismo mensaje, misma fuerza.
+- `SUBTITLE`: el texto de la barra naranja inferior. **Debe dejar claro que el
+  PDF gratis está en el enlace al final del post** (p.ej. "GRATIS: el PDF está
+  en el enlace al final del post >>") — no un CTA genérico sin más, porque es
+  el único sitio de la imagen donde se indica dónde está el enlace real que
+  añade Jorge al publicar.
+- `TOOL_LOGOS`: 2 herramientas realmente relevantes al tema del día. **No
+  repitas siempre el mismo dúo** (antes de elegir, mira qué se usó los últimos
+  2-3 días en `git log -p -- scripts/generate_post_image.py` y varía si
+  aplica). Si el logo no existe ya en `assets/branding/tool-logos/`:
+  1. Primero intenta el favicon de Google (rápido si el entorno lo permite):
+     ```
+     curl -sL -o assets/branding/tool-logos/<nombre>.png \
+       "https://www.google.com/s2/favicons?domain=<dominio-de-la-herramienta>&sz=128"
+     ```
+  2. Si falla (en el sandbox de la nube, `www.google.com` y casi cualquier
+     dominio externo salvo GitHub están bloqueados por política de red del
+     entorno — error 403 de la CONNECT del proxy, confirmable con
+     `curl -sS "$HTTPS_PROXY/__agentproxy/status"`), usa el logo oficial real
+     de la marca desde el repo público **simple-icons** (sí accesible, vía
+     `raw.githubusercontent.com`), con su color de marca correcto en vez de un
+     favicon genérico:
+     ```
+     # 1) color de marca (busca el título en el JSON)
+     curl -sS -o /tmp/icons.json \
+       "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json"
+     python3 -c "import json; d=json.load(open('/tmp/icons.json')); \
+       [print(i['title'], i['hex']) for i in d if '<nombre herramienta>'.lower() in i['title'].lower()]"
+
+     # 2) SVG oficial (slug = título en minúsculas sin espacios/símbolos)
+     curl -sS -o /tmp/logo.svg \
+       "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/<slug>.svg"
+
+     # 3) colorear con el hex del paso 1 y rasterizar a PNG 400x400
+     python3 -c "
+     import re, cairosvg
+     svg = open('/tmp/logo.svg', encoding='utf-8').read()
+     svg = re.sub(r'<path ', '<path fill=\"#<HEX>\" ', svg, count=1)
+     open('/tmp/logo.svg', 'w', encoding='utf-8').write(svg)
+     cairosvg.svg2png(url='/tmp/logo.svg',
+       write_to='assets/branding/tool-logos/<nombre>.png', output_width=400, output_height=400)
+     "
+     ```
+     (`pip install cairosvg` si no está ya instalado). Si la herramienta no
+     existe en simple-icons, reutiliza el logo real más parecido que ya haya
+     en `assets/branding/tool-logos/` antes que dejar un logo genérico o
+     repetido sin sentido.
+  3. Nunca uses una foto ni un montaje "con IA" simulando una captura de
+     pantalla real — o es un logo oficial de verdad, o (si en el futuro el
+     entorno permite navegar a la herramienta) una captura real hecha con el
+     navegador, nunca una imagen inventada que aparente serlo.
 
 Después ejecuta: `python3 scripts/generate_post_image.py content/<carpeta-del-día>/imagen-post.png`
 (el primer argumento es la ruta de salida; si se omite, usa una ruta por defecto).
@@ -93,17 +163,22 @@ Después ejecuta: `python3 scripts/generate_post_image.py content/<carpeta-del-d
 Estas fuentes **no incluyen emojis ni símbolos Unicode especiales** (💡👇🚀 etc.)
 — si aparecen como un cuadrado roto en la imagen, es por esto. Usa solo texto
 normal y como mucho caracteres ASCII simples para flechas/marcas (`>>`, `-`,
-`*`), nunca emoji, en `TITLE_LINE1`, `TITLE_LINE2`, `SUBTITLE` ni `PANEL_TAG`.
-(Los emojis SÍ están bien en el texto del post de LinkedIn y en el artículo del
-blog — la limitación es solo para el texto que se dibuja dentro de la imagen.)
+`*`), nunca emoji, en `TITLE_LINE1`, `TITLE_LINE2`, `SUBTITLE`, `PANEL_TAG`,
+`STAT_NUMBER` ni `STAT_LABEL`. (Los emojis SÍ están bien en el texto del post
+de LinkedIn y en el artículo del blog — la limitación es solo para el texto
+que se dibuja dentro de la imagen.)
 
 Reglas de diseño ya validadas con Jorge — no cambiarlas sin que lo pida:
 - El texto y la foto de Jorge NUNCA deben tocarse/solaparse (bandas separadas).
-- Las dos líneas del título tampoco deben solaparse entre sí.
+- Las dos líneas del título tampoco deben solaparse entre sí, ni ningún otro
+  bloque de texto con otro (usa `wrap_two_lines()` para repartir frases largas
+  en 2 líneas equilibradas antes de dar por bueno un layout).
 - Debe quedar compacto, sin espacios en blanco grandes — si sobra hueco, añadir
   una línea de subtítulo o ajustar tamaños, no dejarlo vacío.
-- Logos grandes y legibles, panel simple (sin diagramas complejos de flechas
-  salvo que encaje mejor para un tema muy concreto).
+- Logos grandes y legibles, sin diagramas complejos de flechas salvo que
+  encaje mejor para un tema muy concreto.
+- La barra inferior es **naranja corporativo** (no gris) — foto con borde
+  blanco (para que contraste sobre el naranja) + CTA en blanco al lado.
 
 ## 3bis. PDF del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
 
