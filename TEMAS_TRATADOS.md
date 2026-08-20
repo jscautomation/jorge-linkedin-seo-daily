@@ -31,7 +31,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 
 | Fecha | Tendencia | Ángulo para ecommerce |
 |---|---|---|
-| — | — | (aún sin publicar) |
+| 2026-08-20 | AI Overviews devorando el tráfico informacional (43% de búsquedas, ~83% zero-click), y por qué la ficha de producto es la excepción | La ficha de producto sigue necesitando tráfico real y Google la usa para Shopping/carrito universal/citas en AI Overviews. Solución: checklist de 5 puntos de Product schema (precio sincronizado, availability en tiempo real, aggregateRating real, un único generador de JSON-LD, gtin/mpn/brand completos) |
 
 ## Viernes — Pregunta abierta + resumen semanal
 

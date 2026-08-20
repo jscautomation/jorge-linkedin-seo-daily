@@ -1,0 +1,165 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>Por qué tu ficha de producto se está quedando invisible en la nueva búsqueda con IA (y cómo comprobarlo tú mismo)</h1>
+
+<p>En 2026, el 43% de las búsquedas en Google ya activan un AI Overview. Y según estudios públicos recientes, hasta el 83% de esas búsquedas terminan sin que el usuario haga clic en ninguna web: Google resume la respuesta directamente en el propio buscador. El tráfico informacional —blogs, guías, comparativas— se está desplomando en toda la industria por este motivo.</p>
+
+<p>Llevo semanas viendo el mismo patrón en auditorías a ecommerce: mucha energía puesta en "salir en el top 3" del listado clásico, cuando cada vez hay menos clics disponibles ahí. Pero hay una página que no se está muriendo igual que el resto del sitio: la ficha de producto.</p>
+
+<h2>Por qué la ficha de producto es distinta</h2>
+
+<p>Para comprar, tarde o temprano hace falta ir a la tienda. Eso convierte a la ficha de producto en una de las pocas páginas donde Google todavía necesita mandar tráfico real, en vez de resolver la intención él mismo con un resumen. Y es justo ahí donde Google está apostando fuerte por los datos estructurados (el schema <code>Product</code>) para construir sus nuevas interfaces de compra: Shopping, el carrito universal, y las citas de producto dentro de los propios AI Overviews.</p>
+
+<p>Dicho de otra forma: mientras el contenido informacional pierde visibilidad casi sin remedio, la ficha de producto con datos estructurados limpios sigue siendo una palanca real. Hay estudios públicos que hablan de subidas de CTR en torno al 30% en fichas con Product schema completo frente a las que no lo tienen —y ese hueco, si tu competencia lo ocupa y tú no, se lo queda ella.</p>
+
+<h2>El problema: un schema que "se ve bien" pero está a medias</h2>
+
+<p>La mayoría de fichas de producto que audito tienen el schema <code>Product</code> implementado... pero a medias. Precio desincronizado con el feed real, disponibilidad que no se actualiza cuando el producto se agota, o bloques de datos estructurados directamente rotos o duplicados por distintos plugins que compiten entre sí.</p>
+
+<p>Lo más engañoso de este problema es que no se nota a simple vista: la página se ve perfecta para un humano. El schema vive en el código, invisible en el navegador, y solo se descubre si lo vas a mirar expresamente.</p>
+
+<h2>Cómo lo compruebas tú mismo en 5 minutos</h2>
+
+<p>No hace falta ninguna herramienta de pago para el primer diagnóstico. Coge la URL de tu producto más vendido y pásala por el <strong>Rich Results Test de Google</strong> (gratuito, en <code>search.google.com/test/rich-results</code>).</p>
+
+<p>Fíjate en tres cosas concretas:</p>
+
+<ul>
+  <li>¿El campo <code>price</code> que devuelve coincide con el precio real que ves en la página en ese mismo momento?</li>
+  <li>¿El campo <code>availability</code> refleja el stock real, o sigue marcando "disponible" un producto agotado?</li>
+  <li>¿Aparece algún error o advertencia sobre <code>Product</code> que Google esté señalando explícitamente?</li>
+</ul>
+
+<p>Si algo de esto falla en tu producto estrella, es muy probable que lleve meses así en el resto del catálogo — y que ese catálogo entero esté perdiendo la carrera por aparecer citado en las nuevas interfaces de compra de Google.</p>
+
+<h2>Por qué esto importa más de lo que parece</h2>
+
+<p>No es un detalle técnico menor. Un schema roto o incompleto no solo te deja fuera de los rich results clásicos (las estrellitas, el precio en el propio resultado de búsqueda): te deja fuera de cómo Google está reconstruyendo la experiencia de compra alrededor de la IA. Y esa carrera ya ha empezado, aunque no se vea todavía en el tráfico de la mayoría de tiendas.</p>
+
+<p>La solución tiene 5 puntos de verificación muy concretos —qué campos revisar exactamente, por qué se rompen más a menudo de lo que crees, y cómo arreglarlos sin depender de que tu desarrollador tenga hueco esta semana. Los explico con detalle en la guía gratuita —te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "Tu ficha de producto, invisible para las nuevas búsquedas con IA",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-20-jueves-tendencia/ficha-de-producto-invisible-para-busquedas-con-ia.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>
