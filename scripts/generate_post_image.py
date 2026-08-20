@@ -41,11 +41,11 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 TITLE_LINE1 = "FICHA DE PRODUCTO"
 TITLE_LINE2 = "GOOGLE YA NO TE VE"
-SUBTITLE = "El 83% de las AI Overviews no dan ni un clic >>"
+SUBTITLE = "GRATIS: la guía PDF con la solución completa >>"
 PANEL_TAG = "HERRAMIENTAS DE HOY"
 TOOL_LOGOS = [
-    {"path": str(TOOL_LOGO_DIR / "gsc.png"), "label": "Search Console"},
-    {"path": str(TOOL_LOGO_DIR / "screamingfrog.png"), "label": "Screaming Frog"},
+    {"path": str(TOOL_LOGO_DIR / "google-search-console.png"), "label": "Search Console"},
+    {"path": str(TOOL_LOGO_DIR / "yoast-seo.png"), "label": "Yoast SEO"},
 ]
 
 
