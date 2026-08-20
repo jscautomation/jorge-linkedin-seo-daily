@@ -286,6 +286,33 @@ desarrollan el ángulo del día en más profundidad que el post, ejemplos
 concretos, y termina con el bloque de formulario ya montado (copiar tal cual
 desde la plantilla, solo cambiando pdfTitulo/pdfUrl).
 
+### Botones CTA intermedios (desde el 20/08/2026, obligatorio)
+
+Además del bloque de formulario final, el artículo lleva **2 botones CTA**
+insertados en medio del texto que enlazan directamente al formulario (mismo
+`id="jsc-lead-form"` de más abajo en la página, con scroll suave — nunca un
+segundo formulario duplicado). Usa este bloque tal cual, solo cambia el texto
+del botón y el sitio donde lo insertas:
+
+```html
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 <texto del botón>
+  </a>
+</div>
+```
+
+Reglas de colocación ya validadas con Jorge — no cambiarlas sin que lo pida:
+- **Alineado a la izquierda** (`text-align:left`, nunca centrado), igual que
+  el resto del texto del artículo.
+- **Primer botón**: justo después del segundo párrafo del artículo (antes del
+  primer H2), no más tarde.
+- **Segundo botón**: en otro punto natural de intención alta, típicamente
+  justo después de la sección de "cómo detectarlo tú mismo" (cuando el lector
+  ya sabe que tiene el problema y quiere la solución).
+- Nunca más de 2 botones intermedios — el objetivo es dar salidas naturales
+  al CTA sin saturar el artículo de banners.
+
 ## 5. Formulario de captura (fijo, no tocar salvo instrucción expresa)
 
 Plantilla maestra: `templates/formulario-lead-magnet.html`. Ya incluye:
