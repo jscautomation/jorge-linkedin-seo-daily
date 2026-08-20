@@ -29,7 +29,7 @@ TOOL_LOGO_DIR = REPO_ROOT / "assets" / "branding" / "tool-logos"
 # 👉 Esto también se pasa por CLI/env en la ejecución diaria; por defecto usa
 # la carpeta de contenido de hoy. Ver generate_post_image.py --help.
 import sys
-OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "content" / "2026-08-17-lunes-roast" / "imagen-post.png"
+OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "content" / "2026-08-20-jueves-tendencia" / "imagen-post.png"
 
 # Fuentes libres (Google Fonts, licencia OFL) bundleadas en el repo — no
 # dependen de que el sistema operativo tenga Arial/Windows instalado.
@@ -39,9 +39,9 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 # 👉 CONFIG: esto cambia cada día
 # ------------------------------------------------------------
-TITLE_LINE1 = "HREFLANG AUSENTE,"
-TITLE_LINE2 = "PAIS EQUIVOCADO"
-SUBTITLE = "Auditoria exprés: como Clarks mezclo sus mercados >>"
+TITLE_LINE1 = "FICHA DE PRODUCTO"
+TITLE_LINE2 = "GOOGLE YA NO TE VE"
+SUBTITLE = "El 83% de las AI Overviews no dan ni un clic >>"
 PANEL_TAG = "HERRAMIENTAS DE HOY"
 TOOL_LOGOS = [
     {"path": str(TOOL_LOGO_DIR / "gsc.png"), "label": "Search Console"},

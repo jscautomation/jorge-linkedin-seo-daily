@@ -1,0 +1,15 @@
+El 83% de las búsquedas que activan AI Overviews en Google terminan sin un solo clic a ninguna web. Y sigo viendo ecommerce peleando por "salir en el top 3" como si fuera 2019.
+
+Llevo semanas viendo el mismo patrón en auditorías: el tráfico informacional (blog, guías, comparativas) se está desplomando porque Google ya no manda el clic — resume la respuesta él mismo, dentro del propio buscador.
+
+Pero hay una parte del ecommerce que NO se está muriendo igual: la ficha de producto. Y no es casualidad. Es de las pocas páginas donde Google sigue necesitando mandarte tráfico de verdad (para comprar hace falta ir a la tienda), y donde está apostando fuerte por tirar de datos estructurados para construir sus nuevas interfaces de compra (Shopping, carrito universal, citas dentro de AI Overviews).
+
+El problema: la mayoría de fichas de producto que audito tienen el schema Product a medias. Precio desincronizado con el feed real, disponibilidad que no se actualiza, o directamente roto — y no te enteras si no lo miras, porque la página se ve perfecta para un humano.
+
+Lo que está en juego: mientras el tráfico informacional cae en toda la industria, las fichas con datos estructurados completos son de las pocas piezas del SEO de ecommerce que hoy por hoy siguen ganando visibilidad — hay estudios públicos que hablan de subidas de CTR en torno al 30% en fichas con Product schema limpio frente a las que no lo tienen. Si tu competencia lo tiene bien montado y tú no, ese hueco se lo queda ella.
+
+¿Cómo lo compruebas tú mismo en 5 minutos? Coge la URL de tu producto más vendido y pásala por el Rich Results Test de Google (gratis). Si te marca algún error o "advertencia" en Product, ese producto probablemente lleva meses invisible para las nuevas interfaces de compra.
+
+Los 5 puntos exactos que reviso en cada ficha de producto —qué campos son obligatorios de verdad, cuáles se rompen más a menudo (y por qué) y cómo verificarlos sin depender de tu desarrollador— están en la guía gratuita de hoy (enlace al artículo en comentarios).
+
+#SEO #Ecommerce #WordPress #Shopify
