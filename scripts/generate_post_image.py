@@ -46,7 +46,7 @@ STAT_NUMBER = "83%"                        # cifra grande de impacto (titular vi
 STAT_LABEL = "de las búsquedas con IA no dan ni un clic"
 TITLE_LINE1 = "FICHA DE PRODUCTO"
 TITLE_LINE2 = "GOOGLE YA NO TE VE"
-SUBTITLE = "GRATIS: la guía PDF con la solución completa >>"
+SUBTITLE = "GRATIS: el PDF está en el enlace al final del post >>"
 TOOL_LOGOS = [
     {"path": str(TOOL_LOGO_DIR / "google-search-console.png"), "label": "Search Console"},
     {"path": str(TOOL_LOGO_DIR / "yoast-seo.png"), "label": "Yoast SEO"},
