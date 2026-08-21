@@ -31,7 +31,7 @@ TOOL_LOGO_DIR = REPO_ROOT / "assets" / "branding" / "tool-logos"
 # 👉 Esto también se pasa por CLI/env en la ejecución diaria; por defecto usa
 # la carpeta de contenido de hoy. Ver generate_post_image.py --help.
 import sys
-OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "content" / "2026-08-20-jueves-tendencia" / "imagen-post.png"
+OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "content" / "2026-08-21-viernes-resumen" / "imagen-post.png"
 
 # Fuentes libres (Google Fonts, licencia OFL) bundleadas en el repo — no
 # dependen de que el sistema operativo tenga Arial/Windows instalado.
@@ -41,15 +41,15 @@ FONT_BOLD = "Barlow-Bold.ttf"             # etiquetas, subtítulo, tag del panel
 # ------------------------------------------------------------
 # 👉 CONFIG: esto cambia cada día
 # ------------------------------------------------------------
-PANEL_TAG = "TENDENCIA SEO · ECOMMERCE"   # etiqueta pequeña arriba (tema del día)
-STAT_NUMBER = "83%"                        # cifra grande de impacto (titular visual)
-STAT_LABEL = "de las búsquedas con IA no dan ni un clic"
-TITLE_LINE1 = "FICHA DE PRODUCTO"
-TITLE_LINE2 = "GOOGLE YA NO TE VE"
+PANEL_TAG = "RESUMEN SEMANAL · SEO ECOMMERCE"   # etiqueta pequeña arriba (tema del día)
+STAT_NUMBER = "4"                        # cifra grande de impacto (titular visual)
+STAT_LABEL = "errores SEO reales que hemos destripado esta semana"
+TITLE_LINE1 = "4 ERRORES SEO,"
+TITLE_LINE2 = "1 PREGUNTA PARA TI"
 SUBTITLE = "GRATIS: el PDF está en el enlace al final del post >>"
 TOOL_LOGOS = [
-    {"path": str(TOOL_LOGO_DIR / "google-search-console.png"), "label": "Search Console"},
-    {"path": str(TOOL_LOGO_DIR / "yoast-seo.png"), "label": "Yoast SEO"},
+    {"path": str(TOOL_LOGO_DIR / "gsc.png"), "label": "Search Console"},
+    {"path": str(TOOL_LOGO_DIR / "wordpress.png"), "label": "WordPress"},
 ]
 
 
