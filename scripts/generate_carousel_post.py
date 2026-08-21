@@ -22,6 +22,7 @@ import random
 import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+import img2pdf
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FONT_DIR = REPO_ROOT / "assets" / "fonts"
@@ -172,43 +173,53 @@ def top_row(draw, tag_text):
     draw.text((W / 2, 34), tag_text, font=F(BOLD, 22), fill=GRAY, anchor="mm")
 
 
-def highlight_block(draw, x, y_top, text, f, fg, bg, pad_x=14, pad_y=8, line_h=None):
-    """Bloque de texto resaltado con fondo solido (tipo rotulador/CTA) —
-    para el recordatorio de 'PDF en comentario fijado', que debe ser
-    grande y llamativo, no una nota al pie discreta."""
-    lines = text.split("\n")
-    lh = line_h or int(f.size * 1.16)
-    widths = [draw.textbbox((0, 0), l, font=f)[2] for l in lines]
-    w = max(widths)
-    h = lh * len(lines)
-    rr(draw, (x - pad_x, y_top - pad_y, x + w + pad_x, y_top + h - lh + f.size + pad_y), 10, fill=bg)
-    y = y_top
-    for l in lines:
-        draw.text((x, y), l, font=f, fill=fg)
-        y += lh
+def pdf_cta_bar(img, draw, y_top, height=92):
+    """Aviso de 'PDF en el comentario fijado' — grande y llamativo por
+    derecho propio (icono de comentario + flecha + texto grande), ya NO
+    depende de ir pegado al nombre/foto de Jorge. Vive en su propia franja,
+    a todo lo ancho, siempre en el mismo sitio en las 5 slides."""
+    x0, x1 = 60, W - 60
+    y1 = y_top + height
+    rr(draw, (x0, y_top, x1, y1), 22, fill=ORANGE)
+    cy = (y_top + y1) / 2 - 4
+
+    # icono de comentario, grande, a la izquierda
+    icx = x0 + 68
+    bw, bh = 72, 46
+    by0, by1 = cy - bh / 2, cy + bh / 2
+    rr(draw, (icx - bw / 2, by0, icx + bw / 2, by1), 14, fill=WHITE)
+    draw.polygon([(icx - 14, by1 - 2), (icx - 14, by1 + 18), (icx + 10, by1 - 2)], fill=WHITE)
+    for ddx in (-17, 0, 17):
+        draw.ellipse((icx + ddx - 7, cy - 7, icx + ddx + 7, cy + 7), fill=ORANGE)
+
+    # flecha garabateada, gruesa, del icono al texto — el "algo mas" que
+    # llama la atencion ademas del tamano y el color
+    ax0 = icx + bw / 2 + 18
+    scribble_arrow(draw, (ax0, cy), (ax0 + 64, cy), WHITE, width=10, jitter=3, head=20)
+
+    tx = ax0 + 88
+    draw.text((tx, y_top + height / 2), "EL PDF ESTA EN EL\nCOMENTARIO FIJADO",
+              font=F(TITLE, 26), fill=WHITE, anchor="lm", align="left")
 
 
 def brand_footer(img, draw, slide_no, total=5):
-    diam = 70
+    diam = 56
     photo = Image.open(PHOTO_PATH).convert("RGB")
     photo = ImageOps.fit(photo, (diam, diam), centering=(0.5, 0.25))
     mask = Image.new("L", (diam, diam), 0)
     ImageDraw.Draw(mask).ellipse((0, 0, diam, diam), fill=255)
-    ring_d = diam + 8
+    ring_d = diam + 6
     ring = Image.new("RGBA", (ring_d, ring_d), (0, 0, 0, 0))
     ImageDraw.Draw(ring).ellipse((0, 0, ring_d, ring_d), fill=(255, 255, 255, 255))
-    ring.paste(photo, (4, 4), mask)
+    ring.paste(photo, (3, 3), mask)
 
-    block_h = 96
-    fy = H - block_h - 24
+    block_h = 60
+    fy = H - block_h - 20
     img.paste(ring, (44, fy + (block_h - ring_d) // 2), ring)
-    name_x = 44 + ring_d + 20
+    name_x = 44 + ring_d + 16
 
-    draw.text((name_x, fy + 6), "Jorge Segovia", font=F(BOLD, 18), fill=INK, anchor="lm")
-    highlight_block(draw, name_x, fy + 32, "DESCARGA LA GUIA EN PDF\nEN EL COMENTARIO FIJADO",
-                     F(TITLE, 21), WHITE, ORANGE, pad_x=12, pad_y=7, line_h=27)
-
-    draw.text((W - 46, fy + block_h / 2), f"{slide_no}/{total}", font=F(BOLD, 24), fill=GRAY, anchor="rm")
+    draw.text((name_x, fy + block_h / 2), "Jorge Segovia", font=F(BOLD, 20), fill=INK, anchor="lm")
+    draw.text((W - 46, fy + block_h / 2), f"{slide_no}/{total}", font=F(BOLD, 22), fill=GRAY, anchor="rm")
 
 
 def speech(draw, box, label, text, f_label, f_text, label_fill, tail="left"):
@@ -266,8 +277,9 @@ def slide_1():
                  "con la mia, y luego te toca a ti.",
                  F(BOLD, 30), GRAY, W - 200, 40, align="left")
 
-    ribbon(img, 900, "DESLIZA, EMPIEZO YO >>", INK, PAPER)
+    ribbon(img, 825, "DESLIZA, EMPIEZO YO >>", INK, PAPER)
     d = ImageDraw.Draw(img)
+    pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 1)
     img.save(OUT_DIR / "carrusel-1.png")
 
@@ -299,8 +311,9 @@ def slide_2():
                  "resta autoridad, en silencio.",
                  F(TITLE, 32), INK, W - 160, 42)
 
-    ribbon(img, 900, "DESLIZA, COMPRUEBALO TU >>", ORANGE, WHITE)
+    ribbon(img, 825, "DESLIZA, COMPRUEBALO TU >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
+    pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 2)
     img.save(OUT_DIR / "carrusel-2.png")
 
@@ -342,8 +355,9 @@ def slide_3():
                  "para saber si te esta pasando a ti tambien.",
                  F(BOLD, 28), GRAY, W - 180, 36)
 
-    ribbon(img, 900, "DESLIZA PARA LA PREGUNTA >>", INK, PAPER)
+    ribbon(img, 825, "DESLIZA PARA LA PREGUNTA >>", INK, PAPER)
     d = ImageDraw.Draw(img)
+    pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 3)
     img.save(OUT_DIR / "carrusel-3.png")
 
@@ -369,8 +383,9 @@ def slide_4():
                stroke_fill=YELLOW, stroke_w=9)
     d = ImageDraw.Draw(img)
 
-    ribbon(img, 900, "DESLIZA PARA EL CTA >>", ORANGE, WHITE)
+    ribbon(img, 825, "DESLIZA PARA EL CTA >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
+    pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 4)
     img.save(OUT_DIR / "carrusel-4.png")
 
@@ -418,17 +433,24 @@ def slide_5():
     d.text((tx, box[3] - 46), "no en la bio, no en un link raro — en el comentario.",
            font=F(BOLD, 17), fill=GRAY)
 
-    ribbon(img, 800, "COMPARTELO CON QUIEN LO NECESITE >>", INK, PAPER)
+    ribbon(img, 825, "COMPARTELO CON QUIEN LO NECESITE >>", INK, PAPER)
     d = ImageDraw.Draw(img)
+    pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 5)
     img.save(OUT_DIR / "carrusel-5.png")
 
 
 def build_pdf():
+    """Empaqueta los 5 PNG en un PDF SIN reprocesarlos — img2pdf incrusta el
+    PNG tal cual (FlateDecode, sin pérdida). Pillow's Image.save(...,"PDF")
+    NO sirve aquí: para imágenes RGB siempre las recomprime como JPEG
+    (DCTDecode) aunque no se lo pidas, y eso se nota en las líneas finas de
+    los garabatos y el texto — se ve peor que el PNG de origen."""
     paths = [OUT_DIR / f"carrusel-{i}.png" for i in range(1, 6)]
-    imgs = [Image.open(p).convert("RGB") for p in paths]
     pdf_path = OUT_DIR / "carrusel-post.pdf"
-    imgs[0].save(pdf_path, save_all=True, append_images=imgs[1:])
+    layout = img2pdf.get_layout_fun((img2pdf.mm_to_pt(285.75), img2pdf.mm_to_pt(285.75)))
+    with open(pdf_path, "wb") as f:
+        f.write(img2pdf.convert([str(p) for p in paths], layout_fun=layout))
     return pdf_path
 
 
