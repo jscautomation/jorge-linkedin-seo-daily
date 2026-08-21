@@ -24,7 +24,27 @@ Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 | Martes | Mito SEO desmontado con datos |
 | Miércoles | Auditoría exprés a una marca ecommerce grande y pública (nunca cliente de Jorge, dato 100% verificable) |
 | Jueves | Cambio de algoritmo / tendencia SEO reciente explicada para ecommerce |
-| Viernes | Pregunta abierta a la comunidad + resumen rápido de la semana |
+| Viernes | Pregunta abierta a la comunidad SEO (desde el 21/08/2026, **ya no** lleva resumen de la semana — ver nota abajo) |
+
+**Nota sobre el viernes (vigente desde el 21/08/2026):** el post del viernes ya
+no repasa lo publicado de lunes a jueves. Es una pregunta abierta a la
+comunidad SEO, con esqueleto propio (sigue el mismo de la sección 2, pero
+adaptado):
+- Hook: la pregunta en sí, planteada con fuerza (no genérica tipo "¿qué
+  opináis del SEO?" — un debate real y concreto del sector).
+- Jorge da primero **su propia respuesta** (una postura o un caso concreto,
+  a modo de ejemplo) para arrancar la conversación — nunca lanza la
+  pregunta en el aire sin más.
+- Desarrollo: por qué esa pregunta/postura importa y qué está en juego,
+  igual que cualquier otro día — con su propio tema real de fondo (no
+  inventado), sujeto a las mismas reglas de la sección 1bis (no repetir) y
+  la regla crítica de la sección 4 (nunca dar la solución completa fuera
+  del PDF).
+- Cierre: reitera la pregunta e invita explícitamente a responder en
+  comentarios.
+- Sigue llevando PDF del día (sección 3bis) y artículo (sección 4) con
+  normalidad — el ángulo "pregunta abierta" no exime de ninguna de las
+  entregas obligatorias de la sección 6.
 
 ## 1bis. No repetir tema — registro obligatorio en `TEMAS_TRATADOS.md`
 

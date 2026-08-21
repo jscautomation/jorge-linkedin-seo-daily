@@ -33,8 +33,12 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 |---|---|---|
 | 2026-08-20 | AI Overviews devorando el tráfico informacional (43% de búsquedas, ~83% zero-click), y por qué la ficha de producto es la excepción | La ficha de producto sigue necesitando tráfico real y Google la usa para Shopping/carrito universal/citas en AI Overviews. Solución: checklist de 5 puntos de Product schema (precio sincronizado, availability en tiempo real, aggregateRating real, un único generador de JSON-LD, gtin/mpn/brand completos) |
 
-## Viernes — Pregunta abierta + resumen semanal
+## Viernes — Pregunta abierta a la comunidad SEO
 
-| Fecha | Pregunta lanzada | Resumen de la semana |
+Desde el 21/08/2026 el viernes ya no repasa la semana (ver
+`AUTOMATION_BRIEF.md` § 1) — es una pregunta abierta con la propia
+respuesta/postura de Jorge como arranque de la conversación.
+
+| Fecha | Pregunta lanzada | Respuesta de Jorge (tema real de fondo) |
 |---|---|---|
-| 2026-08-21 | De los 4 errores de la semana (duplicación por filtros, mito robots.txt, hreflang ausente, product schema para IA), ¿cuál te preocupa más en tu propio ecommerce ahora mismo? | Recap de lunes-jueves (duplicación por parámetros de filtro, mito de robots.txt, hreflang ausente en Clarks, fichas de producto invisibles para IA). PDF: chuleta con los 4 casos y su solución completa paso a paso |
+| 2026-08-21 | ¿Cuál es, para ti, el error de SEO técnico más caro que sigue repitiéndose en el ecommerce? | Canonicals que apuntan a la home "por si acaso" en vez de a sí mismos — se cuelan en migraciones y rediseños, diluyen la relevancia de categorías y productos reales. Solución en el PDF: auditoría con Screaming Frog de canonicals que no autoreferencian + corrección por plantilla |

@@ -247,84 +247,100 @@ def slide_1():
     box = (60, 78, W - 60, 340)
     top = browser_chrome(d, box, "notas-de-jorge.txt")
     draw_wrapped(d, (box[0] + 32, top[1] + 34),
-                 "“Esta semana: 4 auditorias reales, 4 fallos que nadie "
-                 "ve a simple vista.”",
+                 "“¿Cual es el error SEO mas caro que sigue repitiendose "
+                 "en el ecommerce?”",
                  F(TITLE, 30), INK, box[2] - box[0] - 64, 40)
-    d.text((box[0] + 32, top[3] - 44), "— repaso de la semana, sin powerpoint",
+    d.text((box[0] + 32, top[3] - 44), "— pregunta que le hago hoy a la comunidad SEO",
            font=F(BOLD, 20), fill=GRAY)
 
     scribble_circle(d, W / 2, 190, 470, 82, RED, width=8, tilt=0.05)
     tape(img, box[0] + 55, box[1] + 4, angle=-10)
     tape(img, box[2] - 55, box[1] + 4, angle=8)
     d = ImageDraw.Draw(img)
-    stamp_text(img, W - 150, 372, "SPOILER:\nTODOS SEGUIAN AHI", F(TITLE, 22), RED, angle=-7,
+    stamp_text(img, W - 150, 372, "SPOILER:\nYO YA TENGO UNO", F(TITLE, 22), RED, angle=-7,
                stroke_fill=PAPER, stroke_w=6)
 
-    d.text((W / 2, 460), "4 ERRORES SEO,", font=F(TITLE, 52), fill=INK, anchor="mm")
-    d.text((W / 2, 514), "1 PREGUNTA PARA TI.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
-    draw_wrapped(d, (100, 578), "Cuatro casos reales, cuatro fallos invisibles. Te los "
-                 "resumo en 4 slides — y al final te toca a ti.",
+    d.text((W / 2, 460), "TE LANZO UNA", font=F(TITLE, 52), fill=INK, anchor="mm")
+    d.text((W / 2, 514), "PREGUNTA EN SERIO.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
+    draw_wrapped(d, (100, 578), "No busco likes, busco respuestas reales. Empiezo yo "
+                 "con la mia, y luego te toca a ti.",
                  F(BOLD, 30), GRAY, W - 200, 40, align="left")
 
-    ribbon(img, 900, "DESLIZA PARA EL REPASO >>", INK, PAPER)
+    ribbon(img, 900, "DESLIZA, EMPIEZO YO >>", INK, PAPER)
     d = ImageDraw.Draw(img)
     brand_footer(img, d, 1)
     img.save(OUT_DIR / "carrusel-1.png")
 
 
 # ------------------------------------------------------------------
-# SLIDE 2 — lunes + martes
+# SLIDE 2 — la respuesta de Jorge (arranca la conversacion)
 # ------------------------------------------------------------------
 def slide_2():
     random.seed(2)
     img, d = canvas()
     top_row(d, "AUDITORIA EN VIVO · SEO ECOMMERCE")
-    d.text((W / 2, 104), "LUNES Y MARTES", font=F(TITLE, 40), fill=INK, anchor="mm")
+    d.text((W / 2, 104), "MI RESPUESTA, PARA ARRANCAR", font=F(TITLE, 30), fill=INK, anchor="mm")
 
-    two_box(
-        img, d,
-        "LUNES — EL ROAST:", "~40 URLs clon por filtros de talla/color.",
-        "Canonical a la URL limpia + no bloquear por robots.txt + forzar recrawl. "
-        "Resultado real: de posicion 14 a posicion 4 en 6 semanas.",
-        "MARTES — EL MITO:", "“robots.txt desindexa” es falso.",
-        "Controla el rastreo, no la indexacion — y de paso te impide enseñarle a "
-        "Google el noindex que si funciona.",
-        (64, 150, W - 64, 380), (64, 414, W - 64, 644),
-    )
+    speech(d, (64, 156, W - 64, 300), "PARA MI, SIN DUDARLO:",
+           "“Canonicals que apuntan a la home... por si acaso.”",
+           F(TITLE, 21), F(TITLE, 30), ORANGE, tail="left")
 
-    draw_wrapped(d, (90, 700), "Dos temas distintos. Un mismo patron: nadie los mira "
-                 "porque no hay motivo visible para hacerlo.",
-                 F(TITLE, 28), ORANGE, W - 180, 36)
+    draw_wrapped(d, (100, 350), "Se cuelan en cada migracion, cada rediseño, cada "
+                 "plugin nuevo. Diluyen la relevancia real de tus categorias y "
+                 "fichas de producto — y como “no rompen nada” a simple vista, "
+                 "nadie los revisa.",
+                 F(BOLD, 25), GRAY, W - 200, 33)
 
-    ribbon(img, 900, "DESLIZA, QUEDAN 2 >>", ORANGE, WHITE)
+    stamp_text(img, W - 150, 560, "ASI, TAL\nCUAL", F(TITLE, 26), INK, angle=6,
+               stroke_fill=YELLOW, stroke_w=9)
+    d = ImageDraw.Draw(img)
+
+    draw_wrapped(d, (80, 660), "Un canonical mal puesto no da error 404. Solo te "
+                 "resta autoridad, en silencio.",
+                 F(TITLE, 32), INK, W - 160, 42)
+
+    ribbon(img, 900, "DESLIZA, COMPRUEBALO TU >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
     brand_footer(img, d, 2)
     img.save(OUT_DIR / "carrusel-2.png")
 
 
 # ------------------------------------------------------------------
-# SLIDE 3 — miercoles + jueves
+# SLIDE 3 — como comprobarlo tu mismo (diagnostico, sin la solucion completa)
 # ------------------------------------------------------------------
 def slide_3():
     random.seed(3)
     img, d = canvas()
     top_row(d, "AUDITORIA EN VIVO · SEO ECOMMERCE")
-    d.text((W / 2, 104), "MIERCOLES Y JUEVES", font=F(TITLE, 36), fill=INK, anchor="mm")
+    d.text((W / 2, 100), "SI TE SUENA, COMPRUEBALO", font=F(TITLE, 32), fill=INK, anchor="mm")
 
-    two_box(
-        img, d,
-        "MIERCOLES — LA AUDITORIA:", "Clarks: hreflang ausente tras migrar a dominio unico.",
-        "Hasta 68% de las keywords posicionando con la URL del pais equivocado "
-        "(dato publico, SISTRIX).",
-        "JUEVES — LA TENDENCIA:", "83% de busquedas con IA no dan ni un clic.",
-        "Pero tu ficha de producto SI necesita trafico real — y si el Product "
-        "schema esta roto, ya lo sabes.",
-        (64, 150, W - 64, 380), (64, 414, W - 64, 644),
-    )
+    box = (64, 150, W - 64, 470)
+    top = browser_chrome(d, box, "screaming-frog.tutienda.com")
+    ry = top[1] + 30
+    d.text((box[0] + 26, ry), "columna Canonical Link Element — exportada",
+           font=F(BOLD, 19), fill=GRAY)
+    rows = [("/pantalones-vaqueros", "-> home"), ("/zapatillas-running", "-> home"),
+            ("/camisetas-basicas", "-> si misma")]
+    ry2 = ry + 42
+    for url, dest in rows:
+        col = RED if dest == "-> home" else (26, 90, 26)
+        d.text((box[0] + 26, ry2), url, font=F(BOLD, 22), fill=(26, 90, 26))
+        d.text((box[2] - 40, ry2), dest, font=F(TITLE, 20), fill=col, anchor="ra")
+        ry2 += 46
+    d.line((box[0] + 22, ry2 + 4, box[2] - 22, ry2 + 4), fill=(225, 222, 212), width=2)
+    d.text((box[0] + 26, ry2 + 20), "cuenta cuantas filas dicen \"-> home\" sin serlo.",
+           font=F(BOLD, 17), fill=GRAY)
 
-    draw_wrapped(d, (90, 700), "Ninguno se nota mirando la web. Todos cuestan "
-                 "trafico real, mes tras mes.",
-                 F(TITLE, 28), ORANGE, W - 180, 36)
+    scribble_circle(d, box[2] - 90, ry + 65, 128, 48, RED, width=8)
+    scribble_arrow(d, (790, 560), (895, 400), RED, width=9)
+    stamp_text(img, 730, 522, "AHI ESTA\nEL FALLO", F(TITLE, 26), RED, angle=-6, stroke_fill=PAPER, stroke_w=6)
+    d = ImageDraw.Draw(img)
+
+    d.text((W / 2, 598), "SI EL NUMERO TE", font=F(TITLE, 40), fill=INK, anchor="mm")
+    d.text((W / 2, 644), "SORPRENDE, AHI LO TIENES.", font=F(TITLE, 34), fill=ORANGE, anchor="mm")
+    draw_wrapped(d, (90, 672), "Screaming Frog, exportar, filtrar. Cinco minutos "
+                 "para saber si te esta pasando a ti tambien.",
+                 F(BOLD, 28), GRAY, W - 180, 36)
 
     ribbon(img, 900, "DESLIZA PARA LA PREGUNTA >>", INK, PAPER)
     d = ImageDraw.Draw(img)
@@ -333,7 +349,7 @@ def slide_3():
 
 
 # ------------------------------------------------------------------
-# SLIDE 4 — el patron (insight grande)
+# SLIDE 4 — ahora te toca a ti (invitacion, insight grande)
 # ------------------------------------------------------------------
 def slide_4():
     random.seed(4)
@@ -343,24 +359,24 @@ def slide_4():
     top_row(d, "AUDITORIA EN VIVO · SEO ECOMMERCE")
 
     scribble_circle(d, W / 2, 420, 420, 340, RED, width=8, passes=1)
-    d.text((W / 2, 300), "NINGUNO SE VE", font=F(TITLE, 46), fill=INK, anchor="mm")
-    d.text((W / 2, 356), "A SIMPLE VISTA.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
-    draw_wrapped(d, (W / 2, 460), "La web factura, funciona, se ve perfecta... y pierde "
-                 "trafico por algo que nadie revisa porque no hay motivo para hacerlo.",
+    d.text((W / 2, 300), "AHORA TE TOCA", font=F(TITLE, 46), fill=INK, anchor="mm")
+    d.text((W / 2, 356), "A TI.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
+    draw_wrapped(d, (W / 2, 460), "¿Cual es el error que TU ves una y otra vez, en "
+                 "auditoria tras auditoria, y que nadie llega a arreglar del todo?",
                  F(BOLD, 30), INK, W - 280, 40, align="center")
 
-    stamp_text(img, W / 2, 700, "ESE ES EL PATRON", F(TITLE, 34), RED, angle=-4,
+    stamp_text(img, W / 2, 700, "LOS MEJORES, LA\nSEMANA QUE VIENE", F(TITLE, 26), RED, angle=-4,
                stroke_fill=YELLOW, stroke_w=9)
     d = ImageDraw.Draw(img)
 
-    ribbon(img, 900, "DESLIZA PARA LA PREGUNTA >>", ORANGE, WHITE)
+    ribbon(img, 900, "DESLIZA PARA EL CTA >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
     brand_footer(img, d, 4)
     img.save(OUT_DIR / "carrusel-4.png")
 
 
 # ------------------------------------------------------------------
-# SLIDE 5 — CTA + pregunta abierta
+# SLIDE 5 — CTA
 # ------------------------------------------------------------------
 def slide_5():
     random.seed(5)
@@ -368,15 +384,15 @@ def slide_5():
     top_row(d, "AUDITORIA EN VIVO · SEO ECOMMERCE")
 
     rr(d, (60, 80, W - 60, 300), 26, fill=ORANGE)
-    d.text((W / 2, 138), "TE TOCA A TI:", font=F(TITLE, 34), fill=WHITE, anchor="mm")
-    draw_wrapped(d, (W / 2, 186), "¿cual de estos 4 te preocupa mas ahora mismo en tu "
-                 "propio ecommerce?",
-                 F(TITLE, 27), WHITE, W - 200, 36, align="center")
-    d.text((W / 2, 268), "(o cual llevas tiempo sospechando sin comprobar)",
-           font=F(BOLD, 20), fill=(255, 224, 204), anchor="mm")
+    d.text((W / 2, 138), "TE LEO EN COMENTARIOS:", font=F(TITLE, 30), fill=WHITE, anchor="mm")
+    draw_wrapped(d, (W / 2, 190), "cual es tu error SEO mas repetido — y de paso, mira "
+                 "si tienes canonicals fantasma.",
+                 F(TITLE, 26), WHITE, W - 200, 34, align="center")
+    d.text((W / 2, 262), "(los mejores comentarios, los destripo la semana que viene)",
+           font=F(BOLD, 19), fill=(255, 224, 204), anchor="mm")
 
     scribble_arrow(d, (W / 2 - 60, 336), (W / 2 - 60, 420), INK, width=11, head=26)
-    stamp_text(img, W / 2 + 190, 378, "TE LEO EN\nCOMENTARIOS", F(TITLE, 22), INK, angle=8,
+    stamp_text(img, W / 2 + 190, 378, "VA EN\nSERIO", F(TITLE, 24), INK, angle=8,
                stroke_fill=YELLOW, stroke_w=7)
     d = ImageDraw.Draw(img)
 
@@ -394,8 +410,8 @@ def slide_5():
     img.paste(ring, (box[0] + 26, box[1] + (box[3] - box[1] - ring_d) // 2), ring)
     d = ImageDraw.Draw(img)
     tx = box[0] + 26 + ring_d + 26
-    draw_wrapped(d, (tx, box[1] + 30), "La chuleta gratis con los 4 casos y su solucion "
-                 "completa,",
+    draw_wrapped(d, (tx, box[1] + 30), "La guia gratis para detectar Y arreglar los "
+                 "canonicals fantasma,",
                  F(BOLD, 23), INK, box[2] - tx - 26, 29)
     draw_wrapped(d, (tx, box[1] + 88), "esta en el COMENTARIO FIJADO de este post.",
                  F(TITLE, 23), ORANGE, box[2] - tx - 26, 29)
