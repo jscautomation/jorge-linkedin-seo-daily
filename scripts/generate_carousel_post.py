@@ -117,6 +117,24 @@ def scribble_circle(draw, cx, cy, rx, ry, color, width=7, passes=2, tilt=0.0):
         draw.line(pts, fill=color, width=width, joint="curve")
 
 
+def scribble_frame(draw, box, color, width=8, jitter=3, passes=2, margin=16, corner=22):
+    """Marco garabateado alrededor de una caja, con margen hacia FUERA.
+    A diferencia de scribble_circle (una elipse se estrecha en los
+    extremos y puede acabar cortando texto ancho), este marco sigue el
+    contorno real de la caja por fuera — nunca puede tocar nada de lo
+    que hay dentro, sea cual sea el ancho del texto."""
+    x0, y0, x1, y1 = box
+    x0, y0, x1, y1 = x0 - margin, y0 - margin, x1 + margin, y1 + margin
+    c = corner
+    pts = [
+        (x0 + c, y0), (x1 - c, y0), (x1, y0 + c),
+        (x1, y1 - c), (x1 - c, y1), (x0 + c, y1),
+        (x0, y1 - c), (x0, y0 + c), (x0 + c, y0),
+    ]
+    for _ in range(passes):
+        draw.line(_jitter_path(pts, jitter), fill=color, width=width, joint="curve")
+
+
 def scribble_arrow(draw, p0, p1, color, width=8, jitter=4, head=24):
     scribble_line(draw, [p0, p1], color, width=width, jitter=jitter, passes=2)
     ang = math.atan2(p1[1] - p0[1], p1[0] - p0[0])
@@ -264,16 +282,16 @@ def slide_1():
     d.text((box[0] + 32, top[3] - 44), "— pregunta que le hago hoy a la comunidad SEO",
            font=F(BOLD, 20), fill=GRAY)
 
-    scribble_circle(d, W / 2, 190, 470, 82, RED, width=8, tilt=0.05)
+    scribble_frame(d, box, RED, width=8, margin=12)
     tape(img, box[0] + 55, box[1] + 4, angle=-10)
     tape(img, box[2] - 55, box[1] + 4, angle=8)
     d = ImageDraw.Draw(img)
-    stamp_text(img, W - 150, 372, "SPOILER:\nYO YA TENGO UNO", F(TITLE, 22), RED, angle=-7,
+    stamp_text(img, W - 150, 404, "SPOILER:\nYO YA TENGO UNO", F(TITLE, 22), RED, angle=-7,
                stroke_fill=PAPER, stroke_w=6)
 
-    d.text((W / 2, 460), "TE LANZO UNA", font=F(TITLE, 52), fill=INK, anchor="mm")
-    d.text((W / 2, 514), "PREGUNTA EN SERIO.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
-    draw_wrapped(d, (100, 578), "No busco likes, busco respuestas reales. Empiezo yo "
+    d.text((W / 2, 480), "TE LANZO UNA", font=F(TITLE, 52), fill=INK, anchor="mm")
+    d.text((W / 2, 534), "PREGUNTA EN SERIO.", font=F(TITLE, 46), fill=ORANGE, anchor="mm")
+    draw_wrapped(d, (100, 598), "No busco likes, busco respuestas reales. Empiezo yo "
                  "con la mia, y luego te toca a ti.",
                  F(BOLD, 30), GRAY, W - 200, 40, align="left")
 
