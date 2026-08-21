@@ -37,4 +37,4 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 
 | Fecha | Pregunta lanzada | Resumen de la semana |
 |---|---|---|
-| — | — | (aún sin publicar) |
+| 2026-08-21 | De los 4 errores de la semana (duplicación por filtros, mito robots.txt, hreflang ausente, product schema para IA), ¿cuál te preocupa más en tu propio ecommerce ahora mismo? | Recap de lunes-jueves (duplicación por parámetros de filtro, mito de robots.txt, hreflang ausente en Clarks, fichas de producto invisibles para IA). PDF: chuleta con los 4 casos y su solución completa paso a paso |
