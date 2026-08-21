@@ -282,11 +282,11 @@ def slide_1():
     d.text((box[0] + 32, top[3] - 44), "— pregunta que le hago hoy a la comunidad SEO",
            font=F(BOLD, 20), fill=GRAY)
 
-    # elipse ajustada solo a las 2 lineas de la cita — ry justo para no
-    # bajar hasta el nombre de archivo de arriba ni subir hasta la firma
-    # de abajo, rx grande para compensar y que el trazo (que se estrecha
-    # en los extremos) no llegue a cruzar el texto por los lados
-    scribble_circle(d, W / 2, 200, 620, 80, RED, width=8, tilt=0.02)
+    # elipse medida con las dimensiones REALES del texto (no a ojo): centrada
+    # en el bloque de la cita, con radio suficiente para no cortar sus letras
+    # por los lados y altura suficiente para no llegar ni al nombre de
+    # archivo de arriba ni a la firma de abajo — y completa dentro del lienzo
+    scribble_circle(d, 450, 196, 420, 75, RED, width=8, tilt=0.02)
     tape(img, box[0] + 55, box[1] + 4, angle=-10)
     tape(img, box[2] - 55, box[1] + 4, angle=8)
     d = ImageDraw.Draw(img)
