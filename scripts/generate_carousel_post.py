@@ -192,14 +192,14 @@ def pdf_cta_bar(img, draw, y_top, height=92):
     for ddx in (-17, 0, 17):
         draw.ellipse((icx + ddx - 7, cy - 7, icx + ddx + 7, cy + 7), fill=ORANGE)
 
-    # flecha garabateada, gruesa, del icono al texto — el "algo mas" que
-    # llama la atencion ademas del tamano y el color
-    ax0 = icx + bw / 2 + 18
-    scribble_arrow(draw, (ax0, cy), (ax0 + 64, cy), WHITE, width=10, jitter=3, head=20)
+    # flecha garabateada, gruesa, apuntando hacia ABAJO — hacia donde estan
+    # los comentarios de verdad (debajo del post)
+    ax = icx + bw / 2 + 46
+    scribble_arrow(draw, (ax, y_top + 14), (ax, y1 - 14), WHITE, width=11, jitter=3, head=22)
 
-    tx = ax0 + 88
+    tx = ax + 46
     draw.text((tx, y_top + height / 2), "EL PDF ESTA EN EL\nCOMENTARIO FIJADO",
-              font=F(TITLE, 26), fill=WHITE, anchor="lm", align="left")
+              font=F(TITLE, 33), fill=WHITE, anchor="lm", align="left")
 
 
 def brand_footer(img, draw, slide_no, total=5):
@@ -277,7 +277,7 @@ def slide_1():
                  "con la mia, y luego te toca a ti.",
                  F(BOLD, 30), GRAY, W - 200, 40, align="left")
 
-    ribbon(img, 825, "DESLIZA, EMPIEZO YO >>", INK, PAPER)
+    ribbon(img, 800, "DESLIZA, EMPIEZO YO >>", INK, PAPER)
     d = ImageDraw.Draw(img)
     pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 1)
@@ -311,7 +311,7 @@ def slide_2():
                  "resta autoridad, en silencio.",
                  F(TITLE, 32), INK, W - 160, 42)
 
-    ribbon(img, 825, "DESLIZA, COMPRUEBALO TU >>", ORANGE, WHITE)
+    ribbon(img, 800, "DESLIZA, COMPRUEBALO TU >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
     pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 2)
@@ -355,7 +355,7 @@ def slide_3():
                  "para saber si te esta pasando a ti tambien.",
                  F(BOLD, 28), GRAY, W - 180, 36)
 
-    ribbon(img, 825, "DESLIZA PARA LA PREGUNTA >>", INK, PAPER)
+    ribbon(img, 800, "DESLIZA PARA LA PREGUNTA >>", INK, PAPER)
     d = ImageDraw.Draw(img)
     pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 3)
@@ -383,7 +383,7 @@ def slide_4():
                stroke_fill=YELLOW, stroke_w=9)
     d = ImageDraw.Draw(img)
 
-    ribbon(img, 825, "DESLIZA PARA EL CTA >>", ORANGE, WHITE)
+    ribbon(img, 800, "DESLIZA PARA EL CTA >>", ORANGE, WHITE)
     d = ImageDraw.Draw(img)
     pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 4)
@@ -433,7 +433,7 @@ def slide_5():
     d.text((tx, box[3] - 46), "no en la bio, no en un link raro — en el comentario.",
            font=F(BOLD, 17), fill=GRAY)
 
-    ribbon(img, 825, "COMPARTELO CON QUIEN LO NECESITE >>", INK, PAPER)
+    ribbon(img, 800, "COMPARTELO CON QUIEN LO NECESITE >>", INK, PAPER)
     d = ImageDraw.Draw(img)
     pdf_cta_bar(img, d, 890)
     brand_footer(img, d, 5)
