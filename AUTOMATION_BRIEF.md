@@ -268,6 +268,13 @@ semana. Cada día se genera un PDF nuevo, centrado en el tema exacto del post
 de ese día (no una checklist genérica de 12 puntos salvo que el ángulo del
 día lo justifique).
 
+**Desde el 24/08/2026 usa el mismo lenguaje visual que el carrusel** (sección
+3): fondo negro con rejilla sutil, ArchivoBlack + resaltado naranja tipo
+"subrayador" en los titulares, Barlow-Bold en cuerpo/etiquetas, foto+logo
+arriba en toda página. Antes tenía su propio estilo (portada con degradado
+naranja + tarjetas claras) — se unificó para que el PDF gated y el carrusel
+se sientan como el mismo documento, no como dos marcas distintas.
+
 Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
 principio del archivo (sección CONFIG) según el tema de hoy:
 
@@ -285,6 +292,14 @@ principio del archivo (sección CONFIG) según el tema de hoy:
   inventes puntos de relleno solo por completar una lista).
 - `FOOTER_TITLE`, `CTA_TITLE`, `CTA_BODY`: ajusta el texto, mantén el CTA de
   las 2 fases (Fase 1 / Fase 2) tal cual, es fijo.
+- **Resaltado naranja opcional**: en `COVER_TITLE_HTML`, `CTA_TITLE` o el
+  `título` de cualquier punto, envuelve la frase clave entre `<hl>...</hl>`
+  para que salga con la caja naranja de fondo (mismo efecto que
+  `draw_mixed_line()` en el carrusel) — p.ej.
+  `"<hl>Categorías fantasma:</hl><br/>qué hacer con..."`. Es opcional: sin
+  `<hl>`, el texto sale igual, solo que sin resaltar. No abuses de esto —
+  como en el carrusel, resalta una frase corta y contundente, no párrafos
+  enteros.
 
 Ejecuta pasando la ruta de salida como argumento. **El nombre del archivo
 debe ser un slug del título del PDF (nunca el genérico "lead-magnet.pdf")**,
@@ -301,10 +316,13 @@ otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
 sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
 la hay).
 
-**No hay emojis que evitar aquí** (reportlab usa fuentes PDF estándar,
-soportan acentos y símbolos normales sin problema — la limitación de fuentes
-es solo para el texto que se dibuja dentro de las imágenes del carrusel,
-ver sección 3.2).
+**Ojo con las fuentes — misma limitación que el carrusel (sección 3.2)**:
+desde que este PDF usa ArchivoBlack/Barlow-Bold en vez de las fuentes
+estándar de reportlab, **ya no soporta emoji ni la flecha `→` (U+2192)** —
+sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
+`COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE`
+ni `CTA_BODY`. Los acentos y la `ñ` sí funcionan bien (ambas fuentes los
+incluyen).
 
 ### Cómo se aloja el PDF (automático, sin que Jorge suba nada)
 

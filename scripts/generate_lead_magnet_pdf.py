@@ -1,21 +1,35 @@
 # -*- coding: utf-8 -*-
 """
-Genera el PDF lead magnet (portada con degradado + foto + logo, tarjetas de
-contenido, cierre con CTA de las 2 fases). Mismo sistema visual siempre —
-lo que cambia cada día es el CONFIG de abajo (título, intro, puntos).
+Genera el PDF lead magnet (portada + intro + tarjetas de contenido + cierre
+con CTA de las 2 fases). Mismo sistema visual siempre — lo que cambia cada
+día es el CONFIG de abajo (título, intro, puntos).
+
+Desde el 24/08/2026 usa el MISMO lenguaje visual que el carrusel de
+LinkedIn (`generate_carousel_post.py` / AUTOMATION_BRIEF.md sección 3):
+fondo negro con rejilla sutil, texto crema, ArchivoBlack para titulares
+con resaltado naranja tipo "subrayador" en las frases clave, Barlow-Bold
+para cuerpo y etiquetas, foto+logo arriba en el mismo sitio en toda página.
+Antes tenía su propio estilo (portada con degradado + tarjetas claras) —
+se retiró para que el PDF gated y el carrusel se sientan como el mismo
+documento partido en dos formatos, no como dos marcas distintas.
 
 Uso: python3 scripts/generate_lead_magnet_pdf.py [ruta_de_salida.pdf]
 Todas las rutas son relativas al repo (funciona igual en Windows local que
 en el sandbox Linux de la ejecución en la nube).
 """
+import re
 import sys
 from pathlib import Path
 
+from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib import colors
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_CENTER
+from reportlab.lib.utils import ImageReader
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     Paragraph, Spacer, PageBreak, Table, TableStyle,
     HRFlowable, Frame, PageTemplate, BaseDocTemplate, NextPageTemplate
@@ -23,24 +37,34 @@ from reportlab.platypus import (
 from reportlab.pdfgen import canvas as pdfcanvas
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-GRADIENT_BG_PATH = str(REPO_ROOT / "assets" / "branding" / "gradient_bg.png")
-LOGO_PATH = str(REPO_ROOT / "assets" / "branding" / "logo.png")
-PHOTO_PATH = str(REPO_ROOT / "assets" / "branding" / "foto-jorge-circle.png")
+FONT_DIR = REPO_ROOT / "assets" / "fonts"
+LOGO_PATH = REPO_ROOT / "assets" / "branding" / "logo.png"
+PHOTO_PATH = REPO_ROOT / "assets" / "branding" / "foto-jorge-circle.png"
 
-NAVY = colors.HexColor("#1A1A1A")
+pdfmetrics.registerFont(TTFont("ArchivoBlack", str(FONT_DIR / "ArchivoBlack-Regular.ttf")))
+pdfmetrics.registerFont(TTFont("BarlowBold", str(FONT_DIR / "Barlow-Bold.ttf")))
+
+# Misma paleta que el carrusel (ver AUTOMATION_BRIEF.md sección 3.2) — no
+# tocar sin cambiar también el motor de generate_carousel_post.py.
+BG = colors.HexColor("#0C0C0C")
+GRID = colors.HexColor("#222222")
+CREAM = colors.HexColor("#F4EEE3")
 ORANGE = colors.HexColor("#FF5A1F")
-CARD_BG = colors.HexColor("#F4F6FA")
-GRAY = colors.HexColor("#5b6b85")
-INK = colors.HexColor("#212c42")
-WHITE = colors.white
+INK = colors.HexColor("#111111")
+GRAY = colors.HexColor("#969691")
 
 # ==================================================================
 # 👉 CONFIG: esto cambia cada día. El resto del archivo (estilos,
 #    layout, funciones) es fijo — no tocar salvo rediseño explícito.
+#
+# NOVEDAD 24/08/2026: cualquier campo de texto puede envolver una frase
+# clave entre <hl>...</hl> para que salga resaltada con caja naranja —
+# el mismo efecto "subrayador" de los titulares del carrusel. Es
+# opcional: si no usas <hl>, el texto sale igual, solo que sin resaltar.
 # ==================================================================
-COVER_TITLE_HTML = "Los 12 errores SEO<br/>que más dinero cuestan<br/>a un ecommerce"
+COVER_TITLE_HTML = "<hl>Los 12 errores SEO</hl><br/>que más dinero cuestan<br/>a un ecommerce"
 COVER_SUBTITLE = "La checklist que uso en cada auditoría SEO a tiendas online de facturación alta (WordPress y Shopify)"
-COVER_TAG = "CHECKLIST SEO · ECOMMERCE"  # etiqueta pequeña arriba a la izquierda de la portada
+COVER_TAG = "CHECKLIST SEO · ECOMMERCE"  # etiqueta pequeña arriba a la izquierda — se repite en todas las páginas
 
 INTRO_TITLE = "Antes de empezar"
 INTRO_PARAGRAPHS = [
@@ -62,7 +86,7 @@ STAT_LABEL = "ERRORES REALES<br/>DE AUDITORÍAS SEO<br/>A ECOMMERCE"
 POINTS = [
     ("Categorías de producto bloqueadas o sin indexar",
      "Al crear filtros de categoría (talla, color, precio) muchas plataformas generan automáticamente reglas de robots.txt o etiquetas noindex que terminan bloqueando también categorías principales por error de configuración.",
-     "En Google Search Console → Cobertura, busca “Excluida por etiqueta noindex” o “Bloqueada por robots.txt” y revisa si aparecen categorías importantes.",
+     "En Google Search Console -> Cobertura, busca “Excluida por etiqueta noindex” o “Bloqueada por robots.txt” y revisa si aparecen categorías importantes.",
      "Audita el robots.txt y las etiquetas noindex categoría por categoría, dejando indexables solo las que tengan volumen de búsqueda real."),
     ("Contenido duplicado por parámetros de filtro",
      "Los filtros de color, talla o precio generan URLs como ?color=rojo&talla=m que Google rastrea como páginas nuevas con el mismo contenido que la categoría original.",
@@ -78,7 +102,7 @@ POINTS = [
      "Cada página paginada debe ser autocanonical (canonical a sí misma) y aportar valor único, no ser un simple corta-pega de la primera."),
     ("Productos agotados devueltos como 404",
      "Cuando un producto se agota o se descataloga, la plataforma elimina la URL directamente sin gestionar la transición ni el tráfico o enlaces que recibía.",
-     "En Search Console → Cobertura, revisa cuántas URLs “No encontradas (404)” corresponden a productos que antes tenían tráfico o enlaces.",
+     "En Search Console -> Cobertura, revisa cuántas URLs “No encontradas (404)” corresponden a productos que antes tenían tráfico o enlaces.",
      "Mantén la página con un mensaje de “agotado” + productos similares, o redirige (301) a la categoría padre si es definitivo."),
     ("Core Web Vitals en rojo por imágenes sin optimizar",
      "Las fotos de producto se suben a resolución completa, sin comprimir y sin carga diferida (lazy load), disparando los tiempos de carga.",
@@ -111,7 +135,7 @@ POINTS = [
 ]
 
 FOOTER_TITLE = "Los 12 errores SEO que más dinero cuestan a un ecommerce"  # pie de página en las páginas de contenido
-CTA_TITLE = "¿Cuáles de estos errores tiene tu ecommerce?"
+CTA_TITLE = "<hl>¿Cuáles de estos errores</hl> tiene tu ecommerce?"
 CTA_BODY = "Lo descubrimos en una auditoría SEO completa, diseñada para ecommerce de facturación alta."
 
 # 👉 ruta de salida: por CLI (recomendado en la ejecución diaria) o por defecto
@@ -120,138 +144,136 @@ OUTPUT_PATH = sys.argv[1] if len(sys.argv) > 1 else str(
 )
 # ==================================================================
 
-styles = getSampleStyleSheet()
 
-style_h1_cover = ParagraphStyle(
-    "h1_cover", parent=styles["Title"], fontName="Helvetica-Bold",
-    fontSize=29, leading=35, textColor=WHITE, alignment=TA_LEFT, spaceAfter=14
-)
-style_sub_cover = ParagraphStyle(
-    "sub_cover", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=13.5, leading=19, textColor=WHITE, alignment=TA_LEFT
-)
-style_author_cover = ParagraphStyle(
-    "author_cover", parent=styles["Normal"], fontName="Helvetica-Bold",
-    fontSize=11.5, leading=16, textColor=NAVY, alignment=TA_LEFT
-)
-style_h2 = ParagraphStyle(
-    "h2", parent=styles["Heading1"], fontName="Helvetica-Bold",
-    fontSize=18, leading=22, textColor=NAVY, spaceBefore=0, spaceAfter=10
-)
-style_body = ParagraphStyle(
-    "body", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=10, leading=15.5, textColor=INK, spaceAfter=8
-)
-style_intro = ParagraphStyle(
-    "intro", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=11.5, leading=18, textColor=INK
-)
-style_error_title = ParagraphStyle(
-    "error_title", parent=styles["Heading2"], fontName="Helvetica-Bold",
-    fontSize=12.5, leading=15.5, textColor=NAVY, spaceAfter=0
-)
-style_label = ParagraphStyle(
-    "label", parent=styles["Normal"], fontName="Helvetica-Bold",
-    fontSize=8.5, leading=12, textColor=ORANGE, spaceBefore=10, spaceAfter=3
-)
-style_cta_title = ParagraphStyle(
-    "cta_title", parent=styles["Title"], fontName="Helvetica-Bold",
-    fontSize=22, leading=27, textColor=WHITE, alignment=TA_CENTER, spaceAfter=14
-)
-style_cta_body = ParagraphStyle(
-    "cta_body", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=11, leading=16, textColor=WHITE, alignment=TA_CENTER
-)
-style_cta_phase_h = ParagraphStyle(
-    "cta_phase_h", parent=styles["Normal"], fontName="Helvetica-Bold",
-    fontSize=11, leading=15, textColor=WHITE, alignment=TA_LEFT
-)
-style_cta_phase_b = ParagraphStyle(
-    "cta_phase_b", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=10, leading=14.5, textColor=WHITE, alignment=TA_LEFT
-)
-style_recap = ParagraphStyle(
-    "recap", parent=styles["Normal"], fontName="Helvetica",
-    fontSize=8.3, leading=13, textColor=colors.HexColor("#ffe8d9"), alignment=TA_LEFT
-)
-style_intro_stat_num = ParagraphStyle(
-    "intro_stat_num", parent=styles["Normal"], fontName="Helvetica-Bold",
-    fontSize=52, leading=52, textColor=WHITE, alignment=TA_CENTER
-)
-style_intro_stat_lbl = ParagraphStyle(
-    "intro_stat_lbl", parent=styles["Normal"], fontName="Helvetica-Bold",
-    fontSize=9, leading=12, textColor=WHITE, alignment=TA_CENTER
-)
+def hl(text):
+    """Convierte <hl>frase</hl> en el span con caja naranja de fondo que
+    reportlab SÍ soporta de verdad (<font backColor>) — mismo efecto
+    "subrayador" que draw_mixed_line() en el carrusel. Los espacios finos
+    (&#160;) hacen de padding horizontal, ya que <font> no admite padding."""
+    return re.sub(
+        r"<hl>(.*?)</hl>",
+        r'<font color="#111111" backColor="#FF5A1F">&#160;\1&#160;</font>',
+        text,
+    )
 
 
-def rounded_card(c, x, y, w, h, radius=8, fill=CARD_BG, accent=ORANGE):
-    c.saveState()
-    c.setFillColor(fill)
-    c.roundRect(x, y, w, h, radius, stroke=0, fill=1)
-    c.setFillColor(accent)
-    c.roundRect(x, y, 4, h, 2, stroke=0, fill=1)
-    c.restoreState()
+def _recolored_logo():
+    """Mismo truco que en el carrusel: el logo es texto negro + naranja
+    sobre fondo transparente -> para fondo oscuro, el negro se recolorea
+    a crema y el naranja se deja tal cual."""
+    im = Image.open(LOGO_PATH).convert("RGBA")
+    px = im.load()
+    w, h = im.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a > 30 and r < 100 and g < 100 and b < 100:
+                px[x, y] = (244, 238, 227, a)
+    return im
 
 
-def cover_bg(c: pdfcanvas.Canvas, doc):
-    c.saveState()
-    c.drawImage(GRADIENT_BG_PATH, 0, 0, width=doc.pagesize[0], height=doc.pagesize[1])
-    c.setFillColor(WHITE)
-    c.setFont("Helvetica-Bold", 8.5)
-    c.drawString(20 * mm, doc.pagesize[1] - 18 * mm, COVER_TAG)
-    logo_w, logo_h = 32 * mm, 22.7 * mm
-    pad = 4 * mm
-    chip_x = doc.pagesize[0] - logo_w - 16 * mm - pad
-    chip_y = doc.pagesize[1] - logo_h - 10 * mm - pad
-    c.setFillColor(WHITE)
-    c.roundRect(chip_x, chip_y, logo_w + 2 * pad, logo_h + 2 * pad, 6, stroke=0, fill=1)
-    c.drawImage(LOGO_PATH, chip_x + pad, chip_y + pad, width=logo_w, height=logo_h, mask="auto")
-    photo_d = logo_h + 2 * pad
-    photo_x = chip_x - photo_d - 5 * mm
-    photo_y = chip_y
-    c.setFillColor(WHITE)
-    c.circle(photo_x + photo_d / 2, photo_y + photo_d / 2, photo_d / 2 + 1.2, stroke=0, fill=1)
-    c.drawImage(PHOTO_PATH, photo_x, photo_y, width=photo_d, height=photo_d, mask="auto")
-    c.restoreState()
+LOGO_DARK = ImageReader(_recolored_logo())
+
+styles_registry = {}
 
 
-def content_bg(c: pdfcanvas.Canvas, doc):
-    c.saveState()
-    c.setFillColor(WHITE)
-    c.rect(0, 0, doc.pagesize[0], doc.pagesize[1], fill=1, stroke=0)
-    c.setFillColor(ORANGE)
-    c.rect(0, doc.pagesize[1] - 6 * mm, doc.pagesize[0], 6 * mm, fill=1, stroke=0)
+def style(name, **kw):
+    kw.setdefault("fontName", "BarlowBold")
+    kw.setdefault("textColor", CREAM)
+    kw.setdefault("alignment", TA_LEFT)
+    s = ParagraphStyle(name, **kw)
+    styles_registry[name] = s
+    return s
+
+
+style_h1_cover = style("h1_cover", fontName="ArchivoBlack", fontSize=27, leading=35, spaceAfter=14)
+style_sub_cover = style("sub_cover", fontSize=12.5, leading=18)
+style_author_name = style("author_name", fontName="ArchivoBlack", fontSize=12, leading=15, textColor=INK)
+style_author_role = style("author_role", fontSize=9, leading=12, textColor=INK)
+style_h2 = style("h2", fontName="ArchivoBlack", fontSize=18, leading=23, spaceAfter=10)
+style_body = style("body", fontSize=10, leading=15.5, spaceAfter=8, textColor=CREAM)
+style_intro = style("intro", fontSize=11.5, leading=18)
+style_error_title = style("error_title", fontName="ArchivoBlack", fontSize=13, leading=17)
+style_label = style("label", fontSize=8.5, leading=12, textColor=ORANGE, spaceBefore=10, spaceAfter=3)
+style_cta_title = style("cta_title", fontName="ArchivoBlack", fontSize=22, leading=28, spaceAfter=14)
+style_cta_body = style("cta_body", fontSize=11, leading=16)
+style_cta_phase_h = style("cta_phase_h", fontName="ArchivoBlack", fontSize=11.5, leading=15, textColor=INK)
+style_cta_phase_b = style("cta_phase_b", fontSize=9.7, leading=14, textColor=INK)
+style_recap = style("recap", fontSize=8.3, leading=13, textColor=GRAY)
+style_intro_stat_num = style("intro_stat_num", fontName="ArchivoBlack", fontSize=48, leading=48,
+                              textColor=INK, alignment=1)
+style_intro_stat_lbl = style("intro_stat_lbl", fontSize=9, leading=12, textColor=INK, alignment=1)
+style_kicker = style("kicker", fontSize=8.5, leading=11, textColor=GRAY)
+
+
+def _grid(c, doc):
+    """Rejilla sutil de fondo, igual que canvas() en el carrusel."""
+    c.setStrokeColor(GRID)
+    c.setLineWidth(0.5)
+    step = 42 * mm
+    x = 0
+    while x <= doc.pagesize[0]:
+        c.line(x, 0, x, doc.pagesize[1])
+        x += step
+    y = 0
+    while y <= doc.pagesize[1]:
+        c.line(0, y, doc.pagesize[0], y)
+        y += step
+
+
+def _header(c, doc):
+    """Logo arriba a la izquierda + etiqueta debajo + foto en círculo
+    naranja arriba a la derecha — igual que header()+kicker() en el
+    carrusel, y en el mismo sitio en TODAS las páginas."""
+    logo_w, logo_h = 20 * mm, 14.2 * mm
+    top_y = doc.pagesize[1] - 14 * mm - logo_h
+    c.drawImage(LOGO_DARK, 20 * mm, top_y, width=logo_w, height=logo_h, mask="auto")
     c.setFillColor(GRAY)
-    c.setFont("Helvetica", 8)
+    c.setFont("BarlowBold", 8)
+    c.drawString(20 * mm, top_y - 10, COVER_TAG)
+
+    photo_d = 17 * mm
+    photo_x = doc.pagesize[0] - photo_d - 20 * mm
+    photo_y = doc.pagesize[1] - 14 * mm - photo_d
+    c.setFillColor(ORANGE)
+    c.circle(photo_x + photo_d / 2, photo_y + photo_d / 2, photo_d / 2 + 1.4, stroke=0, fill=1)
+    c.drawImage(str(PHOTO_PATH), photo_x, photo_y, width=photo_d, height=photo_d, mask="auto")
+
+
+def page_chrome(c: pdfcanvas.Canvas, doc):
+    c.saveState()
+    c.setFillColor(BG)
+    c.rect(0, 0, doc.pagesize[0], doc.pagesize[1], fill=1, stroke=0)
+    _grid(c, doc)
+    _header(c, doc)
+    c.restoreState()
+
+
+def content_chrome(c: pdfcanvas.Canvas, doc):
+    page_chrome(c, doc)
+    c.saveState()
+    c.setFillColor(GRAY)
+    c.setFont("BarlowBold", 7.5)
     c.drawString(20 * mm, 10 * mm, FOOTER_TITLE)
     c.drawRightString(doc.pagesize[0] - 20 * mm, 10 * mm, f"{doc.page - 1}")
-    logo_w, logo_h = 16 * mm, 11.4 * mm
-    c.drawImage(LOGO_PATH, doc.pagesize[0] - logo_w - 20 * mm, doc.pagesize[1] - logo_h - 12 * mm,
-                width=logo_w, height=logo_h, mask="auto")
     c.restoreState()
 
 
-def cta_bg(c: pdfcanvas.Canvas, doc):
-    c.saveState()
-    c.drawImage(GRADIENT_BG_PATH, 0, 0, width=doc.pagesize[0], height=doc.pagesize[1])
-    logo_w, logo_h = 28 * mm, 19.9 * mm
-    pad = 4 * mm
-    photo_d = logo_h + 2 * pad
-    group_w = photo_d + 5 * mm + (logo_w + 2 * pad)
-    group_x0 = (doc.pagesize[0] - group_w) / 2
-    chip_y = doc.pagesize[1] - logo_h - 14 * mm - pad
-    photo_x = group_x0
-    chip_x = photo_x + photo_d + 5 * mm
-    c.setFillColor(WHITE)
-    c.circle(photo_x + photo_d / 2, chip_y + photo_d / 2, photo_d / 2 + 1.2, stroke=0, fill=1)
-    c.drawImage(PHOTO_PATH, photo_x, chip_y, width=photo_d, height=photo_d, mask="auto")
-    c.setFillColor(WHITE)
-    c.roundRect(chip_x, chip_y, logo_w + 2 * pad, logo_h + 2 * pad, 6, stroke=0, fill=1)
-    c.drawImage(LOGO_PATH, chip_x + pad, chip_y + pad, width=logo_w, height=logo_h, mask="auto")
-    c.restoreState()
+def badge(text, size=9 * mm, bg=ORANGE, fg=INK, font="ArchivoBlack", fontsize=12):
+    t = Table([[text]], colWidths=[size], rowHeights=[size])
+    t.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), bg),
+        ("TEXTCOLOR", (0, 0), (-1, -1), fg),
+        ("FONTNAME", (0, 0), (-1, -1), font),
+        ("FONTSIZE", (0, 0), (-1, -1), fontsize),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("ROUNDEDCORNERS", [size / 2, size / 2, size / 2, size / 2]),
+    ]))
+    return t
 
 
-def error_badge_flowable_table(num, title, why, detect, fix, card_h_mm=112):
+def point_card(num, title, why, detect, fix):
     inner = [
         [Paragraph("POR QUÉ OCURRE", style_label)],
         [Paragraph(why, style_body)],
@@ -262,53 +284,27 @@ def error_badge_flowable_table(num, title, why, detect, fix, card_h_mm=112):
     ]
     inner_table = Table(inner, colWidths=[None])
     inner_table.setStyle(TableStyle([
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 0),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
 
-    badge = Table([[f"{num:02d}"]], colWidths=[9 * mm], rowHeights=[9 * mm])
-    badge.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), ORANGE),
-        ("TEXTCOLOR", (0, 0), (-1, -1), WHITE),
-        ("FONTNAME", (0, 0), (-1, -1), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, -1), 12),
-        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("ROUNDEDCORNERS", [9, 9, 9, 9]),
-    ]))
-
-    header = Table([[badge, Paragraph(title, style_error_title)]], colWidths=[13 * mm, None])
+    header = Table([[badge(f"{num:02d}"), Paragraph(hl(title), style_error_title)]], colWidths=[13 * mm, None])
     header.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 0),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
 
-    card_content = Table([[header], [Spacer(1, 6)], [inner_table]], colWidths=[None])
-    card_content.setStyle(TableStyle([
-        ("LEFTPADDING", (0, 0), (-1, -1), 14),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 14),
-        ("TOPPADDING", (0, 0), (-1, -1), 0),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-        ("BACKGROUND", (0, 0), (-1, -1), CARD_BG),
-    ]))
-
-    outer = Table([[card_content]], colWidths=[None], rowHeights=[card_h_mm * mm])
-    outer.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), CARD_BG),
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("TOPPADDING", (0, 0), (-1, -1), 12),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-        ("LINEBEFORE", (0, 0), (0, 0), 4, ORANGE),
+    content = Table([[header], [Spacer(1, 8)], [inner_table]], colWidths=[None])
+    content.setStyle(TableStyle([
+        ("LEFTPADDING", (0, 0), (-1, -1), 16), ("RIGHTPADDING", (0, 0), (-1, -1), 16),
+        ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (0, 0), 14), ("BOTTOMPADDING", (0, 2), (0, 2), 14),
+        ("BOX", (0, 0), (-1, -1), 0.8, GRID),
+        ("LINEBEFORE", (0, 0), (0, 0), 3, ORANGE),
         ("ROUNDEDCORNERS", [8, 8, 8, 8]),
     ]))
-    return outer
+    return content
 
 
 def build():
@@ -318,34 +314,32 @@ def build():
                            topMargin=18 * mm, bottomMargin=18 * mm)
 
     frame_cover = Frame(20 * mm, 18 * mm, doc.pagesize[0] - 40 * mm, doc.pagesize[1] - 60 * mm, id="cover")
-    frame_content = Frame(20 * mm, 18 * mm, doc.pagesize[0] - 40 * mm, doc.pagesize[1] - 42 * mm, id="content")
-    frame_cta = Frame(20 * mm, 18 * mm, doc.pagesize[0] - 40 * mm, doc.pagesize[1] - 36 * mm, id="cta")
+    frame_content = Frame(20 * mm, 18 * mm, doc.pagesize[0] - 40 * mm, doc.pagesize[1] - 56 * mm, id="content")
+    frame_cta = Frame(20 * mm, 18 * mm, doc.pagesize[0] - 40 * mm, doc.pagesize[1] - 56 * mm, id="cta")
 
     doc.addPageTemplates([
-        PageTemplate(id="Cover", frames=frame_cover, onPage=cover_bg),
-        PageTemplate(id="Content", frames=frame_content, onPage=content_bg),
-        PageTemplate(id="CTA", frames=frame_cta, onPage=cta_bg),
+        PageTemplate(id="Cover", frames=frame_cover, onPage=page_chrome),
+        PageTemplate(id="Content", frames=frame_content, onPage=content_chrome),
+        PageTemplate(id="CTA", frames=frame_cta, onPage=content_chrome),
     ])
 
     story = []
 
     # ---------- COVER ----------
-    story.append(Spacer(1, 70 * mm))
-    story.append(Paragraph(COVER_TITLE_HTML, style_h1_cover))
+    story.append(Spacer(1, 46 * mm))
+    story.append(Paragraph(hl(COVER_TITLE_HTML), style_h1_cover))
     story.append(Spacer(1, 10))
     story.append(Paragraph(COVER_SUBTITLE, style_sub_cover))
-    story.append(Spacer(1, 60))
-    author_table = Table([[Paragraph(
-        "JORGE SEGOVIA<br/><font color='#5a4433' size=9>Consultor SEO para Ecommerce</font>", style_author_cover)]],
-        colWidths=[None])
+    story.append(Spacer(1, 110))
+    author_table = Table([[Paragraph("JORGE SEGOVIA", style_author_name)],
+                           [Paragraph("Consultor SEO para Ecommerce", style_author_role)]],
+                          colWidths=[None])
     author_table.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), WHITE),
-        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("BACKGROUND", (0, 0), (-1, -1), ORANGE),
         ("ROUNDEDCORNERS", [20, 20, 20, 20]),
-        ("LEFTPADDING", (0, 0), (-1, -1), 14),
-        ("TOPPADDING", (0, 0), (-1, -1), 8),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 14),
+        ("LEFTPADDING", (0, 0), (-1, -1), 16), ("RIGHTPADDING", (0, 0), (-1, -1), 16),
+        ("TOPPADDING", (0, 0), (0, 0), 10), ("BOTTOMPADDING", (0, 0), (0, 0), 1),
+        ("TOPPADDING", (0, 1), (0, 1), 0), ("BOTTOMPADDING", (0, 1), (0, 1), 10),
     ]))
     story.append(author_table)
     story.append(NextPageTemplate("Content"))
@@ -364,24 +358,20 @@ def build():
     ], colWidths=[42 * mm])
     stat_cell.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), ORANGE),
-        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("TOPPADDING", (0, 0), (0, 0), 16),
-        ("BOTTOMPADDING", (0, 0), (0, 0), 4),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("TOPPADDING", (0, 0), (0, 0), 16), ("BOTTOMPADDING", (0, 0), (0, 0), 4),
         ("BOTTOMPADDING", (0, 1), (0, 1), 16),
         ("ROUNDEDCORNERS", [10, 10, 10, 10]),
     ]))
     intro_table = Table([[intro_left, stat_cell]], colWidths=[None, 46 * mm])
     intro_table.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (1, 0), (1, 0), 14),
-        ("LEFTPADDING", (0, 0), (0, 0), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("LEFTPADDING", (1, 0), (1, 0), 14), ("LEFTPADDING", (0, 0), (0, 0), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0), ("TOPPADDING", (0, 0), (-1, -1), 0),
     ]))
     story.append(intro_table)
     story.append(Spacer(1, 14))
-    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#e2e6ee")))
+    story.append(HRFlowable(width="100%", thickness=0.8, color=GRID))
     story.append(PageBreak())
 
     # ---------- PUNTOS (2 por página) ----------
@@ -389,9 +379,9 @@ def build():
         pair = POINTS[i:i + 2]
         for j, (title, why, detect, fix) in enumerate(pair):
             num = i + j + 1
-            story.append(error_badge_flowable_table(num, title, why, detect, fix))
+            story.append(point_card(num, title, why, detect, fix))
             if j == 0 and len(pair) > 1:
-                story.append(Spacer(1, 10))
+                story.append(Spacer(1, 12))
         if i + 2 < len(POINTS):
             story.append(PageBreak())
 
@@ -399,22 +389,12 @@ def build():
     story.append(NextPageTemplate("CTA"))
     story.append(PageBreak())
     story.append(Spacer(1, 20 * mm))
-    story.append(Paragraph(CTA_TITLE, style_cta_title))
+    story.append(Paragraph(hl(CTA_TITLE), style_cta_title))
     story.append(Paragraph(CTA_BODY, style_cta_body))
     story.append(Spacer(1, 22))
 
     def phase_badge(n):
-        t = Table([[str(n)]], colWidths=[9 * mm], rowHeights=[9 * mm])
-        t.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), NAVY),
-            ("TEXTCOLOR", (0, 0), (-1, -1), WHITE),
-            ("FONTNAME", (0, 0), (-1, -1), "Helvetica-Bold"),
-            ("FONTSIZE", (0, 0), (-1, -1), 11),
-            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("ROUNDEDCORNERS", [9, 9, 9, 9]),
-        ]))
-        return t
+        return badge(str(n), bg=INK, fg=CREAM, fontsize=11)
 
     phase_table = Table([
         [phase_badge(1), Paragraph("FASE 1 · AUDITORÍA SEO", style_cta_phase_h),
@@ -423,18 +403,20 @@ def build():
         [phase_badge(2), Paragraph("FASE 2 · IMPLEMENTACIÓN", style_cta_phase_h),
          Paragraph("Aplicamos juntos todos los cambios propuestos en la auditoría y la nueva "
                     "arquitectura SEO transaccional.", style_cta_phase_b)],
-    ], colWidths=[13 * mm, 45 * mm, None])
+    ], colWidths=[13 * mm, 58 * mm, None])
     phase_table.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LINEBELOW", (0, 0), (-1, 0), 0.5, colors.HexColor("#ffcfa8")),
-        ("TOPPADDING", (0, 0), (-1, -1), 12),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+        ("BACKGROUND", (0, 0), (-1, -1), ORANGE),
+        ("LINEBELOW", (0, 0), (-1, 0), 0.6, INK),
+        ("LEFTPADDING", (0, 0), (-1, -1), 14), ("RIGHTPADDING", (0, 0), (-1, -1), 14),
+        ("TOPPADDING", (0, 0), (-1, -1), 12), ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+        ("ROUNDEDCORNERS", [12, 12, 12, 12]),
     ]))
     story.append(phase_table)
-    story.append(Spacer(1, 26))
+    story.append(Spacer(1, 22))
     story.append(Paragraph("jorge@jscautomation.es · jorgesegoviaciscar.com", style_cta_body))
     if len(POINTS) > 1:
-        story.append(Spacer(1, 30))
+        story.append(Spacer(1, 26))
         recap = " · ".join(f"{idx + 1}. {name}" for idx, (name, *_r) in enumerate(POINTS))
         story.append(Paragraph(recap, style_recap))
 
