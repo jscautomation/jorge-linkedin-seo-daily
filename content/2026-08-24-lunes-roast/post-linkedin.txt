@@ -1,0 +1,15 @@
+TU BUSCADOR INTERNO SABOTEA TU SEO.
+
+Auditaba una tienda de decoración y hogar, facturación alta, catálogo grande en Shopify. Tráfico de categoría plano desde hacía meses y, a simple vista, todo estaba bien: arquitectura ordenada, canonicals limpios, sitemap al día.
+
+El problema estaba donde nadie mira: su propio buscador interno. Cada búsqueda de un usuario —"cortina gris", hasta erratas tipo "cortinaa"— generaba una URL /search?q=... que Google rastreaba e indexaba como si fuera una página real.
+
+Encontré más de 3.000 de esas URLs indexadas: sin producto, sin contenido único, puro ruido que Google rastreaba religiosamente en vez de dedicar ese presupuesto a las categorías que sí importaban.
+
+No es cosmético: es presupuesto de rastreo tirado mientras tus productos nuevos tardan semanas en indexarse. Tres semanas después de cortarlo, Search Console mostró el rastreo de fichas de producto multiplicado por 3.
+
+¿Lo tienes tú? Busca en Google: site:tudominio.com inurl:search. Si salen decenas o cientos de resultados, ya sabes por qué.
+
+La solución no es solo "poner noindex" — hay un matiz que, mal hecho, te desindexa categorías que sí quieres posicionar. Lo explico paso a paso en la guía gratis 👇 (enlace al artículo en comentarios)
+
+#SEO #Ecommerce #WordPress #Shopify
