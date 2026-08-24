@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 """
+RETIRADO desde el 24/08/2026 — ya no es el flujo activo. El formato de post
+pasó a ser el carrusel/documento de `generate_carousel_post.py` (ver
+AUTOMATION_BRIEF.md sección 3). Se deja este archivo tal cual, sin borrar,
+solo por si Jorge pide explícitamente volver al formato de imagen única
+"stat hero" — no lo uses por defecto ni lo referencies en entregas nuevas.
+
 Genera la imagen del post de LinkedIn en el estilo "stat hero": dato/cifra
 gigante arriba como titular de impacto, título negro+naranja debajo, tira
 fina de logos de herramientas, y barra inferior en naranja corporativo con

@@ -73,11 +73,11 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
 
 0. **Titular de apertura** (desde el 20/08/2026, obligatorio): la primera línea
    del post — sola, en su propio párrafo, antes del hook — es un titular corto
-   y contundente que refleje el mismo golpe de efecto que el titular visual de
-   la imagen (`TITLE_LINE1` + `TITLE_LINE2`, ver sección 3). Normalmente en
+   y contundente que refleje el mismo golpe de efecto que el título de la
+   portada del carrusel (slide `type: "cover"`, ver sección 3). Normalmente en
    mayúsculas y cerrado en punto, como frase autoconclusiva — p.ej. "FICHA DE
-   PRODUCTO: GOOGLE YA NO TE VE." El texto y la imagen deben "decir lo mismo"
-   a primer golpe de vista.
+   PRODUCTO: GOOGLE YA NO TE VE." El texto y la portada del carrusel deben
+   "decir lo mismo" a primer golpe de vista.
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
@@ -95,110 +95,171 @@ hay un dato real verificable, no se afirma un resultado concreto.
 230+. Mismo esqueleto de 6-7 puntos, pero compacto — si un párrafo puede decir
 lo mismo en menos frases, recorta antes de añadir matices extra.
 
-## 3. Imagen del post
+## 3. Carrusel/documento del post
 
 Todas las rutas del proyecto son **relativas al repo** (funciona igual en local
 que en el sandbox Linux de la ejecución en la nube). Nunca uses rutas
 absolutas tipo `C:\...`.
 
-Usar `scripts/generate_post_image.py` como base. **Estructura vigente desde el
-20/08/2026 — "stat hero"** (sustituye al antiguo estilo "workflow" de panel
-gris arriba; no volver a ese estilo salvo que Jorge lo pida explícitamente):
-etiqueta del tema arriba centrada, cifra de impacto gigante como titular
-visual, título negro+naranja debajo, tira fina de logos de herramientas, y
-barra inferior en **naranja corporativo** con la foto de Jorge + el CTA al PDF.
+**Formato vigente desde el 24/08/2026 — "documento negro con resaltados
+naranja".** Sustituye tanto al antiguo "stat hero" de imagen única
+(`generate_post_image.py`, ya no se usa salvo que Jorge pida explícitamente
+volver a él) como al primer intento de carrusel "captura anotada a mano" con
+garabatos. Jorge pidió copiar el lenguaje visual concreto del perfil de
+referencia **Twinkle Chatterjee / ThriveCraft SEO** (detectado como uno de
+los perfiles SEO de mejor rendimiento en LinkedIn tras un análisis de datos
+de Apify) adaptado a la marca de Jorge: fondo negro con rejilla sutil, texto
+crema, frases clave resaltadas con una caja naranja detrás (efecto
+"subrayador"), foto+logo arriba en el mismo sitio siempre, indicador de
+"desliza" abajo a la derecha, y mucha más densidad de texto por slide que el
+formato anterior — es justo lo que más engagement genera en el dataset
+analizado.
 
-Antes de ejecutar, edita solo estas variables al principio del archivo:
+Genera 8-11 slides cuadradas (1080x1080) + un PDF sin pérdida que las
+empaqueta todas. **El PDF (`carrusel-post.pdf`) es el artefacto principal:
+se sube a LinkedIn como publicación de tipo "Documento" (LinkedIn lo
+renderiza como un visor deslizable página a página)** — así es como funciona
+el formato de referencia. Los PNG sueltos (`carrusel-1.png`...) existen para
+poder revisar/editar cada slide a mano, no para subirlos como carrusel de
+imágenes.
 
-- `PANEL_TAG`: etiqueta pequeña centrada arriba del todo — el tema/ángulo del
-  día (p.ej. "TENDENCIA SEO · ECOMMERCE", "ROAST SEO · ECOMMERCE").
-- `STAT_NUMBER` / `STAT_LABEL`: la cifra de impacto que hace de titular visual
-  principal (p.ej. "83%" / "de las búsquedas con IA no dan ni un clic"). Usa
-  un dato público real y verificable relevante al ángulo de hoy cuando exista
-  (el de la tendencia, el % del mito, el hallazgo cuantificado de la
-  auditoría...). Si ese día no hay una cifra pública sólida que encaje, usa en
-  su lugar un número corto igual de relevante (p.ej. el nº de puntos del PDF,
-  "40" de las URLs clon, etc.) — nunca lo dejes vacío, es el elemento más
-  grande de toda la imagen.
-- `TITLE_LINE1` / `TITLE_LINE2`: titular descriptivo del post (no genérico), 2
-  líneas, en mayúsculas. La línea 2 sale resaltada en naranja automáticamente.
-  Debe ser coherente con el titular de apertura del texto del post (sección 2,
-  punto 0) — mismo mensaje, misma fuerza.
-- `SUBTITLE`: el texto de la barra naranja inferior. **Debe dejar claro que el
-  PDF gratis está en el enlace al final del post** (p.ej. "GRATIS: el PDF está
-  en el enlace al final del post >>") — no un CTA genérico sin más, porque es
-  el único sitio de la imagen donde se indica dónde está el enlace real que
-  añade Jorge al publicar.
-- `TOOL_LOGOS`: 2 herramientas realmente relevantes al tema del día. **No
-  repitas siempre el mismo dúo** (antes de elegir, mira qué se usó los últimos
-  2-3 días en `git log -p -- scripts/generate_post_image.py` y varía si
-  aplica). Si el logo no existe ya en `assets/branding/tool-logos/`:
-  1. Primero intenta el favicon de Google (rápido si el entorno lo permite):
-     ```
-     curl -sL -o assets/branding/tool-logos/<nombre>.png \
-       "https://www.google.com/s2/favicons?domain=<dominio-de-la-herramienta>&sz=128"
-     ```
-  2. Si falla (en el sandbox de la nube, `www.google.com` y casi cualquier
-     dominio externo salvo GitHub están bloqueados por política de red del
-     entorno — error 403 de la CONNECT del proxy, confirmable con
-     `curl -sS "$HTTPS_PROXY/__agentproxy/status"`), usa el logo oficial real
-     de la marca desde el repo público **simple-icons** (sí accesible, vía
-     `raw.githubusercontent.com`), con su color de marca correcto en vez de un
-     favicon genérico:
-     ```
-     # 1) color de marca (busca el título en el JSON)
-     curl -sS -o /tmp/icons.json \
-       "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json"
-     python3 -c "import json; d=json.load(open('/tmp/icons.json')); \
-       [print(i['title'], i['hex']) for i in d if '<nombre herramienta>'.lower() in i['title'].lower()]"
+### 3.1 El motor es fijo, el contenido se edita cada día
 
-     # 2) SVG oficial (slug = título en minúsculas sin espacios/símbolos)
-     curl -sS -o /tmp/logo.svg \
-       "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/<slug>.svg"
+Usar `scripts/generate_carousel_post.py`. El archivo tiene dos partes muy
+diferenciadas:
 
-     # 3) colorear con el hex del paso 1 y rasterizar a PNG 400x400
-     python3 -c "
-     import re, cairosvg
-     svg = open('/tmp/logo.svg', encoding='utf-8').read()
-     svg = re.sub(r'<path ', '<path fill=\"#<HEX>\" ', svg, count=1)
-     open('/tmp/logo.svg', 'w', encoding='utf-8').write(svg)
-     cairosvg.svg2png(url='/tmp/logo.svg',
-       write_to='assets/branding/tool-logos/<nombre>.png', output_width=400, output_height=400)
-     "
-     ```
-     (`pip install cairosvg` si no está ya instalado). Si la herramienta no
-     existe en simple-icons, reutiliza el logo real más parecido que ya haya
-     en `assets/branding/tool-logos/` antes que dejar un logo genérico o
-     repetido sin sentido.
-  3. Nunca uses una foto ni un montaje "con IA" simulando una captura de
-     pantalla real — o es un logo oficial de verdad, o (si en el futuro el
-     entorno permite navegar a la herramienta) una captura real hecha con el
-     navegador, nunca una imagen inventada que aparente serlo.
+- **Motor de render** (todo lo que hay antes de la sección `CONTENIDO DE HOY`
+  del archivo): colores, fuentes, posiciones, tamaños y límites de texto. Es
+  **fijo** — no tocar ningún número ni función salvo que Jorge pida
+  explícitamente un cambio de estilo. Es lo que garantiza que el carrusel de
+  hoy se vea exactamente igual que el de ayer y el de mañana.
+- **`CONFIG`** (al final del archivo): un diccionario con la lista de slides
+  de hoy. **Esto sí se edita cada día**, igual que con
+  `generate_lead_magnet_pdf.py` — edita `CONFIG`, ejecuta el script, mueve el
+  resultado a `content/<carpeta-del-día>/`, y revierte el archivo con
+  `git checkout -- scripts/generate_carousel_post.py` antes de terminar (para
+  que el próximo día vuelva a partir de la plantilla de referencia, no del
+  contenido de hoy).
 
-Después ejecuta: `python3 scripts/generate_post_image.py content/<carpeta-del-día>/imagen-post.png`
-(el primer argumento es la ruta de salida; si se omite, usa una ruta por defecto).
+```
+python3 scripts/generate_carousel_post.py content/<carpeta-del-día>
+```
 
-**Importante — fuentes**: el script usa fuentes libres bundleadas en
-`assets/fonts/` (Archivo Black + Barlow Bold, licencia OFL), NO Arial/Windows.
-Estas fuentes **no incluyen emojis ni símbolos Unicode especiales** (💡👇🚀 etc.)
-— si aparecen como un cuadrado roto en la imagen, es por esto. Usa solo texto
-normal y como mucho caracteres ASCII simples para flechas/marcas (`>>`, `-`,
-`*`), nunca emoji, en `TITLE_LINE1`, `TITLE_LINE2`, `SUBTITLE`, `PANEL_TAG`,
-`STAT_NUMBER` ni `STAT_LABEL`. (Los emojis SÍ están bien en el texto del post
-de LinkedIn y en el artículo del blog — la limitación es solo para el texto
-que se dibuja dentro de la imagen.)
+(el argumento es la carpeta de salida; genera `carrusel-1.png`...
+`carrusel-N.png` + `carrusel-post.pdf` dentro).
 
-Reglas de diseño ya validadas con Jorge — no cambiarlas sin que lo pida:
-- El texto y la foto de Jorge NUNCA deben tocarse/solaparse (bandas separadas).
-- Las dos líneas del título tampoco deben solaparse entre sí, ni ningún otro
-  bloque de texto con otro (usa `wrap_two_lines()` para repartir frases largas
-  en 2 líneas equilibradas antes de dar por bueno un layout).
-- Debe quedar compacto, sin espacios en blanco grandes — si sobra hueco, añadir
-  una línea de subtítulo o ajustar tamaños, no dejarlo vacío.
-- Logos grandes y legibles, sin diagramas complejos de flechas salvo que
-  encaje mejor para un tema muy concreto.
-- La barra inferior es **naranja corporativo** (no gris) — foto con borde
-  blanco (para que contraste sobre el naranja) + CTA en blanco al lado.
+**Si el script falla con un `AssertionError`**, el mensaje te dice
+exactamente qué límite de la sección 3.4 se ha superado y con qué texto —
+significa que el contenido de hoy no cabe de forma segura con ese rol de
+fuente. Corrige el texto de `CONFIG` (acórtalo o repártelo en más líneas),
+nunca "arregles" el error aflojando el límite en el motor de render ni
+comentando el `assert`.
+
+### 3.2 Paleta y tipografía (fijo)
+
+| Elemento | Valor |
+|---|---|
+| Fondo | `#0C0C0C` (negro casi puro) + rejilla sutil `#222222` |
+| Texto principal | `#F4EEE3` (crema) |
+| Resaltados / acentos / marca | `#FF5A1F` (mismo naranja corporativo de siempre) |
+| Texto sobre naranja o crema | `#111111` (negro) |
+| Texto secundario (kicker, pie, subtítulos de CTA) | `#969691` (gris) |
+
+Fuentes de siempre (`assets/fonts/`, licencia OFL, NO Arial/Windows):
+**ArchivoBlack** para todos los títulos/titulares/etiquetas grandes,
+**Barlow-Bold** para cuerpo de texto, bullets y letra pequeña. Igual que en
+el resto del proyecto, **estas fuentes no incluyen emoji** — nunca escribas
+💬🔖🔁 etc. dentro de `CONFIG`, sale como un cuadrado roto. Si hace falta un
+icono, se dibuja a mano con formas (ver `arrow_bullets()`, `ring_checks()`,
+los círculos numerados de `render_closing()` en el propio script como
+ejemplo) — nunca un carácter emoji ni un glifo Unicode raro.
+
+### 3.3 Elementos fijos en todas las slides
+
+- **Header**: logo (recoloreado a crema automáticamente por
+  `_recolored_logo()`) arriba a la izquierda + foto de Jorge en círculo
+  naranja arriba a la derecha. Mismo sitio en las N slides, incluida la de
+  cierre.
+- **Kicker**: etiqueta pequeña en gris debajo del logo — el tema/ángulo del
+  día en mayúsculas (p.ej. "ROAST SEO · ECOMMERCE", "MITO SEO ·
+  ECOMMERCE"). Una sola cadena en `CONFIG["kicker"]`, igual en todas las
+  slides.
+- **Nota de pie del PDF gated** (`footer_gate_note`): en TODAS las slides de
+  contenido (no en la portada ni en el cierre) — el recordatorio discreto de
+  que la solución completa vive en el PDF gated, nunca en el carrusel (regla
+  no negociable, sección 3bis). Texto por defecto ya integrado en el motor,
+  no hace falta tocarlo cada día salvo que quieras un texto distinto vía
+  `CONFIG["footer_note"]`.
+- **Indicador de "desliza"** (`scroll_hint`): barra degradada + flecha
+  circular abajo a la derecha, en todas las slides excepto la de cierre; en
+  la última slide de contenido (justo antes del cierre) la flecha cambia a
+  un check. **Nunca coloques texto propio en la zona aproximada x>930,
+  y>680 de la mitad inferior de una slide** — es donde vive este elemento y
+  taparlo con texto es exactamente el bug que se corrigió al validar este
+  formato con Jorge.
+
+### 3.4 Tipos de slide disponibles en `CONFIG["slides"]`
+
+Cada slide es un diccionario con un campo `"type"`. Los cinco tipos
+disponibles, con sus límites (impuestos por `assert` en el propio script —
+si los superas, el script para en seco con el motivo exacto):
+
+- **`cover`** (obligatorio, siempre la primera slide): `title_lines` (lista
+  de líneas; cada línea es una lista de `(texto, es_resaltado)` — así se
+  puede resaltar solo parte de una línea, como en el ejemplo de abajo) y
+  `subtitle` (1-2 frases). Máximo **5 líneas** de título.
+- **`statement`**: una "declaración" grande — `title_lines` (máximo **4
+  líneas**), y opcionalmente `body` (1 párrafo corto) y/o `closing` (una
+  única línea resaltada, tipo remate). Cubre tanto un gancho de una sola
+  frase como una slide de contexto/transición con cuerpo.
+- **`bullets`**: `title_lines` (máximo 3 líneas) + `intro` (opcional) +
+  `items` (lista de **2 a 4** frases cortas, con flecha dibujada a mano) +
+  `closing` (opcional, en gris). Para el "por qué importa esto".
+- **`card`**: el bloque que más se repite — un hallazgo/paso/dato por slide.
+  `label` (p.ej. "SEÑAL 1", "ERROR", "MITO", "DATO 1" — lo que tenga sentido
+  para el ángulo del día), `headline` (el titular resaltado; se envuelve
+  automáticamente en varias líneas si hace falta, no lo partas tú a mano),
+  `body` (opcional, 1-2 líneas de contexto) y `checks` (opcional, máximo
+  **2** preguntas de autocomprobación con un anillo delante).
+- **`closing`** (obligatorio, siempre la última slide): `title_lines`
+  (**exactamente 2** líneas), `ctas` (lista de hasta **3** tuplas
+  `(título, subtítulo)` — normalmente comentar / guardar / compartir),
+  `box_title` y `box_link` — el bloque naranja final, el ÚNICO sitio del
+  carrusel con el CTA fuerte y el enlace real al PDF gated.
+
+El ejemplo que queda en `CONFIG` tras cada `git checkout` (5 señales de
+indexación silenciosa) es la plantilla de referencia validada visualmente
+con Jorge el 24/08/2026 — para un día nuevo, parte de esa misma estructura
+de tipos y sustituye los textos, no la reinventes desde cero.
+
+### 3.5 Estructura recomendada por día
+
+Orden típico (10 slides, el mismo conteo que la plantilla de referencia):
+`cover` (1) → `statement` (1-2, gancho y/o contexto) → `bullets` (0-1, por
+qué importa) → `card` × 3-6 (un hallazgo/paso/dato por slide) → `closing`
+(1). Adapta el contenido de las `card` al ángulo del día sin cambiar la
+mecánica:
+
+- **Lunes (roast)**: cada `card` es un síntoma/señal del error real
+  auditado (anonimizado), como en la plantilla.
+- **Martes (mito)**: cada `card` puede ser "lo que se cree" vs "lo que
+  dicen los datos" — usa `label` tipo "MITO" / "REALIDAD".
+- **Miércoles (auditoría exprés)**: cada `card` es un hallazgo concreto de
+  la marca pública auditada.
+- **Jueves (tendencia/algoritmo)**: cada `card` es una implicación práctica
+  del cambio para un ecommerce.
+- **Viernes (pregunta abierta)**: la `statement` inicial plantea la
+  pregunta con fuerza, la siguiente `statement` o `card` da la respuesta de
+  Jorge (sigue las reglas de la sección 1, nota de viernes), y el `closing`
+  reitera la pregunta e invita a comentar en vez de (o además de) los 3 CTAs
+  estándar.
+
+### 3.6 Regla no negociable (recordatorio — ver sección 3bis completa)
+
+El carrusel enseña el diagnóstico (qué revisar, qué pasa, por qué importa),
+**nunca la solución paso a paso completa** — eso vive solo en el PDF gated.
+Por eso `footer_gate_note` aparece en cada slide de contenido y el `closing`
+lleva el único CTA fuerte con el enlace real.
 
 ## 3bis. PDF del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
 
@@ -242,7 +303,8 @@ la hay).
 
 **No hay emojis que evitar aquí** (reportlab usa fuentes PDF estándar,
 soportan acentos y símbolos normales sin problema — la limitación de fuentes
-es solo para `generate_post_image.py`).
+es solo para el texto que se dibuja dentro de las imágenes del carrusel,
+ver sección 3.2).
 
 ### Cómo se aloja el PDF (automático, sin que Jorge suba nada)
 
@@ -345,22 +407,24 @@ Plantilla maestra: `templates/formulario-lead-magnet.html`. Ya incluye:
 
 Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `post-linkedin.txt`
-- `imagen-post.png`
+- `carrusel-1.png` ... `carrusel-N.png` (una por slide del carrusel, ver sección 3)
+- `carrusel-post.pdf` (el mismo carrusel empaquetado en PDF — es lo que se sube a LinkedIn como Documento)
 - `articulo-blog.html`
-- `<slug-del-título>.pdf` (nuevo cada día, nombre descriptivo — ver sección 3bis)
+- `<slug-del-título>.pdf` (el lead magnet gated, nuevo cada día, nombre descriptivo — ver sección 3bis)
 - Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — ver sección 1bis)
 
-**Orden importante**: genera y haz commit+push del PDF (y de toda la carpeta)
-ANTES de dar el artículo por terminado, porque el HTML del artículo depende
-de la URL pública del PDF ya subido (sección 3bis).
+**Orden importante**: genera y haz commit+push del PDF del lead magnet (y de
+toda la carpeta) ANTES de dar el artículo por terminado, porque el HTML del
+artículo depende de la URL pública de ese PDF ya subido (sección 3bis).
 
 Al terminar, enviar los archivos a Jorge (vía SendUserFile) con una nota
-breve indicando qué toca hacer: 1) copiar el post + subir la imagen a
-LinkedIn, 2) revisar el borrador ya creado en WordPress (ver sección 9) y
-darle a Publicar. Recordar que todo lo demás (leads, envío del PDF, y desde
-que hay credenciales de WordPress configuradas — ver sección 9 — la subida
-del borrador) es 100% automático y no requiere ninguna acción suya salvo el
-clic final de Publicar.
+breve indicando qué toca hacer: 1) copiar el post y subir `carrusel-post.pdf`
+a LinkedIn como publicación de tipo Documento (no como carrusel de imágenes
+sueltas — ver sección 3), 2) revisar el borrador ya creado en WordPress (ver
+sección 9) y darle a Publicar. Recordar que todo lo demás (leads, envío del
+PDF gated, y desde que hay credenciales de WordPress configuradas — ver
+sección 9 — la subida del borrador) es 100% automático y no requiere ninguna
+acción suya salvo el clic final de Publicar.
 
 **Nunca publicar nada automáticamente en el sentido de "dejarlo en vivo"**
 (ni en LinkedIn, ni en WordPress, ni en Klaviyo) — desde que hay credenciales
@@ -372,8 +436,8 @@ rutina nunca pulsa "Publicar" por Jorge, eso es siempre su clic final.
 
 - Instala dependencias con `pip install -r requirements.txt` si `Pillow` no
   está ya disponible.
-- Intenta entregar los 3 archivos directamente al usuario (herramienta de
-  envío de archivos si está disponible en la sesión).
+- Intenta entregar todos los archivos generados directamente al usuario
+  (herramienta de envío de archivos si está disponible en la sesión).
 - **Además, y siempre**, haz commit y push de la carpeta `content/<día>/`
   generada al repositorio (mismo remoto del que se clonó), como red de
   seguridad por si la entrega directa fallara. Usa un mensaje de commit tipo
