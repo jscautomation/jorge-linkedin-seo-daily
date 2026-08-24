@@ -1,0 +1,171 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>140 categorías fantasma: el error de SEO técnico que ralentiza cada lanzamiento de temporada</h1>
+
+<p>Auditaba hace poco el SEO de una tienda de moda que renueva colección varias veces al año. Buen presupuesto, equipo de marketing activo... y aun así, cada temporada nueva tardaba semanas en arrancar en Google, en vez de posicionar casi desde el primer día.</p>
+
+<p>Cuando miré Search Console con calma, el motivo daba un poco de vergüenza ajena — porque es de los errores más comunes (y más caros) que veo en ecommerce que trabajan por temporadas.</p>
+
+<!-- CTA intermedio 1 — enlaza al formulario de descarga del PDF, más abajo en la misma página -->
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Quiero la guía completa gratis
+  </a>
+</div>
+
+<h2>El problema: 140 categorías "vacías" que Google seguía tratando como válidas</h2>
+
+<p>Cuando una colección de temporada se queda sin stock, la plantilla de la tienda seguía sirviendo la página de categoría con un mensaje de "sin productos disponibles" — pero devolviendo un <strong>200 OK</strong>, exactamente igual que cualquier página normal y correcta.</p>
+
+<p>Google no tenía ningún motivo para dejar de indexarlas. El resultado: 140 de las ~780 categorías indexadas del sitio estaban en ese estado. Algunas llevaban así más de un año, acumulando autoridad histórica sin aportar nada a nadie.</p>
+
+<h2>Por qué esto ralentiza cada lanzamiento nuevo</h2>
+
+<p>Cada vez que la marca lanzaba la colección equivalente de la temporada siguiente (misma keyword objetivo, misma intención de búsqueda), la categoría nueva tenía que "pelear" contra su propia versión fantasma del año anterior — que seguía viva, indexada, y con historial.</p>
+
+<p>El resultado no era un error visible ni una caída brusca de tráfico. Era, simplemente, que cada temporada tardaba más de lo que debería en despegar — y nadie llegaba a conectar ambas cosas.</p>
+
+<h2>Cómo lo compruebas tú mismo</h2>
+
+<p>Abre 5 categorías de tu temporada pasada — de esas que ya no promocionas activamente — y comprueba dos cosas: si siguen devolviendo un código 200 (en vez de un 410 o una redirección), y si siguen apareciendo como "válidas" en Search Console pese a no tener ni un producto.</p>
+
+<p>Si te suena, no eres el único: es uno de los errores más habituales en ecommerce que renuevan catálogo por temporadas, precisamente porque no rompe nada visible — el checkout sigue funcionando, la web sigue cargando perfecta. Por eso nadie lo revisa.</p>
+
+<!-- CTA intermedio 2 — enlaza al formulario de descarga del PDF, más abajo en la misma página -->
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Descargar ahora la guía gratis en PDF
+  </a>
+</div>
+
+<h2>Lo que está en juego</h2>
+
+<p>Cuando por fin clasificamos y arreglamos las 140 categorías de este caso, la siguiente colección lanzada empezó a indexar y posicionar en cuestión de días — no de semanas, como venía pasando temporada tras temporada. No es un ajuste cosmético: son semanas de tráfico y ventas que, hasta entonces, se estaban perdiendo en cada lanzamiento.</p>
+
+<p>No todas las categorías vacías se arreglan igual — depende de si esa colección va a volver la próxima temporada o ha desaparecido para siempre, y tratarlas todas por igual es precisamente el error que perpetúa el problema. La guía gratuita explica el proceso completo en 4 pasos: cómo encontrarlas todas de golpe con Screaming Frog, cómo clasificarlas, y qué hacer con cada tipo sin perder el histórico que sí aporta. Te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "Categorías fantasma: qué hacer con las colecciones de temporadas pasadas",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-24-lunes-roast/categorias-fantasma-colecciones-de-temporadas-pasadas.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>

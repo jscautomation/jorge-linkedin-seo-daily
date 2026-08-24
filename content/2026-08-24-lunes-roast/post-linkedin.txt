@@ -1,0 +1,15 @@
+140 CATEGORIAS FANTASMA Y NADIE LO HABIA VISTO.
+
+Auditaba una tienda de moda que renueva colección varias veces al año. Buen presupuesto, buen equipo... y aun así, cada temporada nueva tardaba semanas en arrancar en Google.
+
+Cuando miré Search Console con calma, encontré el motivo: 140 de sus ~780 categorías indexadas devolvían "sin productos disponibles" — pero con un 200 OK, como si fueran páginas perfectamente válidas. Algunas llevaban así más de un año.
+
+Nadie las había redirigido ni desindexado al terminar la temporada. Seguían ahí, vacías, acumulando autoridad histórica — y cada vez que lanzaban la colección equivalente del año siguiente, tenía que competir contra su propia versión fantasma.
+
+¿Lo tienes tú? Abre 5 categorías de la temporada pasada y comprueba si siguen en 200 OK sin ni un producto. Si te suena, no eres el único.
+
+Cuando por fin las clasificamos y arreglamos, la colección nueva empezó a posicionar en días, no semanas.
+
+Cómo clasificarlas (vuelve la próxima temporada vs. se ha ido para siempre) y qué hacer con cada tipo, sin perder el histórico que sí vale la pena — en la guía gratis. Enlace en el comentario fijado.
+
+#SEO #Ecommerce #WordPress #Shopify
