@@ -1,0 +1,177 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>El buscador interno de tu propia tienda puede estar hundiendo el SEO de tus categorías (y lo detectas en 5 minutos)</h1>
+
+<p>Hace poco auditaba el SEO de una tienda de decoración y hogar con facturación alta y un catálogo grande, funcionando sobre Shopify. Su tráfico de categoría llevaba meses completamente plano y, a simple vista, no había ningún fallo evidente: arquitectura de categorías ordenada, canonicals limpios, sitemap actualizado.</p>
+
+<p>El problema estaba en el sitio donde casi nadie mira: el propio buscador interno de la tienda, el mismo cuadro donde los usuarios escriben "cortina gris" o "zapatillas talla 42".</p>
+
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Descarga la guía gratis
+  </a>
+</div>
+
+<h2>El problema: cuando el buscador de tu tienda se convierte en un catálogo fantasma para Google</h2>
+
+<p>Cada vez que un usuario busca algo dentro de tu tienda, la mayoría de plataformas (Shopify, WooCommerce, buscadores propios) generan automáticamente una URL nueva para esos resultados: algo como <code>/search?q=cortina+gris</code>. Cada búsqueda distinta —incluidas las erratas, las búsquedas sin resultados, o las que un usuario nunca repetirá— es, técnicamente, una URL nueva y rastreable.</p>
+
+<p>El problema no es que existan. El problema es que, por defecto, casi ninguna plataforma las marca como no indexables. Así que Google las rastrea igual que rastrea una ficha de producto o una categoría, y con el tiempo puede terminar indexando cientos o miles de ellas: páginas sin producto, sin contenido único, muchas de búsquedas vacías o mal escritas.</p>
+
+<p>En el caso que auditaba, encontré más de 3.000 de esas URLs indexadas en Google. Ni una sola aportaba valor a un usuario que llegara desde el buscador — y todas ellas competían por el mismo presupuesto de rastreo (crawl budget) que las categorías y fichas de producto reales.</p>
+
+<h2>Por qué ocurre (y por qué casi nadie lo detecta)</h2>
+
+<p>No es un error de configuración puntual, es el comportamiento por defecto de la mayoría de plataformas de ecommerce: el buscador interno se diseña para el usuario, no para el rastreador. Nadie revisa habitualmente si esas URLs son indexables porque, desde dentro del panel de administración, todo funciona perfectamente — el buscador hace su trabajo, encuentra productos, y el problema es completamente invisible salvo que mires específicamente qué está indexando Google.</p>
+
+<p>A eso se suma que muchas de esas URLs reciben enlaces internos sin que nadie se dé cuenta: sugerencias de "quizá quisiste decir", paginación de resultados, o incluso breadcrumbs mal configurados que las mantienen vivas y rastreables indefinidamente.</p>
+
+<h2>Cómo lo detectas tú mismo en 5 minutos</h2>
+
+<p>No hace falta ninguna herramienta de pago para confirmar si te está pasando a ti. Basta con dos comprobaciones:</p>
+
+<p><strong>1.</strong> Busca en Google: <code>site:tudominio.com inurl:search</code> (cambia <code>search</code> por <code>buscar</code> si tu buscador está en español, o prueba con <code>inurl:s=</code> si tu web es WordPress). Si te aparecen decenas o cientos de resultados, ya tienes el problema confirmado.</p>
+
+<p><strong>2.</strong> Entra en Google Search Console → Cobertura, y revisa si hay un volumen alto de páginas en "Indexada, no enviada en el sitemap" o "Detectada, actualmente sin indexar" que, al filtrar por URL, coincidan con la ruta de tu buscador interno.</p>
+
+<p>Si alguna de las dos comprobaciones te da un resultado alto, Google lleva tiempo dedicando parte de su presupuesto de rastreo a tu buscador interno en vez de a tu catálogo real.</p>
+
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Quiero arreglarlo: descargar la guía
+  </a>
+</div>
+
+<h2>Lo que está en juego</h2>
+
+<p>Esto no es un fallo estético que puedas dejar para "más adelante". El presupuesto de rastreo que Google dedica a tu sitio no es infinito, y cada vez que lo gasta en una URL de búsqueda interna sin valor, deja de gastarlo en una ficha de producto nueva, una categoría que acabas de reorganizar, o cualquier cambio que quieras que Google note cuanto antes.</p>
+
+<p>En el caso de esta auditoría, tres semanas después de cortar ese ruido, Search Console mostró el rastreo de las páginas de producto multiplicado por 3 respecto a las semanas anteriores — la señal más clara de que Google, por fin, volvía a dedicar su tiempo a lo que realmente importaba para el negocio.</p>
+
+<p>La solución tiene 3 pasos muy concretos, y uno de ellos —el orden en el que se hacen— es el matiz que casi todo el mundo se salta y que, si lo haces mal, puede dejarte peor de lo que estabas: puede desindexarte páginas que sí quieres posicionar. Lo explico paso a paso, con capturas y ejemplos reales, en la guía gratuita — te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "Tu buscador interno está indexado en Google (y te cuesta)",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/claude/peaceful-lamport-g9mjhu/content/2026-08-24-lunes-roast/tu-buscador-interno-esta-indexado-en-google.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>

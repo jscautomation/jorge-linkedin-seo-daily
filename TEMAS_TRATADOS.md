@@ -14,6 +14,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 | Fecha | Tema (el error concreto) | Nota / solución en el PDF |
 |---|---|---|
 | 2026-08-17 | Duplicación de contenido por parámetros de filtro (talla/color) generando ~40 URLs clon de la misma categoría | Caso real ecommerce moda, +2M€/mes, posición 14→4 en 6 semanas. Solución: canonical hacia la URL limpia + NO bloquear por robots.txt + forzar recrawl en Search Console |
+| 2026-08-24 | Buscador interno (URLs /search?q=...) indexado por Google, generando miles de páginas fantasma sin contenido único | Caso real ecommerce decoración/hogar, +3.000 URLs de búsqueda indexadas, rastreo de fichas de producto x3 tras arreglarlo. Solución: quitar bloqueo de robots.txt si lo había → noindex,follow en la plantilla de resultados → confirmar exclusión en Search Console → entonces sí, Disallow definitivo + quitar del sitemap → limpiar enlazado interno hacia esas URLs |
 
 ## Martes — Mito SEO desmontado con datos
 
