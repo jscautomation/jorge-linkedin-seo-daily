@@ -185,11 +185,14 @@ ejemplo) — nunca un carácter emoji ni un glifo Unicode raro.
   ECOMMERCE"). Una sola cadena en `CONFIG["kicker"]`, igual en todas las
   slides.
 - **Nota de pie del PDF gated** (`footer_gate_note`): en TODAS las slides de
-  contenido (no en la portada ni en el cierre) — el recordatorio discreto de
-  que la solución completa vive en el PDF gated, nunca en el carrusel (regla
-  no negociable, sección 3bis). Texto por defecto ya integrado en el motor,
-  no hace falta tocarlo cada día salvo que quieras un texto distinto vía
-  `CONFIG["footer_note"]`.
+  contenido (no en la portada ni en el cierre), en la esquina inferior
+  izquierda — el recordatorio discreto de que la solución completa vive en
+  el PDF gated, nunca en el carrusel (regla no negociable, sección 3bis).
+  Texto por defecto ya integrado en el motor (`DESCARGA LA GUÍA PDF EN
+  COMENTARIOS`, vigente desde el 25/08/2026 a petición expresa de Jorge —
+  antes era "el arreglo completo, paso a paso -> guía gratis en
+  comentarios"), no hace falta tocarlo cada día salvo que quieras un texto
+  distinto vía `CONFIG["footer_note"]`.
 - **Indicador de "desliza"** (`scroll_hint`): barra degradada + flecha
   circular abajo a la derecha, en todas las slides excepto la de cierre; en
   la última slide de contenido (justo antes del cierre) la flecha cambia a

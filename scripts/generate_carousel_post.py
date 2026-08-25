@@ -25,11 +25,11 @@ slide y por qué existen esos límites):
   `git checkout -- scripts/generate_carousel_post.py` después de mover el
   contenido generado a la carpeta `content/<día>/` correspondiente.
 - Cada slide de tipo distinto de "cover"/"closing" lleva automáticamente
-  la nota "el arreglo completo, paso a paso -> guía gratis en
-  comentarios" en el pie — es la regla no negociable del brief (sección
-  3bis): el PDF con la respuesta completa NUNCA se da en el carrusel, solo
-  el diagnóstico. La slide de cierre lleva el único CTA fuerte con el
-  enlace al PDF.
+  la nota "DESCARGA LA GUÍA PDF EN COMENTARIOS" en la esquina inferior
+  izquierda (vigente desde el 25/08/2026, a petición expresa de Jorge) —
+  es la regla no negociable del brief (sección 3bis): el PDF con la
+  respuesta completa NUNCA se da en el carrusel, solo el diagnóstico. La
+  slide de cierre lleva el único CTA fuerte con el enlace al PDF.
 
 Salida: `carrusel-1.png` ... `carrusel-N.png` (una por slide) +
 `carrusel-post.pdf` (empaquetado SIN pérdida vía img2pdf — Pillow re-
@@ -252,7 +252,7 @@ def kicker(d, text):
     d.text((56, 106), text, font=F(BOLD, SMALL), fill=GRAY)
 
 
-DEFAULT_FOOTER_NOTE = "el arreglo completo, paso a paso -> guia gratis en comentarios"
+DEFAULT_FOOTER_NOTE = "DESCARGA LA GUÍA PDF EN COMENTARIOS"
 
 
 def footer_gate_note(d, text=DEFAULT_FOOTER_NOTE):
