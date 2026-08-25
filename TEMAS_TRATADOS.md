@@ -21,6 +21,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 | Fecha | Mito | Nota / qué dice Google realmente |
 |---|---|---|
 | 2026-08-18 | "Bloquear por robots.txt evita que Google indexe esa URL" | Falso: robots.txt controla rastreo, no indexación. Una URL bloqueada con enlaces puede seguir indexada (sin snippet), y bloquearla impide que Google vea un noindex/canonical puesto ahí. Solución: quitar bloqueo → noindex → confirmar en Search Console → opcionalmente rebloquear |
+| 2026-08-25 | "Cuantas más páginas indexe Google, mejor" (aplicado a las combinaciones de filtro de talla/color/precio de un ecommerce) | Falso: la propia guía de crawl budget de Google señala la navegación por facetas como la causa más habitual de rastreo desperdiciado — más páginas indexadas no mejora el posicionamiento y diluye el presupuesto de rastreo de las fichas reales. Solución: distinguir filtro simple (indexable si tiene volumen real) de combinado (noindex,follow por defecto), canonical consistente a la categoría limpia, y revisión recurrente en cada lanzamiento de colección |
 
 ## Miércoles — Auditoría exprés a marca pública
 

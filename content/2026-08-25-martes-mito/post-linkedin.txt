@@ -1,0 +1,13 @@
+MITO SEO: MÁS PÁGINAS INDEXADAS NO ES MEJOR SEO.
+
+"Cuantas más páginas indexe Google, mejor" es uno de los mitos que más se repiten en ecommerce con filtros de talla, color y precio.
+
+La realidad la dice el propio Google en su guía de crawl budget: rastrear más páginas no mejora el posicionamiento, y señala la navegación por facetas -esos ?color=rojo&talla=m- como la causa más habitual de rastreo desperdiciado.
+
+Cada combinación de filtro que Google indexa sin necesidad compite por el mismo presupuesto de rastreo que tus fichas de producto reales. Cuantas más URLs "de relleno" tenga tu dominio, menos frecuencia de rastreo le queda a lo que sí vende.
+
+¿Cuántas combinaciones de filtro tiene indexadas ahora mismo tu categoría más grande? Pruébalo con site:tudominio.com inurl:? en Google.
+
+No es indexar menos por indexar menos: es indexar lo que aporta. Te cuento cómo distinguirlo en la guía gratis. Enlace en el comentario fijado.
+
+#SEO #Ecommerce #WordPress #Shopify

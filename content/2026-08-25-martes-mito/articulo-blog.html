@@ -1,0 +1,171 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>El mito de "más páginas indexadas, mejor SEO" (y lo que dice Google en realidad)</h1>
+
+<p>Es una de las creencias que más se repite en el SEO técnico de ecommerce: cuantas más páginas indexe Google de tu tienda, mejor te va a ir. Suena razonable — más presencia, más oportunidades de posicionar. El problema es que no es lo que dice la propia documentación de Google sobre crawl budget.</p>
+
+<p>Y en ecommerce con filtros de talla, color, precio o disponibilidad, es justo donde más caro sale creérselo.</p>
+
+<!-- CTA intermedio 1 — enlaza al formulario de descarga del PDF, más abajo en la misma página -->
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Quiero la guía completa gratis
+  </a>
+</div>
+
+<h2>De dónde sale el mito</h2>
+
+<p>Cada filtro de una categoría genera, matemáticamente, una URL nueva. Con solo 5 filtros activos (talla, color, precio, disponibilidad, material) en una categoría de tamaño mediano, las combinaciones posibles se cuentan por miles. La mayoría de plataformas las deja indexables por defecto — "por si acaso alguien busca justo esa combinación".</p>
+
+<p>La lógica detrás es tentadora: más páginas indexadas parecen más oportunidades de aparecer en Google. Pero Google no lo ve así.</p>
+
+<h2>Lo que dice realmente la guía de crawl budget de Google</h2>
+
+<p>Google es explícito en su documentación sobre crawl budget: rastrear más páginas no mejora el posicionamiento de un sitio. Y señala específicamente la navegación por facetas (los filtros que generan URLs con parámetros, del tipo <code>?color=rojo&amp;talla=m</code>) como una de las causas más habituales de rastreo desperdiciado en sitios grandes.</p>
+
+<p>La idea de fondo es sencilla: el presupuesto de rastreo que Google dedica a tu dominio no es infinito. Cada combinación de filtro que Google rastrea e indexa sin necesidad compite por ese mismo presupuesto con tus fichas de producto y categorías reales — las que sí tienen intención de búsqueda y sí venden.</p>
+
+<h2>Cómo lo compruebas tú mismo</h2>
+
+<p>Abre Google y busca <code>site:tudominio.com inurl:?</code> para hacerte una idea de cuántas URLs con parámetros tiene indexadas tu dominio ahora mismo. Después entra en tu categoría más grande y cuenta cuántos filtros puede combinar un usuario a la vez (talla + color + precio, por ejemplo) — cada combinación posible es, en teoría, una URL más que Google podría estar rastreando.</p>
+
+<p>Si nunca lo has revisado, no eres el único: es de los errores más comunes precisamente porque no da ningún error visible. Las URLs de filtro no rompen el checkout, no aparecen como "problema" en ningún informe estándar de Search Console. Por eso casi nadie las audita.</p>
+
+<!-- CTA intermedio 2 — enlaza al formulario de descarga del PDF, más abajo en la misma página -->
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Descargar ahora la guía gratis en PDF
+  </a>
+</div>
+
+<h2>Lo que está en juego</h2>
+
+<p>El coste de este mito no se ve en un error puntual: se ve en la velocidad. Cuantas más URLs "de relleno" tenga indexadas tu dominio, menos frecuencia de rastreo le queda a lo que sí vende — y más tarda Google en descubrir y posicionar cada producto nuevo que lances. Es un coste silencioso que se repite en cada lanzamiento de colección, no un fallo puntual que se arregla una vez y se olvida.</p>
+
+<p>No se trata de indexar menos por indexar menos — algunas combinaciones de filtro sí tienen volumen de búsqueda real detrás y merecen quedarse indexables con su propia página optimizada. Se trata de saber distinguir cuál es cuál. La guía gratuita explica el proceso completo en 4 pasos: cómo detectar qué combinaciones tienes indexadas ahora mismo, qué criterio usar para decidir cuáles dejar y cuáles no, y cómo corregirlo por plantilla para que no vuelva a pasar en la próxima colección. Te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "Qué filtros dejar indexables en tu ecommerce (y cuáles no)",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-25-martes-mito/que-filtros-dejar-indexables-en-tu-ecommerce.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>
