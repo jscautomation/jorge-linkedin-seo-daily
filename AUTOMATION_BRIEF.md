@@ -186,13 +186,17 @@ ejemplo) — nunca un carácter emoji ni un glifo Unicode raro.
   slides.
 - **Nota de pie del PDF gated** (`footer_gate_note`): en TODAS las slides de
   contenido (no en la portada ni en el cierre), en la esquina inferior
-  izquierda — el recordatorio discreto de que la solución completa vive en
-  el PDF gated, nunca en el carrusel (regla no negociable, sección 3bis).
-  Texto por defecto ya integrado en el motor (`DESCARGA LA GUÍA PDF EN
-  COMENTARIOS`, vigente desde el 25/08/2026 a petición expresa de Jorge —
-  antes era "el arreglo completo, paso a paso -> guía gratis en
-  comentarios"), no hace falta tocarlo cada día salvo que quieras un texto
-  distinto vía `CONFIG["footer_note"]`.
+  izquierda — el recordatorio de que la solución completa vive en el PDF
+  gated, nunca en el carrusel (regla no negociable, sección 3bis). Texto por
+  defecto ya integrado en el motor (`DESCARGA LA GUÍA PDF EN COMENTARIOS`).
+  **Versión "llamativa" vigente desde el 25/08/2026** (dos peticiones
+  expresas de Jorge seguidas, primero el texto y después que se viera más):
+  texto grande en crema (el mismo casi-blanco del cuerpo del carrusel, no
+  el gris discreto de antes) + una flecha naranja hacia abajo dibujada a
+  mano delante del texto, señalando que la guía está en la sección de
+  comentarios, debajo del carrusel. No hace falta tocarlo cada día salvo
+  que quieras un texto distinto vía `CONFIG["footer_note"]` (la flecha y el
+  tamaño se aplican igual sea cual sea el texto).
 - **Indicador de "desliza"** (`scroll_hint`): barra degradada + flecha
   circular abajo a la derecha, en todas las slides excepto la de cierre; en
   la última slide de contenido (justo antes del cierre) la flecha cambia a

@@ -256,10 +256,23 @@ DEFAULT_FOOTER_NOTE = "DESCARGA LA GUÍA PDF EN COMENTARIOS"
 
 
 def footer_gate_note(d, text=DEFAULT_FOOTER_NOTE):
-    """Recordatorio discreto de la regla no negociable (brief 3bis): la
-    solución completa vive solo en el PDF gated, nunca en el carrusel.
-    Va en TODAS las slides de contenido (no en cover ni en closing)."""
-    d.text((56, H - 44), text, font=F(BOLD, 17), fill=GRAY)
+    """Recordatorio de la regla no negociable (brief 3bis): la solución
+    completa vive solo en el PDF gated, nunca en el carrusel. Va en TODAS
+    las slides de contenido (no en cover ni en closing).
+
+    Versión "llamativa" vigente desde el 25/08/2026 a petición expresa de
+    Jorge (antes era una nota discreta en gris a tamaño pequeño): texto
+    grande en crema (el mismo casi-blanco del cuerpo del carrusel) +
+    flecha naranja hacia abajo dibujada a mano (nunca un glifo Unicode,
+    mismo criterio que arrow_bullets/ring_checks), señalando que la guía
+    está en la sección de comentarios, debajo del carrusel."""
+    font = F(BOLD, 30)
+    x, y = MARGIN_X, H - 66
+    ax, ay = x + 9, y + 2
+    d.line((ax, ay, ax, ay + 26), fill=ORANGE, width=6)
+    d.line((ax - 11, ay + 13, ax, ay + 26), fill=ORANGE, width=6)
+    d.line((ax + 11, ay + 13, ax, ay + 26), fill=ORANGE, width=6)
+    d.text((x + 40, y), text, font=font, fill=CREAM)
 
 
 def scroll_hint(img, last=False):
