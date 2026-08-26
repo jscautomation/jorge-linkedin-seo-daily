@@ -1,0 +1,15 @@
+2,6 MILLONES DE PÁGINAS INDEXADAS. -71% DE VISIBILIDAD EN UN AÑO.
+
+Hay una tienda online española de camisetas y regalos personalizados, con años de recorrido y millones de páginas indexadas, que llevaba tiempo funcionando así "a pesar de" su propia arquitectura. Hasta que dejó de funcionar.
+
+Lo cuenta SISTRIX, la herramienta de analítica SEO, en su análisis público de perdedores del año (IndexWatch): la duplicación entre sus páginas de aterrizaje —generadas por combinaciones de categoría, diseño y variante casi idénticas entre sí— siempre fue muy alta. Mientras tuvo autoridad de sobra, Google se lo perdonaba.
+
+Desde finales de 2024 dejó de perdonárselo. Y para rematarlo, al lanzar su versión para México repitieron el mismo error de tantas expansiones internacionales: sin hreflang, con contenido duplicado, sin traspasar autoridad a la nueva versión.
+
+Resultado, con datos públicos: -71,3% de visibilidad en un año.
+
+No es un caso aislado ni un algoritmo caprichoso. Es lo que pasa cuando un catálogo enorme se sostiene sobre páginas casi iguales entre sí, y la autoridad que las tapaba empieza a fallar.
+
+¿Cuántas de tus páginas indexadas se parecen demasiado entre ellas? Te cuento cómo detectarlo (y qué hacer antes de que te pase lo mismo) en la guía gratuita — enlace al artículo en comentarios.
+
+#SEO #Ecommerce #WordPress #Shopify
