@@ -1,6 +1,6 @@
 2,6 MILLONES DE PÁGINAS INDEXADAS. -71% DE VISIBILIDAD EN UN AÑO.
 
-Hay una tienda online española de camisetas y regalos personalizados, con años de recorrido y millones de páginas indexadas, que llevaba tiempo funcionando así "a pesar de" su propia arquitectura. Hasta que dejó de funcionar.
+La Tostadora (tostadora.com) —la tienda española de camisetas y regalos personalizados, con años de recorrido y millones de páginas indexadas— llevaba tiempo funcionando así "a pesar de" su propia arquitectura. Hasta que dejó de funcionar.
 
 Lo cuenta SISTRIX, la herramienta de analítica SEO, en su análisis público de perdedores del año (IndexWatch): la duplicación entre sus páginas de aterrizaje —generadas por combinaciones de categoría, diseño y variante casi idénticas entre sí— siempre fue muy alta. Mientras tuvo autoridad de sobra, Google se lo perdonaba.
 
