@@ -28,6 +28,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 | Fecha | Marca auditada | Hallazgo |
 |---|---|---|
 | 2026-08-19 | Clarks (calzado, migración internacional a dominio único por carpetas de país) | Hreflang ausente (ni HTML, ni cabeceras HTTP, ni sitemap) tras la migración → según datos públicos de SISTRIX, 61% (ES), 68% (FR), 62% (IT) y 64% (DE) de las keywords posicionaban con URL de otro mercado. Solución: hreflang recíproco por URL (incl. self-referencing), x-default correcto, y canonical siempre a sí mismo (nunca contradiciendo al hreflang) |
+| 2026-08-26 | La Tostadora (tienda española de camisetas/regalos personalizados, 2,6M de landings indexadas) | Según SISTRIX (IndexWatch Perdedores SEO 2025): duplicación muy alta entre páginas de aterrizaje casi idénticas (combinaciones de categoría/diseño/variante), tolerada mientras hubo autoridad de sobra; desde finales de 2024 la autoridad dejó de compensarlo → -71,3% de visibilidad en el año. Se agravó con el lanzamiento de la versión MX sin hreflang, con contenido duplicado y sin traspaso de autoridad. Solución: detectar near-duplicates con Screaming Frog (similitud >90%) y consolidar/canonicalizar por volumen real, cruzar visibilidad vs. nº de URLs indexadas para pillar la caída a tiempo (content pruning), e implementar hreflang recíproco + enlazado interno cruzado desde el día 1 de cualquier expansión nueva |
 
 ## Jueves — Tendencia / cambio de algoritmo
 
