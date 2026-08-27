@@ -4,16 +4,16 @@ Este documento es la única fuente de verdad que necesita la ejecución programa
 de cada mañana (L-V, 8:00 Europe/Madrid). Contiene todo lo acordado con Jorge:
 marca, formato, estructura y qué entregar.
 
-**Cambio de método vigente desde el 28/08/2026** (ver nota de migración al
-final del documento): la rutina en la nube **ya no genera ninguna imagen**
-(ni carrusel ni imagen única) **ni el artículo de blog en HTML**, y **ya no
-sube ningún borrador a WordPress**. Jorge diseña la imagen él mismo con su
-propia herramienta de diseño, a partir de un breve documento de ideas que sí
-genera la rutina. La entrega diaria de esta rutina se reduce a: el recurso
-descargable del día (normalmente un PDF, ver sección 4) + el texto del post
-de LinkedIn + el documento de ideas para la imagen. Nada se deja publicado en
-vivo automáticamente — subir la imagen y el post a LinkedIn, y responder a
-quien comente, siguen siendo 100% de Jorge.
+**Cambio de método vigente desde el 28/08/2026** (ver notas de migración al
+final del documento): la rutina en la nube **ya no genera el artículo de
+blog en HTML ni sube ningún borrador a WordPress**. La imagen del post **sí
+la sigue generando la rutina** — Jorge diseñó él mismo un nuevo formato de
+imagen única (fondo crema, League Spartan, logos reales) y pidió que se
+replicara tal cual como generador oficial (ver sección 3). La entrega diaria
+se reduce a: la imagen del post + el recurso descargable del día
+(normalmente un PDF, ver sección 4) + el texto del post de LinkedIn. Nada se
+deja publicado en vivo automáticamente — subir la imagen y el post a
+LinkedIn, y responder a quien comente, siguen siendo 100% de Jorge.
 
 ## 0. Contexto del negocio
 
@@ -58,9 +58,9 @@ adaptado):
   del recurso descargable).
 - Cierre: reitera la pregunta e invita explícitamente a responder en
   comentarios.
-- Sigue llevando recurso descargable del día (sección 4) y documento de
-  ideas para la imagen (sección 3) con normalidad — el ángulo "pregunta
-  abierta" no exime de ninguna de las entregas obligatorias de la sección 5.
+- Sigue llevando imagen del día (sección 3) y recurso descargable (sección
+  4) con normalidad — el ángulo "pregunta abierta" no exime de ninguna de
+  las entregas obligatorias de la sección 5.
 
 ## 1bis. No repetir tema — registro obligatorio en `TEMAS_TRATADOS.md`
 
@@ -90,11 +90,11 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
 0. **Titular de apertura** (obligatorio): la primera línea del post — sola,
    en su propio párrafo, antes del hook — es un titular corto y contundente.
    Es el mismo titular que le des al recurso descargable del día (mismo
-   título, ver sección 4) y el mismo que sugieras como elemento central en el
-   documento de ideas para la imagen (sección 3) — texto, recurso e imagen
-   deben "decir lo mismo" a primer golpe de vista. Normalmente en mayúsculas
-   y cerrado en punto, como frase autoconclusiva — p.ej. "FICHA DE PRODUCTO:
-   GOOGLE YA NO TE VE."
+   título, ver sección 4) y el mismo que uses como `title_lines` en la
+   imagen del post (sección 3) — texto, recurso e imagen deben "decir lo
+   mismo" a primer golpe de vista. Normalmente en mayúsculas y cerrado en
+   punto, como frase autoconclusiva — p.ej. "FICHA DE PRODUCTO: GOOGLE YA NO
+   TE VE."
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
@@ -112,9 +112,9 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
    `Comenta "<PALABRA>" y te escribo por privado con el enlace.` — nunca
    pongas el enlace directamente en el post ni prometas que "te lo dejo en
    comentarios" (eso era el método antiguo); el envío es manual, por Jorge,
-   vía DM. La palabra clave debe coincidir con la que sugieras en el
-   documento de ideas para la imagen (sección 3), para que quien vea la
-   imagen sepa exactamente qué comentar.
+   vía DM. La palabra clave debe coincidir con la que uses en `cta_line` de
+   la imagen del post (sección 3), para que quien vea la imagen sepa
+   exactamente qué comentar.
 
 Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras — si no
 hay un dato real verificable, no se afirma un resultado concreto.
@@ -123,56 +123,105 @@ hay un dato real verificable, no se afirma un resultado concreto.
 6-7 puntos, pero compacto — si un párrafo puede decir lo mismo en menos
 frases, recorta antes de añadir matices extra.
 
-## 3. Documento de ideas para la imagen (Jorge la diseña, la rutina ya no genera nada)
+## 3. Imagen del post (imagen única, formato vigente desde el 28/08/2026)
 
-**Cambio vigente desde el 28/08/2026**: hasta el 27/08/2026 esta rutina
-generaba ella misma la imagen del post (primero un "stat hero" de imagen
-única, después un carrusel-documento de varias slides estilo Twinkle
-Chatterjee/ThriveCraft SEO). Jorge ha hecho su propio diseño y quiere
-encargarse él mismo de maquetar la imagen — así que **la rutina ya no
-genera ningún PNG ni PDF de carrusel**. En su lugar, entrega un documento de
-texto corto con ideas de qué incorporar, para que Jorge lo use como brief al
-diseñar.
+Jorge diseñó él mismo este formato a mano (League Spartan, fondo crema,
+logos reales de marca) y pidió replicarlo tal cual como generador oficial —
+sustituye tanto al carrusel-documento negro con resaltados naranja
+(23-27/08/2026) como al "stat hero" de imagen única anterior a eso. Formato
+**cuadrado (1080x1080, 1:1)**, pensado para ser minimalista y muy legible a
+tamaño de miniatura en el feed — poco texto, elementos grandes.
 
 Los scripts antiguos (`scripts/generate_carousel_post.py`,
-`scripts/generate_post_image.py` y el borrador
-`scripts/generate_single_post_image_DRAFT.py`) se quedan en el repo tal cual,
-sin usarse en el flujo diario — solo por si Jorge pide explícitamente
-recuperar la generación automática de imagen en el futuro. No los toques ni
-los borres salvo que te lo pida.
+`scripts/generate_post_image.py`) se quedan en el repo sin usarse, solo por
+si Jorge pide explícitamente volver a alguno de esos formatos. No los
+toques ni los borres salvo que te lo pida.
 
-### Qué generar: `brief-imagen.md`
+### 3.1 El motor es fijo, el contenido se edita cada día
 
-Un archivo Markdown corto (nunca un PNG, nunca un PDF) dentro de la carpeta
-del día, con esta estructura fija:
+Usar `scripts/generate_single_post_image.py`. Igual que con
+`scripts/generate_lead_magnet_pdf.py`: el archivo tiene un **motor de
+render fijo** (todo lo que hay antes de `CONTENIDO DE HOY` — no tocar
+salvo instrucción expresa de Jorge) y un diccionario **`CONFIG`** al final
+que **sí se edita cada día**. Edita `CONFIG`, ejecuta el script, mueve el
+resultado a `content/<carpeta-del-día>/`, y revierte el archivo con
+`git checkout -- scripts/generate_single_post_image.py` antes de terminar.
 
-```markdown
-# Brief de imagen — <fecha> (<ángulo del día>)
-
-**Titular / título del recurso:** <mismo titular que el punto 0 de la
-sección 2 y que la portada del recurso de la sección 4>
-
-**Palabra clave del CTA:** "<PALABRA>" (debe coincidir con el CTA del post,
-sección 2 punto 6)
-
-**Qué mostrar:**
-- <elemento visual 1 — p.ej. "el fragmento real de robots.txt bloqueando
-  GPTBot, en formato código">
-- <elemento visual 2 — p.ej. "logos reales de las 4 herramientas
-  mencionadas: Search Console, Screaming Frog, WordPress, Yoast">
-- <elemento visual 3, si aplica>
-
-**Tono/nota adicional:** <cualquier matiz relevante — p.ej. "es el ángulo
-roast, mantén el tono ligeramente irónico del post">
+```
+python3 scripts/generate_single_post_image.py content/<carpeta-del-día>/imagen-post.png
 ```
 
-3-5 bullets en "Qué mostrar" es suficiente — el objetivo es dar ideas
-concretas y accionables (qué elementos, qué dato, qué herramienta
-mencionar), no maquetar el diseño ni describir colores/tipografías (eso ya
-lo tiene resuelto Jorge en su propia plantilla). Si el tema del día tiene un
-elemento visual obvio (un fragmento de código, un logo de herramienta real,
-una captura que Jorge podría aportar), dilo explícitamente — es la parte más
-útil del brief.
+Si el script falla con un `AssertionError`, el mensaje indica exactamente
+el problema (una línea de título demasiado ancha, o los logos invadiendo la
+banda inferior) — corrige el `CONFIG` (acorta el texto, sube `band_top`,
+usa menos logos), nunca aflojes el límite en el motor de render.
+
+### 3.2 Paleta y tipografía (fijo)
+
+| Elemento | Valor |
+|---|---|
+| Fondo | `#FFFCF4` (crema) |
+| Titular / resaltado del CTA | `#FF914D` (naranja) |
+| Banda inferior (CTA) | `#282828` (casi negro) |
+| Texto principal (titular, firma, logos con texto propio) | `#111111` (negro) |
+| Subtexto de la banda inferior | `#A8A8A2` (gris claro sobre negro) |
+
+Fuente: **League Spartan** (Google Fonts, licencia OFL), en
+`assets/fonts/LeagueSpartan-Bold.ttf` y `LeagueSpartan-ExtraBold.ttf` —
+ExtraBold para el titular y el CTA, Bold para la firma. Igual que el resto
+de fuentes del proyecto, no soporta emoji — la carita `=)` de texto plano en
+`cta_sub` es la forma correcta de dar un toque cercano sin usar un emoji de
+verdad.
+
+### 3.3 Estructura fija (todas las imágenes llevan estos 4 bloques)
+
+1. **Titular** (`title_lines`, exactamente 2 líneas): el mismo texto que el
+   punto 0 del post (sección 2) y que la portada del recurso (sección 4).
+   Grande, naranja, centrado.
+2. **Firma**: foto circular de Jorge con anillo naranja + "by Jorge
+   Segovia" en negro. Fija, no cambia día a día.
+3. **Cuadrícula de logos reales** (`tools`, 1 a 4 imágenes): los logos
+   reales de las herramientas/marcas protagonistas del tema del día —
+   **nunca reconstruidos a mano si el archivo real ya existe en el repo**.
+   Dos carpetas de logos ya disponibles:
+   - `assets/branding/ai-logos/` → `claude.png`, `chatgpt.png`,
+     `google-ai.png`, `perplexity.png` (para temas de IA/búsqueda generativa)
+   - `assets/branding/tool-logos/` → `google-search-console.png`,
+     `screamingfrog.png`, `wordpress.png`, `yoast-seo.png` (para temas de
+     SEO técnico/herramientas)
+
+   **Si el tema del día necesita un logo que no está en ninguna carpeta**:
+   pídeselo a Jorge (que lo suba al repo, mismo método que ya usa para
+   pasar capturas — subir el archivo a una carpeta de `assets/` en GitHub)
+   antes de generar la imagen. Como último recurso, si de verdad hace falta
+   generar la imagen ese mismo día sin poder esperar, se puede reconstruir
+   una aproximación sencilla a mano (formas básicas, nunca un intento de
+   calcar un logotipo con texto/tipografía de marca) — pero avísalo
+   explícitamente en la entrega, no lo des por hecho como si fuera el logo
+   real.
+4. **Banda CTA**: barra negra inferior con `Comenta "<PALABRA>" y te
+   escribo` (la palabra clave en naranja) + `cta_sub` en gris claro, más
+   grande, debajo. El texto de `cta_sub` por defecto es
+   `"debemos estar conectados =)"` — puedes mantenerlo fijo cada día o
+   adaptarlo si Jorge pide otra cosa, pero nunca un emoji real.
+
+### 3.4 Estructura recomendada por día
+
+No hay slides por ángulo como en el antiguo carrusel — cada día es UNA sola
+imagen con los mismos 4 bloques de la sección 3.3. Lo único que cambia es
+`title_lines` (el titular del día) y `tools` (los logos relevantes al tema):
+
+- **Lunes (roast) / Martes (mito)**: logos de las herramientas con las que
+  se detecta el error (Search Console, Screaming Frog...).
+- **Miércoles (auditoría exprés)**: si la marca auditada tiene un logo
+  fácil de conseguir y viene a cuento, puede sustituir a uno de los 4 —
+  pero prioriza siempre herramientas reales de diagnóstico antes que el
+  logo de la marca auditada (el protagonista es el hallazgo, no la marca).
+- **Jueves (tendencia)**: normalmente los logos de `ai-logos/` (Claude,
+  ChatGPT, Perplexity, Google AI) si el tema es sobre IA/búsqueda
+  generativa, o los de `tool-logos/` si es sobre SEO técnico clásico.
+- **Viernes (pregunta abierta)**: logos relacionados con el tema real de
+  fondo de la respuesta de Jorge (sección 1, nota de viernes).
 
 ## 4. Recurso del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
 
@@ -305,10 +354,9 @@ en la entrega del día para que la URL esté viva quien la necesite.
 
 Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `post-linkedin.txt`
+- `imagen-post.png` (la imagen del día, 1080x1080 — ver sección 3)
 - `<slug-del-recurso>.<ext>` (el recurso del día, nuevo cada día, nombre
   descriptivo — ver sección 4)
-- `brief-imagen.md` (documento de ideas para que Jorge diseñe la imagen —
-  ver sección 3)
 - Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — ver sección 1bis)
 
 Haz commit y push de toda la carpeta (mismo remoto del que se clonó) tan
@@ -316,11 +364,10 @@ pronto como esté lista, como red de seguridad además de la entrega directa.
 Usa un mensaje de commit tipo `Contenido diario: <fecha> (<ángulo del día>)`.
 
 Al terminar, enviar los archivos a Jorge (vía `SendUserFile`) con una nota
-breve indicando qué toca hacer: 1) diseñar la imagen con su propia
-herramienta usando `brief-imagen.md` como guía, 2) copiar el post y subir
-la imagen a LinkedIn, 3) cuando alguien comente la palabra clave del CTA,
-escribirle por privado con el enlace a su formulario de captura (el recurso
-ya está alojado y listo, con URL pública verificada). Recordar que la
+breve indicando qué toca hacer: 1) copiar el post y subir `imagen-post.png`
+a LinkedIn, 2) cuando alguien comente la palabra clave del CTA, escribirle
+por privado con el enlace a su formulario de captura (el recurso ya está
+alojado y listo, con URL pública verificada). Recordar que la
 sincronización de segmentos de Klaviyo (sección 7, si sigue aplicando a su
 formulario actual) sigue siendo un paso aparte en sesión local.
 
@@ -397,3 +444,26 @@ Chatterjee/ThriveCraft SEO), por si hace falta recuperar contexto:
   catálogo de tipos de recurso en la sección 4. De momento solo hay
   generador construido para el formato guía/checklist; los demás se
   construirán bajo demanda.
+
+## Nota de migración 2 (28/08/2026, mismo día)
+
+Unas horas después de la nota anterior, Jorge cambió de opinión sobre la
+imagen: diseñó él mismo a mano un nuevo formato de imagen única (fondo
+crema `#FFFCF4`, League Spartan, foto+firma, cuadrícula de logos reales de
+marca, banda CTA negra) y pidió que la rutina volviera a generarla
+automáticamente, replicando ese diseño tal cual. Por tanto, respecto a la
+nota de migración 1:
+
+- **Se revierte** "la rutina ya no genera ninguna imagen" — sí la genera,
+  con el nuevo formato de la sección 3 (`scripts/generate_single_post_image.py`).
+- **Se retira** el documento `brief-imagen.md` — ya no hace falta, porque
+  la rutina vuelve a generar la imagen final directamente.
+- **Se mantiene sin cambios** todo lo demás de la nota 1: sigue sin
+  generarse el artículo HTML, sigue sin subirse nada a WordPress, y el
+  mecanismo de entrega del lead (comentar la palabra clave → DM manual de
+  Jorge → formulario propio) sigue siendo el vigente.
+- Los 4 logos de IA (Claude, ChatGPT, Perplexity, Google AI) que subió
+  Jorge para validar este formato viven en `assets/branding/ai-logos/`;
+  cuando haga falta un logo nuevo que no esté ni ahí ni en
+  `assets/branding/tool-logos/`, pídeselo a Jorge por el mismo método
+  (subirlo al repo) antes de asumir que hay que reconstruirlo a mano.
