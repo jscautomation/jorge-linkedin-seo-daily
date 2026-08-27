@@ -1,0 +1,13 @@
+HAY COMPRADORES QUE YA NO PASAN POR GOOGLE. Y TU ROBOTS.TXT LOS ESTÁ ECHANDO.
+
+Cada vez más gente le pregunta directamente a ChatGPT o a Perplexity "cuál es la mejor [producto]" y compra sobre la recomendación, sin pisar una SERP. Es un canal de venta nuevo. Y muchos ecommerce lo están bloqueando sin saberlo.
+
+En bastantes robots.txt de WordPress y Shopify que reviso, alguien bloqueó "los bots de IA" en bloque, casi siempre por un plugin de seguridad genérico o por miedo a que "les copien" el contenido.
+
+El problema es que no todos los bots hacen lo mismo. Unos entrenan modelos (GPTBot, ClaudeBot, Google-Extended) y bloquearlos no te cuesta una venta. Otros consultan en tiempo real cuando alguien pregunta (OAI-SearchBot, ChatGPT-User, PerplexityBot) — bloquear estos es desaparecer de esa respuesta. Y aunque los dejes pasar, si tu precio y tu stock solo se pintan con JavaScript, muchos ni los ven.
+
+Nada de esto sale en Search Console. Simplemente, un día dejas de estar en la conversación.
+
+Te dejo cómo distinguir un bot de otro y revisar el tuyo en la guía gratis, enlace en el comentario fijado.
+
+#SEO #Ecommerce #WordPress #Shopify
