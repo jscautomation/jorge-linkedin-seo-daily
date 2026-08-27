@@ -34,6 +34,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 | Fecha | Tendencia | Ángulo para ecommerce |
 |---|---|---|
 | 2026-08-20 | AI Overviews devorando el tráfico informacional (43% de búsquedas, ~83% zero-click), y por qué la ficha de producto es la excepción | La ficha de producto sigue necesitando tráfico real y Google la usa para Shopping/carrito universal/citas en AI Overviews. Solución: checklist de 5 puntos de Product schema (precio sincronizado, availability en tiempo real, aggregateRating real, un único generador de JSON-LD, gtin/mpn/brand completos) |
+| 2026-08-27 | Robots.txt bloqueando por error a los bots de IA que sí importan (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) al confundirlos con los de solo entrenamiento (GPTBot, ClaudeBot), y precio/stock que solo se pintan con JavaScript | Nuevo canal de compra vía IA generativa (ChatGPT, Perplexity) distinto de las AI Overviews de Google. Solución: 5 puntos (distinguir bot de entrenamiento vs. de consulta en tiempo real, revisar robots.txt/WAF línea a línea, comprobar el HTML crudo de la ficha sin JS) |
 
 ## Viernes — Pregunta abierta a la comunidad SEO
 

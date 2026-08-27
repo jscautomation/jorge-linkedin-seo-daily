@@ -1,0 +1,173 @@
+<!-- ============================================================
+     Artículo de blog — WordPress
+     Copia todo este bloque en el editor de WordPress como HTML
+     (bloque "HTML personalizado" o vista de código). Al final
+     lleva insertado el formulario de captura ya parametrizado
+     con el PDF del día — no toques esa parte.
+     ============================================================ -->
+
+<h1>Hay compradores que ya no pasan por Google (y tu robots.txt puede estar bloqueándolos)</h1>
+
+<p>Cada vez más gente le pregunta directamente a ChatGPT o a Perplexity "cuál es la mejor [producto]" y compra sobre esa recomendación, sin pisar una búsqueda tradicional en Google. Es un canal de venta nuevo — y en bastantes auditorías últimamente me encuentro con ecommerce que lo están bloqueando sin ni siquiera saberlo.</p>
+
+<p>El motivo, casi siempre, es el mismo: alguien activó "bloquear bots de IA" en un plugin de seguridad o en la configuración del CDN, pensando que así protegía el contenido de la tienda. El problema es que "bots de IA" no es una sola cosa.</p>
+
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Descargar la guía gratis de bots de IA
+  </a>
+</div>
+
+<h2>Dos tipos de bots que se están confundiendo</h2>
+
+<p>En el ecosistema de IA generativa conviven, a grandes rasgos, dos familias de crawlers muy distintas:</p>
+
+<p>Los <strong>bots de entrenamiento</strong> (GPTBot de OpenAI, ClaudeBot de Anthropic, Google-Extended) rastrean tu web para alimentar el entrenamiento de los modelos. No responden preguntas en directo — su trabajo termina mucho antes de que un usuario abra un chat. Bloquearlos no te cuesta ni una venta.</p>
+
+<p>Los <strong>bots de consulta en tiempo real</strong> (OAI-SearchBot y ChatGPT-User de OpenAI, PerplexityBot de Perplexity, Claude-SearchBot de Anthropic) son otra cosa por completo: son los que la IA lanza en el momento exacto en que alguien le pregunta algo y necesita citar una fuente o recomendar un producto. Bloquear estos es, directamente, desaparecer de esa respuesta.</p>
+
+<p>El problema es que muchas reglas genéricas — un plugin de seguridad, una regla de WAF marcada por defecto — bloquean "todo lo que suene a bot de IA" sin distinguir entre unos y otros.</p>
+
+<h2>El segundo obstáculo: el JavaScript</h2>
+
+<p>Aunque tengas permitidos los bots correctos, hay un segundo filtro que pasa desapercibido: muchas plantillas de Shopify y WooCommerce pintan el precio final, el stock o las variantes de producto con JavaScript, después de que la página cargue. La mayoría de estos bots no ejecutan JavaScript — solo leen el HTML que reciben en la primera respuesta del servidor. Si el precio no está en ese HTML, para el bot, la ficha no tiene precio.</p>
+
+<h2>Cómo lo detectas tú mismo</h2>
+
+<p>Dos comprobaciones rápidas, sin herramientas de pago:</p>
+
+<p><strong>Robots.txt:</strong> entra en <code>tudominio.com/robots.txt</code> y busca líneas con "User-agent: GPTBot", "User-agent: OAI-SearchBot", "User-agent: PerplexityBot", etc. Si ves un bloque genérico tipo <code>User-agent: *</code> con <code>Disallow: /</code> y nada más específico debajo, es muy probable que estés bloqueando también a los que sí importan.</p>
+
+<p><strong>JavaScript:</strong> abre una ficha de producto, haz clic derecho y elige "Ver código fuente de la página" (no "Inspeccionar", eso sí ejecuta JavaScript). Busca el precio en ese HTML crudo. Si no aparece, un bot sin renderizado tampoco lo ve.</p>
+
+<div style="text-align:left;margin:36px 0;">
+  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
+    📥 Quiero el checklist bot a bot
+  </a>
+</div>
+
+<h2>Por qué esto importa más de lo que parece</h2>
+
+<p>Nada de esto se ve en Search Console. No hay una caída de tráfico que salte como alarma, ni un error 404 que te avise. Simplemente, un día dejas de estar en la conversación cuando alguien le pregunta a una IA qué comprar — y esa venta se va a un competidor que sí tiene su robots.txt bien configurado.</p>
+
+<p>La solución tiene 5 puntos muy concretos (qué línea exacta añadir en el robots.txt para cada grupo de bots, cómo revisar tu WAF o CDN, y cómo comprobar el renderizado de tu ficha de producto paso a paso). Los explico con detalle en la guía gratuita — te la dejo aquí abajo, tarda 30 segundos en llegarte por email.</p>
+
+<!-- ============================================================
+     FORMULARIO DE CAPTURA — bloque fijo, parametrizado para hoy.
+     ============================================================ -->
+<div id="jsc-lead-form" style="max-width:480px;margin:32px auto;padding:28px 24px;background:linear-gradient(135deg,#FFA135,#FF5A1F);border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Foto-en-primera-persona-1024x1024.jpg" alt="Jorge Segovia" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ffffff;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:8px 14px;">
+      <img src="https://jorgesegoviaciscar.com/wp-content/uploads/2026/04/Logotipo-Jorge-Segovia.webp" alt="Jorge Segovia" style="height:28px;display:block;">
+    </div>
+  </div>
+
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.5;color:#ffffff;">
+    👉 Descarga gratis: <strong id="jsc-pdf-titulo" style="color:#ffffff;">Cargando…</strong>
+  </p>
+
+  <form id="jsc-lead-form-el">
+    <input
+      type="email"
+      id="jsc-lead-email"
+      required
+      placeholder="tu@email.com"
+      style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.92);color:#1a1a1a;font-size:15px;margin-bottom:10px;"
+    >
+
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#ffffff;line-height:1.4;margin-bottom:14px;cursor:pointer;">
+      <input type="checkbox" id="jsc-lead-consent" required style="margin-top:2px;">
+      <span>Acepto recibir el PDF y comunicaciones sobre SEO para ecommerce por email. Puedo darme de baja cuando quiera.</span>
+    </label>
+
+    <button
+      type="submit"
+      style="width:100%;padding:13px;border:none;border-radius:8px;background:#1a1a1a;color:#fff;font-weight:600;font-size:15px;cursor:pointer;"
+    >
+      📥 Descargar PDF
+    </button>
+
+    <p id="jsc-lead-msg" style="margin:12px 0 0;font-size:13px;line-height:1.4;color:#ffffff;"></p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    companyId: "Wzeavn",
+    listId: "Y8MmeF",
+    pdfTitulo: "El canal de venta que bloquea tu robots.txt",
+    pdfUrl: "https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/2026-08-27-jueves-tendencia/el-canal-de-venta-que-bloquea-tu-robots-txt.pdf"
+  };
+
+  document.getElementById("jsc-pdf-titulo").textContent = CONFIG.pdfTitulo;
+
+  var form = document.getElementById("jsc-lead-form-el");
+  var msg = document.getElementById("jsc-lead-msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("jsc-lead-email").value.trim();
+    var btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    msg.textContent = "";
+
+    // 1) Lo añadimos a la lista general (útil para futuras campañas/newsletter).
+    var subscribePromise = fetch("https://a.klaviyo.com/client/subscriptions/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl }
+                }
+              }
+            }
+          },
+          relationships: { list: { data: { type: "list", id: CONFIG.listId } } }
+        }
+      })
+    });
+
+    // 2) Registramos un EVENTO (no un estado de lista) para que el flow
+    //    de entrega se dispare siempre, incluso si el email ya estaba
+    //    en la lista de una publicación anterior.
+    var eventPromise = fetch("https://a.klaviyo.com/client/events/?company_id=" + CONFIG.companyId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "revision": "2024-10-15" },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { pdf_titulo: CONFIG.pdfTitulo, pdf_url: CONFIG.pdfUrl },
+            metric: { data: { type: "metric", attributes: { name: "Solicitó Lead Magnet" } } },
+            profile: { data: { type: "profile", attributes: { email: email } } }
+          }
+        }
+      })
+    });
+
+    Promise.all([subscribePromise, eventPromise])
+      .then(function (results) {
+        var ok = results.every(function (res) { return res.ok || res.status === 202; });
+        if (ok) {
+          msg.textContent = "✅ ¡Revisa tu email, tu PDF está en camino!";
+          form.reset();
+        } else {
+          msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo.";
+        }
+      })
+      .catch(function () { msg.textContent = "⚠️ Algo ha fallado, inténtalo de nuevo."; })
+      .finally(function () { btn.disabled = false; btn.textContent = "📥 Descargar PDF"; });
+  });
+})();
+</script>
