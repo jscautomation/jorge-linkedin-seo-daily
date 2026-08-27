@@ -2,10 +2,18 @@
 
 Este documento es la única fuente de verdad que necesita la ejecución programada
 de cada mañana (L-V, 8:00 Europe/Madrid). Contiene todo lo acordado con Jorge:
-marca, formato, estructura y qué entregar. Nada se deja publicado en vivo de
-forma automática — el borrador de WordPress sí se crea solo (ver sección 9),
-pero el post de LinkedIn y el clic final de "Publicar" en WordPress siempre
-son de Jorge.
+marca, formato, estructura y qué entregar.
+
+**Cambio de método vigente desde el 28/08/2026** (ver nota de migración al
+final del documento): la rutina en la nube **ya no genera ninguna imagen**
+(ni carrusel ni imagen única) **ni el artículo de blog en HTML**, y **ya no
+sube ningún borrador a WordPress**. Jorge diseña la imagen él mismo con su
+propia herramienta de diseño, a partir de un breve documento de ideas que sí
+genera la rutina. La entrega diaria de esta rutina se reduce a: el recurso
+descargable del día (normalmente un PDF, ver sección 4) + el texto del post
+de LinkedIn + el documento de ideas para la imagen. Nada se deja publicado en
+vivo automáticamente — subir la imagen y el post a LinkedIn, y responder a
+quien comente, siguen siendo 100% de Jorge.
 
 ## 0. Contexto del negocio
 
@@ -13,6 +21,14 @@ Jorge Segovia, consultor SEO especializado en ecommerce (WordPress y Shopify),
 foco actual en moda pero abierto a cualquier sector ecommerce. Servicio en 2 fases:
 Fase 1 (auditoría SEO de +100 páginas: keyword research, arquitectura SEO
 transaccional, ranking actual, anexos) y Fase 2 (implementación).
+
+**ICP (perfil de cliente ideal) de los leads que capta este contenido**:
+propietarios de ecommerce y responsables de marketing de tiendas online o
+páginas web — perfiles ocupados, no necesariamente técnicos, que valoran algo
+accionable y rápido de aplicar por encima de la teoría. Ten esto en mente al
+elegir qué tipo de recurso encaja mejor con el tema del día (sección 4): un
+propietario de ecommerce agradece más una plantilla o checklist que puede
+usar él mismo en 10 minutos que un informe largo de lectura.
 
 Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 
@@ -39,12 +55,12 @@ adaptado):
   igual que cualquier otro día — con su propio tema real de fondo (no
   inventado), sujeto a las mismas reglas de la sección 1bis (no repetir) y
   la regla crítica de la sección 4 (nunca dar la solución completa fuera
-  del PDF).
+  del recurso descargable).
 - Cierre: reitera la pregunta e invita explícitamente a responder en
   comentarios.
-- Sigue llevando PDF del día (sección 3bis) y artículo (sección 4) con
-  normalidad — el ángulo "pregunta abierta" no exime de ninguna de las
-  entregas obligatorias de la sección 6.
+- Sigue llevando recurso descargable del día (sección 4) y documento de
+  ideas para la imagen (sección 3) con normalidad — el ángulo "pregunta
+  abierta" no exime de ninguna de las entregas obligatorias de la sección 5.
 
 ## 1bis. No repetir tema — registro obligatorio en `TEMAS_TRATADOS.md`
 
@@ -71,223 +87,139 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
 
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
-0. **Titular de apertura** (desde el 20/08/2026, obligatorio): la primera línea
-   del post — sola, en su propio párrafo, antes del hook — es un titular corto
-   y contundente que refleje el mismo golpe de efecto que el título de la
-   portada del carrusel (slide `type: "cover"`, ver sección 3). Normalmente en
-   mayúsculas y cerrado en punto, como frase autoconclusiva — p.ej. "FICHA DE
-   PRODUCTO: GOOGLE YA NO TE VE." El texto y la portada del carrusel deben
-   "decir lo mismo" a primer golpe de vista.
+0. **Titular de apertura** (obligatorio): la primera línea del post — sola,
+   en su propio párrafo, antes del hook — es un titular corto y contundente.
+   Es el mismo titular que le des al recurso descargable del día (mismo
+   título, ver sección 4) y el mismo que sugieras como elemento central en el
+   documento de ideas para la imagen (sección 3) — texto, recurso e imagen
+   deben "decir lo mismo" a primer golpe de vista. Normalmente en mayúsculas
+   y cerrado en punto, como frase autoconclusiva — p.ej. "FICHA DE PRODUCTO:
+   GOOGLE YA NO TE VE."
 1. **Hook** (1-2 líneas, dato/situación sorprendente)
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
 4. **Por qué importa / qué está en juego** — deja claro el coste de no arreglarlo,
-   pero SIN dar los pasos de la solución (ver regla de la sección 4 — aplica
-   igual aquí: la solución completa vive solo en el PDF, ni el post ni el
-   artículo deben regalarla)
-5. **Prueba** (cifra de mejora, cuando aplique)
-6. **CTA** al PDF: enlace al artículo del blog (el enlace real lo añade Jorge al publicar)
+   pero SIN dar los pasos de la solución (ver regla de la sección 4 —
+   la solución completa vive solo en el recurso descargable, el post nunca
+   debe regalarla)
+5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada, ver regla
+   de tono más abajo)
+6. **CTA de comentario** (método vigente desde el 28/08/2026 — sustituye al
+   antiguo "enlace en comentario fijado"): invita a comentar una palabra
+   clave concreta relacionada con el tema del día, dejando claro que Jorge
+   responde por privado con el enlace. Patrón de texto a usar (adapta la
+   palabra entre comillas al tema de cada día, mantenla en mayúsculas):
+   `Comenta "<PALABRA>" y te escribo por privado con el enlace.` — nunca
+   pongas el enlace directamente en el post ni prometas que "te lo dejo en
+   comentarios" (eso era el método antiguo); el envío es manual, por Jorge,
+   vía DM. La palabra clave debe coincidir con la que sugieras en el
+   documento de ideas para la imagen (sección 3), para que quien vea la
+   imagen sepa exactamente qué comentar.
 
 Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras — si no
 hay un dato real verificable, no se afirma un resultado concreto.
 
-**Longitud** (desde el 20/08/2026): apunta a 150-200 palabras en total, no a
-230+. Mismo esqueleto de 6-7 puntos, pero compacto — si un párrafo puede decir
-lo mismo en menos frases, recorta antes de añadir matices extra.
+**Longitud**: apunta a 150-200 palabras en total, no a 230+. Mismo esqueleto de
+6-7 puntos, pero compacto — si un párrafo puede decir lo mismo en menos
+frases, recorta antes de añadir matices extra.
 
-## 3. Carrusel/documento del post
+## 3. Documento de ideas para la imagen (Jorge la diseña, la rutina ya no genera nada)
 
-Todas las rutas del proyecto son **relativas al repo** (funciona igual en local
-que en el sandbox Linux de la ejecución en la nube). Nunca uses rutas
-absolutas tipo `C:\...`.
+**Cambio vigente desde el 28/08/2026**: hasta el 27/08/2026 esta rutina
+generaba ella misma la imagen del post (primero un "stat hero" de imagen
+única, después un carrusel-documento de varias slides estilo Twinkle
+Chatterjee/ThriveCraft SEO). Jorge ha hecho su propio diseño y quiere
+encargarse él mismo de maquetar la imagen — así que **la rutina ya no
+genera ningún PNG ni PDF de carrusel**. En su lugar, entrega un documento de
+texto corto con ideas de qué incorporar, para que Jorge lo use como brief al
+diseñar.
 
-**Formato vigente desde el 24/08/2026 — "documento negro con resaltados
-naranja".** Sustituye tanto al antiguo "stat hero" de imagen única
-(`generate_post_image.py`, ya no se usa salvo que Jorge pida explícitamente
-volver a él) como al primer intento de carrusel "captura anotada a mano" con
-garabatos. Jorge pidió copiar el lenguaje visual concreto del perfil de
-referencia **Twinkle Chatterjee / ThriveCraft SEO** (detectado como uno de
-los perfiles SEO de mejor rendimiento en LinkedIn tras un análisis de datos
-de Apify) adaptado a la marca de Jorge: fondo negro con rejilla sutil, texto
-crema, frases clave resaltadas con una caja naranja detrás (efecto
-"subrayador"), foto+logo arriba en el mismo sitio siempre, indicador de
-"desliza" abajo a la derecha, y mucha más densidad de texto por slide que el
-formato anterior — es justo lo que más engagement genera en el dataset
-analizado.
+Los scripts antiguos (`scripts/generate_carousel_post.py`,
+`scripts/generate_post_image.py` y el borrador
+`scripts/generate_single_post_image_DRAFT.py`) se quedan en el repo tal cual,
+sin usarse en el flujo diario — solo por si Jorge pide explícitamente
+recuperar la generación automática de imagen en el futuro. No los toques ni
+los borres salvo que te lo pida.
 
-Genera 8-11 slides cuadradas (1080x1080) + un PDF sin pérdida que las
-empaqueta todas. **El PDF (`carrusel-post.pdf`) es el artefacto principal:
-se sube a LinkedIn como publicación de tipo "Documento" (LinkedIn lo
-renderiza como un visor deslizable página a página)** — así es como funciona
-el formato de referencia. Los PNG sueltos (`carrusel-1.png`...) existen para
-poder revisar/editar cada slide a mano, no para subirlos como carrusel de
-imágenes.
+### Qué generar: `brief-imagen.md`
 
-### 3.1 El motor es fijo, el contenido se edita cada día
+Un archivo Markdown corto (nunca un PNG, nunca un PDF) dentro de la carpeta
+del día, con esta estructura fija:
 
-Usar `scripts/generate_carousel_post.py`. El archivo tiene dos partes muy
-diferenciadas:
+```markdown
+# Brief de imagen — <fecha> (<ángulo del día>)
 
-- **Motor de render** (todo lo que hay antes de la sección `CONTENIDO DE HOY`
-  del archivo): colores, fuentes, posiciones, tamaños y límites de texto. Es
-  **fijo** — no tocar ningún número ni función salvo que Jorge pida
-  explícitamente un cambio de estilo. Es lo que garantiza que el carrusel de
-  hoy se vea exactamente igual que el de ayer y el de mañana.
-- **`CONFIG`** (al final del archivo): un diccionario con la lista de slides
-  de hoy. **Esto sí se edita cada día**, igual que con
-  `generate_lead_magnet_pdf.py` — edita `CONFIG`, ejecuta el script, mueve el
-  resultado a `content/<carpeta-del-día>/`, y revierte el archivo con
-  `git checkout -- scripts/generate_carousel_post.py` antes de terminar (para
-  que el próximo día vuelva a partir de la plantilla de referencia, no del
-  contenido de hoy).
+**Titular / título del recurso:** <mismo titular que el punto 0 de la
+sección 2 y que la portada del recurso de la sección 4>
 
-```
-python3 scripts/generate_carousel_post.py content/<carpeta-del-día>
+**Palabra clave del CTA:** "<PALABRA>" (debe coincidir con el CTA del post,
+sección 2 punto 6)
+
+**Qué mostrar:**
+- <elemento visual 1 — p.ej. "el fragmento real de robots.txt bloqueando
+  GPTBot, en formato código">
+- <elemento visual 2 — p.ej. "logos reales de las 4 herramientas
+  mencionadas: Search Console, Screaming Frog, WordPress, Yoast">
+- <elemento visual 3, si aplica>
+
+**Tono/nota adicional:** <cualquier matiz relevante — p.ej. "es el ángulo
+roast, mantén el tono ligeramente irónico del post">
 ```
 
-(el argumento es la carpeta de salida; genera `carrusel-1.png`...
-`carrusel-N.png` + `carrusel-post.pdf` dentro).
+3-5 bullets en "Qué mostrar" es suficiente — el objetivo es dar ideas
+concretas y accionables (qué elementos, qué dato, qué herramienta
+mencionar), no maquetar el diseño ni describir colores/tipografías (eso ya
+lo tiene resuelto Jorge en su propia plantilla). Si el tema del día tiene un
+elemento visual obvio (un fragmento de código, un logo de herramienta real,
+una captura que Jorge podría aportar), dilo explícitamente — es la parte más
+útil del brief.
 
-**Si el script falla con un `AssertionError`**, el mensaje te dice
-exactamente qué límite de la sección 3.4 se ha superado y con qué texto —
-significa que el contenido de hoy no cabe de forma segura con ese rol de
-fuente. Corrige el texto de `CONFIG` (acórtalo o repártelo en más líneas),
-nunca "arregles" el error aflojando el límite en el motor de render ni
-comentando el `assert`.
+## 4. Recurso del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
 
-### 3.2 Paleta y tipografía (fijo)
+**Importante**: Jorge no quiere que se repita el mismo recurso semana tras
+semana. Cada día se genera un recurso nuevo, centrado en el tema exacto del
+post de ese día.
 
-| Elemento | Valor |
-|---|---|
-| Fondo | `#0C0C0C` (negro casi puro) + rejilla sutil `#222222` |
-| Texto principal | `#F4EEE3` (crema) |
-| Resaltados / acentos / marca | `#FF5A1F` (mismo naranja corporativo de siempre) |
-| Texto sobre naranja o crema | `#111111` (negro) |
-| Texto secundario (kicker, pie, subtítulos de CTA) | `#969691` (gris) |
+**Novedad vigente desde el 28/08/2026 — variedad de formato**: antes el
+recurso era siempre un PDF tipo guía/checklist. Ahora el objetivo es variar
+el *tipo* de recurso según lo que mejor encaje con el tema del día y con el
+ICP (sección 0: propietarios y responsables de marketing de ecommerce, gente
+ocupada que valora algo accionable). Catálogo de tipos de recurso:
 
-Fuentes de siempre (`assets/fonts/`, licencia OFL, NO Arial/Windows):
-**ArchivoBlack** para todos los títulos/titulares/etiquetas grandes,
-**Barlow-Bold** para cuerpo de texto, bullets y letra pequeña. Igual que en
-el resto del proyecto, **estas fuentes no incluyen emoji** — nunca escribas
-💬🔖🔁 etc. dentro de `CONFIG`, sale como un cuadrado roto. Si hace falta un
-icono, se dibuja a mano con formas (ver `arrow_bullets()`, `ring_checks()`,
-los círculos numerados de `render_closing()` en el propio script como
-ejemplo) — nunca un carácter emoji ni un glifo Unicode raro.
+| Tipo | Cuándo encaja | Estado del generador |
+|---|---|---|
+| **Guía / checklist en PDF** | El tema tiene 1-varios puntos con diagnóstico + solución (roast, mito, tendencia) — es el formato por defecto | Listo: `scripts/generate_lead_magnet_pdf.py` |
+| **Plantilla de autoevaluación (worksheet) en PDF** | El lector puede aplicarlo él mismo sobre su propia tienda mientras lo lee (espacios/casillas para rellenar) | Pendiente de construir — usar la guía PDF como base mientras tanto |
+| **Banco de plantillas de texto (swipe file) en PDF** | El tema da pie a fragmentos listos para copiar (ej. reglas de robots.txt, plantillas de meta title, prompts de auditoría) | Pendiente de construir — usar la guía PDF como base mientras tanto |
+| **Hoja de cálculo descargable (.xlsx)** | El tema encaja mejor como tracker/calculadora (ej. impacto de URLs duplicadas, checklist con columnas de estado) | Pendiente de construir — usar la guía PDF como base mientras tanto |
+| **One-pager / cheat sheet en PDF** | Versión ultra condensada de una sola página, para temas que se resumen en pocos puntos | Pendiente de construir — usar la guía PDF como base mientras tanto |
 
-### 3.3 Elementos fijos en todas las slides
+Mientras los generadores nuevos no existan, **usa siempre
+`scripts/generate_lead_magnet_pdf.py`** (el único listo) — no fuerces un
+formato que no puedes generar todavía. Cuando Jorge pida construir alguno de
+los tipos pendientes, créalo como script nuevo en `scripts/` siguiendo el
+mismo patrón (CONFIG editable al principio, salida por CLI, revertir con
+`git checkout` al terminar) y actualiza esta tabla marcándolo como listo.
 
-- **Header**: logo (recoloreado a crema automáticamente por
-  `_recolored_logo()`) arriba a la izquierda + foto de Jorge en círculo
-  naranja arriba a la derecha. Mismo sitio en las N slides, incluida la de
-  cierre.
-- **Kicker**: etiqueta pequeña en gris debajo del logo — el tema/ángulo del
-  día en mayúsculas (p.ej. "ROAST SEO · ECOMMERCE", "MITO SEO ·
-  ECOMMERCE"). Una sola cadena en `CONFIG["kicker"]`, igual en todas las
-  slides.
-- **Nota de pie del PDF gated** (`footer_gate_note`): en TODAS las slides de
-  contenido (no en la portada ni en el cierre), en la esquina inferior
-  izquierda — el recordatorio de que la solución completa vive en el PDF
-  gated, nunca en el carrusel (regla no negociable, sección 3bis). Texto por
-  defecto ya integrado en el motor (`DESCARGA LA GUÍA PDF EN COMENTARIOS`).
-  **Versión "llamativa" vigente desde el 25/08/2026** (dos peticiones
-  expresas de Jorge seguidas, primero el texto y después que se viera más):
-  texto grande en crema (el mismo casi-blanco del cuerpo del carrusel, no
-  el gris discreto de antes) + una flecha naranja hacia abajo dibujada a
-  mano delante del texto, señalando que la guía está en la sección de
-  comentarios, debajo del carrusel. No hace falta tocarlo cada día salvo
-  que quieras un texto distinto vía `CONFIG["footer_note"]` (la flecha y el
-  tamaño se aplican igual sea cual sea el texto).
-- **Indicador de "desliza"** (`scroll_hint`): barra degradada + flecha
-  circular abajo a la derecha, en todas las slides excepto la de cierre; en
-  la última slide de contenido (justo antes del cierre) la flecha cambia a
-  un check. **Nunca coloques texto propio en la zona aproximada x>930,
-  y>680 de la mitad inferior de una slide** — es donde vive este elemento y
-  taparlo con texto es exactamente el bug que se corrigió al validar este
-  formato con Jorge.
+*(Fuentes consultadas sobre qué formatos de lead magnet funcionan mejor para
+este tipo de ICP en B2B/ecommerce en 2026: audits y checklists siguen entre
+los que más convierten por ser accionables y específicos; plantillas y
+swipe files funcionan bien porque ahorran tiempo directo; los formatos
+interactivos (calculadoras, quizzes) convierten aún mejor pero requieren una
+herramienta web que este repo no genera, así que no forman parte del
+catálogo por ahora — ver
+[Vida AI Agent OS](https://vida.io/blog/best-b2b-lead-magnets),
+[Luniq](https://www.luniq.io/en/hub/articles/best-b2b-lead-magnet-formats-for-2026),
+[ActiveCampaign](https://www.activecampaign.com/blog/lead-magnet-ideas-and-examples).)*
 
-### 3.4 Tipos de slide disponibles en `CONFIG["slides"]`
-
-Cada slide es un diccionario con un campo `"type"`. Los cinco tipos
-disponibles, con sus límites (impuestos por `assert` en el propio script —
-si los superas, el script para en seco con el motivo exacto):
-
-- **`cover`** (obligatorio, siempre la primera slide): `title_lines` (lista
-  de líneas; cada línea es una lista de `(texto, es_resaltado)` — así se
-  puede resaltar solo parte de una línea, como en el ejemplo de abajo) y
-  `subtitle` (1-2 frases). Máximo **5 líneas** de título.
-- **`statement`**: una "declaración" grande — `title_lines` (máximo **4
-  líneas**), y opcionalmente `body` (1 párrafo corto) y/o `closing` (una
-  única línea resaltada, tipo remate). Cubre tanto un gancho de una sola
-  frase como una slide de contexto/transición con cuerpo.
-- **`bullets`**: `title_lines` (máximo 3 líneas) + `intro` (opcional) +
-  `items` (lista de **2 a 4** frases cortas, con flecha dibujada a mano) +
-  `closing` (opcional, en gris). Para el "por qué importa esto".
-- **`card`**: el bloque que más se repite — un hallazgo/paso/dato por slide.
-  `label` (p.ej. "SEÑAL 1", "ERROR", "MITO", "DATO 1" — lo que tenga sentido
-  para el ángulo del día), `headline` (el titular resaltado; se envuelve
-  automáticamente en varias líneas si hace falta, no lo partas tú a mano),
-  `body` (opcional, 1-2 líneas de contexto) y `checks` (opcional, máximo
-  **2** preguntas de autocomprobación con un anillo delante).
-- **`closing`** (obligatorio, siempre la última slide): `title_lines`
-  (**exactamente 2** líneas), `ctas` (lista de hasta **3** tuplas
-  `(título, subtítulo)` — normalmente comentar / guardar / compartir),
-  `box_title` y `box_link` — el bloque naranja final, el ÚNICO sitio del
-  carrusel con el CTA fuerte y el enlace real al PDF gated.
-
-El ejemplo que queda en `CONFIG` tras cada `git checkout` (5 señales de
-indexación silenciosa) es la plantilla de referencia validada visualmente
-con Jorge el 24/08/2026 — para un día nuevo, parte de esa misma estructura
-de tipos y sustituye los textos, no la reinventes desde cero.
-
-### 3.5 Estructura recomendada por día
-
-Orden típico (10 slides, el mismo conteo que la plantilla de referencia):
-`cover` (1) → `statement` (1-2, gancho y/o contexto) → `bullets` (0-1, por
-qué importa) → `card` × 3-6 (un hallazgo/paso/dato por slide) → `closing`
-(1). Adapta el contenido de las `card` al ángulo del día sin cambiar la
-mecánica:
-
-- **Lunes (roast)**: cada `card` es un síntoma/señal del error real
-  auditado (anonimizado), como en la plantilla.
-- **Martes (mito)**: cada `card` puede ser "lo que se cree" vs "lo que
-  dicen los datos" — usa `label` tipo "MITO" / "REALIDAD".
-- **Miércoles (auditoría exprés)**: cada `card` es un hallazgo concreto de
-  la marca pública auditada.
-- **Jueves (tendencia/algoritmo)**: cada `card` es una implicación práctica
-  del cambio para un ecommerce.
-- **Viernes (pregunta abierta)**: la `statement` inicial plantea la
-  pregunta con fuerza, la siguiente `statement` o `card` da la respuesta de
-  Jorge (sigue las reglas de la sección 1, nota de viernes), y el `closing`
-  reitera la pregunta e invita a comentar en vez de (o además de) los 3 CTAs
-  estándar.
-
-### 3.6 Regla no negociable (recordatorio — ver sección 3bis completa)
-
-El carrusel enseña el diagnóstico (qué revisar, qué pasa, por qué importa),
-**nunca la solución paso a paso completa** — eso vive solo en el PDF gated.
-Por eso `footer_gate_note` aparece en cada slide de contenido y el `closing`
-lleva el único CTA fuerte con el enlace real.
-
-## 3bis. PDF del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
-
-**Importante**: Jorge no quiere que se repita el mismo PDF semana tras
-semana. Cada día se genera un PDF nuevo, centrado en el tema exacto del post
-de ese día (no una checklist genérica de 12 puntos salvo que el ángulo del
-día lo justifique).
-
-**Desde el 24/08/2026 usa el mismo lenguaje visual que el carrusel** (sección
-3): fondo negro con rejilla sutil, ArchivoBlack + resaltado naranja tipo
-"subrayador" en los titulares, Barlow-Bold en cuerpo/etiquetas, foto+logo
-arriba en toda página. Antes tenía su propio estilo (portada con degradado
-naranja + tarjetas claras) — se unificó para que el PDF gated y el carrusel
-se sientan como el mismo documento, no como dos marcas distintas.
+### Cómo generar el PDF guía/checklist (formato por defecto)
 
 Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
 principio del archivo (sección CONFIG) según el tema de hoy:
 
 - `COVER_TITLE_HTML`: título de portada (con `<br/>` para saltos de línea),
-  específico del tema del día — no reutilices el título del checklist salvo
-  que el ángulo de hoy sea literalmente ese.
+  específico del tema del día — es el mismo titular que uses en el punto 0
+  de la sección 2 y en el documento de ideas de la sección 3.
 - `COVER_SUBTITLE`, `COVER_TAG`, `STAT_NUMBER`, `STAT_LABEL`: ajusta al
   contenido — si el documento trata sobre un único hallazgo/mito/tendencia,
   `STAT_NUMBER` puede ser "1" (o el número de puntos reales que tenga) y
@@ -301,18 +233,15 @@ principio del archivo (sección CONFIG) según el tema de hoy:
   las 2 fases (Fase 1 / Fase 2) tal cual, es fijo.
 - **Resaltado naranja opcional**: en `COVER_TITLE_HTML`, `CTA_TITLE` o el
   `título` de cualquier punto, envuelve la frase clave entre `<hl>...</hl>`
-  para que salga con la caja naranja de fondo (mismo efecto que
-  `draw_mixed_line()` en el carrusel) — p.ej.
+  para que salga con la caja naranja de fondo — p.ej.
   `"<hl>Categorías fantasma:</hl><br/>qué hacer con..."`. Es opcional: sin
   `<hl>`, el texto sale igual, solo que sin resaltar. No abuses de esto —
-  como en el carrusel, resalta una frase corta y contundente, no párrafos
-  enteros.
+  resalta una frase corta y contundente, no párrafos enteros.
 
 Ejecuta pasando la ruta de salida como argumento. **El nombre del archivo
-debe ser un slug del título del PDF (nunca el genérico "lead-magnet.pdf")**,
-porque es literalmente el nombre que le queda guardado al usuario cuando lo
-descarga — un nombre genérico repetido cada día es una mala experiencia y
-además pisaría descargas anteriores en su carpeta de Descargas:
+debe ser un slug del título del recurso (nunca el genérico "lead-magnet.pdf"
+ni "recurso.pdf")**, porque es literalmente el nombre que le queda guardado
+al usuario cuando lo descarga:
 
 ```
 python3 scripts/generate_lead_magnet_pdf.py content/<carpeta-del-día>/<slug-del-titulo>.pdf
@@ -323,231 +252,148 @@ otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
 sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
 la hay).
 
-**Ojo con las fuentes — misma limitación que el carrusel (sección 3.2)**:
-desde que este PDF usa ArchivoBlack/Barlow-Bold en vez de las fuentes
-estándar de reportlab, **ya no soporta emoji ni la flecha `→` (U+2192)** —
-sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
-`COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE`
-ni `CTA_BODY`. Los acentos y la `ñ` sí funcionan bien (ambas fuentes los
+**Ojo con las fuentes**: este PDF usa ArchivoBlack/Barlow-Bold en vez de las
+fuentes estándar de reportlab, así que **no soporta emoji ni la flecha `→`
+(U+2192)** — sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
+`COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE` ni
+`CTA_BODY`. Los acentos y la `ñ` sí funcionan bien (ambas fuentes los
 incluyen).
 
-### Cómo se aloja el PDF (automático, sin que Jorge suba nada)
+Después de generar y validar el resultado, **valida la sintaxis y revierte
+el script a su versión original** con `git checkout --
+scripts/generate_lead_magnet_pdf.py` antes de terminar (para que el próximo
+día vuelva a partir de la plantilla de referencia, no del contenido de hoy).
 
-Jorge no tiene forma de recibir un PDF nuevo cada día y subirlo él mismo sin
-que deje de ser "automático" — así que el PDF se aloja usando el propio
-repositorio de GitHub, que ya es público. En cuanto hagas commit y push (paso
-8 de la sección 6), el PDF queda disponible en:
+### 🚫 Regla crítica: el post y el brief de imagen NUNCA dan la solución completa
 
-```
-https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/<slug-del-titulo>.pdf
-```
+El post de LinkedIn (y el documento de ideas para la imagen) están para
+enganchar y generar la necesidad de pedir el recurso — **no para resolver el
+problema por sí solos**. Si el lector se va con la solución completa sin
+comentar y pedir el recurso, se rompe todo el embudo de captación de leads.
 
-Usa exactamente esa URL (con la carpeta del día correcta) como `pdfUrl` en el
-formulario del artículo (ver sección 4). Como el commit+push ocurre en el
-mismo run antes de que Jorge publique nada, la URL ya estará viva cuando
-alguien la use.
-
-## 4. Artículo de blog (HTML para WordPress)
-
-Usar como plantilla `content/2026-08-17-lunes-roast/articulo-blog.html`
-(estructura de headings + párrafos + el bloque de formulario ya integrado al
-final, sin tocar el `<script>` del formulario más que estas dos líneas, que
-**sí cambian cada día**:
-
-- `pdfTitulo`: el mismo texto que uses en `COVER_TITLE_HTML` del PDF de hoy
-  (versión en texto plano, sin `<br/>`).
-- `pdfUrl`: la URL de raw.githubusercontent.com del PDF de hoy (ver sección
-  3bis) — nunca reutilices la URL de un día anterior.
-
-### 🚫 Regla crítica: el artículo NUNCA da la solución completa
-
-El artículo (y el post de LinkedIn) están para enganchar y generar la
-necesidad de descargar el PDF — **no para resolver el problema por sí
-solos**. Si el lector se va con la solución completa sin rellenar el
-formulario, no hay ningún motivo para que descargue el PDF ni deje su email,
-y se rompe todo el embudo de captación de leads.
-
-Lo que SÍ puede llevar el artículo (esto genera confianza y demuestra que
-Jorge sabe de lo que habla, sin regalar la solución):
-- El problema explicado en profundidad: qué es, por qué ocurre, por qué
+Lo que SÍ puede llevar el post (esto genera confianza y demuestra que Jorge
+sabe de lo que habla, sin regalar la solución):
+- El problema explicado con claridad: qué es, por qué ocurre, por qué
   importa/cuesta dinero.
-- Cómo detectarlo/diagnosticarlo tú mismo (esto es diagnóstico, no arreglo —
+- Cómo detectarlo/diagnosticarlo (esto es diagnóstico, no arreglo —
   compartirlo está bien, de hecho genera más ganas de saber cómo arreglarlo).
 - El contexto o caso (anonimizado) que da pie al post.
 
-Lo que el artículo NUNCA debe incluir:
-- Los pasos concretos de la solución/arreglo (nada de listas tipo "así lo
-  arreglas: 1... 2... 3...").
-- Cualquier cosa que, si el lector la copia, resuelva el problema sin
-  necesitar el PDF.
+Lo que el post NUNCA debe incluir: los pasos concretos de la
+solución/arreglo (nada de listas tipo "así lo arreglas: 1... 2... 3..."), ni
+nada que, si el lector lo copia, resuelva el problema sin necesitar el
+recurso. La solución paso a paso vive ÚNICAMENTE dentro del recurso
+descargable del día.
 
-En su lugar, cierra el artículo con un párrafo que teasee la solución sin
-darla (p.ej. "La solución tiene 3 pasos muy concretos que explico con
-capturas de pantalla y ejemplos reales en la guía gratuita — te la dejo
-abajo, tarda 30 segundos en llegarte por email") y el bloque del formulario
-justo después. La solución paso a paso vive ÚNICAMENTE dentro del PDF
-(sección `POINTS` → campo "cómo arreglarlo" de `generate_lead_magnet_pdf.py`).
+### Cómo se aloja el recurso (automático, sin que Jorge suba nada)
 
-Estructura del artículo: título H1 descriptivo, 3-5 secciones H2 breves que
-desarrollan el ángulo del día en más profundidad que el post, ejemplos
-concretos, y termina con el bloque de formulario ya montado (copiar tal cual
-desde la plantilla, solo cambiando pdfTitulo/pdfUrl).
+Jorge no tiene forma de recibir un recurso nuevo cada día y subirlo él mismo
+sin que deje de ser "automático" — así que se aloja usando el propio
+repositorio de GitHub, que ya es público. En cuanto hagas commit y push
+(sección 5), el recurso queda disponible en:
 
-### Botones CTA intermedios (desde el 20/08/2026, obligatorio)
-
-Además del bloque de formulario final, el artículo lleva **2 botones CTA**
-insertados en medio del texto que enlazan directamente al formulario (mismo
-`id="jsc-lead-form"` de más abajo en la página, con scroll suave — nunca un
-segundo formulario duplicado). Usa este bloque tal cual, solo cambia el texto
-del botón y el sitio donde lo insertas:
-
-```html
-<div style="text-align:left;margin:36px 0;">
-  <a href="#jsc-lead-form" onclick="var f=document.getElementById('jsc-lead-form'); if(f){f.scrollIntoView({behavior:'smooth'});} return false;" style="display:inline-block;background:#FF5A1F;color:#ffffff;font-weight:700;font-size:15px;line-height:1.3;padding:15px 30px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(255,90,31,.35);">
-    📥 <texto del botón>
-  </a>
-</div>
+```
+https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/<slug-del-titulo>.<ext>
 ```
 
-Reglas de colocación ya validadas con Jorge — no cambiarlas sin que lo pida:
-- **Alineado a la izquierda** (`text-align:left`, nunca centrado), igual que
-  el resto del texto del artículo.
-- **Primer botón**: justo después del segundo párrafo del artículo (antes del
-  primer H2), no más tarde.
-- **Segundo botón**: en otro punto natural de intención alta, típicamente
-  justo después de la sección de "cómo detectarlo tú mismo" (cuando el lector
-  ya sabe que tiene el problema y quiere la solución).
-- Nunca más de 2 botones intermedios — el objetivo es dar salidas naturales
-  al CTA sin saturar el artículo de banners.
+Jorge usa esa URL él mismo al configurar el redireccionamiento de su
+formulario de captura (fuera del alcance de esta rutina, ver nota en la
+sección 5) — asegúrate de que el commit+push del recurso ocurra cuanto antes
+en la entrega del día para que la URL esté viva quien la necesite.
 
-## 5. Formulario de captura (fijo, no tocar salvo instrucción expresa)
-
-Plantilla maestra: `templates/formulario-lead-magnet.html`. Ya incluye:
-- Degradado de marca (135°, #FFA135 → #FF5A1F), foto + logo de Jorge.
-- Doble llamada a Klaviyo (subscribe a la lista Y8MmeF + evento "Solicitó Lead
-  Magnet" que dispara el flow "Lead prueba"). Esto ya está probado y funciona.
-- No modificar esta lógica salvo que Jorge lo pida explícitamente.
-
-## 6. Entrega diaria — output
+## 5. Entrega diaria — output
 
 Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
 - `post-linkedin.txt`
-- `carrusel-1.png` ... `carrusel-N.png` (una por slide del carrusel, ver sección 3)
-- `carrusel-post.pdf` (el mismo carrusel empaquetado en PDF — es lo que se sube a LinkedIn como Documento)
-- `articulo-blog.html`
-- `<slug-del-título>.pdf` (el lead magnet gated, nuevo cada día, nombre descriptivo — ver sección 3bis)
+- `<slug-del-recurso>.<ext>` (el recurso del día, nuevo cada día, nombre
+  descriptivo — ver sección 4)
+- `brief-imagen.md` (documento de ideas para que Jorge diseñe la imagen —
+  ver sección 3)
 - Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — ver sección 1bis)
 
-**Orden importante**: genera y haz commit+push del PDF del lead magnet (y de
-toda la carpeta) ANTES de dar el artículo por terminado, porque el HTML del
-artículo depende de la URL pública de ese PDF ya subido (sección 3bis).
+Haz commit y push de toda la carpeta (mismo remoto del que se clonó) tan
+pronto como esté lista, como red de seguridad además de la entrega directa.
+Usa un mensaje de commit tipo `Contenido diario: <fecha> (<ángulo del día>)`.
 
-Al terminar, enviar los archivos a Jorge (vía SendUserFile) con una nota
-breve indicando qué toca hacer: 1) copiar el post y subir `carrusel-post.pdf`
-a LinkedIn como publicación de tipo Documento (no como carrusel de imágenes
-sueltas — ver sección 3), 2) revisar el borrador ya creado en WordPress (ver
-sección 9) y darle a Publicar. Recordar que todo lo demás (leads, envío del
-PDF gated, y desde que hay credenciales de WordPress configuradas — ver
-sección 9 — la subida del borrador) es 100% automático y no requiere ninguna
-acción suya salvo el clic final de Publicar.
+Al terminar, enviar los archivos a Jorge (vía `SendUserFile`) con una nota
+breve indicando qué toca hacer: 1) diseñar la imagen con su propia
+herramienta usando `brief-imagen.md` como guía, 2) copiar el post y subir
+la imagen a LinkedIn, 3) cuando alguien comente la palabra clave del CTA,
+escribirle por privado con el enlace a su formulario de captura (el recurso
+ya está alojado y listo, con URL pública verificada). Recordar que la
+sincronización de segmentos de Klaviyo (sección 7, si sigue aplicando a su
+formulario actual) sigue siendo un paso aparte en sesión local.
 
-**Nunca publicar nada automáticamente en el sentido de "dejarlo en vivo"**
-(ni en LinkedIn, ni en WordPress, ni en Klaviyo) — desde que hay credenciales
-de WordPress disponibles, el artículo SÍ se sube solo a WordPress, pero
-siempre como BORRADOR (`status: draft`), nunca publicado directamente; la
-rutina nunca pulsa "Publicar" por Jorge, eso es siempre su clic final.
+**Nunca publicar nada en vivo automáticamente** — el post de LinkedIn, la
+imagen y cualquier respuesta a comentarios son siempre acción manual de
+Jorge; esta rutina solo entrega archivos y hace commit/push al repositorio.
 
-## 7. Entorno de ejecución (nube)
+## 6. Entorno de ejecución (nube)
 
 - Instala dependencias con `pip install -r requirements.txt` si `Pillow` no
-  está ya disponible.
+  está ya disponible (sigue haciendo falta para generar el PDF del recurso).
 - Intenta entregar todos los archivos generados directamente al usuario
   (herramienta de envío de archivos si está disponible en la sesión).
 - **Además, y siempre**, haz commit y push de la carpeta `content/<día>/`
-  generada al repositorio (mismo remoto del que se clonó), como red de
-  seguridad por si la entrega directa fallara. Usa un mensaje de commit tipo
-  `Contenido diario: <fecha> (<ángulo del día>)`.
+  generada al repositorio, como red de seguridad por si la entrega directa
+  fallara.
 
-## 8. Segmento de Klaviyo por PDF (esto NO lo hace la rutina en la nube)
+## 7. Segmento de Klaviyo por recurso (esto NO lo hace la rutina en la nube)
 
-Cada PDF descargado queda perfectamente identificable en Klaviyo (evento
-"Solicitó Lead Magnet" con la propiedad `pdf_titulo`). Un segmento en
-Klaviyo es dinámico: una vez existe, se actualiza solo con cada nueva
-descarga — pero el segmento en sí hay que crearlo una vez por título.
+Si el formulario de captura que use Jorge (fuera del alcance de esta rutina,
+ver sección 5) sigue registrando en Klaviyo un evento con la propiedad
+`pdf_titulo` (o equivalente) por cada descarga, esta sección sigue
+aplicando: un segmento en Klaviyo es dinámico — una vez existe, se actualiza
+solo con cada nueva descarga, pero el segmento en sí hay que crearlo una vez
+por título.
 
 Herramienta recomendada: `scripts/sync_klaviyo_segments.py` — revisa TODO
 el historial de descargas, saca los títulos distintos, y crea el segmento
 que falte para cada uno (sin duplicar los que ya existen). Ejecutar sin
 argumentos; es seguro correrlo tantas veces como se quiera (idempotente).
-Alternativa puntual para un solo título nuevo: `scripts/create_klaviyo_segment.py
-"Título exacto del PDF"`.
-
-## 9. Borrador en WordPress (SÍ lo hace la rutina en la nube, desde el 18/08/2026)
-
-A diferencia de Klaviyo (sección 8), Jorge decidió explícitamente asumir el
-riesgo de exposición y configuró `WP_URL`, `WP_USERNAME` y `WP_APP_PASSWORD`
-como **variables de entorno** en el entorno de Claude Code que usa esta
-rutina (no en el repo, no en este brief, no en el prompt — solo en la config
-del entorno). Motivo del cambio: los entornos de Claude Code en la nube NO
-tienen un almacén de secretos dedicado (cualquier sesión que use ese mismo
-entorno podría leer esas variables) — es una exposición mayor que la de antes
-(cero), pero Jorge la consideró aceptable porque es una contraseña de
-**aplicación** de WordPress: revocable en cualquier momento sin afectar al
-login normal, y sin alcance fuera de la REST API de posts de ese sitio.
-
-**Paso a ejecutar cada día, justo después del commit+push del paso 12,
-ANTES de la entrega final (paso 13):**
-
-```
-python3 scripts/publish_to_wordpress.py content/<carpeta-del-día>
-```
-
-Esto crea la entrada en WordPress como **borrador** (`status: draft`, nunca
-publicado directamente) usando la REST API de WP con Basic Auth + Application
-Password. El script extrae el `<h1>` del HTML como título del post y sube el
-resto del cuerpo envuelto en un bloque nativo de Gutenberg
-(`<!-- wp:html -->...<!-- /wp:html -->`) — **imprescindible**: sin ese
-envoltorio, WordPress aplica `wpautop` al contenido y mete etiquetas `<p>`
-dentro del `<script>` del formulario, rompiéndolo (el síntoma es que el
-formulario se queda colgado en "Cargando..." y nunca deja descargar el PDF).
-Jorge revisa el borrador en el editor de WordPress y le da a Publicar cuando
-esté conforme.
-
-**Si el script falla** (credenciales que faltan o han caducado, WordPress
-caído, etc.): no es un error bloqueante — continúa con el resto del proceso
-con normalidad, y en la entrega final al usuario indica explícitamente que
-el borrador NO se creó solo esta vez, con el motivo exacto del fallo (la
-línea `FAIL (...)` o `ERROR: ...` que imprime el script), para que Jorge lo
-suba él mismo con el mismo comando desde su sesión local si quiere.
-
-Credenciales: `WP_URL`, `WP_USERNAME`, `WP_APP_PASSWORD` (contraseña de
-aplicación de WordPress, generada en `Usuarios → Perfil → Contraseñas de
-aplicación` — no es la contraseña de acceso normal, y es revocable en
-cualquier momento sin afectar al login). Viven como variables de entorno del
-entorno de Claude Code (para la rutina en la nube) y también en un `.env`
-local (para cuando Jorge lo ejecuta él mismo) — nunca en el repo ni en este
-brief.
-
-**Nota de infraestructura:** en este sitio en concreto (Hostinger), la
-funcionalidad de Application Passwords viene desactivada por defecto a nivel
-de hosting. Se reactivó con un snippet PHP vía el plugin WPCode
-(`Fragmentos de código`) con estos dos filtros a prioridad alta para ganarle
-la partida al filtro que lo bloqueaba:
-
-```php
-add_filter( 'wp_is_application_passwords_available', '__return_true', 9999 );
-add_filter( 'wp_is_application_passwords_available_for_user', '__return_true', 9999 );
-```
-
-Si en el futuro deja de funcionar (p. ej. tras una actualización de Hostinger
-que reintroduzca el bloqueo con prioridad aún más alta), revisar primero que
-ese snippet siga activo en WPCode antes de investigar nada más.
+Alternativa puntual para un solo título nuevo:
+`scripts/create_klaviyo_segment.py "Título exacto del recurso"`.
 
 **A propósito, la rutina en la nube NO ejecuta este script ni tiene la
 `KLAVIYO_API_KEY`** — esa clave da acceso de escritura a toda la cuenta de
-Klaviyo y no hay forma segura de dársela al entorno en la nube ahora mismo
-(la definición de la rutina no soporta secretos, solo prompt de texto plano).
-Así que este paso queda pendiente de ejecutarse en una sesión local (por
-Jorge pidiéndoselo a Claude, o por Claude si nota que hay un PDF nuevo sin
-segmento) — no se te ocurra a ti, rutina en la nube, intentar llamar a la API
-de Klaviyo con una clave puesta a mano en este prompt.
+Klaviyo y no hay forma segura de dársela al entorno en la nube (la
+definición de la rutina no soporta secretos, solo prompt de texto plano).
+Este paso queda pendiente de ejecutarse en una sesión local.
+
+Si Jorge cambia de herramienta de formulario y ya no pasa por Klaviyo con
+ese mismo evento, avisa para actualizar o retirar esta sección.
+
+---
+
+## Nota de migración (28/08/2026)
+
+Este brief se reescribió a fondo el 28/08/2026 a petición expresa de Jorge.
+Resumen de lo que cambió respecto a la versión anterior (24-27/08/2026, el
+formato "documento negro con resaltados naranja" estilo Twinkle
+Chatterjee/ThriveCraft SEO), por si hace falta recuperar contexto:
+
+- **La rutina ya no genera ninguna imagen.** Antes generaba un carrusel de
+  8-11 slides + PDF empaquetado (`scripts/generate_carousel_post.py`); antes
+  de eso, una imagen única tipo "stat hero" (`scripts/generate_post_image.py`).
+  Jorge diseña ahora la imagen él mismo con su propia plantilla. La rutina
+  entrega en su lugar un documento de ideas (`brief-imagen.md`, sección 3).
+  Los scripts antiguos se quedan en el repo sin usarse — no borrarlos salvo
+  instrucción expresa.
+- **Ya no se genera el artículo de blog en HTML** (antes `articulo-blog.html`,
+  con plantilla de referencia en `content/2026-08-17-lunes-roast/`) ni se
+  sube ningún borrador a WordPress (antes `scripts/publish_to_wordpress.py`,
+  sección "9. Borrador en WordPress" del brief anterior). Las variables de
+  entorno `WP_URL`/`WP_USERNAME`/`WP_APP_PASSWORD` pueden seguir configuradas
+  en el entorno pero esta rutina ya no las usa.
+- **Cambia el mecanismo de entrega del lead**: antes, quien comentaba la
+  palabra clave encontraba el enlace en un comentario fijado automático que
+  llevaba al formulario embebido en el artículo. Ahora, quien comenta recibe
+  un DM manual de Jorge con el enlace a su formulario — por eso ya no hace
+  falta ni el artículo ni el formulario embebido para este flujo (aunque
+  `templates/formulario-lead-magnet.html` se queda en el repo, ya no forma
+  parte del proceso diario salvo que Jorge decida reutilizarlo en su nueva
+  herramienta).
+- **El recurso descargable ya no es siempre un PDF checklist** — ver el
+  catálogo de tipos de recurso en la sección 4. De momento solo hay
+  generador construido para el formato guía/checklist; los demás se
+  construirán bajo demanda.
