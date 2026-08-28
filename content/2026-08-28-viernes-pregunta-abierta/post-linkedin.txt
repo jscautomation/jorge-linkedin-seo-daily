@@ -1,0 +1,15 @@
+CADENAS DE REDIRECTS: EL SEO QUE NADIE MIDE.
+
+Te lanzo una pregunta en serio: ¿cuántas redirecciones lleva puestas tu ecommerce, una encima de otra, sin que nadie las haya tocado nunca?
+
+Mi respuesta para arrancar: las cadenas de redirects que se acumulan migración tras migración. Cambias de plantilla, de estructura de categorías, de idioma... y cada vez añades un salto más encima del anterior, en vez de apuntar directo al destino final. Nadie las revisa porque "funcionan" — el usuario llega, eso sí, dando varios rodeos.
+
+El problema es que cada salto cuesta: tiempo de carga, presupuesto de rastreo que Googlebot gasta siguiendo eslabones en vez de indexar producto nuevo, y relevancia que se diluye en cada hop. Y a partir de cierta longitud, Google directamente deja de seguir la cadena.
+
+¿Lo tienes tú? Exporta el informe de Redirect Chains de Screaming Frog y cuenta cuántos saltos lleva tu redirección más antigua.
+
+Ahora te toca: ¿cuál es el error que ves repetirse migración tras migración y que nadie llega a limpiar del todo? Te leo en comentarios.
+
+Comenta "REDIRECTS" y te escribo por privado con el enlace a la guía para arreglarlas.
+
+#SEO #Ecommerce #WordPress #Shopify
