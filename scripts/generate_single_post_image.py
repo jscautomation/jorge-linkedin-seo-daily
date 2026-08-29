@@ -96,7 +96,7 @@ def circular_photo(diam=66, border=8):
     return ring, ring_d
 
 
-def paste_logo_grid(img, tools, top_y, logo_w=410, row_gap=172):
+def paste_logo_grid(img, tools, top_y, logo_w=460, row_gap=185, margin=36):
     """Cuadricula de hasta 4 logos reales (icono+wordmark ya integrados en
     el propio archivo de imagen — nunca los reconstruyas a mano si Jorge ya
     subio el logo oficial a assets/branding/). Se escalan todos al MISMO
@@ -104,12 +104,18 @@ def paste_logo_grid(img, tools, top_y, logo_w=410, row_gap=172):
     cada logo varia segun su proporcion real, por eso se centra tambien
     verticalmente. Con 1-2 logos se usa una sola fila; con 3-4, dos filas de
     2. Nunca mas de 4 (si hace falta mencionar mas herramientas, elige las
-    4 mas relevantes para el tema del dia)."""
+    4 mas relevantes para el tema del dia). Las columnas se calculan a
+    partir de `logo_w` y `margin` (nunca fracciones fijas del ancho) para
+    que dos logos anchos nunca se toquen ni se salgan del lienzo."""
     assert 1 <= len(tools) <= 4, "paste_logo_grid: usa entre 1 y 4 logos"
+    assert 2 * logo_w + margin * 2 <= W, (
+        f"logo_w={logo_w} es demasiado ancho para 2 columnas con margin={margin} "
+        f"(no caben en {W}px) — baja logo_w en CONFIG."
+    )
     d = ImageDraw.Draw(img)
     n = len(tools)
     cols = 1 if n == 1 else 2
-    col_cx = [W / 2] if cols == 1 else [W * 0.27, W * 0.72]
+    col_cx = [W / 2] if cols == 1 else [margin + logo_w / 2, W - margin - logo_w / 2]
     rows_needed = (n + cols - 1) // cols
     row_cy = [top_y + r * row_gap for r in range(rows_needed)]
     bottom = top_y
@@ -132,13 +138,16 @@ def render(config, out_path):
     d = ImageDraw.Draw(img)
 
     # ---- Titular (2 lineas, naranja, ExtraBold, grande) ----
+    # Un poco de aire arriba antes del titular (no pegado al borde superior),
+    # pero el resto de bloques va MAS JUNTO que en la version anterior — a
+    # peticion expresa de Jorge, para que no quede hueco en blanco.
     f_title = F(XBOLD, 88)
     for line in title_lines:
         assert_line_fits(d, line, f_title, context="title_lines")
-    y = 46
+    y = 78
     for line in title_lines:
         center_text(d, y, line, f_title, ORANGE)
-        y += 92
+        y += 88
 
     # ---- Firma: foto circular + "by Jorge Segovia" ----
     ring, ring_d = circular_photo()
@@ -147,15 +156,19 @@ def render(config, out_path):
     gap = 20
     total_w = ring_d + gap + byline_w
     bx = (W - total_w) / 2
-    by = y + 8
+    by = y + 4
     img.paste(ring, (int(bx), int(by)), ring)
     d.text((bx + ring_d + gap, by + ring_d / 2), config["byline"], font=f_byline, fill=INK, anchor="lm")
 
-    # ---- Cuadricula de logos reales ----
-    logos_bottom = paste_logo_grid(img, config["tools"], top_y=by + ring_d + 96)
+    # ---- Cuadricula de logos reales (grandes: icono+nombre de la app ya
+    # integrados en el propio archivo de imagen que subio Jorge) ----
+    logos_bottom = paste_logo_grid(img, config["tools"], top_y=by + ring_d + 66,
+                                    logo_w=config.get("logo_w", 440),
+                                    row_gap=config.get("logo_row_gap", 185),
+                                    margin=config.get("logo_margin", 46))
 
     # ---- Barra inferior negra: CTA de comentario ----
-    band_top = config.get("band_top", 750)
+    band_top = config.get("band_top", int(logos_bottom) + 46)
     assert logos_bottom + 40 <= band_top, (
         f"Los logos (hasta y={logos_bottom:.0f}) invaden la banda inferior "
         f"(band_top={band_top}) — sube band_top en CONFIG o usa menos logos/mas pequenos."
