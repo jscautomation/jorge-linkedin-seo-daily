@@ -9,6 +9,20 @@ Se actualiza en el mismo commit que el contenido del día: al terminar de
 generar todo, se añade una fila nueva al final de la tabla correspondiente.
 No editar el orden ni borrar filas antiguas — es el histórico completo.
 
+## Rotación de plantilla de recurso (PDF)
+
+Lee esta tabla **antes de elegir qué generador de PDF usar** (ver
+`AUTOMATION_BRIEF.md` § 4) — el ciclo fijo es 1 Guía/checklist → 2
+One-pager → 3 Worksheet → 4 Swipe file → vuelve a 1, independiente del
+ángulo/día de la semana. Usa el tipo siguiente al de la última fila; si no
+encaja con el tema de hoy, usa el próximo que sí encaje y anótalo en la
+columna de nota.
+
+| Fecha | Tipo usado | Nota |
+|---|---|---|
+| 2026-08-17 a 2026-08-27 | 1. Guía / checklist | Único generador que existía en ese momento (todos los días de roast/mito/auditoría/tendencia de esa fase) |
+| 2026-08-28 | 2. One-pager | Primer uso del generador nuevo (regenerado a petición de Jorge sobre el recurso de cadenas de redirects, que ya se había entregado como guía) |
+
 ## Lunes — Roast (error real de auditoría)
 
 | Fecha | Tema (el error concreto) | Nota / solución en el PDF |

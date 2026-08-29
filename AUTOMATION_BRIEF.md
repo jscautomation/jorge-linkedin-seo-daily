@@ -242,30 +242,42 @@ imagen con los mismos 4 bloques de la sección 3.3. Lo único que cambia es
 semana. Cada día se genera un recurso nuevo, centrado en el tema exacto del
 post de ese día.
 
-**Novedad vigente desde el 28/08/2026 — variedad de formato**: antes el
-recurso era siempre un PDF tipo guía/checklist. Ahora el objetivo es variar
-el *tipo* de recurso según lo que mejor encaje con el tema del día y con el
-ICP (sección 0: propietarios y responsables de marketing de ecommerce, gente
-ocupada que valora algo accionable). Catálogo de tipos de recurso:
+**Novedad vigente desde el 29/08/2026 — 4 plantillas fijas, en rotación**:
+Jorge quiere 4 tipos de recurso distintos, con plantilla propia cada uno, e
+ir ROTANDO entre los 4 día a día para que nunca se repita el mismo formato
+dos días seguidos. Catálogo (los 4 ya están construidos):
 
-| Tipo | Cuándo encaja | Estado del generador |
-|---|---|---|
-| **Guía / checklist en PDF** | El tema tiene 1-varios puntos con diagnóstico + solución (roast, mito, tendencia) — es el formato por defecto | Listo: `scripts/generate_lead_magnet_pdf.py` |
-| **Plantilla de autoevaluación (worksheet) en PDF** | El lector puede aplicarlo él mismo sobre su propia tienda mientras lo lee (espacios/casillas para rellenar) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **Banco de plantillas de texto (swipe file) en PDF** | El tema da pie a fragmentos listos para copiar (ej. reglas de robots.txt, plantillas de meta title, prompts de auditoría) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **Hoja de cálculo descargable (.xlsx)** | El tema encaja mejor como tracker/calculadora (ej. impacto de URLs duplicadas, checklist con columnas de estado) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **One-pager / cheat sheet en PDF** | Versión ultra condensada de una sola página, para temas de un solo hallazgo/punto (roast de un único error, pregunta abierta del viernes...) — no fuerces varios puntos solo para "llenar" el formato guía | Listo (29/08/2026): `scripts/generate_onepager_pdf.py` |
+| # | Tipo | Cuándo encaja mejor | Generador |
+|---|---|---|---|
+| 1 | **Guía / checklist en PDF** | El tema tiene varios puntos, cada uno con diagnóstico + solución (checklist de varios errores) | `scripts/generate_lead_magnet_pdf.py` |
+| 2 | **One-pager / cheat sheet en PDF** | Un solo hallazgo/punto, versión condensada de una sola página, se lee de un vistazo | `scripts/generate_onepager_pdf.py` |
+| 3 | **Worksheet / autoevaluación en PDF** | El lector puede autoevaluarse con una lista de sí/no observable sobre su propia tienda | `scripts/generate_worksheet_pdf.py` |
+| 4 | **Swipe file (banco de plantillas) en PDF** | El tema da pie a fragmentos literales para copiar y pegar (reglas, plantillas, prompts) | `scripts/generate_swipefile_pdf.py` |
 
-Con dos generadores ya listos, **elige el que mejor encaje con el tema del
-día** en vez de usar siempre la guía por defecto — si el tema es un solo
-punto, el one-pager suele ser mejor (se lee entero de un vistazo); si son
-varios puntos con diagnóstico + solución cada uno, la guía/checklist.
-Worksheet, swipe file y .xlsx siguen pendientes de construir — usa la guía
-PDF como base mientras tanto si Jorge pide uno de esos formatos. Cuando
-construyas un generador nuevo, sigue el mismo patrón (motor fijo + CONFIG
-editable al principio, salida por CLI, revertir con `git checkout` al
-terminar si el script ya tenía contenido de un día anterior) y actualiza
-esta tabla marcándolo como listo.
+Los 4 comparten el mismo lenguaje visual (fondo crema `#FFFCF4`, League
+Spartan, naranja `#FF914D`, foto+logo arriba) — ver el docstring de cada
+script para el detalle de su `CONFIG` propio.
+
+**Cómo rotar — obligatorio, no opcional**: antes de elegir qué generador
+usar, lee la tabla "Rotación de plantilla de recurso" en
+`TEMAS_TRATADOS.md` y mira qué tipo se usó el último día con contenido. Usa
+el SIGUIENTE tipo en el orden fijo de la tabla de arriba (1→2→3→4→1→...),
+sea cual sea el ángulo/día de la semana de hoy — la rotación de plantilla
+es independiente de la rotación de ángulo de la sección 1. Solo te saltas
+el orden si el tipo que tocaría de verdad no encaja con el contenido real
+de hoy (p. ej. te toca swipe file pero el tema no da pie a nada literal
+que copiar) — en ese caso usa el siguiente que sí encaje y anota en
+`TEMAS_TRATADOS.md` por qué te saltaste uno. Nunca seleccione el tipo
+mirando el ángulo del día (roast, mito...) por defecto — la variedad debe
+notarse día a día, no repetir la guía/checklist siempre en lunes.
+
+Tras generar el recurso del día, añade una fila a esa misma tabla de
+rotación en `TEMAS_TRATADOS.md` (fecha + tipo usado) — es lo que le
+permite a la siguiente ejecución saber por dónde continuar la rotación.
+Si en el futuro Jorge pide un tipo nuevo (5º, worksheet interactivo,
+.xlsx...), créalo como script nuevo siguiendo el mismo patrón (motor fijo
++ CONFIG editable, salida por CLI) y añádelo a la tabla y al ciclo de
+rotación.
 
 *(Fuentes consultadas sobre qué formatos de lead magnet funcionan mejor para
 este tipo de ICP en B2B/ecommerce en 2026: audits y checklists siguen entre
@@ -278,7 +290,7 @@ catálogo por ahora — ver
 [Luniq](https://www.luniq.io/en/hub/articles/best-b2b-lead-magnet-formats-for-2026),
 [ActiveCampaign](https://www.activecampaign.com/blog/lead-magnet-ideas-and-examples).)*
 
-### Cómo generar el PDF guía/checklist (formato por defecto)
+### Cómo generar el PDF guía/checklist (tipo 1 de la rotación)
 
 Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
 principio del archivo (sección CONFIG) según el tema de hoy:
@@ -318,17 +330,18 @@ otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
 sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
 la hay).
 
-**Ojo con las fuentes**: este PDF usa ArchivoBlack/Barlow-Bold en vez de las
-fuentes estándar de reportlab, así que **no soporta emoji ni la flecha `→`
-(U+2192)** — sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
-`COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE` ni
-`CTA_BODY`. Los acentos y la `ñ` sí funcionan bien (ambas fuentes los
-incluyen).
+**Ojo con las fuentes (aplica a los 4 generadores de recurso, no solo a
+este)**: usan League Spartan (y el swipe file además Courier para las cajas
+de código) en vez de las fuentes estándar de reportlab, así que **no
+soportan emoji ni la flecha `→` (U+2192)** — sale como hueco en blanco. Usa
+`->` en su lugar, nunca emoji, en cualquier campo de texto del `CONFIG` de
+cualquiera de los 4 scripts. Los acentos y la `ñ` sí funcionan bien.
 
 Después de generar y validar el resultado, **valida la sintaxis y revierte
 el script a su versión original** con `git checkout --
-scripts/generate_lead_magnet_pdf.py` antes de terminar (para que el próximo
-día vuelva a partir de la plantilla de referencia, no del contenido de hoy).
+scripts/generate_lead_magnet_pdf.py` (o el script que hayas usado) antes de
+terminar (para que el próximo día vuelva a partir de la plantilla de
+referencia, no del contenido de hoy).
 
 ### 🚫 Regla crítica: el post y el brief de imagen NUNCA dan la solución completa
 
