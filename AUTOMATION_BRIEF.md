@@ -254,14 +254,18 @@ ocupada que valora algo accionable). Catálogo de tipos de recurso:
 | **Plantilla de autoevaluación (worksheet) en PDF** | El lector puede aplicarlo él mismo sobre su propia tienda mientras lo lee (espacios/casillas para rellenar) | Pendiente de construir — usar la guía PDF como base mientras tanto |
 | **Banco de plantillas de texto (swipe file) en PDF** | El tema da pie a fragmentos listos para copiar (ej. reglas de robots.txt, plantillas de meta title, prompts de auditoría) | Pendiente de construir — usar la guía PDF como base mientras tanto |
 | **Hoja de cálculo descargable (.xlsx)** | El tema encaja mejor como tracker/calculadora (ej. impacto de URLs duplicadas, checklist con columnas de estado) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **One-pager / cheat sheet en PDF** | Versión ultra condensada de una sola página, para temas que se resumen en pocos puntos | Pendiente de construir — usar la guía PDF como base mientras tanto |
+| **One-pager / cheat sheet en PDF** | Versión ultra condensada de una sola página, para temas de un solo hallazgo/punto (roast de un único error, pregunta abierta del viernes...) — no fuerces varios puntos solo para "llenar" el formato guía | Listo (29/08/2026): `scripts/generate_onepager_pdf.py` |
 
-Mientras los generadores nuevos no existan, **usa siempre
-`scripts/generate_lead_magnet_pdf.py`** (el único listo) — no fuerces un
-formato que no puedes generar todavía. Cuando Jorge pida construir alguno de
-los tipos pendientes, créalo como script nuevo en `scripts/` siguiendo el
-mismo patrón (CONFIG editable al principio, salida por CLI, revertir con
-`git checkout` al terminar) y actualiza esta tabla marcándolo como listo.
+Con dos generadores ya listos, **elige el que mejor encaje con el tema del
+día** en vez de usar siempre la guía por defecto — si el tema es un solo
+punto, el one-pager suele ser mejor (se lee entero de un vistazo); si son
+varios puntos con diagnóstico + solución cada uno, la guía/checklist.
+Worksheet, swipe file y .xlsx siguen pendientes de construir — usa la guía
+PDF como base mientras tanto si Jorge pide uno de esos formatos. Cuando
+construyas un generador nuevo, sigue el mismo patrón (motor fijo + CONFIG
+editable al principio, salida por CLI, revertir con `git checkout` al
+terminar si el script ya tenía contenido de un día anterior) y actualiza
+esta tabla marcándolo como listo.
 
 *(Fuentes consultadas sobre qué formatos de lead magnet funcionan mejor para
 este tipo de ICP en B2B/ecommerce en 2026: audits y checklists siguen entre
@@ -505,3 +509,24 @@ el motor, no solo el `CONFIG` del día:
 Esto es un cambio de diseño permanente del motor (no algo a revertir cada
 día) — si Jorge pide más ajustes de este tipo en el futuro, edítalos igual
 en el motor y documenta el cambio aquí.
+
+## Nota de migración 4 (29/08/2026) — PDF con el estilo del post + one-pager
+
+Dos peticiones más de Jorge el mismo día:
+
+1. **El PDF (recurso descargable) ahora usa el mismo lenguaje visual que
+   el post**: `scripts/generate_lead_magnet_pdf.py` pasó del fondo negro
+   con rejilla y ArchivoBlack/Barlow-Bold (heredado del antiguo carrusel)
+   a fondo crema `#FFFCF4`, texto tinta `#111111`, naranja `#FF914D` y
+   League Spartan (ExtraBold/Bold) — la misma paleta y tipografía exactas
+   de `generate_single_post_image.py`. Los nombres de los campos de
+   `CONFIG` (`COVER_TITLE_HTML`, `POINTS`, `CTA_TITLE`...) no cambiaron,
+   solo el motor de estilos — sigue funcionando igual día a día.
+2. **Nuevo generador de recurso — one-pager/infografía**:
+   `scripts/generate_onepager_pdf.py` (ver tabla de la sección 4) — una
+   sola página A4 con el mismo lenguaje visual, para temas de un solo
+   hallazgo/punto. Úsalo en vez de la guía/checklist cuando el tema del
+   día no de para varios puntos reales (fuerzas relleno si intentas
+   estirarlo a formato guía).
+
+Esto son cambios de motor permanentes, igual que la nota 3.
