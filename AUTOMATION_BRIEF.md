@@ -180,9 +180,22 @@ verdad.
    Grande, naranja, centrado.
 2. **Firma**: foto circular de Jorge con anillo naranja + "by Jorge
    Segovia" en negro. Fija, no cambia día a día.
-3. **Cuadrícula de logos reales** (`tools`, 1 a 4 imágenes): los logos
+3. **Cuadrícula de logos reales** (`tools`, 1 a 4 elementos): los logos
    reales de las herramientas/marcas protagonistas del tema del día —
    **nunca reconstruidos a mano si el archivo real ya existe en el repo**.
+   Grandes (icono a tamaño completo dentro de una caja de referencia ancha),
+   nunca los favicon pequeños de antes.
+
+   **Formato de cada entrada (vigente desde el 29/08/2026)**:
+   `{"path": ruta_al_png, "name": "Nombre real" | None}` — `name` es el
+   texto que el motor escribe debajo del icono:
+   - `None` para los logos de `assets/branding/ai-logos/` (ya llevan el
+     wordmark de texto integrado en el propio PNG — poner el nombre otra
+     vez lo duplicaría).
+   - El nombre real (p.ej. `"Screaming Frog"`, `"Search Console"`) para los
+     de `assets/branding/tool-logos/`, que son solo el icono favicon sin
+     texto — sin el `name`, quien vea la imagen no sabe qué herramienta es.
+
    Dos carpetas de logos ya disponibles:
    - `assets/branding/ai-logos/` → `claude.png`, `chatgpt.png`,
      `google-ai.png`, `perplexity.png` (para temas de IA/búsqueda generativa)
@@ -467,3 +480,28 @@ nota de migración 1:
   cuando haga falta un logo nuevo que no esté ni ahí ni en
   `assets/branding/tool-logos/`, pídeselo a Jorge por el mismo método
   (subirlo al repo) antes de asumir que hay que reconstruirlo a mano.
+
+## Nota de migración 3 (29/08/2026) — ajuste de motor de la imagen
+
+Tras ver la primera imagen generada con el formato de la nota 2 (la del
+28/08/2026, tema de cadenas de redirects), Jorge pidió ajustar el motor de
+`scripts/generate_single_post_image.py` — instrucción expresa que sí toca
+el motor, no solo el `CONFIG` del día:
+
+- El titular arranca con algo más de aire respecto al borde superior
+  (antes casi pegado al borde).
+- El hueco entre la firma y la cuadrícula de logos, y entre los logos y la
+  banda CTA, se redujo — menos espacio en blanco en el centro/parte baja
+  de la imagen.
+- Los logos salen bastante más grandes (antes se escalaban solo por
+  ancho, lo que dejaba los favicon cuadrados de `tool-logos/` diminutos en
+  comparación con los wordmark anchos de `ai-logos/`; ahora todos se
+  escalan para ocupar el máximo posible dentro de una caja de referencia
+  común, sin deformarse).
+- Los favicon sueltos de `tool-logos/` (sin texto integrado en el PNG)
+  llevan ahora el nombre real de la herramienta escrito debajo del icono
+  — ver el nuevo formato de `tools` en la sección 3.3 de arriba.
+
+Esto es un cambio de diseño permanente del motor (no algo a revertir cada
+día) — si Jorge pide más ajustes de este tipo en el futuro, edítalos igual
+en el motor y documenta el cambio aquí.

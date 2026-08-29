@@ -11,6 +11,14 @@ negra con el CTA de comentario.
 
 Ver AUTOMATION_BRIEF.md seccion 3 para la guia de estilo completa.
 
+Ajuste de motor 29/08/2026 (instruccion expresa de Jorge sobre la primera
+imagen generada con este formato, la del 28/08): titular con un poco mas
+de aire respecto al borde superior, gap firma->logos mas ajustado (menos
+hueco en blanco en el centro), y logos bastante mas grandes -- para los
+favicon sueltos de tool-logos/ (que no llevan texto integrado en el PNG)
+el motor ahora escribe tambien el nombre real de la herramienta debajo del
+icono, ver paste_logo_grid().
+
 Como con el resto de scripts del proyecto, el archivo tiene dos partes:
 - MOTOR DE RENDER (todo lo que hay antes de "CONTENIDO DE HOY"): fijo, no
   tocar salvo que Jorge pida explicitamente un cambio de estilo.
@@ -96,31 +104,45 @@ def circular_photo(diam=66, border=8):
     return ring, ring_d
 
 
-def paste_logo_grid(img, tools, top_y, logo_w=410, row_gap=172):
-    """Cuadricula de hasta 4 logos reales (icono+wordmark ya integrados en
-    el propio archivo de imagen — nunca los reconstruyas a mano si Jorge ya
-    subio el logo oficial a assets/branding/). Se escalan todos al MISMO
-    ANCHO y se centran cada uno (icono+texto) dentro de su celda; el alto de
-    cada logo varia segun su proporcion real, por eso se centra tambien
-    verticalmente. Con 1-2 logos se usa una sola fila; con 3-4, dos filas de
-    2. Nunca mas de 4 (si hace falta mencionar mas herramientas, elige las
-    4 mas relevantes para el tema del dia)."""
+def paste_logo_grid(img, tools, top_y, box_w=460, box_h=200, row_gap=290, label_gap=16):
+    """Cuadricula de hasta 4 logos reales (nunca reconstruidos a mano si
+    Jorge ya subio el archivo oficial a assets/branding/). Cada logo se
+    escala SIN deformar (misma proporcion real) para que quepa dentro de un
+    cuadro box_w x box_h — grande, pensado para que un icono cuadrado
+    (favicon) salga a tamano completo box_h x box_h, y un wordmark ancho
+    (icono+texto ya integrados en el propio archivo) salga limitado por el
+    ancho. Debajo de cada icono, si el tool trae "name", se escribe el
+    nombre real de la herramienta/app (para los favicon sueltos que no
+    llevan el texto ya integrado en el PNG) — se omite si "name" es None,
+    para no duplicar el texto en los logos que ya son wordmark. Con 1-2
+    logos se usa una sola fila; con 3-4, dos filas de 2. Nunca mas de 4 (si
+    hace falta mencionar mas herramientas, elige las 4 mas relevantes para
+    el tema del dia)."""
     assert 1 <= len(tools) <= 4, "paste_logo_grid: usa entre 1 y 4 logos"
     d = ImageDraw.Draw(img)
+    f_label = F(BOLD, 34)
     n = len(tools)
     cols = 1 if n == 1 else 2
-    col_cx = [W / 2] if cols == 1 else [W * 0.27, W * 0.72]
+    col_cx = [W / 2] if cols == 1 else [W * 0.27, W * 0.73]
     rows_needed = (n + cols - 1) // cols
-    row_cy = [top_y + r * row_gap for r in range(rows_needed)]
+    row_top = [top_y + r * row_gap for r in range(rows_needed)]
     bottom = top_y
-    for i, logo_path in enumerate(tools):
+    for i, tool in enumerate(tools):
         cx = col_cx[i % cols]
-        cy = row_cy[i // cols]
-        logo = Image.open(logo_path).convert("RGBA")
-        ratio = logo_w / logo.width
-        logo = logo.resize((logo_w, max(1, int(logo.height * ratio))), Image.LANCZOS)
-        img.paste(logo, (int(cx - logo.width / 2), int(cy - logo.height / 2)), logo)
-        bottom = max(bottom, cy + logo.height / 2)
+        icon_top = row_top[i // cols]
+        logo = Image.open(tool["path"]).convert("RGBA")
+        ratio = min(box_w / logo.width, box_h / logo.height)
+        new_w, new_h = max(1, int(logo.width * ratio)), max(1, int(logo.height * ratio))
+        logo = logo.resize((new_w, new_h), Image.LANCZOS)
+        img.paste(logo, (int(cx - new_w / 2), int(icon_top)), logo)
+        cell_bottom = icon_top + new_h
+        name = tool.get("name")
+        if name:
+            assert_line_fits(d, name, f_label, margin=(W - box_w) / 2 + 10, context="tools.name")
+            label_cy = cell_bottom + label_gap + 22
+            center_text(d, label_cy, name, f_label, INK, cx=cx)
+            cell_bottom = label_cy + 22
+        bottom = max(bottom, cell_bottom)
     return bottom
 
 
@@ -132,10 +154,12 @@ def render(config, out_path):
     d = ImageDraw.Draw(img)
 
     # ---- Titular (2 lineas, naranja, ExtraBold, grande) ----
+    # Un poco de aire respecto al borde superior (antes pegado casi al
+    # borde) para que el titular respire, sin llegar a bajarlo al centro.
     f_title = F(XBOLD, 88)
     for line in title_lines:
         assert_line_fits(d, line, f_title, context="title_lines")
-    y = 46
+    y = 100
     for line in title_lines:
         center_text(d, y, line, f_title, ORANGE)
         y += 92
@@ -152,10 +176,15 @@ def render(config, out_path):
     d.text((bx + ring_d + gap, by + ring_d / 2), config["byline"], font=f_byline, fill=INK, anchor="lm")
 
     # ---- Cuadricula de logos reales ----
-    logos_bottom = paste_logo_grid(img, config["tools"], top_y=by + ring_d + 96)
+    # Gap reducido (antes 96) para que los bloques queden mas juntos y no
+    # sobre tanto hueco en blanco entre la firma y los logos.
+    logos_bottom = paste_logo_grid(img, config["tools"], top_y=by + ring_d + 32)
 
     # ---- Barra inferior negra: CTA de comentario ----
-    band_top = config.get("band_top", 750)
+    # Antes 750 -> con los logos mas grandes eso dejaba un hueco en blanco
+    # innecesario entre los logos y la banda; se baja a 705 para que quede
+    # todo mas junto (deja justo el margen minimo de 40px del assert de abajo).
+    band_top = config.get("band_top", 705)
     assert logos_bottom + 40 <= band_top, (
         f"Los logos (hasta y={logos_bottom:.0f}) invaden la banda inferior "
         f"(band_top={band_top}) — sube band_top en CONFIG o usa menos logos/mas pequenos."
@@ -191,7 +220,12 @@ CONFIG = {
 
     # 1 a 4 logos REALES (nunca reconstruidos a mano si el archivo real ya
     # existe en el repo) de las herramientas/marcas que protagonizan el
-    # tema de hoy. Fuentes ya disponibles:
+    # tema de hoy. Cada entrada es {"path": ruta, "name": nombre o None}:
+    # - "name": None para los de ai-logos/ (ya llevan el wordmark de texto
+    #   integrado en el propio PNG — poner el nombre otra vez lo duplicaria).
+    # - "name": "Nombre real" para los de tool-logos/ (son solo el icono
+    #   favicon, sin texto) — el motor escribe el nombre debajo del icono.
+    # Fuentes ya disponibles:
     #   assets/branding/ai-logos/    -> claude.png, chatgpt.png,
     #                                    google-ai.png, perplexity.png
     #   assets/branding/tool-logos/  -> google-search-console.png,
@@ -203,10 +237,10 @@ CONFIG = {
     # GitHub) — no inventes ni reconstruyas un logo de marca a mano salvo
     # que de verdad no haya otra opción y Jorge lo apruebe antes de usarlo.
     "tools": [
-        str(AI_LOGO_DIR / "claude.png"),
-        str(AI_LOGO_DIR / "google-ai.png"),
-        str(AI_LOGO_DIR / "perplexity.png"),
-        str(AI_LOGO_DIR / "chatgpt.png"),
+        {"path": str(AI_LOGO_DIR / "claude.png"), "name": None},
+        {"path": str(AI_LOGO_DIR / "google-ai.png"), "name": None},
+        {"path": str(AI_LOGO_DIR / "perplexity.png"), "name": None},
+        {"path": str(AI_LOGO_DIR / "chatgpt.png"), "name": None},
     ],
 
     # CTA de la barra inferior — debe coincidir con el CTA del post
