@@ -123,6 +123,17 @@ hay un dato real verificable, no se afirma un resultado concreto.
 6-7 puntos, pero compacto — si un párrafo puede decir lo mismo en menos
 frases, recorta antes de añadir matices extra.
 
+**Emojis (vigente desde el 29/08/2026)**: el texto del post (`post-linkedin.txt`)
+SÍ lleva emojis reales — unos 5 por publicación, repartidos con naturalidad
+(p. ej. uno cerca del hook, alguno remarcando el coste/lo que está en juego,
+uno en la prueba si la hay, uno en el CTA). Que no sea excesivo: si notas que
+estás metiendo uno por línea o usándolos para decorar cualquier frase, quita
+alguno. Esto es solo para el texto del post — la imagen (sección 3) y
+cualquiera de los 4 PDF (sección 4) NO admiten emoji de verdad, sus fuentes
+bundleadas no tienen esos glifos y salen como hueco en blanco; ahí se sigue
+sin usar emoji (la carita `=)` de texto plano en la imagen sigue siendo la
+excepción ya documentada).
+
 ## 3. Imagen del post (imagen única, formato vigente desde el 28/08/2026)
 
 Jorge diseñó él mismo este formato a mano (League Spartan, fondo crema,
