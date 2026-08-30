@@ -70,6 +70,8 @@ style_subtitle = style("subtitle", fontSize=12, leading=17, alignment=TA_CENTER)
 style_intro = style("intro", fontSize=10.3, leading=15)
 style_item = style("item", fontSize=10.8, leading=15)
 style_score = style("score", fontSize=10.3, leading=15, textColor=INK)
+style_solution_label = style("solution_label", fontSize=9, leading=12, textColor=ORANGE, spaceAfter=4)
+style_solution_body = style("solution_body", fontSize=10, leading=15)
 style_footer_title = style("footer_title", fontName="LeagueSpartanExtraBold", fontSize=15, leading=19)
 style_footer_body = style("footer_body", fontSize=9.7, leading=14)
 
@@ -156,7 +158,11 @@ def build(config, out_path):
         ("ROUNDEDCORNERS", [8, 8, 8, 8]),
     ]))
     story.append(score_box)
-    story.append(Spacer(1, 18))
+    story.append(Spacer(1, 16))
+
+    story.append(Paragraph("CÓMO ARREGLARLO", style_solution_label))
+    story.append(Paragraph(config["solution_text"], style_solution_body))
+    story.append(Spacer(1, 16))
 
     footer = Table([[
         Table([[Paragraph(config["cta_title"], style_footer_title)],
@@ -201,6 +207,14 @@ CONFIG = {
 
     "score_note": "Si has marcado 2 o más casillas, es muy probable que tengas cadenas de redirects "
                   "activas ahora mismo en tu ecommerce, gastando presupuesto de rastreo sin que lo sepas.",
+
+    "solution_text": "Exporta el informe \"Redirect Chains\" de Screaming Frog (con \"Always Follow "
+                      "Redirects\" activado en Configuration -&gt; Spider -&gt; Crawl). Para cada cadena, "
+                      "localiza el destino FINAL real (el último salto con status 200) y repunta ahí "
+                      "directamente cada redirección de la cadena, en un único salto -- nunca A -&gt; B -&gt; "
+                      "C -&gt; D, siempre A -&gt; D. Revisa también el sitemap.xml y los enlaces internos "
+                      "para que apunten a la URL final, nunca a una que redirige. Repite el crawl tras cada "
+                      "migración futura.",
 
     "cta_title": "¿Quieres que lo midamos con datos reales de tu tienda?",
     "cta_body": "Lo hacemos en una auditoría SEO completa (Fase 1) + implementación (Fase 2), diseñada "
