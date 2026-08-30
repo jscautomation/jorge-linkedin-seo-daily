@@ -1,0 +1,13 @@
+LA IA NO LEE TU FICHA IGUAL QUE UN HUMANO.
+
+Google AI Mode sigue ganando terreno, y con él cambia lo que "convence" a una ficha de producto. Ya no basta con un texto bonito que venda emocionalmente: para que la IA cite tu producto en una respuesta comparativa necesita datos que pueda extraer con confianza 🤖.
+
+Un análisis reciente sobre qué páginas cita Google AI Mode encontró que la mayoría llevan datos estructurados (schema) — no es casualidad. La IA prioriza lo que puede verificar: FAQ marcadas como FAQPage, especificaciones en texto real (no en una imagen), y Product schema completo con precio, disponibilidad y valoraciones reales 📊.
+
+La mayoría de fichas de ecommerce siguen escritas solo para un humano que las lee de arriba a abajo. Si la IA no puede extraer un dato exacto (talla, compatibilidad, garantía) con seguridad, no te cita — y cita al competidor que sí lo puso claro ⚠️.
+
+¿Lo tienes tú? Pega la URL de una ficha tuya en el Rich Results Test de Google y mira si detecta FAQPage además de Product 🔍.
+
+Comenta "ESTRUCTURA" y te escribo por privado con el enlace a la guía 📩
+
+#SEO #Ecommerce #WordPress #Shopify

@@ -1,0 +1,13 @@
+TU SITEMAP NO ES UN TRÁMITE: ES SEÑAL.
+
+"El sitemap.xml no afecta al SEO, solo ayuda a que Google encuentre las URLs" — lo escucho constantemente, y solo es medio verdad 🤨.
+
+Es cierto que estar en el sitemap no garantiza indexación. Pero Google lo usa como señal de qué URLs importan y cuándo revisarlas de nuevo: el campo lastmod, si es preciso, ayuda a priorizar el recrawl ⏱️. El problema es cuando ese sitemap se genera solo (como pasa en muchas plataformas) e incluye URLs redirigidas, con noindex, o directamente rotas 🚩.
+
+Le mandas a Google una lista de "esto importa" que en realidad está llena de ruido — y con fechas de lastmod que no cambian nunca, aunque actualices el producto a diario. Ese ruido diluye la señal de las URLs que sí quieres que se rastreen rápido 🧹.
+
+¿Lo tienes tú? Abre tu sitemap.xml y comprueba 10 URLs al azar: ¿siguen dando 200, son indexables, y el lastmod es real?
+
+Comenta "SITEMAP" y te escribo por privado con el enlace al banco de plantillas para dejarlo limpio 📄
+
+#SEO #Ecommerce #WordPress #Shopify

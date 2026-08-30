@@ -1,0 +1,15 @@
+TU MEJOR PRODUCTO PUEDE SER INVISIBLE.
+
+Te lanzo una pregunta en serio: ¿cuál es la página de tu catálogo que más venderías... si Google supiera que existe? 🤔
+
+Mi respuesta para arrancar: las páginas huérfanas. Productos (o categorías enteras) publicados, en el sitemap, técnicamente "vivos" — pero sin un solo enlace real desde ninguna otra página de tu web. Nadie los enlaza a propósito, simplemente se quedan ahí, esperando que alguien los encuentre.
+
+El problema es que el sitemap ayuda a que Google los descubra, pero el enlazado interno es lo que le dice cuánta importancia tienen. Sin enlaces entrantes reales, esas páginas se quedan en el limbo — a veces ni siquiera terminan de indexarse, por buenas que sean 📉.
+
+¿Lo tienes tú? En Screaming Frog, ordena por "Inlinks" y mira cuántas páginas reciben 0 o 1 enlace interno 🔍.
+
+Ahora te toca: ¿qué producto tuyo llevas meses sabiendo que "debería vender más" y nunca has revisado si Google realmente lo ve? Te leo en comentarios 👇
+
+Comenta "HUÉRFANAS" y te escribo por privado con el enlace a la autoevaluación 📩
+
+#SEO #Ecommerce #WordPress #Shopify

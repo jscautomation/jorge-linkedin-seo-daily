@@ -1,0 +1,13 @@
+REDIRECCIÓN GENÉRICA: 80% MENOS VISIBILIDAD.
+
+Cuando Topshop cerró como marca independiente y sus tiendas online se fusionaron dentro de ASOS, alguien tomó una decisión técnica que parecía razonable: redirigir todo el catálogo antiguo con reglas genéricas en vez de mapear cada URL una por una 😬.
+
+El resultado, documentado por SISTRIX: topshop.com perdió aproximadamente el 80% de su visibilidad en buscadores. Y lo más duro — esa autoridad no pasó a ASOS. Se perdió, sin más, porque las redirecciones "en bloque" (wildcard) no le dicen a Google qué página nueva sustituye exactamente a cuál antigua 📉.
+
+Dos décadas de enlaces y posicionamiento de una marca reconocida, disueltas porque el mapeo no fue específico por URL. Es la trampa más cara de cualquier migración ⚠️: parece que "todo redirige" y por tanto "está resuelto" — pero Google necesita la equivalencia exacta para transferir la relevancia, no solo un destino cualquiera que devuelva 200.
+
+¿Tu ecommerce ha migrado alguna vez de dominio, plataforma o estructura? Con Screaming Frog en modo lista puedes comprobar en minutos si tus redirecciones son específicas o genéricas 🔍.
+
+Comenta "MIGRACIÓN" y te escribo por privado con el enlace a la guía 📩
+
+#SEO #Ecommerce #WordPress #Shopify

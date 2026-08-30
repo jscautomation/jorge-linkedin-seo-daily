@@ -1,0 +1,13 @@
+TU BUSCADOR INTERNO SE INDEXA SOLO.
+
+Cada vez que alguien escribe algo en el buscador de tu ecommerce, tu web genera una URL nueva 🔎. Si esa URL no está protegida, Google la rastrea, la indexa... y la deja compitiendo contra tus categorías reales.
+
+Lo veo en tiendas grandes constantemente: miles de URLs tipo /?s=nombre-de-una-marca-random indexadas, cada una con "0 resultados" o un batiburrillo de productos sin relación 😬. Nadie las creó a propósito — las creó cada búsqueda que ha hecho un visitante en los últimos años.
+
+El problema no es solo que sea contenido pobre: Google reparte presupuesto de rastreo entre esas URLs infinitas en vez de tus fichas nuevas, y de paso puede hacerte rankear (mal) para búsquedas que jamás elegirías 📉.
+
+¿Lo tienes tú? Prueba en Google "site:tudominio.com inurl:?s=" (o el patrón que use tu buscador) y cuenta cuántas aparecen 🧮.
+
+Comenta "BUSCADOR" y te escribo por privado con el enlace a la autoevaluación 📩
+
+#SEO #Ecommerce #WordPress #Shopify
