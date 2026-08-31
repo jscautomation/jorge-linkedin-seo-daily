@@ -22,13 +22,40 @@ foco actual en moda pero abierto a cualquier sector ecommerce. Servicio en 2 fas
 Fase 1 (auditoría SEO de +100 páginas: keyword research, arquitectura SEO
 transaccional, ranking actual, anexos) y Fase 2 (implementación).
 
-**ICP (perfil de cliente ideal) de los leads que capta este contenido**:
-propietarios de ecommerce y responsables de marketing de tiendas online o
-páginas web — perfiles ocupados, no necesariamente técnicos, que valoran algo
-accionable y rápido de aplicar por encima de la teoría. Ten esto en mente al
-elegir qué tipo de recurso encaja mejor con el tema del día (sección 4): un
-propietario de ecommerce agradece más una plantilla o checklist que puede
-usar él mismo en 10 minutos que un informe largo de lectura.
+**Público objetivo del contenido en LinkedIn (vigente desde el 31/08/2026)**:
+el contenido diario no busca solo generar descargas — busca generar
+**engagement y visibilidad del perfil de Jorge ante CEOs y propietarios de
+empresa de cualquier industria**, con foco especial en quienes dirigen un
+ecommerce en WordPress o Shopify (su ICP prioritario, pero no el único
+público al que le tiene que interesar el contenido). Jorge interactúa él
+mismo, de forma manual, con perfiles de este tipo (comentarios, likes,
+mensajes) para construir relación — esta rutina nunca comenta ni interactúa
+en perfiles ajenos, eso sigue siendo 100% de Jorge; lo único que hace esta
+rutina es producir lo que esos perfiles ven cuando entran en el suyo.
+
+**Esto cambia el tono y el enfoque, no la temática técnica**: el contenido
+sigue siendo SEO técnico para ecommerce (los mismos tipos de hallazgo, mito,
+auditoría o tendencia que ya se venían tratando), pero cada pieza tiene que
+abrirse y sostenerse en términos que le importan a quien dirige un negocio —
+coste real (ingresos, margen, cuota de mercado frente a la competencia),
+riesgo (qué pasa si no se arregla) y ventaja competitiva — antes que en
+jerga técnica por sí misma. El detalle técnico se mantiene (da autoridad y
+demuestra que Jorge sabe de lo que habla) pero siempre subordinado a la
+consecuencia de negocio: nunca como apertura ni como único argumento. Ver
+sección 1ter para cómo aplicar esto ángulo por ángulo, y sección 2 para el
+esqueleto del post.
+
+**ICP del recurso descargable (PDF/lead magnet, sección 4)**: propietarios
+de ecommerce y responsables de marketing de tiendas online o páginas web —
+perfiles ocupados, no necesariamente técnicos, que valoran algo accionable y
+rápido de aplicar por encima de la teoría. Este ICP no cambia con la nota de
+arriba — sigue siendo específico de ecommerce porque es quien de verdad va a
+aplicar una guía técnica de SEO, aunque el post que lleva a esa guía ahora
+hable primero a una audiencia más amplia de dueños de negocio. Ten esto en
+mente al elegir qué tipo de recurso encaja mejor con el tema del día
+(sección 4): un propietario de ecommerce agradece más una plantilla o
+checklist que puede usar él mismo en 10 minutos que un informe largo de
+lectura.
 
 Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 
@@ -85,6 +112,40 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
   el mismo día). Nunca lo dejes para "el próximo día" — si no se registra en
   el momento, se pierde el propósito del control.
 
+## 1ter. Enfoque para audiencia CEO/propietario de negocio (vigente desde el 31/08/2026)
+
+La rotación de la sección 1 no cambia — el ángulo del día se elige igual.
+Lo que cambia es cómo se plantea cada ángulo, para que un CEO o propietario
+de empresa (no solo un responsable de marketing técnico) entienda en la
+primera línea por qué le importa. Aplica esto al elegir el hook y el "por
+qué importa" de la sección 2, ángulo por ángulo:
+
+- **Lunes (roast)**: abre con el coste de negocio del error (ingresos que
+  se están dejando sobre la mesa, no solo la descripción técnica del
+  fallo) — el fallo técnico se explica después, como prueba de por qué pasa.
+- **Martes (mito)**: no te quedes en "esto es falso" — conecta el mito con
+  la decisión de negocio equivocada que provoca creérselo (presupuesto mal
+  invertido, prioridad equivocada, tiempo de equipo desperdiciado).
+- **Miércoles (auditoría exprés)**: este ángulo ya es el más directo para
+  este público — comparar con una marca grande y conocida invita a
+  preguntarse "¿me pasará esto también a mí?". Mantenlo así: hallazgo
+  100% verificable, marca real, nunca cliente de Jorge. Solo asegúrate de
+  que el remate conecta el hallazgo con lo que le costaría a cualquier
+  empresa del mismo tamaño, no solo con el dato técnico en sí.
+- **Jueves (tendencia)**: no te quedes en describir el cambio — conéctalo
+  con la decisión estratégica que un propietario debe tomar ahora (dónde
+  invertir, qué canal no puede permitirse ignorar, qué revisar antes de
+  que le cueste cuota de mercado).
+- **Viernes (pregunta abierta)**: formula la pregunta para que también
+  tenga opinión un dueño de negocio, no solo un técnico SEO — sigue
+  siendo un debate real y concreto del sector (nunca genérico), pero
+  planteado en términos de negocio.
+
+El detalle técnico (el "cómo se detecta", las herramientas, la prueba) se
+mantiene igual de riguroso que siempre — es lo que le da autoridad a Jorge
+frente a este público — pero nunca es la apertura ni el único argumento del
+post: siempre va subordinado a la consecuencia de negocio.
+
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
 0. **Titular de apertura** (obligatorio): la primera línea del post — sola,
@@ -94,14 +155,19 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
    imagen del post (sección 3) — texto, recurso e imagen deben "decir lo
    mismo" a primer golpe de vista. Normalmente en mayúsculas y cerrado en
    punto, como frase autoconclusiva — p.ej. "FICHA DE PRODUCTO: GOOGLE YA NO
-   TE VE."
-1. **Hook** (1-2 líneas, dato/situación sorprendente)
+   TE VE." Desde el 31/08/2026, formúlalo en términos que le importen a un
+   CEO/propietario (coste, riesgo, ventaja competitiva) siempre que el tema
+   del día lo permita — no en jerga puramente técnica.
+1. **Hook** (1-2 líneas, dato/situación sorprendente) — dirigido a quien toma
+   la decisión de negocio, no solo a quien lo implementaría técnicamente
+   (ver sección 1ter).
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
-4. **Por qué importa / qué está en juego** — deja claro el coste de no arreglarlo,
-   pero SIN dar los pasos de la solución (ver regla de la sección 4 —
-   la solución completa vive solo en el recurso descargable, el post nunca
-   debe regalarla)
+4. **Por qué importa / qué está en juego** — deja claro el coste de no
+   arreglarlo en términos de negocio (ingresos, riesgo, cuota de mercado —
+   ver sección 1ter), pero SIN dar los pasos de la solución (ver regla de
+   la sección 4 — la solución completa vive solo en el recurso descargable,
+   el post nunca debe regalarla)
 5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada, ver regla
    de tono más abajo)
 6. **CTA de comentario** (método vigente desde el 28/08/2026 — sustituye al
@@ -117,7 +183,11 @@ y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
    exactamente qué comentar.
 
 Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras — si no
-hay un dato real verificable, no se afirma un resultado concreto.
+hay un dato real verificable, no se afirma un resultado concreto. Desde el
+31/08/2026, el lector prioritario es un CEO o propietario de empresa (no
+solo un responsable de marketing técnico) — ver sección 1ter para cómo
+aplicar esto en cada ángulo del día. El rigor técnico no se pierde, pero
+nunca es el argumento de apertura.
 
 **Longitud**: apunta a 150-200 palabras en total, no a 230+. Mismo esqueleto de
 6-7 puntos, pero compacto — si un párrafo puede decir lo mismo en menos
@@ -467,3 +537,30 @@ nota de migración 1:
   cuando haga falta un logo nuevo que no esté ni ahí ni en
   `assets/branding/tool-logos/`, pídeselo a Jorge por el mismo método
   (subirlo al repo) antes de asumir que hay que reconstruirlo a mano.
+
+## Nota de migración 3 (31/08/2026) — audiencia CEO/propietario de negocio
+
+Jorge pidió reenfocar el contenido: el objetivo ya no es solo captar leads
+que descargan un PDF, sino generar **engagement y visibilidad ante CEOs y
+propietarios de empresa de cualquier industria**, con foco especial en
+quienes dirigen un ecommerce en WordPress o Shopify — Jorge interactúa él
+mismo, manualmente, con ese tipo de perfiles (comentarios, likes, mensajes)
+para construir relación, y el contenido de esta rutina es lo primero que
+ven cuando entran en su perfil.
+
+- **No cambia la rotación de ángulos** (sección 1) ni el formato/entrega
+  (imagen + PDF + post, sección 5) — sigue exactamente igual.
+- **Sí cambia el enfoque de cada pieza**: ver la nueva sección 1ter, que da
+  la pauta concreta de cómo reformular cada ángulo de la semana en términos
+  de negocio (coste, riesgo, ventaja competitiva) en vez de jerga
+  puramente técnica. Se actualizaron en consecuencia la sección 0 (público
+  objetivo) y la sección 2 (titular, hook y "por qué importa" del
+  esqueleto del post).
+- **El ICP del recurso descargable (PDF) no cambia** — sigue siendo
+  dueños de ecommerce/marketing (sección 0 y 4): el público más amplio es
+  para el post y la imagen, no para quien ya está descargando una guía
+  técnica de SEO.
+- Si en algún momento Jorge decide que el recurso descargable también debe
+  ampliar su ICP (por ejemplo, a un "diagnóstico rápido" pensado para
+  cualquier CEO, no solo para quien ya sabe de SEO), avisa para actualizar
+  también la sección 4 — de momento sigue igual.
