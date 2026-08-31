@@ -1,0 +1,13 @@
+TUS 301 SE ENCADENAN. Y GOOGLE SE RINDE.
+
+En la auditoría de un ecommerce de moda que ha cambiado de plataforma dos veces en los últimos años, el informe "Redirect Chains" de Screaming Frog escupió URLs con hasta cinco 301 seguidos antes de llegar a la página final.
+
+Lo típico: cada migración redirigió las URLs antiguas a la versión "de turno" en vez de a la definitiva. Prestashop -> WooCommerce -> Shopify, y nadie actualizó las redirecciones para saltar directo al destino real. Se fue acumulando una telaraña de saltos que nadie había revisado.
+
+Google lo dice en su propia documentación de crawl budget: cada salto adicional cuesta rastreo, y a partir de cierto número de redirecciones puede dejar de seguir la cadena sin más. Esa URL antigua, con años de enlaces y autoridad detrás, deja de transmitir nada a la página que hoy vende.
+
+No hace falta migrar tres veces para tenerlo — con una sola migración sin plan de redirecciones ya se generan cadenas así.
+
+Te cuento cómo revisar las tuyas en la guía gratis. Comenta "CADENAS" y te escribo por privado con el enlace.
+
+#SEO #Ecommerce #WordPress #Shopify

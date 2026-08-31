@@ -15,6 +15,7 @@ No editar el orden ni borrar filas antiguas — es el histórico completo.
 |---|---|---|
 | 2026-08-17 | Duplicación de contenido por parámetros de filtro (talla/color) generando ~40 URLs clon de la misma categoría | Caso real ecommerce moda, +2M€/mes, posición 14→4 en 6 semanas. Solución: canonical hacia la URL limpia + NO bloquear por robots.txt + forzar recrawl en Search Console |
 | 2026-08-24 | Categorías de temporada pasada que devuelven 200 OK sin productos (en vez de 410/301) y siguen indexadas — "categorías fantasma" que compiten contra la colección nueva de cada temporada | Caso real ecommerce moda por temporadas, 140 de ~780 categorías indexadas en ese estado, algunas +1 año. Solución: encontrarlas con Screaming Frog (custom extraction + status code), clasificar recurrente-estacional vs. descatalogada-para-siempre, contenido "vuelve pronto" o 301 según el caso, confirmar en Search Console |
+| 2026-08-31 | Cadenas de redirecciones 301 acumuladas en migraciones sucesivas (Prestashop→WooCommerce→Shopify), cada URL antigua saltando 2-5 veces antes de llegar a la página final en vez de un único salto directo | Caso anonimizado ecommerce moda con dos migraciones de plataforma. Solución: detectar con el informe "Redirect Chains" de Screaming Frog (Always Follow Redirects activado), reescribir cada redirección de origen para que apunte en un solo salto a la URL final actual, y añadir la revisión de cadenas al QA de cualquier migración futura |
 
 ## Martes — Mito SEO desmontado con datos
 
