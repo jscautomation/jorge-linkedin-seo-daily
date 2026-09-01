@@ -4,14 +4,16 @@ Genera el PDF lead magnet (portada + intro + tarjetas de contenido + cierre
 con CTA de las 2 fases). Mismo sistema visual siempre — lo que cambia cada
 día es el CONFIG de abajo (título, intro, puntos).
 
-Desde el 24/08/2026 usa el MISMO lenguaje visual que el carrusel de
-LinkedIn (`generate_carousel_post.py` / AUTOMATION_BRIEF.md sección 3):
-fondo negro con rejilla sutil, texto crema, ArchivoBlack para titulares
-con resaltado naranja tipo "subrayador" en las frases clave, Barlow-Bold
-para cuerpo y etiquetas, foto+logo arriba en el mismo sitio en toda página.
-Antes tenía su propio estilo (portada con degradado + tarjetas claras) —
-se retiró para que el PDF gated y el carrusel se sientan como el mismo
-documento partido en dos formatos, no como dos marcas distintas.
+Desde el 01/09/2026 usa el MISMO lenguaje visual que la imagen única del
+post de LinkedIn (`generate_single_post_image.py` / AUTOMATION_BRIEF.md
+sección 3): fondo crema `#FFFCF4`, titular en naranja `#FF914D` con
+League Spartan ExtraBold, banda oscura `#282828` (footer de contenido y
+CTA), foto circular con anillo naranja + firma "by Jorge Segovia" en el
+mismo sitio en toda página. Antes (24/08-01/09/2026) usaba el lenguaje
+visual del carrusel ya retirado (fondo negro, ArchivoBlack/Barlow-Bold,
+naranja `#FF5A1F`) — se cambió para que el PDF gated y el post/imagen del
+día se sientan como el mismo documento de marca, no como dos estilos
+distintos.
 
 Uso: python3 scripts/generate_lead_magnet_pdf.py [ruta_de_salida.pdf]
 Todas las rutas son relativas al repo (funciona igual en Windows local que
@@ -21,11 +23,9 @@ import re
 import sys
 from pathlib import Path
 
-from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib import colors
-from reportlab.lib.utils import ImageReader
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_LEFT
 from reportlab.pdfbase import pdfmetrics
@@ -41,17 +41,21 @@ FONT_DIR = REPO_ROOT / "assets" / "fonts"
 LOGO_PATH = REPO_ROOT / "assets" / "branding" / "logo.png"
 PHOTO_PATH = REPO_ROOT / "assets" / "branding" / "foto-jorge-circle.png"
 
-pdfmetrics.registerFont(TTFont("ArchivoBlack", str(FONT_DIR / "ArchivoBlack-Regular.ttf")))
-pdfmetrics.registerFont(TTFont("BarlowBold", str(FONT_DIR / "Barlow-Bold.ttf")))
+pdfmetrics.registerFont(TTFont("LSBold", str(FONT_DIR / "LeagueSpartan-Bold.ttf")))
+pdfmetrics.registerFont(TTFont("LSExtraBold", str(FONT_DIR / "LeagueSpartan-ExtraBold.ttf")))
 
-# Misma paleta que el carrusel (ver AUTOMATION_BRIEF.md sección 3.2) — no
-# tocar sin cambiar también el motor de generate_carousel_post.py.
-BG = colors.HexColor("#0C0C0C")
-GRID = colors.HexColor("#222222")
-CREAM = colors.HexColor("#F4EEE3")
-ORANGE = colors.HexColor("#FF5A1F")
-INK = colors.HexColor("#111111")
-GRAY = colors.HexColor("#969691")
+# Misma paleta que la imagen del post (ver AUTOMATION_BRIEF.md sección 3.2)
+# — no tocar sin cambiar también el motor de generate_single_post_image.py.
+BG = colors.HexColor("#FFFCF4")      # crema — fondo de página
+ORANGE = colors.HexColor("#FF914D")  # titular / resaltado
+BAND = colors.HexColor("#282828")    # banda oscura — footer de contenido y CTA
+INK = colors.HexColor("#111111")     # texto principal sobre fondo crema
+GRAY = colors.HexColor("#A8A8A2")    # subtexto sobre la banda oscura (no sobre crema — ahí no da contraste)
+# Tonos derivados de INK para texto secundario sobre crema (kicker, pie de
+# página, recap) y para líneas/bordes sutiles — no son colores nuevos, son
+# variantes de opacidad de INK sobre el fondo crema.
+INK_MUTED = colors.Color(INK.red, INK.green, INK.blue, alpha=0.6)
+DIVIDER = colors.Color(INK.red, INK.green, INK.blue, alpha=0.12)
 
 # ==================================================================
 # 👉 CONFIG: esto cambia cada día. El resto del archivo (estilos,
@@ -59,8 +63,8 @@ GRAY = colors.HexColor("#969691")
 #
 # NOVEDAD 24/08/2026: cualquier campo de texto puede envolver una frase
 # clave entre <hl>...</hl> para que salga resaltada con caja naranja —
-# el mismo efecto "subrayador" de los titulares del carrusel. Es
-# opcional: si no usas <hl>, el texto sale igual, solo que sin resaltar.
+# el mismo efecto que el resaltado de los titulares de la imagen del post.
+# Es opcional: si no usas <hl>, el texto sale igual, solo que sin resaltar.
 # ==================================================================
 COVER_TITLE_HTML = "<hl>Los 12 errores SEO</hl><br/>que más dinero cuestan<br/>a un ecommerce"
 COVER_SUBTITLE = "La checklist que uso en cada auditoría SEO a tiendas online de facturación alta (WordPress y Shopify)"
@@ -147,89 +151,59 @@ OUTPUT_PATH = sys.argv[1] if len(sys.argv) > 1 else str(
 
 def hl(text):
     """Convierte <hl>frase</hl> en el span con caja naranja de fondo que
-    reportlab SÍ soporta de verdad (<font backColor>) — mismo efecto
-    "subrayador" que draw_mixed_line() en el carrusel. Los espacios finos
-    (&#160;) hacen de padding horizontal, ya que <font> no admite padding."""
+    reportlab SÍ soporta de verdad (<font backColor>) — mismo efecto de
+    resaltado que draw_mixed_line()/el titular de la imagen del post. Los
+    espacios finos (&#160;) hacen de padding horizontal, ya que <font> no
+    admite padding."""
     return re.sub(
         r"<hl>(.*?)</hl>",
-        r'<font color="#111111" backColor="#FF5A1F">&#160;\1&#160;</font>',
+        r'<font color="#111111" backColor="#FF914D">&#160;\1&#160;</font>',
         text,
     )
 
-
-def _recolored_logo():
-    """Mismo truco que en el carrusel: el logo es texto negro + naranja
-    sobre fondo transparente -> para fondo oscuro, el negro se recolorea
-    a crema y el naranja se deja tal cual."""
-    im = Image.open(LOGO_PATH).convert("RGBA")
-    px = im.load()
-    w, h = im.size
-    for y in range(h):
-        for x in range(w):
-            r, g, b, a = px[x, y]
-            if a > 30 and r < 100 and g < 100 and b < 100:
-                px[x, y] = (244, 238, 227, a)
-    return im
-
-
-LOGO_DARK = ImageReader(_recolored_logo())
 
 styles_registry = {}
 
 
 def style(name, **kw):
-    kw.setdefault("fontName", "BarlowBold")
-    kw.setdefault("textColor", CREAM)
+    kw.setdefault("fontName", "LSBold")
+    kw.setdefault("textColor", INK)
     kw.setdefault("alignment", TA_LEFT)
     s = ParagraphStyle(name, **kw)
     styles_registry[name] = s
     return s
 
 
-style_h1_cover = style("h1_cover", fontName="ArchivoBlack", fontSize=27, leading=35, spaceAfter=14)
+style_h1_cover = style("h1_cover", fontName="LSExtraBold", fontSize=27, leading=35, spaceAfter=14, textColor=ORANGE)
 style_sub_cover = style("sub_cover", fontSize=12.5, leading=18)
-style_author_name = style("author_name", fontName="ArchivoBlack", fontSize=12, leading=15, textColor=INK)
+style_author_name = style("author_name", fontName="LSExtraBold", fontSize=12, leading=15, textColor=INK)
 style_author_role = style("author_role", fontSize=9, leading=12, textColor=INK)
-style_h2 = style("h2", fontName="ArchivoBlack", fontSize=18, leading=23, spaceAfter=10)
-style_body = style("body", fontSize=10, leading=15.5, spaceAfter=8, textColor=CREAM)
+style_h2 = style("h2", fontName="LSExtraBold", fontSize=18, leading=23, spaceAfter=10)
+style_body = style("body", fontSize=10, leading=15.5, spaceAfter=8)
 style_intro = style("intro", fontSize=11.5, leading=18)
-style_error_title = style("error_title", fontName="ArchivoBlack", fontSize=13, leading=17)
-style_label = style("label", fontSize=8.5, leading=12, textColor=ORANGE, spaceBefore=10, spaceAfter=3)
-style_cta_title = style("cta_title", fontName="ArchivoBlack", fontSize=22, leading=28, spaceAfter=14)
+style_error_title = style("error_title", fontName="LSExtraBold", fontSize=13, leading=17)
+style_label = style("label", fontName="LSExtraBold", fontSize=8.5, leading=12, spaceBefore=10, spaceAfter=3)
+style_cta_title = style("cta_title", fontName="LSExtraBold", fontSize=22, leading=28, spaceAfter=14, textColor=ORANGE)
 style_cta_body = style("cta_body", fontSize=11, leading=16)
-style_cta_phase_h = style("cta_phase_h", fontName="ArchivoBlack", fontSize=11.5, leading=15, textColor=INK)
+style_cta_phase_h = style("cta_phase_h", fontName="LSExtraBold", fontSize=11.5, leading=15, textColor=INK)
 style_cta_phase_b = style("cta_phase_b", fontSize=9.7, leading=14, textColor=INK)
-style_recap = style("recap", fontSize=8.3, leading=13, textColor=GRAY)
-style_intro_stat_num = style("intro_stat_num", fontName="ArchivoBlack", fontSize=48, leading=48,
+style_recap = style("recap", fontSize=8.3, leading=13, textColor=INK_MUTED)
+style_intro_stat_num = style("intro_stat_num", fontName="LSExtraBold", fontSize=48, leading=48,
                               textColor=INK, alignment=1)
 style_intro_stat_lbl = style("intro_stat_lbl", fontSize=9, leading=12, textColor=INK, alignment=1)
-style_kicker = style("kicker", fontSize=8.5, leading=11, textColor=GRAY)
-
-
-def _grid(c, doc):
-    """Rejilla sutil de fondo, igual que canvas() en el carrusel."""
-    c.setStrokeColor(GRID)
-    c.setLineWidth(0.5)
-    step = 42 * mm
-    x = 0
-    while x <= doc.pagesize[0]:
-        c.line(x, 0, x, doc.pagesize[1])
-        x += step
-    y = 0
-    while y <= doc.pagesize[1]:
-        c.line(0, y, doc.pagesize[0], y)
-        y += step
+style_kicker = style("kicker", fontSize=8.5, leading=11, textColor=INK_MUTED)
 
 
 def _header(c, doc):
-    """Logo arriba a la izquierda + etiqueta debajo + foto en círculo
-    naranja arriba a la derecha — igual que header()+kicker() en el
-    carrusel, y en el mismo sitio en TODAS las páginas."""
+    """Logo arriba a la izquierda + etiqueta debajo + foto en círculo con
+    anillo naranja arriba a la derecha — mismo tratamiento que la firma
+    "by Jorge Segovia" de la imagen del post, en el mismo sitio en TODAS
+    las páginas."""
     logo_w, logo_h = 20 * mm, 14.2 * mm
     top_y = doc.pagesize[1] - 14 * mm - logo_h
-    c.drawImage(LOGO_DARK, 20 * mm, top_y, width=logo_w, height=logo_h, mask="auto")
-    c.setFillColor(GRAY)
-    c.setFont("BarlowBold", 8)
+    c.drawImage(str(LOGO_PATH), 20 * mm, top_y, width=logo_w, height=logo_h, mask="auto")
+    c.setFillColor(INK_MUTED)
+    c.setFont("LSBold", 8)
     c.drawString(20 * mm, top_y - 10, COVER_TAG)
 
     photo_d = 17 * mm
@@ -244,22 +218,28 @@ def page_chrome(c: pdfcanvas.Canvas, doc):
     c.saveState()
     c.setFillColor(BG)
     c.rect(0, 0, doc.pagesize[0], doc.pagesize[1], fill=1, stroke=0)
-    _grid(c, doc)
     _header(c, doc)
     c.restoreState()
 
 
 def content_chrome(c: pdfcanvas.Canvas, doc):
+    """Chrome de las páginas de contenido/CTA: además del header, una
+    banda oscura fina al pie — el mismo elemento de marca que la barra CTA
+    de la imagen del post (fondo crema arriba, banda #282828 abajo)."""
     page_chrome(c, doc)
     c.saveState()
-    c.setFillColor(GRAY)
-    c.setFont("BarlowBold", 7.5)
-    c.drawString(20 * mm, 10 * mm, FOOTER_TITLE)
-    c.drawRightString(doc.pagesize[0] - 20 * mm, 10 * mm, f"{doc.page - 1}")
+    band_h = 14 * mm
+    c.setFillColor(BAND)
+    c.rect(0, 0, doc.pagesize[0], band_h, fill=1, stroke=0)
+    c.setFillColor(BG)
+    c.setFont("LSBold", 7.5)
+    c.drawString(20 * mm, band_h / 2 - 3, FOOTER_TITLE)
+    c.setFillColor(ORANGE)
+    c.drawRightString(doc.pagesize[0] - 20 * mm, band_h / 2 - 3, f"{doc.page - 1}")
     c.restoreState()
 
 
-def badge(text, size=9 * mm, bg=ORANGE, fg=INK, font="ArchivoBlack", fontsize=12):
+def badge(text, size=9 * mm, bg=ORANGE, fg=INK, font="LSExtraBold", fontsize=12):
     t = Table([[text]], colWidths=[size], rowHeights=[size])
     t.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), bg),
@@ -300,7 +280,7 @@ def point_card(num, title, why, detect, fix):
         ("LEFTPADDING", (0, 0), (-1, -1), 16), ("RIGHTPADDING", (0, 0), (-1, -1), 16),
         ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ("TOPPADDING", (0, 0), (0, 0), 14), ("BOTTOMPADDING", (0, 2), (0, 2), 14),
-        ("BOX", (0, 0), (-1, -1), 0.8, GRID),
+        ("BOX", (0, 0), (-1, -1), 0.8, DIVIDER),
         ("LINEBEFORE", (0, 0), (0, 0), 3, ORANGE),
         ("ROUNDEDCORNERS", [8, 8, 8, 8]),
     ]))
@@ -371,7 +351,7 @@ def build():
     ]))
     story.append(intro_table)
     story.append(Spacer(1, 14))
-    story.append(HRFlowable(width="100%", thickness=0.8, color=GRID))
+    story.append(HRFlowable(width="100%", thickness=0.8, color=DIVIDER))
     story.append(PageBreak())
 
     # ---------- PUNTOS (2 por página) ----------
@@ -394,7 +374,7 @@ def build():
     story.append(Spacer(1, 22))
 
     def phase_badge(n):
-        return badge(str(n), bg=INK, fg=CREAM, fontsize=11)
+        return badge(str(n), bg=INK, fg=BG, fontsize=11)
 
     phase_table = Table([
         [phase_badge(1), Paragraph("FASE 1 · AUDITORÍA SEO", style_cta_phase_h),

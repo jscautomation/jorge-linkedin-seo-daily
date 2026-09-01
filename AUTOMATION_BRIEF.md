@@ -333,6 +333,21 @@ catálogo por ahora — ver
 
 ### Cómo generar el PDF guía/checklist (formato por defecto)
 
+**Identidad visual (vigente desde el 01/09/2026, obligatoria — no se puede
+desviar de esto)**: el PDF SIEMPRE se genera con el mismo lenguaje visual
+que la imagen del post (sección 3.2) — fondo crema `#FFFCF4`, titulares en
+naranja `#FF914D` (League Spartan ExtraBold), banda oscura `#282828` como
+footer de contenido y CTA, texto principal en `#111111`, foto circular con
+anillo naranja + firma "by Jorge Segovia" en la cabecera de cada página.
+Antes (24/08-01/09/2026) el motor usaba el lenguaje visual del carrusel ya
+retirado (fondo negro, ArchivoBlack/Barlow-Bold, naranja `#FF5A1F`) — quedó
+desactualizado cuando Jorge cambió el formato de la imagen del post el
+28/08/2026 y se corrigió el 01/09/2026 para que el PDF y el post/imagen del
+día se sientan siempre como el mismo documento de marca. El motor de
+render (`scripts/generate_lead_magnet_pdf.py`, todo lo que hay antes de la
+sección CONFIG) ya implementa esto — no lo reviertas a la paleta antigua ni
+inventes una paleta nueva sin instrucción expresa de Jorge.
+
 Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
 principio del archivo (sección CONFIG) según el tema de hoy:
 
@@ -371,7 +386,8 @@ otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
 sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
 la hay).
 
-**Ojo con las fuentes**: este PDF usa ArchivoBlack/Barlow-Bold en vez de las
+**Ojo con las fuentes**: este PDF usa League Spartan (Bold/ExtraBold, las
+mismas dos fuentes que la imagen del post — ver sección 3.2) en vez de las
 fuentes estándar de reportlab, así que **no soporta emoji ni la flecha `→`
 (U+2192)** — sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
 `COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE` ni
@@ -564,3 +580,28 @@ ven cuando entran en su perfil.
   ampliar su ICP (por ejemplo, a un "diagnóstico rápido" pensado para
   cualquier CEO, no solo para quien ya sabe de SEO), avisa para actualizar
   también la sección 4 — de momento sigue igual.
+
+## Nota de migración 4 (01/09/2026) — el PDF pasa a la identidad visual vigente
+
+El motor de `scripts/generate_lead_magnet_pdf.py` seguía con el lenguaje
+visual del carrusel retirado el 28/08/2026 (fondo negro, ArchivoBlack/
+Barlow-Bold, naranja `#FF5A1F`) mientras que la imagen del post ya usaba
+desde esa misma fecha el formato crema/League Spartan de la sección 3 —
+Jorge pidió corregir esa desincronización para que el PDF y la imagen del
+día se vean siempre como la misma marca.
+
+- Se reescribió el motor de render del PDF (todo lo anterior a CONFIG en
+  `scripts/generate_lead_magnet_pdf.py`) para usar exactamente la paleta de
+  la sección 3.2 (`#FFFCF4` crema, `#FF914D` naranja, `#282828` banda
+  oscura, `#111111` texto) y las mismas fuentes League Spartan
+  Bold/ExtraBold, con la foto de Jorge en círculo con anillo naranja en la
+  cabecera de cada página, igual que la firma de la imagen del post.
+- Las etiquetas de cada punto ("POR QUÉ OCURRE" / "CÓMO DETECTARLO" / "CÓMO
+  ARREGLARLO") pasan de naranja a `#111111`: el naranja de la marca no da
+  contraste suficiente en texto pequeño sobre fondo crema (sí funciona para
+  titulares grandes, que es como lo usa Jorge en la imagen del post).
+- Ver sección 4 ("Cómo generar el PDF guía/checklist") para la regla
+  vigente: el PDF SIEMPRE se genera con esta identidad, no se revierte a la
+  paleta antigua del carrusel sin instrucción expresa de Jorge.
+- No cambia nada del CONFIG diario (título, intro, puntos, CTA) ni de cómo
+  se genera o se nombra el archivo — solo el motor de estilos.
