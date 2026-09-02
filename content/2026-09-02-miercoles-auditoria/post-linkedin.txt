@@ -1,0 +1,11 @@
+MANGO PERDIÓ EL 75% DE SU VISIBILIDAD EN GOOGLE.
+
+Imagina perder tres de cada cuatro búsquedas en las que tu marca aparecía en Google España. Le pasó a Mango — lo documentó SISTRIX con datos públicos: -75% de visibilidad en google.es, -90,5% en google.fr, su segundo mercado.
+
+Lo inquietante no es la cifra, es la causa: dos de los fallos que lo provocaron son errores de manual que Google lleva años avisando que no se cometan. Enlaces y contenido clave escondidos detrás de JavaScript/CSS, que el rastreador no siempre procesa bien. Y cambios de URL con redirecciones 302 (temporales) en vez de 301 (permanentes) — le dices a Google "esto es provisional" justo cuando necesitas transmitirle toda tu autoridad a la URL nueva.
+
+¿Cómo lo compruebas en tu web en 2 minutos? Abre el código fuente y mira si tus enlaces de categoría están en el HTML plano. Y en Search Console, revisa si tus redirecciones antiguas devuelven 301 o 302.
+
+Si a Mango esto le costó tres cuartas partes de su visibilidad, ¿cuánto tardarías tú en notarlo en la tuya? Comenta "302" y te escribo por privado con el enlace a la guía.
+
+#SEO #Ecommerce #WordPress #Shopify
