@@ -153,6 +153,22 @@ Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
 importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
 preguntas de autochequeo) + 1 `closing`.
 
+**Kicker numerado + gancho de la guía en la portada (vigente desde el
+03/09/2026, a petición expresa de Jorge)**: el `kicker` (aparece en todas
+las slides, no solo la portada) pasa a llevar el número correlativo de la
+mejora de hoy dentro de la guía, patrón `MEJORA SEO Nº<N> · ECOMMERCE` —
+`<N>` es el número de fila que le corresponde la mejora de hoy en
+`TEMAS_TRATADOS.md` (una fila = un día publicado, se cuenta desde el
+principio del histórico, no solo desde que existe la guía en Notion).
+Además, el `subtitle` de la portada (`cover`) termina, después del gancho
+específico del día, con esta frase fija (mismo `<N>` que el kicker): `Es
+la mejora nº<N> de mi guía SEO para ecommerce, que actualizo cada día.
+¿Quieres tener acceso?` — refuerza en la primera slide, antes de que
+nadie deslice, que esto es una entrada de una guía viva (la de Notion,
+sección 4) a la que se puede pedir acceso comentando la palabra clave,
+sin repetir todavía esa palabra (eso ya lo hace el recuadro naranja de
+abajo, ver más abajo).
+
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
 día en el patrón `COMENTA "<PALABRA>" Y TE LO ENVÍO`. Nunca menciones un PDF
