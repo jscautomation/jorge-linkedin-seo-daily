@@ -4,12 +4,13 @@ Este documento es la única fuente de verdad que necesita la ejecución programa
 de cada día (7 días/semana, 8:00 Europe/Madrid). Contiene todo lo acordado con
 Jorge: marca, formato, estructura y qué entregar.
 
-**Reescritura a fondo vigente desde el 03/09/2026** (ver nota de migración al
+**Reescritura a fondo vigente desde el 03/09/2026** (ver notas de migración al
 final del documento): desaparece la rotación de ángulos por día de la semana,
 se publica los 7 días, vuelve el formato carrusel (ahora en paleta crema) como
 publicación principal, y el recurso descargable diario desaparece — se
-sustituye por un extracto que se añade cada día a una única guía viva en
-Notion, a la que se llega vía Mailchimp.
+sustituye por un extracto que la propia rutina añade cada día, vía el
+conector MCP de Notion, a una única guía viva en Notion, a la que se llega
+por Mailchimp.
 
 ## 0. Contexto del negocio
 
@@ -73,9 +74,9 @@ mismo día). Nunca lo dejes para "el próximo día".
 0. **Titular de apertura** (obligatorio): primera línea del post, sola, en
    su propio párrafo — corto y contundente, en términos de negocio (coste,
    riesgo, ventaja competitiva) siempre que el tema lo permita. Mismo
-   titular que la portada del carrusel (sección 3) y el extracto de Notion
-   (sección 4) — texto, carrusel y extracto deben "decir lo mismo" a primer
-   golpe de vista.
+   titular que la portada del carrusel (sección 3) y el título de la
+   entrada que se añade a la guía de Notion (sección 4) — post, carrusel y
+   guía deben "decir lo mismo" a primer golpe de vista.
 1. **Hook** (1-2 líneas, dato/situación sorprendente) — dirigido a quien toma
    la decisión de negocio, no solo a quien lo implementaría técnicamente.
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
@@ -171,38 +172,55 @@ Los scripts antiguos (`generate_single_post_image.py`,
 `generate_post_image.py`) se quedan en el repo sin usarse — no tocar salvo
 instrucción expresa.
 
-## 4. El recurso: guía única en Notion (ya NO hay PDF nuevo cada día)
+## 4. El recurso: guía única en Notion, ampliada por la rutina vía MCP
 
-**Cambio de fondo desde el 03/09/2026**: ya no se genera un PDF/recurso
-distinto cada día (`scripts/generate_lead_magnet_pdf.py` queda en el repo
-sin usarse). Ahora existe **una única guía en Notion, pública, que se va
-ampliando cada día** con la mejora SEO del día.
+**Cambio de fondo desde el 03/09/2026, revisado el mismo día**: ya no se
+genera un PDF/recurso distinto cada día (`scripts/generate_lead_magnet_pdf.py`
+queda en el repo sin usarse). Existe **una única guía en Notion, pública,
+que la propia rutina amplía cada día** — no un archivo que Jorge tenga que
+pegar a mano, como se planteó en un primer momento: la rutina tiene acceso
+directo a Notion vía conector MCP y escribe ahí ella misma.
+
+**Página de la guía**: "Guía SEO Ecommerce — Jorge Segovia"
+(`https://app.notion.com/p/3d050528a86481cab470f368ebfbb88c`). Es la página
+exacta y única donde añadir contenido — no crear páginas nuevas ni buscar
+otra.
 
 ### 4.1 El embudo completo (solo el paso 3 lo hace la rutina)
 
 1. Alguien comenta la palabra clave del día en el post o el carrusel.
 2. Jorge le escribe por DM (manual, fuera del alcance de esta rutina) con
    una URL de Mailchimp. La persona deja su correo ahí y es redirigida
-   automáticamente a la landing de Notion con la guía completa.
-3. **Lo único que genera la rutina**: el extracto de texto del día que
-   Jorge pega en esa guía de Notion para que siga creciendo.
+   automáticamente a la página de Notion de arriba, con la guía completa.
+3. **Lo único que genera la rutina**: usando el conector MCP de Notion,
+   añade al final de esa página (después del contenido ya existente, sin
+   borrar ni reescribir nada anterior) una entrada nueva con la mejora SEO
+   del día.
 
-### 4.2 Cómo escribir el extracto del día
+### 4.2 Cómo escribir y añadir la entrada del día
 
 A diferencia del post y el carrusel (que nunca dan la solución completa —
-regla crítica de la sección 2, punto 4), **el extracto de Notion sí lleva la
+regla crítica de la sección 2, punto 4), **la entrada de Notion sí lleva la
 solución completa, paso a paso** — es el recurso final del embudo, no un
 teaser.
 
-Estructura sugerida (ajustar si la plantilla de Notion de Jorge difiere):
+Estructura de cada entrada (como un bloque más de la página, con un
+separador antes del siguiente):
 
-- Título de la entrada (mismo o similar al titular del día — sección 2, punto 0)
+- Encabezado con el título de la entrada (mismo o similar al titular del
+  día — sección 2, punto 0) y la fecha
 - Contexto/diagnóstico breve
 - Por qué importa en términos de negocio
 - Solución paso a paso, completa
 - Herramientas usadas para detectarlo/arreglarlo
+- Separador (`---`) antes de la siguiente entrada del día siguiente
 
-Guarda como `content/<carpeta-del-día>/extracto-notion.md`.
+Añade esta entrada a la página de Notion de arriba, al final de todo lo que
+ya haya (nunca al principio, nunca sobrescribiendo entradas anteriores).
+Además, guarda una copia del mismo contenido como
+`content/<carpeta-del-día>/extracto-notion.md` en el repo — es solo un
+respaldo por si falla la escritura en Notion, no hace falta que Jorge haga
+nada con ese archivo si la escritura en Notion ha ido bien.
 
 ## 5. Entrega diaria — output
 
@@ -211,7 +229,7 @@ existir) con:
 
 - `post-linkedin.txt`
 - `carrusel-1.png` … `carrusel-N.png` + `carrusel-post.pdf`
-- `extracto-notion.md`
+- `extracto-notion.md` (copia de respaldo de lo que ya se añadió a Notion)
 - Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — sección 1)
 
 Haz commit y push de toda la carpeta (mismo remoto del que se clonó) tan
@@ -221,13 +239,14 @@ Al terminar, envía los archivos a Jorge (vía `SendUserFile`) con una nota
 breve: 1) copiar el post y subir `carrusel-post.pdf` a LinkedIn como
 publicación de tipo Documento, 2) la palabra clave del día, para cuando
 lleguen los comentarios (Jorge responde por DM con la URL de Mailchimp —
-paso 100% manual), 3) el extracto ya está listo para pegar en la guía de
-Notion.
+paso 100% manual), 3) confirmación de que la entrada de hoy ya se añadió a
+la guía de Notion (o aviso si falló y hay que pegarla a mano desde el
+archivo de respaldo).
 
 **Nunca publicar nada en vivo automáticamente** — el post, el carrusel, la
-respuesta a comentarios, el DM con la URL de Mailchimp y el pegado en Notion
-son siempre acción manual de Jorge; esta rutina solo entrega archivos y hace
-commit/push al repositorio.
+respuesta a comentarios y el DM con la URL de Mailchimp son siempre acción
+manual de Jorge; esta rutina entrega archivos, hace commit/push al
+repositorio, y añade la entrada del día a Notion.
 
 ## 6. Entorno de ejecución (nube)
 
@@ -238,6 +257,10 @@ commit/push al repositorio.
 - **Además, y siempre**, haz commit y push de la carpeta `content/<día>/`
   generada al repositorio, como red de seguridad por si la entrega directa
   fallara.
+- Usa el conector MCP de Notion para añadir la entrada del día a la página
+  de la guía (sección 4). Si la escritura en Notion falla, no lo des por
+  perdido en silencio: avísalo explícitamente en la entrega y confía en que
+  el archivo de respaldo (`extracto-notion.md`) permite pegarlo a mano.
 
 ## 7. Fuera del alcance de la rutina en la nube
 
@@ -245,10 +268,8 @@ Todo esto es acción manual de Jorge, ninguna la ejecuta la rutina:
 
 - Publicar el post/carrusel en LinkedIn y responder a comentarios.
 - Escribir el DM con la URL de Mailchimp a quien comente la palabra clave.
-- Todo lo que pase dentro de Mailchimp (captura del email, redirección) y el
-  mantenimiento de la landing de Notion — la rutina solo entrega el texto
-  del extracto para que Jorge lo pegue, no toca Mailchimp ni Notion
-  directamente.
+- Todo lo que pase dentro de Mailchimp (captura del email, redirección) — la
+  rutina sí escribe en Notion (ver sección 4), pero no toca Mailchimp.
 
 (La sincronización de segmentos de Klaviyo por título de PDF, que existía
 como sección 7 hasta el 03/09/2026, queda retirada — ya no hay un PDF nuevo
@@ -275,12 +296,27 @@ Resumen de lo que cambió respecto a la versión anterior (vigente desde el
   pasa a ser el script que se queda sin usar.
 - **Desaparece el PDF/recurso nuevo cada día** (`scripts/generate_lead_magnet_pdf.py`
   queda sin usar). En su lugar, una única guía viva en Notion que se amplía
-  cada día con un extracto (nueva sección 4). El embudo de captación sigue
-  empezando igual que antes (comentar palabra clave → DM manual de Jorge),
-  pero el enlace que se envía por DM ahora es una URL de Mailchimp que
-  redirige a la landing de Notion, en vez de un enlace directo al PDF
-  alojado en GitHub.
+  cada día con una entrada nueva (nueva sección 4).
 - **Se retira la sección de Klaviyo** (antes sección 7): dependía de un
   título de PDF nuevo cada día que ya no existe.
 - **`TEMAS_TRATADOS.md` cambia de estructura**: de 5 tablas por ángulo a una
   única lista cronológica (ver ese archivo para el detalle).
+
+## Nota de migración 2 (03/09/2026, mismo día) — Notion pasa a ser automático
+
+Unas horas después de la reescritura de arriba, Jorge conectó el conector
+MCP de Notion a la cuenta que ejecuta esta rutina. Esto cambia el punto más
+débil del plan anterior:
+
+- **Antes** (nota de migración 1, mismo día): la rutina generaba
+  `extracto-notion.md` y Jorge tenía que pegarlo él mismo en Notion.
+- **Ahora**: la rutina usa el conector MCP de Notion para **añadir la
+  entrada directamente** a la página de la guía (sección 4), sin
+  intervención manual de Jorge. `extracto-notion.md` se sigue guardando en
+  el repo, pero solo como copia de respaldo por si la escritura en Notion
+  falla ese día.
+- Se creó la página **"Guía SEO Ecommerce — Jorge Segovia"** en el Notion de
+  Jorge para este propósito — es la página exacta a la que debe escribir la
+  rutina (sección 4). El resto del embudo (comentar palabra clave → DM
+  manual de Jorge con URL de Mailchimp → la persona deja su email → llega a
+  esta página) no cambia.
