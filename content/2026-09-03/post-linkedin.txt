@@ -1,0 +1,13 @@
+ESTÁS PERDIENDO VENTAS EN GOOGLE SHOPPING.
+
+El 1 de septiembre, muchas tiendas dejaron de sincronizar precio y stock con Google Shopping — y la mayoría de sus dueños todavía no lo sabe.
+
+No es una caída de Google. Es un plazo que venció: el 18 de agosto terminó la migración obligatoria de la vieja Content API for Shopping a la nueva Merchant API. Desde el 1 de septiembre, las peticiones que aún usan la API antigua fallan. Tú no llamas a esa API en persona — lo hace la app o el plugin de feeds que tienes contratado. Si no migró a tiempo, tu catálogo en Shopping sigue mostrando precio y stock de hace días.
+
+El riesgo real: un precio desactualizado puede acabar en suspensión de listados por discrepancia, y cada día con el feed congelado es tráfico y ventas cayendo hacia el competidor que sí sincroniza bien — sin que tu tienda muestre ningún error visible.
+
+El plazo venció hace dos semanas y los fallos empezaron hace dos días: si todavía no lo has revisado, hay margen, pero se acorta cada día que pasa.
+
+Comenta "MERCHANT" y te lo envío.
+
+#SEO #Ecommerce #WordPress #Shopify
