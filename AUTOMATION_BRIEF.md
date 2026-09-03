@@ -1,19 +1,15 @@
 # Brief de automatización diaria — Jorge Segovia (SEO para Ecommerce)
 
 Este documento es la única fuente de verdad que necesita la ejecución programada
-de cada mañana (L-V, 8:00 Europe/Madrid). Contiene todo lo acordado con Jorge:
-marca, formato, estructura y qué entregar.
+de cada día (7 días/semana, 8:00 Europe/Madrid). Contiene todo lo acordado con
+Jorge: marca, formato, estructura y qué entregar.
 
-**Cambio de método vigente desde el 28/08/2026** (ver notas de migración al
-final del documento): la rutina en la nube **ya no genera el artículo de
-blog en HTML ni sube ningún borrador a WordPress**. La imagen del post **sí
-la sigue generando la rutina** — Jorge diseñó él mismo un nuevo formato de
-imagen única (fondo crema, League Spartan, logos reales) y pidió que se
-replicara tal cual como generador oficial (ver sección 3). La entrega diaria
-se reduce a: la imagen del post + el recurso descargable del día
-(normalmente un PDF, ver sección 4) + el texto del post de LinkedIn. Nada se
-deja publicado en vivo automáticamente — subir la imagen y el post a
-LinkedIn, y responder a quien comente, siguen siendo 100% de Jorge.
+**Reescritura a fondo vigente desde el 03/09/2026** (ver nota de migración al
+final del documento): desaparece la rotación de ángulos por día de la semana,
+se publica los 7 días, vuelve el formato carrusel (ahora en paleta crema) como
+publicación principal, y el recurso descargable diario desaparece — se
+sustituye por un extracto que se añade cada día a una única guía viva en
+Notion, a la que se llega vía Mailchimp.
 
 ## 0. Contexto del negocio
 
@@ -22,545 +18,269 @@ foco actual en moda pero abierto a cualquier sector ecommerce. Servicio en 2 fas
 Fase 1 (auditoría SEO de +100 páginas: keyword research, arquitectura SEO
 transaccional, ranking actual, anexos) y Fase 2 (implementación).
 
-**Público objetivo del contenido en LinkedIn (vigente desde el 31/08/2026)**:
-el contenido diario no busca solo generar descargas — busca generar
-**engagement y visibilidad del perfil de Jorge ante CEOs y propietarios de
-empresa de cualquier industria**, con foco especial en quienes dirigen un
-ecommerce en WordPress o Shopify (su ICP prioritario, pero no el único
-público al que le tiene que interesar el contenido). Jorge interactúa él
-mismo, de forma manual, con perfiles de este tipo (comentarios, likes,
+**Público objetivo**: el contenido diario busca generar **engagement y
+visibilidad del perfil de Jorge ante CEOs y propietarios de empresa de
+cualquier industria**, con foco especial en quienes dirigen un ecommerce en
+WordPress o Shopify (su ICP prioritario, pero no el único). Jorge interactúa
+él mismo, manualmente, con perfiles de este tipo (comentarios, likes,
 mensajes) para construir relación — esta rutina nunca comenta ni interactúa
-en perfiles ajenos, eso sigue siendo 100% de Jorge; lo único que hace esta
-rutina es producir lo que esos perfiles ven cuando entran en el suyo.
+en perfiles ajenos; lo único que hace es producir lo que esos perfiles ven
+cuando entran en el suyo.
 
-**Esto cambia el tono y el enfoque, no la temática técnica**: el contenido
-sigue siendo SEO técnico para ecommerce (los mismos tipos de hallazgo, mito,
-auditoría o tendencia que ya se venían tratando), pero cada pieza tiene que
-abrirse y sostenerse en términos que le importan a quien dirige un negocio —
-coste real (ingresos, margen, cuota de mercado frente a la competencia),
-riesgo (qué pasa si no se arregla) y ventaja competitiva — antes que en
-jerga técnica por sí misma. El detalle técnico se mantiene (da autoridad y
-demuestra que Jorge sabe de lo que habla) pero siempre subordinado a la
-consecuencia de negocio: nunca como apertura ni como único argumento. Ver
-sección 1ter para cómo aplicar esto ángulo por ángulo, y sección 2 para el
-esqueleto del post.
+**El contenido sigue siendo SEO técnico para ecommerce**, pero cada pieza
+tiene que abrirse y sostenerse en términos que le importan a quien dirige un
+negocio — coste real (ingresos, margen, cuota de mercado frente a la
+competencia), riesgo (qué pasa si no se arregla) y ventaja competitiva —
+antes que en jerga técnica por sí misma. El detalle técnico se mantiene (da
+autoridad) pero siempre subordinado a la consecuencia de negocio: nunca
+como apertura ni como único argumento.
 
-**ICP del recurso descargable (PDF/lead magnet, sección 4)**: propietarios
-de ecommerce y responsables de marketing de tiendas online o páginas web —
-perfiles ocupados, no necesariamente técnicos, que valoran algo accionable y
-rápido de aplicar por encima de la teoría. Este ICP no cambia con la nota de
-arriba — sigue siendo específico de ecommerce porque es quien de verdad va a
-aplicar una guía técnica de SEO, aunque el post que lleva a esa guía ahora
-hable primero a una audiencia más amplia de dueños de negocio. Ten esto en
-mente al elegir qué tipo de recurso encaja mejor con el tema del día
-(sección 4): un propietario de ecommerce agradece más una plantilla o
-checklist que puede usar él mismo en 10 minutos que un informe largo de
-lectura.
+**La guía de Notion (destino final del embudo, ver sección 4)** también es
+de ecommerce/marketing de tiendas online — gente ocupada que valora algo
+accionable y rápido de aplicar por encima de la teoría.
 
 Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 
-## 1. Rotación semanal (mismo esqueleto de post, ángulo distinto cada día)
+## 1. Elegir la mejora SEO del día (ya no hay rotación por día de la semana)
 
-| Día | Ángulo |
-|---|---|
-| Lunes | Roast: error real de auditoría (anonimizado) |
-| Martes | Mito SEO desmontado con datos |
-| Miércoles | Auditoría exprés a una marca ecommerce grande y pública (nunca cliente de Jorge, dato 100% verificable) |
-| Jueves | Cambio de algoritmo / tendencia SEO reciente explicada para ecommerce |
-| Viernes | Pregunta abierta a la comunidad SEO (desde el 21/08/2026, **ya no** lleva resumen de la semana — ver nota abajo) |
+**Se elimina la tabla de ángulos por día de la semana (Lunes-roast,
+Martes-mito, etc.) vigente hasta el 03/09/2026** — ver nota de migración.
+A partir de ahora hay un único criterio, todos los días:
 
-**Nota sobre el viernes (vigente desde el 21/08/2026):** el post del viernes ya
-no repasa lo publicado de lunes a jueves. Es una pregunta abierta a la
-comunidad SEO, con esqueleto propio (sigue el mismo de la sección 2, pero
-adaptado):
-- Hook: la pregunta en sí, planteada con fuerza (no genérica tipo "¿qué
-  opináis del SEO?" — un debate real y concreto del sector).
-- Jorge da primero **su propia respuesta** (una postura o un caso concreto,
-  a modo de ejemplo) para arrancar la conversación — nunca lanza la
-  pregunta en el aire sin más.
-- Desarrollo: por qué esa pregunta/postura importa y qué está en juego,
-  igual que cualquier otro día — con su propio tema real de fondo (no
-  inventado), sujeto a las mismas reglas de la sección 1bis (no repetir) y
-  la regla crítica de la sección 4 (nunca dar la solución completa fuera
-  del recurso descargable).
-- Cierre: reitera la pregunta e invita explícitamente a responder en
-  comentarios.
-- Sigue llevando imagen del día (sección 3) y recurso descargable (sección
-  4) con normalidad — el ángulo "pregunta abierta" no exime de ninguna de
-  las entregas obligatorias de la sección 5.
+- Es **una mejora SEO concreta y accionable** para ecommerce (del tipo que ya
+  se venía tratando: errores reales de auditoría, mitos, hallazgos,
+  tendencias), siempre aterrizada en "esto es lo que puedes implementar" —
+  pensada para que un propietario de ecommerce la entienda y la aplique de
+  principio a fin (diagnóstico → por qué importa → qué se hace).
+- Se plantea en términos de negocio (coste, riesgo, ventaja competitiva)
+  antes que jerga técnica — este enfoque, antes limitado a la nota "1ter",
+  ahora aplica siempre, sin distinción por día.
+- **No repetida**: antes de elegir, lee `TEMAS_TRATADOS.md` (raíz del repo,
+  ahora una lista única cronológica) y no repitas el mismo fondo del
+  hallazgo aunque cambie la marca, el título o la redacción.
+- Si no hay tema libre razonable, no repitas — genera el resto del contenido
+  con normalidad pero avisa explícitamente a Jorge en la entrega de que hace
+  falta que pase un tema nuevo.
 
-## 1bis. No repetir tema — registro obligatorio en `TEMAS_TRATADOS.md`
-
-Antes de elegir el tema del día, **lee `TEMAS_TRATADOS.md`** (raíz del repo)
-y revisa la tabla del ángulo que toca hoy (Lunes→Roast, Martes→Mito, etc.).
-
-- Elige un tema que no esté ya cubierto — ni con el mismo título literal, ni
-  con el mismo fondo (p. ej. "duplicación por parámetros de filtro" y
-  "duplicación por versión con/sin www" son temas distintos, pero dos roasts
-  sobre parámetros de filtro en tiendas distintas SÍ cuentan como repetido:
-  lo que no se repite es el **error/mito/hallazgo de fondo**, no el nombre
-  de la marca o el redactado).
-- Si al revisar la tabla no encuentras ningún tema libre y razonable para el
-  ángulo de hoy (muy improbable a corto plazo, pero puede pasar tras muchas
-  semanas), no repitas uno igualmente — genera el resto del contenido normal
-  pero avisa explícitamente a Jorge en la entrega de que hace falta que le
-  pase un tema nuevo para ese ángulo.
-- **Al terminar** de generar todo el contenido del día, añade una fila nueva
-  al final de la tabla correspondiente en `TEMAS_TRATADOS.md` (fecha, tema,
-  nota breve de la solución/ángulo) y haz commit+push de ese archivo junto
-  con la carpeta `content/<día>/` (mismo commit o el siguiente, pero siempre
-  el mismo día). Nunca lo dejes para "el próximo día" — si no se registra en
-  el momento, se pierde el propósito del control.
-
-## 1ter. Enfoque para audiencia CEO/propietario de negocio (vigente desde el 31/08/2026)
-
-La rotación de la sección 1 no cambia — el ángulo del día se elige igual.
-Lo que cambia es cómo se plantea cada ángulo, para que un CEO o propietario
-de empresa (no solo un responsable de marketing técnico) entienda en la
-primera línea por qué le importa. Aplica esto al elegir el hook y el "por
-qué importa" de la sección 2, ángulo por ángulo:
-
-- **Lunes (roast)**: abre con el coste de negocio del error (ingresos que
-  se están dejando sobre la mesa, no solo la descripción técnica del
-  fallo) — el fallo técnico se explica después, como prueba de por qué pasa.
-- **Martes (mito)**: no te quedes en "esto es falso" — conecta el mito con
-  la decisión de negocio equivocada que provoca creérselo (presupuesto mal
-  invertido, prioridad equivocada, tiempo de equipo desperdiciado).
-- **Miércoles (auditoría exprés)**: este ángulo ya es el más directo para
-  este público — comparar con una marca grande y conocida invita a
-  preguntarse "¿me pasará esto también a mí?". Mantenlo así: hallazgo
-  100% verificable, marca real, nunca cliente de Jorge. Solo asegúrate de
-  que el remate conecta el hallazgo con lo que le costaría a cualquier
-  empresa del mismo tamaño, no solo con el dato técnico en sí.
-- **Jueves (tendencia)**: no te quedes en describir el cambio — conéctalo
-  con la decisión estratégica que un propietario debe tomar ahora (dónde
-  invertir, qué canal no puede permitirse ignorar, qué revisar antes de
-  que le cueste cuota de mercado).
-- **Viernes (pregunta abierta)**: formula la pregunta para que también
-  tenga opinión un dueño de negocio, no solo un técnico SEO — sigue
-  siendo un debate real y concreto del sector (nunca genérico), pero
-  planteado en términos de negocio.
-
-El detalle técnico (el "cómo se detecta", las herramientas, la prueba) se
-mantiene igual de riguroso que siempre — es lo que le da autoridad a Jorge
-frente a este público — pero nunca es la apertura ni el único argumento del
-post: siempre va subordinado a la consecuencia de negocio.
+**Registro obligatorio**: al terminar de generar todo el contenido del día,
+añade una fila nueva al final de la tabla de `TEMAS_TRATADOS.md` (fecha,
+mejora SEO, nota breve de la solución) y haz commit+push de ese archivo junto
+con la carpeta `content/<día>/` (mismo commit o el siguiente, pero siempre el
+mismo día). Nunca lo dejes para "el próximo día".
 
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
-0. **Titular de apertura** (obligatorio): la primera línea del post — sola,
-   en su propio párrafo, antes del hook — es un titular corto y contundente.
-   Es el mismo titular que le des al recurso descargable del día (mismo
-   título, ver sección 4) y el mismo que uses como `title_lines` en la
-   imagen del post (sección 3) — texto, recurso e imagen deben "decir lo
-   mismo" a primer golpe de vista. Normalmente en mayúsculas y cerrado en
-   punto, como frase autoconclusiva — p.ej. "FICHA DE PRODUCTO: GOOGLE YA NO
-   TE VE." Desde el 31/08/2026, formúlalo en términos que le importen a un
-   CEO/propietario (coste, riesgo, ventaja competitiva) siempre que el tema
-   del día lo permita — no en jerga puramente técnica.
+0. **Titular de apertura** (obligatorio): primera línea del post, sola, en
+   su propio párrafo — corto y contundente, en términos de negocio (coste,
+   riesgo, ventaja competitiva) siempre que el tema lo permita. Mismo
+   titular que la portada del carrusel (sección 3) y el extracto de Notion
+   (sección 4) — texto, carrusel y extracto deben "decir lo mismo" a primer
+   golpe de vista.
 1. **Hook** (1-2 líneas, dato/situación sorprendente) — dirigido a quien toma
-   la decisión de negocio, no solo a quien lo implementaría técnicamente
-   (ver sección 1ter).
+   la decisión de negocio, no solo a quien lo implementaría técnicamente.
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
-4. **Por qué importa / qué está en juego** — deja claro el coste de no
-   arreglarlo en términos de negocio (ingresos, riesgo, cuota de mercado —
-   ver sección 1ter), pero SIN dar los pasos de la solución (ver regla de
-   la sección 4 — la solución completa vive solo en el recurso descargable,
-   el post nunca debe regalarla)
-5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada, ver regla
-   de tono más abajo)
-6. **CTA de comentario** (método vigente desde el 28/08/2026 — sustituye al
-   antiguo "enlace en comentario fijado"): invita a comentar una palabra
-   clave concreta relacionada con el tema del día, dejando claro que Jorge
-   responde por privado con el enlace. Patrón de texto a usar (adapta la
-   palabra entre comillas al tema de cada día, mantenla en mayúsculas):
-   `Comenta "<PALABRA>" y te escribo por privado con el enlace.` — nunca
-   pongas el enlace directamente en el post ni prometas que "te lo dejo en
-   comentarios" (eso era el método antiguo); el envío es manual, por Jorge,
-   vía DM. La palabra clave debe coincidir con la que uses en `cta_line` de
-   la imagen del post (sección 3), para que quien vea la imagen sepa
-   exactamente qué comentar.
+4. **Por qué importa / qué está en juego** — coste de no arreglarlo en
+   términos de negocio, SIN dar los pasos de la solución (regla de la
+   sección 4 — la solución completa vive solo en la guía de Notion).
+5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada)
+6. **CTA de comentario**: invita a comentar una palabra clave concreta
+   relacionada con el tema del día, dejando claro que Jorge responde por
+   privado. Patrón de texto (adapta la palabra entre comillas al tema de
+   cada día, mantenla en mayúsculas):
+   `Comenta "<PALABRA>" y te lo envío.` — nunca pongas el enlace directamente
+   en el post; el envío es manual, por Jorge, vía DM, con la URL de
+   Mailchimp (la persona deja su correo y es redirigida a la landing de
+   Notion con la guía completa — ver sección 4). La palabra clave debe
+   coincidir con la que uses en el recuadro naranja de todas las slides del
+   carrusel (sección 3).
 
-Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras — si no
-hay un dato real verificable, no se afirma un resultado concreto. Desde el
-31/08/2026, el lector prioritario es un CEO o propietario de empresa (no
-solo un responsable de marketing técnico) — ver sección 1ter para cómo
-aplicar esto en cada ángulo del día. El rigor técnico no se pierde, pero
-nunca es el argumento de apertura.
+Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras. El
+lector prioritario es un CEO o propietario de empresa. El rigor técnico no se
+pierde, pero nunca es el argumento de apertura.
 
-**Longitud**: apunta a 150-200 palabras en total, no a 230+. Mismo esqueleto de
-6-7 puntos, pero compacto — si un párrafo puede decir lo mismo en menos
-frases, recorta antes de añadir matices extra.
+**Longitud**: 150-200 palabras en total. Mismo esqueleto de 6-7 puntos, pero
+compacto — si un párrafo puede decir lo mismo en menos frases, recorta antes
+de añadir matices extra.
 
-## 3. Imagen del post (imagen única, formato vigente desde el 28/08/2026)
+Guarda como `post-linkedin.txt`.
 
-Jorge diseñó él mismo este formato a mano (League Spartan, fondo crema,
-logos reales de marca) y pidió replicarlo tal cual como generador oficial —
-sustituye tanto al carrusel-documento negro con resaltados naranja
-(23-27/08/2026) como al "stat hero" de imagen única anterior a eso. Formato
-**cuadrado (1080x1080, 1:1)**, pensado para ser minimalista y muy legible a
-tamaño de miniatura en el feed — poco texto, elementos grandes.
+## 3. El carrusel (formato principal, paleta crema desde el 03/09/2026)
 
-Los scripts antiguos (`scripts/generate_carousel_post.py`,
-`scripts/generate_post_image.py`) se quedan en el repo sin usarse, solo por
-si Jorge pide explícitamente volver a alguno de esos formatos. No los
-toques ni los borres salvo que te lo pida.
+**Vuelve a ser un carrusel** (sustituye a la imagen única que estuvo vigente
+del 28/08 al 02/09/2026 — ver nota de migración). Usa
+`scripts/generate_carousel_post.py`, el mismo motor "documento" que ya
+existía en el repo (estuvo desactivado, ahora vuelve a ser el generador
+oficial), con un cambio de paleta.
 
 ### 3.1 El motor es fijo, el contenido se edita cada día
 
-Usar `scripts/generate_single_post_image.py`. Igual que con
-`scripts/generate_lead_magnet_pdf.py`: el archivo tiene un **motor de
-render fijo** (todo lo que hay antes de `CONTENIDO DE HOY` — no tocar
-salvo instrucción expresa de Jorge) y un diccionario **`CONFIG`** al final
-que **sí se edita cada día**. Edita `CONFIG`, ejecuta el script, mueve el
-resultado a `content/<carpeta-del-día>/`, y revierte el archivo con
-`git checkout -- scripts/generate_single_post_image.py` antes de terminar.
+Igual que con el resto de scripts del repo: el motor de render (todo lo de
+arriba de `CONTENIDO DE HOY`) es fijo — no tocar salvo instrucción expresa de
+Jorge. El diccionario `CONFIG` al final sí se edita cada día. Edita `CONFIG`,
+ejecuta el script, mueve el resultado a `content/<carpeta-del-día>/`, y
+revierte el archivo con `git checkout -- scripts/generate_carousel_post.py`
+antes de terminar.
 
 ```
-python3 scripts/generate_single_post_image.py content/<carpeta-del-día>/imagen-post.png
+python3 scripts/generate_carousel_post.py content/<carpeta-del-día>
 ```
 
-Si el script falla con un `AssertionError`, el mensaje indica exactamente
-el problema (una línea de título demasiado ancha, o los logos invadiendo la
-banda inferior) — corrige el `CONFIG` (acorta el texto, sube `band_top`,
-usa menos logos), nunca aflojes el límite en el motor de render.
+Salida: `carrusel-1.png` … `carrusel-N.png` (una por slide) + `carrusel-post.pdf`
+(empaquetado sin pérdida vía `img2pdf`). **Sube el PDF a LinkedIn como
+publicación de tipo Documento** (LinkedIn lo renderiza como visor
+deslizable) — los PNG son solo para revisar/editar cada slide a mano.
 
-### 3.2 Paleta y tipografía (fijo)
+### 3.2 Paleta (fijo — cambiada el 03/09/2026, fondo crema en vez de negro)
 
 | Elemento | Valor |
 |---|---|
-| Fondo | `#FFFCF4` (crema) |
-| Titular / resaltado del CTA | `#FF914D` (naranja) |
-| Banda inferior (CTA) | `#282828` (casi negro) |
-| Texto principal (titular, firma, logos con texto propio) | `#111111` (negro) |
-| Subtexto de la banda inferior | `#A8A8A2` (gris claro sobre negro) |
+| Fondo (`BG`) | `#FFFCF4` (crema) |
+| Texto principal (`CREAM`, nombre heredado del formato antiguo) | `#111111` (negro) |
+| Rejilla decorativa (`GRID`) | `#E6E0D2` (gris claro sobre crema) |
+| Resaltados / acentos (`ORANGE`) | `#FF5A1F` (naranja de marca) |
+| Texto sobre cajas naranjas/crema (`INK`) | `#111111` |
+| Texto secundario / kicker (`GRAY`) | `#78766E` |
 
-Fuente: **League Spartan** (Google Fonts, licencia OFL), en
-`assets/fonts/LeagueSpartan-Bold.ttf` y `LeagueSpartan-ExtraBold.ttf` —
-ExtraBold para el titular y el CTA, Bold para la firma. Igual que el resto
-de fuentes del proyecto, no soporta emoji — la carita `=)` de texto plano en
-`cta_sub` es la forma correcta de dar un toque cercano sin usar un emoji de
-verdad.
+Fuentes: ArchivoBlack (titulares) y Barlow-Bold (cuerpo/CTA), igual que
+siempre — sin cambios respecto al formato anterior.
 
-### 3.3 Estructura fija (todas las imágenes llevan estos 4 bloques)
+### 3.3 Estructura de slides
 
-1. **Titular** (`title_lines`, exactamente 2 líneas): el mismo texto que el
-   punto 0 del post (sección 2) y que la portada del recurso (sección 4).
-   Grande, naranja, centrado.
-2. **Firma**: foto circular de Jorge con anillo naranja + "by Jorge
-   Segovia" en negro. Fija, no cambia día a día.
-3. **Cuadrícula de logos reales** (`tools`, 1 a 4 imágenes): los logos
-   reales de las herramientas/marcas protagonistas del tema del día —
-   **nunca reconstruidos a mano si el archivo real ya existe en el repo**.
-   Dos carpetas de logos ya disponibles:
-   - `assets/branding/ai-logos/` → `claude.png`, `chatgpt.png`,
-     `google-ai.png`, `perplexity.png` (para temas de IA/búsqueda generativa)
-   - `assets/branding/tool-logos/` → `google-search-console.png`,
-     `screamingfrog.png`, `wordpress.png`, `yoast-seo.png` (para temas de
-     SEO técnico/herramientas)
+Tipos disponibles: `cover`, `statement`, `bullets`, `card`, `closing`.
+Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
+importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
+preguntas de autochequeo) + 1 `closing`.
 
-   **Si el tema del día necesita un logo que no está en ninguna carpeta**:
-   pídeselo a Jorge (que lo suba al repo, mismo método que ya usa para
-   pasar capturas — subir el archivo a una carpeta de `assets/` en GitHub)
-   antes de generar la imagen. Como último recurso, si de verdad hace falta
-   generar la imagen ese mismo día sin poder esperar, se puede reconstruir
-   una aproximación sencilla a mano (formas básicas, nunca un intento de
-   calcar un logotipo con texto/tipografía de marca) — pero avísalo
-   explícitamente en la entrega, no lo des por hecho como si fuera el logo
-   real.
-4. **Banda CTA**: barra negra inferior con `Comenta "<PALABRA>" y te
-   escribo` (la palabra clave en naranja) + `cta_sub` en gris claro, más
-   grande, debajo. El texto de `cta_sub` por defecto es
-   `"debemos estar conectados =)"` — puedes mantenerlo fijo cada día o
-   adaptarlo si Jorge pide otra cosa, pero nunca un emoji real.
+**Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
+describe brevemente qué se recibe, `box_link` repite la palabra clave del
+día en el patrón `COMENTA "<PALABRA>" Y TE LO ENVÍO`. Nunca menciones un PDF
+ni escribas la URL real — el enlace lo manda Jorge por DM.
 
-### 3.4 Estructura recomendada por día
+**Recuadro naranja en TODAS las demás slides (no en `closing`, que ya lleva
+su propio CTA grande)**: abajo del todo, un recuadro con esquinas
+redondeadas, fondo naranja de marca, texto en **blanco** y flecha (dibujada
+a mano, nunca un glifo) también en blanco, con el mismo patrón `COMENTA
+"<PALABRA>" Y TE LO ENVÍO` — la misma palabra clave del día en cada slide,
+para que quien vea cualquier página sepa qué comentar. El tamaño de letra de
+este recuadro es **fijo** (no se auto-ajusta al contenido); lo único que
+cambia de un día a otro es el ancho de la caja, según lo larga que sea la
+palabra clave.
 
-No hay slides por ángulo como en el antiguo carrusel — cada día es UNA sola
-imagen con los mismos 4 bloques de la sección 3.3. Lo único que cambia es
-`title_lines` (el titular del día) y `tools` (los logos relevantes al tema):
+Los scripts antiguos (`generate_single_post_image.py`,
+`generate_post_image.py`) se quedan en el repo sin usarse — no tocar salvo
+instrucción expresa.
 
-- **Lunes (roast) / Martes (mito)**: logos de las herramientas con las que
-  se detecta el error (Search Console, Screaming Frog...).
-- **Miércoles (auditoría exprés)**: si la marca auditada tiene un logo
-  fácil de conseguir y viene a cuento, puede sustituir a uno de los 4 —
-  pero prioriza siempre herramientas reales de diagnóstico antes que el
-  logo de la marca auditada (el protagonista es el hallazgo, no la marca).
-- **Jueves (tendencia)**: normalmente los logos de `ai-logos/` (Claude,
-  ChatGPT, Perplexity, Google AI) si el tema es sobre IA/búsqueda
-  generativa, o los de `tool-logos/` si es sobre SEO técnico clásico.
-- **Viernes (pregunta abierta)**: logos relacionados con el tema real de
-  fondo de la respuesta de Jorge (sección 1, nota de viernes).
+## 4. El recurso: guía única en Notion (ya NO hay PDF nuevo cada día)
 
-## 4. Recurso del día (lead magnet) — UNO DISTINTO CADA DÍA, nunca repetido
+**Cambio de fondo desde el 03/09/2026**: ya no se genera un PDF/recurso
+distinto cada día (`scripts/generate_lead_magnet_pdf.py` queda en el repo
+sin usarse). Ahora existe **una única guía en Notion, pública, que se va
+ampliando cada día** con la mejora SEO del día.
 
-**Importante**: Jorge no quiere que se repita el mismo recurso semana tras
-semana. Cada día se genera un recurso nuevo, centrado en el tema exacto del
-post de ese día.
+### 4.1 El embudo completo (solo el paso 3 lo hace la rutina)
 
-**Novedad vigente desde el 28/08/2026 — variedad de formato**: antes el
-recurso era siempre un PDF tipo guía/checklist. Ahora el objetivo es variar
-el *tipo* de recurso según lo que mejor encaje con el tema del día y con el
-ICP (sección 0: propietarios y responsables de marketing de ecommerce, gente
-ocupada que valora algo accionable). Catálogo de tipos de recurso:
+1. Alguien comenta la palabra clave del día en el post o el carrusel.
+2. Jorge le escribe por DM (manual, fuera del alcance de esta rutina) con
+   una URL de Mailchimp. La persona deja su correo ahí y es redirigida
+   automáticamente a la landing de Notion con la guía completa.
+3. **Lo único que genera la rutina**: el extracto de texto del día que
+   Jorge pega en esa guía de Notion para que siga creciendo.
 
-| Tipo | Cuándo encaja | Estado del generador |
-|---|---|---|
-| **Guía / checklist en PDF** | El tema tiene 1-varios puntos con diagnóstico + solución (roast, mito, tendencia) — es el formato por defecto | Listo: `scripts/generate_lead_magnet_pdf.py` |
-| **Plantilla de autoevaluación (worksheet) en PDF** | El lector puede aplicarlo él mismo sobre su propia tienda mientras lo lee (espacios/casillas para rellenar) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **Banco de plantillas de texto (swipe file) en PDF** | El tema da pie a fragmentos listos para copiar (ej. reglas de robots.txt, plantillas de meta title, prompts de auditoría) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **Hoja de cálculo descargable (.xlsx)** | El tema encaja mejor como tracker/calculadora (ej. impacto de URLs duplicadas, checklist con columnas de estado) | Pendiente de construir — usar la guía PDF como base mientras tanto |
-| **One-pager / cheat sheet en PDF** | Versión ultra condensada de una sola página, para temas que se resumen en pocos puntos | Pendiente de construir — usar la guía PDF como base mientras tanto |
+### 4.2 Cómo escribir el extracto del día
 
-Mientras los generadores nuevos no existan, **usa siempre
-`scripts/generate_lead_magnet_pdf.py`** (el único listo) — no fuerces un
-formato que no puedes generar todavía. Cuando Jorge pida construir alguno de
-los tipos pendientes, créalo como script nuevo en `scripts/` siguiendo el
-mismo patrón (CONFIG editable al principio, salida por CLI, revertir con
-`git checkout` al terminar) y actualiza esta tabla marcándolo como listo.
+A diferencia del post y el carrusel (que nunca dan la solución completa —
+regla crítica de la sección 2, punto 4), **el extracto de Notion sí lleva la
+solución completa, paso a paso** — es el recurso final del embudo, no un
+teaser.
 
-*(Fuentes consultadas sobre qué formatos de lead magnet funcionan mejor para
-este tipo de ICP en B2B/ecommerce en 2026: audits y checklists siguen entre
-los que más convierten por ser accionables y específicos; plantillas y
-swipe files funcionan bien porque ahorran tiempo directo; los formatos
-interactivos (calculadoras, quizzes) convierten aún mejor pero requieren una
-herramienta web que este repo no genera, así que no forman parte del
-catálogo por ahora — ver
-[Vida AI Agent OS](https://vida.io/blog/best-b2b-lead-magnets),
-[Luniq](https://www.luniq.io/en/hub/articles/best-b2b-lead-magnet-formats-for-2026),
-[ActiveCampaign](https://www.activecampaign.com/blog/lead-magnet-ideas-and-examples).)*
+Estructura sugerida (ajustar si la plantilla de Notion de Jorge difiere):
 
-### Cómo generar el PDF guía/checklist (formato por defecto)
+- Título de la entrada (mismo o similar al titular del día — sección 2, punto 0)
+- Contexto/diagnóstico breve
+- Por qué importa en términos de negocio
+- Solución paso a paso, completa
+- Herramientas usadas para detectarlo/arreglarlo
 
-Usar `scripts/generate_lead_magnet_pdf.py` como base. Edita las variables al
-principio del archivo (sección CONFIG) según el tema de hoy:
-
-- `COVER_TITLE_HTML`: título de portada (con `<br/>` para saltos de línea),
-  específico del tema del día — es el mismo titular que uses en el punto 0
-  de la sección 2 y en el documento de ideas de la sección 3.
-- `COVER_SUBTITLE`, `COVER_TAG`, `STAT_NUMBER`, `STAT_LABEL`: ajusta al
-  contenido — si el documento trata sobre un único hallazgo/mito/tendencia,
-  `STAT_NUMBER` puede ser "1" (o el número de puntos reales que tenga) y
-  `STAT_LABEL` describir de qué es ese número.
-- `POINTS`: lista de 1 a varios puntos `(título, por qué ocurre, cómo
-  detectarlo, cómo arreglarlo)`. Para el roast del lunes, normalmente 1 punto
-  (desarrollo en profundidad del error del día). Para otros formatos, usa el
-  número de puntos que tenga sentido con el contenido real del post (nunca
-  inventes puntos de relleno solo por completar una lista).
-- `FOOTER_TITLE`, `CTA_TITLE`, `CTA_BODY`: ajusta el texto, mantén el CTA de
-  las 2 fases (Fase 1 / Fase 2) tal cual, es fijo.
-- **Resaltado naranja opcional**: en `COVER_TITLE_HTML`, `CTA_TITLE` o el
-  `título` de cualquier punto, envuelve la frase clave entre `<hl>...</hl>`
-  para que salga con la caja naranja de fondo — p.ej.
-  `"<hl>Categorías fantasma:</hl><br/>qué hacer con..."`. Es opcional: sin
-  `<hl>`, el texto sale igual, solo que sin resaltar. No abuses de esto —
-  resalta una frase corta y contundente, no párrafos enteros.
-
-Ejecuta pasando la ruta de salida como argumento. **El nombre del archivo
-debe ser un slug del título del recurso (nunca el genérico "lead-magnet.pdf"
-ni "recurso.pdf")**, porque es literalmente el nombre que le queda guardado
-al usuario cuando lo descarga:
-
-```
-python3 scripts/generate_lead_magnet_pdf.py content/<carpeta-del-día>/<slug-del-titulo>.pdf
-```
-
-Ejemplo: si `COVER_TITLE_HTML` es "Duplicado no es<br/>penalización<br/>(es
-otra cosa)", el slug sería `duplicado-no-es-penalizacion.pdf` (minúsculas,
-sin acentos ni signos, espacios → guiones, sin la parte entre paréntesis si
-la hay).
-
-**Ojo con las fuentes**: este PDF usa ArchivoBlack/Barlow-Bold en vez de las
-fuentes estándar de reportlab, así que **no soporta emoji ni la flecha `→`
-(U+2192)** — sale como hueco en blanco. Usa `->` en su lugar, nunca emoji, en
-`COVER_TITLE_HTML`, `COVER_SUBTITLE`, `STAT_LABEL`, `POINTS`, `CTA_TITLE` ni
-`CTA_BODY`. Los acentos y la `ñ` sí funcionan bien (ambas fuentes los
-incluyen).
-
-Después de generar y validar el resultado, **valida la sintaxis y revierte
-el script a su versión original** con `git checkout --
-scripts/generate_lead_magnet_pdf.py` antes de terminar (para que el próximo
-día vuelva a partir de la plantilla de referencia, no del contenido de hoy).
-
-### 🚫 Regla crítica: el post y el brief de imagen NUNCA dan la solución completa
-
-El post de LinkedIn (y el documento de ideas para la imagen) están para
-enganchar y generar la necesidad de pedir el recurso — **no para resolver el
-problema por sí solos**. Si el lector se va con la solución completa sin
-comentar y pedir el recurso, se rompe todo el embudo de captación de leads.
-
-Lo que SÍ puede llevar el post (esto genera confianza y demuestra que Jorge
-sabe de lo que habla, sin regalar la solución):
-- El problema explicado con claridad: qué es, por qué ocurre, por qué
-  importa/cuesta dinero.
-- Cómo detectarlo/diagnosticarlo (esto es diagnóstico, no arreglo —
-  compartirlo está bien, de hecho genera más ganas de saber cómo arreglarlo).
-- El contexto o caso (anonimizado) que da pie al post.
-
-Lo que el post NUNCA debe incluir: los pasos concretos de la
-solución/arreglo (nada de listas tipo "así lo arreglas: 1... 2... 3..."), ni
-nada que, si el lector lo copia, resuelva el problema sin necesitar el
-recurso. La solución paso a paso vive ÚNICAMENTE dentro del recurso
-descargable del día.
-
-### Cómo se aloja el recurso (automático, sin que Jorge suba nada)
-
-Jorge no tiene forma de recibir un recurso nuevo cada día y subirlo él mismo
-sin que deje de ser "automático" — así que se aloja usando el propio
-repositorio de GitHub, que ya es público. En cuanto hagas commit y push
-(sección 5), el recurso queda disponible en:
-
-```
-https://raw.githubusercontent.com/jscautomation/jorge-linkedin-seo-daily/main/content/<carpeta-del-día>/<slug-del-titulo>.<ext>
-```
-
-Jorge usa esa URL él mismo al configurar el redireccionamiento de su
-formulario de captura (fuera del alcance de esta rutina, ver nota en la
-sección 5) — asegúrate de que el commit+push del recurso ocurra cuanto antes
-en la entrega del día para que la URL esté viva quien la necesite.
+Guarda como `content/<carpeta-del-día>/extracto-notion.md`.
 
 ## 5. Entrega diaria — output
 
-Carpeta: `content/YYYY-MM-DD-<día-en-español>-<formato>/` con:
+Carpeta: `content/YYYY-MM-DD/` (ya no lleva el ángulo en el nombre, al no
+existir) con:
+
 - `post-linkedin.txt`
-- `imagen-post.png` (la imagen del día, 1080x1080 — ver sección 3)
-- `<slug-del-recurso>.<ext>` (el recurso del día, nuevo cada día, nombre
-  descriptivo — ver sección 4)
-- Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — ver sección 1bis)
+- `carrusel-1.png` … `carrusel-N.png` + `carrusel-post.pdf`
+- `extracto-notion.md`
+- Fila nueva añadida a `TEMAS_TRATADOS.md` (raíz del repo — sección 1)
 
 Haz commit y push de toda la carpeta (mismo remoto del que se clonó) tan
-pronto como esté lista, como red de seguridad además de la entrega directa.
-Usa un mensaje de commit tipo `Contenido diario: <fecha> (<ángulo del día>)`.
+pronto como esté lista. Mensaje de commit tipo `Contenido diario: <fecha>`.
 
-Al terminar, enviar los archivos a Jorge (vía `SendUserFile`) con una nota
-breve indicando qué toca hacer: 1) copiar el post y subir `imagen-post.png`
-a LinkedIn, 2) cuando alguien comente la palabra clave del CTA, escribirle
-por privado con el enlace a su formulario de captura (el recurso ya está
-alojado y listo, con URL pública verificada). Recordar que la
-sincronización de segmentos de Klaviyo (sección 7, si sigue aplicando a su
-formulario actual) sigue siendo un paso aparte en sesión local.
+Al terminar, envía los archivos a Jorge (vía `SendUserFile`) con una nota
+breve: 1) copiar el post y subir `carrusel-post.pdf` a LinkedIn como
+publicación de tipo Documento, 2) la palabra clave del día, para cuando
+lleguen los comentarios (Jorge responde por DM con la URL de Mailchimp —
+paso 100% manual), 3) el extracto ya está listo para pegar en la guía de
+Notion.
 
-**Nunca publicar nada en vivo automáticamente** — el post de LinkedIn, la
-imagen y cualquier respuesta a comentarios son siempre acción manual de
-Jorge; esta rutina solo entrega archivos y hace commit/push al repositorio.
+**Nunca publicar nada en vivo automáticamente** — el post, el carrusel, la
+respuesta a comentarios, el DM con la URL de Mailchimp y el pegado en Notion
+son siempre acción manual de Jorge; esta rutina solo entrega archivos y hace
+commit/push al repositorio.
 
 ## 6. Entorno de ejecución (nube)
 
-- Instala dependencias con `pip install -r requirements.txt` si `Pillow` no
-  está ya disponible (sigue haciendo falta para generar el PDF del recurso).
+- Instala dependencias con `pip install -r requirements.txt` si `Pillow` /
+  `img2pdf` no están ya disponibles.
 - Intenta entregar todos los archivos generados directamente al usuario
   (herramienta de envío de archivos si está disponible en la sesión).
 - **Además, y siempre**, haz commit y push de la carpeta `content/<día>/`
   generada al repositorio, como red de seguridad por si la entrega directa
   fallara.
 
-## 7. Segmento de Klaviyo por recurso (esto NO lo hace la rutina en la nube)
+## 7. Fuera del alcance de la rutina en la nube
 
-Si el formulario de captura que use Jorge (fuera del alcance de esta rutina,
-ver sección 5) sigue registrando en Klaviyo un evento con la propiedad
-`pdf_titulo` (o equivalente) por cada descarga, esta sección sigue
-aplicando: un segmento en Klaviyo es dinámico — una vez existe, se actualiza
-solo con cada nueva descarga, pero el segmento en sí hay que crearlo una vez
-por título.
+Todo esto es acción manual de Jorge, ninguna la ejecuta la rutina:
 
-Herramienta recomendada: `scripts/sync_klaviyo_segments.py` — revisa TODO
-el historial de descargas, saca los títulos distintos, y crea el segmento
-que falte para cada uno (sin duplicar los que ya existen). Ejecutar sin
-argumentos; es seguro correrlo tantas veces como se quiera (idempotente).
-Alternativa puntual para un solo título nuevo:
-`scripts/create_klaviyo_segment.py "Título exacto del recurso"`.
+- Publicar el post/carrusel en LinkedIn y responder a comentarios.
+- Escribir el DM con la URL de Mailchimp a quien comente la palabra clave.
+- Todo lo que pase dentro de Mailchimp (captura del email, redirección) y el
+  mantenimiento de la landing de Notion — la rutina solo entrega el texto
+  del extracto para que Jorge lo pegue, no toca Mailchimp ni Notion
+  directamente.
 
-**A propósito, la rutina en la nube NO ejecuta este script ni tiene la
-`KLAVIYO_API_KEY`** — esa clave da acceso de escritura a toda la cuenta de
-Klaviyo y no hay forma segura de dársela al entorno en la nube (la
-definición de la rutina no soporta secretos, solo prompt de texto plano).
-Este paso queda pendiente de ejecutarse en una sesión local.
-
-Si Jorge cambia de herramienta de formulario y ya no pasa por Klaviyo con
-ese mismo evento, avisa para actualizar o retirar esta sección.
+(La sincronización de segmentos de Klaviyo por título de PDF, que existía
+como sección 7 hasta el 03/09/2026, queda retirada — ya no hay un PDF nuevo
+por día que generar un segmento. Si Jorge vuelve a necesitar segmentación
+por tema en Mailchimp/Notion, habrá que documentar un mecanismo nuevo.)
 
 ---
 
-## Nota de migración (28/08/2026)
+## Nota de migración (03/09/2026) — se reescribe el brief a fondo
 
-Este brief se reescribió a fondo el 28/08/2026 a petición expresa de Jorge.
-Resumen de lo que cambió respecto a la versión anterior (24-27/08/2026, el
-formato "documento negro con resaltados naranja" estilo Twinkle
-Chatterjee/ThriveCraft SEO), por si hace falta recuperar contexto:
+Resumen de lo que cambió respecto a la versión anterior (vigente desde el
+31/08/2026), por si hace falta recuperar contexto:
 
-- **La rutina ya no genera ninguna imagen.** Antes generaba un carrusel de
-  8-11 slides + PDF empaquetado (`scripts/generate_carousel_post.py`); antes
-  de eso, una imagen única tipo "stat hero" (`scripts/generate_post_image.py`).
-  Jorge diseña ahora la imagen él mismo con su propia plantilla. La rutina
-  entrega en su lugar un documento de ideas (`brief-imagen.md`, sección 3).
-  Los scripts antiguos se quedan en el repo sin usarse — no borrarlos salvo
-  instrucción expresa.
-- **Ya no se genera el artículo de blog en HTML** (antes `articulo-blog.html`,
-  con plantilla de referencia en `content/2026-08-17-lunes-roast/`) ni se
-  sube ningún borrador a WordPress (antes `scripts/publish_to_wordpress.py`,
-  sección "9. Borrador en WordPress" del brief anterior). Las variables de
-  entorno `WP_URL`/`WP_USERNAME`/`WP_APP_PASSWORD` pueden seguir configuradas
-  en el entorno pero esta rutina ya no las usa.
-- **Cambia el mecanismo de entrega del lead**: antes, quien comentaba la
-  palabra clave encontraba el enlace en un comentario fijado automático que
-  llevaba al formulario embebido en el artículo. Ahora, quien comenta recibe
-  un DM manual de Jorge con el enlace a su formulario — por eso ya no hace
-  falta ni el artículo ni el formulario embebido para este flujo (aunque
-  `templates/formulario-lead-magnet.html` se queda en el repo, ya no forma
-  parte del proceso diario salvo que Jorge decida reutilizarlo en su nueva
-  herramienta).
-- **El recurso descargable ya no es siempre un PDF checklist** — ver el
-  catálogo de tipos de recurso en la sección 4. De momento solo hay
-  generador construido para el formato guía/checklist; los demás se
-  construirán bajo demanda.
-
-## Nota de migración 2 (28/08/2026, mismo día)
-
-Unas horas después de la nota anterior, Jorge cambió de opinión sobre la
-imagen: diseñó él mismo a mano un nuevo formato de imagen única (fondo
-crema `#FFFCF4`, League Spartan, foto+firma, cuadrícula de logos reales de
-marca, banda CTA negra) y pidió que la rutina volviera a generarla
-automáticamente, replicando ese diseño tal cual. Por tanto, respecto a la
-nota de migración 1:
-
-- **Se revierte** "la rutina ya no genera ninguna imagen" — sí la genera,
-  con el nuevo formato de la sección 3 (`scripts/generate_single_post_image.py`).
-- **Se retira** el documento `brief-imagen.md` — ya no hace falta, porque
-  la rutina vuelve a generar la imagen final directamente.
-- **Se mantiene sin cambios** todo lo demás de la nota 1: sigue sin
-  generarse el artículo HTML, sigue sin subirse nada a WordPress, y el
-  mecanismo de entrega del lead (comentar la palabra clave → DM manual de
-  Jorge → formulario propio) sigue siendo el vigente.
-- Los 4 logos de IA (Claude, ChatGPT, Perplexity, Google AI) que subió
-  Jorge para validar este formato viven en `assets/branding/ai-logos/`;
-  cuando haga falta un logo nuevo que no esté ni ahí ni en
-  `assets/branding/tool-logos/`, pídeselo a Jorge por el mismo método
-  (subirlo al repo) antes de asumir que hay que reconstruirlo a mano.
-
-## Nota de migración 3 (31/08/2026) — audiencia CEO/propietario de negocio
-
-Jorge pidió reenfocar el contenido: el objetivo ya no es solo captar leads
-que descargan un PDF, sino generar **engagement y visibilidad ante CEOs y
-propietarios de empresa de cualquier industria**, con foco especial en
-quienes dirigen un ecommerce en WordPress o Shopify — Jorge interactúa él
-mismo, manualmente, con ese tipo de perfiles (comentarios, likes, mensajes)
-para construir relación, y el contenido de esta rutina es lo primero que
-ven cuando entran en su perfil.
-
-- **No cambia la rotación de ángulos** (sección 1) ni el formato/entrega
-  (imagen + PDF + post, sección 5) — sigue exactamente igual.
-- **Sí cambia el enfoque de cada pieza**: ver la nueva sección 1ter, que da
-  la pauta concreta de cómo reformular cada ángulo de la semana en términos
-  de negocio (coste, riesgo, ventaja competitiva) en vez de jerga
-  puramente técnica. Se actualizaron en consecuencia la sección 0 (público
-  objetivo) y la sección 2 (titular, hook y "por qué importa" del
-  esqueleto del post).
-- **El ICP del recurso descargable (PDF) no cambia** — sigue siendo
-  dueños de ecommerce/marketing (sección 0 y 4): el público más amplio es
-  para el post y la imagen, no para quien ya está descargando una guía
-  técnica de SEO.
-- Si en algún momento Jorge decide que el recurso descargable también debe
-  ampliar su ICP (por ejemplo, a un "diagnóstico rápido" pensado para
-  cualquier CEO, no solo para quien ya sabe de SEO), avisa para actualizar
-  también la sección 4 — de momento sigue igual.
+- **Desaparece la rotación de ángulos por día de la semana** (Lunes-roast,
+  Martes-mito, Miércoles-auditoría, Jueves-tendencia, Viernes-pregunta) y con
+  ella la distinción entre L-V y fin de semana: **ahora se publica los 7
+  días**. El criterio de "enfoque CEO" que antes vivía en la nota "1ter",
+  atado a cada ángulo, ahora aplica siempre (nueva sección 1).
+- **Vuelve el carrusel** como formato principal (`scripts/generate_carousel_post.py`,
+  que había quedado sin usar desde el 28/08/2026 al adoptarse la imagen
+  única), ahora con **fondo crema en vez de negro** (sección 3.2) y con el
+  recordatorio de la palabra clave en un recuadro naranja llamativo en todas
+  las slides, no solo un texto discreto (sección 3.3). `generate_single_post_image.py`
+  pasa a ser el script que se queda sin usar.
+- **Desaparece el PDF/recurso nuevo cada día** (`scripts/generate_lead_magnet_pdf.py`
+  queda sin usar). En su lugar, una única guía viva en Notion que se amplía
+  cada día con un extracto (nueva sección 4). El embudo de captación sigue
+  empezando igual que antes (comentar palabra clave → DM manual de Jorge),
+  pero el enlace que se envía por DM ahora es una URL de Mailchimp que
+  redirige a la landing de Notion, en vez de un enlace directo al PDF
+  alojado en GitHub.
+- **Se retira la sección de Klaviyo** (antes sección 7): dependía de un
+  título de PDF nuevo cada día que ya no existe.
+- **`TEMAS_TRATADOS.md` cambia de estructura**: de 5 tablas por ángulo a una
+  única lista cronológica (ver ese archivo para el detalle).
