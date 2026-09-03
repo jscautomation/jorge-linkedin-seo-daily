@@ -30,6 +30,11 @@ slide y por qué existen esos límites):
   es la regla no negociable del brief (sección 3bis): el PDF con la
   respuesta completa NUNCA se da en el carrusel, solo el diagnóstico. La
   slide de cierre lleva el único CTA fuerte con el enlace al PDF.
+- La portada (`cover`) lleva, si el spec trae `guide_badge`, un recuadro
+  naranja ENCIMA del título con el número de la mejora dentro de la guía
+  de Notion y una frase de acceso (vigente desde el 03/09/2026, a
+  petición expresa de Jorge — ver `guide_badge()` y AUTOMATION_BRIEF.md
+  sección 3.3 para la fórmula del número).
 
 Salida: `carrusel-1.png` ... `carrusel-N.png` (una por slide) +
 `carrusel-post.pdf` (empaquetado SIN pérdida vía img2pdf — Pillow re-
@@ -252,6 +257,44 @@ def kicker(d, text):
     d.text((56, 106), text, font=F(BOLD, SMALL), fill=GRAY)
 
 
+GUIDE_BADGE_FONT_SIZE = 26  # FIJO, igual criterio que FOOTER_NOTE_FONT_SIZE — nunca se auto-ajusta al texto
+GUIDE_BADGE_LINE_H = 34
+GUIDE_BADGE_TOP = 140  # justo debajo del kicker (que vive en y=106)
+
+
+def guide_badge(img, d, number, line):
+    """Recuadro con el gancho de la guía SEO de Notion, ENCIMA del título de
+    la portada (`cover`) — vigente desde el 03/09/2026 a petición expresa de
+    Jorge (sustituye al primer intento de meter el número en el kicker + una
+    frase suelta en el subtitle, que no se veía suficientemente destacado).
+
+    Caja naranja de marca con esquinas redondeadas, texto en negro (INK),
+    ancho fijo (el ancho útil del canvas) y alto variable según cuántas
+    líneas ocupe el texto envuelto — mismo criterio que footer_gate_note:
+    el tamaño de letra NUNCA se auto-ajusta, lo que varía es cuánto espacio
+    ocupa la caja. Solo se usa en `cover`; el resto de slides ya tienen su
+    propio recuadro (footer_gate_note).
+
+    `number` es el número de la mejora dentro de la guía (arranca en 1 el
+    día que se activó la guía en Notion, 03/09/2026, sube +1 cada día
+    publicado — ver AUTOMATION_BRIEF.md sección 3.3 para la fórmula).
+    `line` es la frase fija que invita a pedir acceso (editar solo si Jorge
+    pide cambiar el texto, no el número)."""
+    font = F(BOLD, GUIDE_BADGE_FONT_SIZE)
+    text = f'MEJORA Nº{number} · {line}'
+    pad_x, pad_y = 28, 22
+    max_w = W - 2 * MARGIN_X - 2 * pad_x
+    lines = wrap(d, text, font, max_w)
+    box_h = pad_y * 2 + GUIDE_BADGE_LINE_H * len(lines)
+    box = (MARGIN_X, GUIDE_BADGE_TOP, W - MARGIN_X, GUIDE_BADGE_TOP + box_h)
+    rr(d, box, radius=20, fill=ORANGE)
+    ty = GUIDE_BADGE_TOP + pad_y
+    for ln in lines:
+        d.text((MARGIN_X + pad_x, ty), ln, font=font, fill=INK)
+        ty += GUIDE_BADGE_LINE_H
+    return GUIDE_BADGE_TOP + box_h + 32  # y de arranque del título, con margen
+
+
 DEFAULT_FOOTER_NOTE = 'COMENTA "<PALABRA>" Y TE LO ENVÍO'  # sustituye <PALABRA> en CONFIG cada día
 FOOTER_NOTE_FONT_SIZE = 26  # FIJO — nunca variar entre slides ni auto-ajustar al ancho del texto
 
@@ -355,8 +398,16 @@ def ring_checks(d, x, y, items, gap=80):
 
 def render_cover(img, d, spec, index, total):
     title_lines = spec["title_lines"]
-    assert len(title_lines) <= 5, "cover: máximo 5 líneas de título (se sale del lienzo por abajo)"
-    y = TITLE_SAFE_TOP
+    badge = spec.get("guide_badge")
+    if badge:
+        assert len(title_lines) <= 3, (
+            "cover: con guide_badge, máximo 3 líneas de título "
+            "(el recuadro de la guía ocupa espacio arriba)"
+        )
+        y = guide_badge(img, d, badge["number"], badge["line"])
+    else:
+        assert len(title_lines) <= 5, "cover: máximo 5 líneas de título (se sale del lienzo por abajo)"
+        y = TITLE_SAFE_TOP
     for line in title_lines:
         assert_line_fits(d, line, F(TITLE, TITLE_XL), context=f"cover: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
@@ -517,12 +568,14 @@ CONFIG = {
     "slides": [
         {
             "type": "cover",
+            "guide_badge": {
+                "number": 1,  # día 1 desde el lanzamiento de la guía en Notion (03/09/2026), +1 cada día — ver AUTOMATION_BRIEF.md §3.3
+                "line": "Te doy acceso a una guia SEO para ecommerce, actualizada cada dia.",
+            },
             "title_lines": [
                 [("5 SEÑALES", True)],
-                [("DE INDEXACIÓN", False)],
+                [("DE INDEXACION", False)],
                 [("SILENCIOSA", True)],
-                [("(QUE NADIE", False)],
-                [("REVISA)", True)],
             ],
             "subtitle": "Ninguna rompe la tienda. Ninguna da error. Por eso "
                         "nadie las revisa — y por eso te cuestan trafico, mes tras mes.",

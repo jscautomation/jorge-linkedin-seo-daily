@@ -153,21 +153,29 @@ Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
 importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
 preguntas de autochequeo) + 1 `closing`.
 
-**Kicker numerado + gancho de la guía en la portada (vigente desde el
-03/09/2026, a petición expresa de Jorge)**: el `kicker` (aparece en todas
-las slides, no solo la portada) pasa a llevar el número correlativo de la
-mejora de hoy dentro de la guía, patrón `MEJORA SEO Nº<N> · ECOMMERCE` —
-`<N>` es el número de fila que le corresponde la mejora de hoy en
-`TEMAS_TRATADOS.md` (una fila = un día publicado, se cuenta desde el
-principio del histórico, no solo desde que existe la guía en Notion).
-Además, el `subtitle` de la portada (`cover`) termina, después del gancho
-específico del día, con esta frase fija (mismo `<N>` que el kicker): `Es
-la mejora nº<N> de mi guía SEO para ecommerce, que actualizo cada día.
-¿Quieres tener acceso?` — refuerza en la primera slide, antes de que
-nadie deslice, que esto es una entrada de una guía viva (la de Notion,
-sección 4) a la que se puede pedir acceso comentando la palabra clave,
-sin repetir todavía esa palabra (eso ya lo hace el recuadro naranja de
-abajo, ver más abajo).
+**Recuadro de la guía encima del título de portada (vigente desde el
+03/09/2026, a petición expresa de Jorge — sustituye a un primer intento
+el mismo día de meter el número en el `kicker` + una frase suelta en el
+`subtitle`, que no se veía suficientemente destacado)**: la slide `cover`
+lleva, ENCIMA del título (entre el kicker y el título grande), un
+recuadro naranja de esquinas redondeadas con texto en negro, patrón fijo:
+`MEJORA Nº<N> · Te doy acceso a una guía SEO para ecommerce, actualizada
+cada día.` — es el campo `guide_badge` (`number` + `line`) del slide
+`cover` en `scripts/generate_carousel_post.py` (ver `guide_badge()`, ya
+forma parte del motor de render, fijo). El `kicker` y el `subtitle` de la
+portada vuelven a ser los de siempre (sin número ni frase añadida — el
+recuadro ya lo dice todo).
+
+`<N>` = número de la mejora **dentro de la guía de Notion**, no del
+histórico completo de `TEMAS_TRATADOS.md`: empieza en **1** el día en que
+se lanzó la guía en Notion (03/09/2026) y sube +1 cada día publicado
+desde entonces. Fórmula: `N = (fecha de hoy − 03/09/2026 en días) + 1`
+(03/09/2026 → 1, 04/09/2026 → 2, y así cada día). La frase `line` es fija
+— cámbiala solo si Jorge pide explícitamente otro texto, nunca el número.
+
+Con `guide_badge`, la portada admite como máximo 3 líneas de título (el
+recuadro ocupa parte del espacio de arriba) — si el titular del día
+necesita más líneas, acórtalo o muévelo parcialmente al `subtitle`.
 
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
