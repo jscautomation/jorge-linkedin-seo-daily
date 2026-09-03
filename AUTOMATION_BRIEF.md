@@ -106,13 +106,18 @@ de añadir matices extra.
 
 Guarda como `post-linkedin.txt`.
 
-## 3. El carrusel (formato principal, paleta crema desde el 03/09/2026)
+## 3. El carrusel (formato principal, estilo "tech oscuro" desde el 03/09/2026 tarde)
 
-**Vuelve a ser un carrusel** (sustituye a la imagen única que estuvo vigente
-del 28/08 al 02/09/2026 — ver nota de migración). Usa
-`scripts/generate_carousel_post.py`, el mismo motor "documento" que ya
-existía en el repo (estuvo desactivado, ahora vuelve a ser el generador
-oficial), con un cambio de paleta.
+Usa `scripts/generate_carousel_post.py`. **Segundo cambio de estilo el mismo
+día 03/09/2026** (por la mañana se había pasado de negro a crema; por la
+tarde, tras ver el resultado, Jorge pidió acercar el diseño al de un perfil
+de referencia — Pablo Rodríguez / GoToMarket — que le señaló por su
+estructura de alto impacto: fondo oscuro, foto real grande, cajas de
+resaltado muy visibles) — **manteniendo los colores corporativos propios**
+(negro + naranja de marca, nunca los colores del perfil de referencia) y
+corrigiendo el pixelado que se veía en el logo y el avatar del formato
+crema. Ver nota de migración 3 al final del documento para el detalle
+completo de qué cambió y por qué.
 
 ### 3.1 El motor es fijo, el contenido se edita cada día
 
@@ -132,19 +137,39 @@ Salida: `carrusel-1.png` … `carrusel-N.png` (una por slide) + `carrusel-post.p
 publicación de tipo Documento** (LinkedIn lo renderiza como visor
 deslizable) — los PNG son solo para revisar/editar cada slide a mano.
 
-### 3.2 Paleta (fijo — cambiada el 03/09/2026, fondo crema en vez de negro)
+### 3.2 Paleta y resolución (fijo — cambiado el 03/09/2026 por la tarde)
 
 | Elemento | Valor |
 |---|---|
-| Fondo (`BG`) | `#FFFCF4` (crema) |
-| Texto principal (`CREAM`, nombre heredado del formato antiguo) | `#111111` (negro) |
-| Rejilla decorativa (`GRID`) | `#E6E0D2` (gris claro sobre crema) |
-| Resaltados / acentos (`ORANGE`) | `#FF5A1F` (naranja de marca) |
-| Texto sobre cajas naranjas/crema (`INK`) | `#111111` |
-| Texto secundario / kicker (`GRAY`) | `#78766E` |
+| Fondo (`BG`) | `#0A0B0D` (negro azulado, no negro puro) |
+| Texto principal (`TEXT`) | `#F5F4F0` (blanco roto) |
+| Rejilla decorativa (`GRID`) | `#1A1C20`, en puntos (no líneas) sobre el fondo oscuro |
+| Resaltados / acentos / anillo de foto (`ORANGE`) | `#FF5A1F` (naranja de marca, sin cambios) |
+| Texto sobre cajas naranjas (`INK`) | `#111111` |
+| Texto secundario / kicker (`GRAY`) | `#8B8D93` |
 
-Fuentes: ArchivoBlack (titulares) y Barlow-Bold (cuerpo/CTA), igual que
-siempre — sin cambios respecto al formato anterior.
+Lienzo: **1440x1440** (antes 1080x1080, mismo formato 1:1) — sube la
+densidad de píxel para que no se vea pixelado al hacer zoom en LinkedIn; el
+PDF sigue maquetado al mismo tamaño físico (28.575 cm), así que el cambio
+real es más nitidez, no un formato distinto. Fuentes: ArchivoBlack
+(titulares) y Barlow-Bold (cuerpo/CTA), sin cambios.
+
+**Logo de marca → texto, no imagen**: el archivo `assets/branding/logo.png`
+es de baja resolución (300x213px) y se veía pixelado a cualquier tamaño —
+ampliarlo no lo arregla, es el propio archivo. El logotipo de cabecera
+("JORGE SEGOVIA") se dibuja ahora como texto con las fuentes de marca
+(nítido a cualquier tamaño). Si Jorge sube un logo de mayor resolución
+(≥1200px de ancho, o mejor un SVG) a `assets/branding/`, se puede volver a
+usar como imagen.
+
+**Foto de Jorge, más grande y con nitidez compensada**: la portada (`cover`)
+lleva ahora la foto de Jorge en grande (círculo con anillo naranja, ~460px
+de diámetro), no solo la insignia pequeña de cabecera — es la "prueba
+visual fuerte" que pidió Jorge, en la línea del perfil de referencia. El
+archivo de origen (`assets/branding/foto-jorge-circle.png`) es algo blando;
+el script le aplica un `UnsharpMask` moderado tras el redimensionado para
+compensarlo (`PHOTO_SHARPEN_PCT` en el motor) — ayuda, pero no sustituye a
+subir una foto más nítida si Jorge la tiene disponible.
 
 ### 3.3 Estructura de slides
 
@@ -152,6 +177,10 @@ Tipos disponibles: `cover`, `statement`, `bullets`, `card`, `closing`.
 Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
 importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
 preguntas de autochequeo) + 1 `closing`.
+
+**`cover` lleva máximo 3 líneas de título** (antes 5) — deja hueco vertical
+a la foto grande de Jorge que se pinta debajo automáticamente; el `subtitle`
+es opcional y se puede omitir si el título ya ocupa las 3 líneas.
 
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
@@ -320,3 +349,32 @@ débil del plan anterior:
   rutina (sección 4). El resto del embudo (comentar palabra clave → DM
   manual de Jorge con URL de Mailchimp → la persona deja su email → llega a
   esta página) no cambia.
+
+## Nota de migración 3 (03/09/2026, mismo día) — segundo cambio de estilo del carrusel
+
+Después de ver el primer resultado en paleta crema (nota de migración 1),
+Jorge pidió acercar el diseño a un perfil de LinkedIn de referencia (Pablo
+Rodríguez / GoToMarket) que le señaló por su estructura — no por su temática
+ni sus colores — y avisó de que el logo y el avatar se veían pixelados.
+Cambios aplicados en `scripts/generate_carousel_post.py` (detalle completo
+en la sección 3):
+
+- **Paleta**: vuelve a fondo oscuro (`#0A0B0D`, no el negro puro anterior al
+  28/08 ni el crema de esa misma mañana) con el naranja de marca como
+  acento — los colores siguen siendo los corporativos de Jorge, no los del
+  perfil de referencia.
+- **Motivos "tech"**: rejilla de puntos en vez de líneas, marcas de esquina
+  tipo visor/HUD, kicker con letter-spacing y punto de estado, panel con
+  borde fino detrás del contenido de cada `card` — buscan el aire "muy
+  tecnológico" que pidió Jorge sin copiar literalmente el diseño ajeno.
+- **Portada con foto grande**: la foto de Jorge (círculo con anillo
+  naranja, ~460px) pasa a ser una pieza visual fuerte en la portada, no solo
+  la insignia pequeña de cabecera — la "prueba real" que tienen las
+  publicaciones de referencia.
+- **Corrección del pixelado**: el logo pasa de imagen (300x213px, borroso a
+  cualquier tamaño) a texto dibujado con las fuentes de marca (nítido
+  siempre); la foto lleva un `UnsharpMask` de compensación; el lienzo sube
+  de 1080 a 1440px (mismo tamaño físico en el PDF, más densidad de píxel).
+- Pendiente si Jorge lo aporta más adelante: una foto de mayor nitidez y/o
+  un logo en alta resolución o SVG — mientras tanto, el logo de texto y el
+  `UnsharpMask` son la solución de este cambio.
