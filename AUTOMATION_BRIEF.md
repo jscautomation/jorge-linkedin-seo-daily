@@ -19,70 +19,154 @@ foco actual en moda pero abierto a cualquier sector ecommerce. Servicio en 2 fas
 Fase 1 (auditoría SEO de +100 páginas: keyword research, arquitectura SEO
 transaccional, ranking actual, anexos) y Fase 2 (implementación).
 
-**Público objetivo**: el contenido diario busca generar **engagement y
-visibilidad del perfil de Jorge ante CEOs y propietarios de empresa de
-cualquier industria**, con foco especial en quienes dirigen un ecommerce en
-WordPress o Shopify (su ICP prioritario, pero no el único). Jorge interactúa
-él mismo, manualmente, con perfiles de este tipo (comentarios, likes,
-mensajes) para construir relación — esta rutina nunca comenta ni interactúa
-en perfiles ajenos; lo único que hace es producir lo que esos perfiles ven
-cuando entran en el suyo.
+**ICP (redefinido el 03/09/2026, a petición expresa de Jorge)** — tres
+perfiles, todos dentro de una empresa con ecommerce, ningún otro:
 
-**El contenido sigue siendo SEO técnico para ecommerce**, pero cada pieza
-tiene que abrirse y sostenerse en términos que le importan a quien dirige un
-negocio — coste real (ingresos, margen, cuota de mercado frente a la
-competencia), riesgo (qué pasa si no se arregla) y ventaja competitiva —
-antes que en jerga técnica por sí misma. El detalle técnico se mantiene (da
-autoridad) pero siempre subordinado a la consecuencia de negocio: nunca
-como apertura ni como único argumento.
+1. **Owner / propietario de ecommerce**
+2. **Head of Ecommerce**
+3. **Head of Marketing**
+
+Ya no se habla de "CEOs y propietarios de cualquier industria" como público
+amplio — el contenido se dirige específicamente a estos tres roles. Jorge
+interactúa él mismo, manualmente, con perfiles de este tipo (comentarios,
+likes, mensajes) para construir relación — esta rutina nunca comenta ni
+interactúa en perfiles ajenos; lo único que hace es producir lo que esos
+perfiles ven cuando entran en el suyo.
+
+**Principio rector — VENTAS primero, siempre (redefinido el 03/09/2026, a
+petición expresa de Jorge, sustituye al enfoque "coste/riesgo/ventaja
+competitiva" anterior)**: a este ICP **solo le importa una cosa — vender
+más en su ecommerce, y a ser posible con tráfico orgánico (gratis)**. No le
+interesa entender el mecanismo técnico del SEO; le interesa qué hace por su
+facturación. Por tanto:
+
+- **Toda pieza (post, carrusel, entrada de Notion) tiene que abrirse y
+  sostenerse en el impacto en VENTAS/FACTURACIÓN** — no en coste genérico,
+  no en jerga SEO, no en el mecanismo técnico. La pregunta que responde la
+  apertura de cada pieza es siempre "¿cómo afecta esto a lo que vendo?",
+  nunca "¿qué error técnico es este?".
+- **Jorge da permiso expreso para exagerar el enfoque de ventas** — tono
+  directo, provocador, incluso hiperbólico en la apertura ("te están
+  robando clientes", "estás regalando ventas a tu competencia", "cada día
+  que pasa pierdes facturación") — SIEMPRE anclado a un mecanismo real
+  (nunca una cifra inventada), pero la EMOCIÓN de la apertura es la pérdida
+  de ventas, no el fallo técnico.
+- **Cero tecnicismos en la apertura y en el cuerpo del post/carrusel** — el
+  término o mecanismo SEO concreto (canonical, hreflang, crawl budget,
+  Merchant API...) puede aparecer, pero subordinado, nunca como titular ni
+  como argumento principal. El detalle técnico completo, para quien sí lo
+  quiera, vive en la guía de Notion (sección 4), no en el post ni el
+  carrusel.
+- Esto aplica a **la primera línea del post, la portada del carrusel, y el
+  título de la entrada de Notion** por igual — las tres deben "oler a
+  ventas" antes que a SEO, sea cual sea el pilar/tema SEO de fondo del día
+  (ver sección 1, redefinida el mismo día).
 
 **La guía de Notion (destino final del embudo, ver sección 4)** también es
 de ecommerce/marketing de tiendas online — gente ocupada que valora algo
-accionable y rápido de aplicar por encima de la teoría.
+accionable y rápido de aplicar por encima de la teoría. Ahí sí vive el
+detalle técnico completo — es el único sitio donde toca.
 
 Web: jorgesegoviaciscar.com · Email: jorge@jscautomation.es
 
-## 1. Elegir la mejora SEO del día (ya no hay rotación por día de la semana)
+## 1. Elegir el tema del día — por pilar SEO, siempre aterrizado en ventas
 
-**Se elimina la tabla de ángulos por día de la semana (Lunes-roast,
-Martes-mito, etc.) vigente hasta el 03/09/2026** — ver nota de migración.
-A partir de ahora hay un único criterio, todos los días:
+**Redefinido el 03/09/2026, a petición expresa de Jorge — sustituye al
+criterio de "una mejora SEO no repetida" de más abajo vigente ese mismo
+día** (ver nota de migración): Jorge decidió que organizar el contenido
+como una lista abierta de hallazgos sueltos no daba suficiente estructura.
+A partir de ahora, el contenido se organiza por **pilares del SEO para
+ecommerce** — cada día se elige un pilar y, dentro de él, un ángulo
+concreto no repetido — pero el ángulo elegido, sea cual sea el pilar,
+**siempre se cuenta en clave de ventas** (principio rector de la sección 0):
+el pilar/mecanismo SEO es la excusa técnica de fondo, nunca el titular.
 
-- Es **una mejora SEO concreta y accionable** para ecommerce (del tipo que ya
-  se venía tratando: errores reales de auditoría, mitos, hallazgos,
-  tendencias), siempre aterrizada en "esto es lo que puedes implementar" —
-  pensada para que un propietario de ecommerce la entienda y la aplique de
-  principio a fin (diagnóstico → por qué importa → qué se hace).
-- Se plantea en términos de negocio (coste, riesgo, ventaja competitiva)
-  antes que jerga técnica — este enfoque, antes limitado a la nota "1ter",
-  ahora aplica siempre, sin distinción por día.
-- **No repetida**: antes de elegir, lee `TEMAS_TRATADOS.md` (raíz del repo,
-  ahora una lista única cronológica) y no repitas el mismo fondo del
-  hallazgo aunque cambie la marca, el título o la redacción.
-- Si no hay tema libre razonable, no repitas — genera el resto del contenido
-  con normalidad pero avisa explícitamente a Jorge en la entrega de que hace
-  falta que pase un tema nuevo.
+### 1.1 Revisa la actualidad antes de elegir pilar (nuevo, 03/09/2026)
+
+A petición expresa de Jorge: antes de tirar del menú fijo de pilares,
+dedica un momento a **buscar si hay alguna noticia reciente (últimas
+24-72h) relevante para SEO/ecommerce** que encaje con el ICP (sección 0) —
+cambios de algoritmo de Google, novedades de plataforma (Shopify,
+WordPress/WooCommerce, Google Merchant Center...), un caso de una marca
+conocida, etc. Usa búsqueda web para esto.
+
+- Si hay una noticia con gancho real y relevancia directa para el ICP,
+  **prioriza construir el contenido del día a partir de ella** — el
+  contenido de actualidad suele tener más alcance por ser oportuno. Es lo
+  que ya pasó de forma natural el 03/09/2026 (cierre de la Content API for
+  Shopping de Google, con fecha límite real) sin que existiera aún esta
+  regla — formalízalo como criterio explícito a partir de ahora.
+- Identifica igualmente a qué pilar de la lista de abajo pertenece la
+  noticia (para el registro en `TEMAS_TRATADOS.md`, sección 1.3) — la
+  actualidad es el gancho, no sustituye la estructura de pilares.
+- Si no hay ninguna noticia con encaje razonable, sigue el criterio normal
+  de elegir pilar + ángulo (sección 1.3).
+- En cualquier caso, **el ángulo se sigue contando siempre en clave de
+  ventas** (sección 0) — la actualidad da el gancho/timing, nunca cambia el
+  enfoque de la apertura.
+
+### 1.2 Los pilares (menú fijo — rota entre ellos, no hace falta un orden estricto)
+
+| Pilar | Qué cubre |
+|---|---|
+| **Indexación y rastreo** | Robots.txt, noindex, canonical, crawl budget, Search Console |
+| **Arquitectura y navegación** | Categorías, filtros/facetas, paginación, enlazado interno |
+| **Contenido de producto y categoría** | Fichas duplicadas/finas, keyword research, descripciones |
+| **Velocidad y experiencia móvil** | Core Web Vitals, renderizado JS, tiempos de carga |
+| **Feeds y canales** | Google Shopping/Merchant Center, marketplaces, sincronización de catálogo |
+| **Migraciones y redirecciones** | Cambios de plataforma/dominio, cadenas de 301/302, QA post-migración |
+| **Datos estructurados** | Schema de producto, rich snippets, AI Overviews / IA generativa |
+| **SEO internacional / multi-tienda** | Hreflang, dominios/carpetas por país, contenido duplicado entre mercados |
+| **Autoridad y marca** | Linkbuilding, menciones, señales de marca frente a competencia |
+
+### 1.3 Cómo elegir cada día
+
+- Primero, revisa la actualidad (sección 1.1). Si no hay nada aprovechable,
+  lee `TEMAS_TRATADOS.md` (raíz del repo) — cada fila indica también el
+  **pilar** tratado ese día (columna añadida el 03/09/2026). Evita el pilar
+  usado el día anterior si hay alternativa razonable (variedad visual en el
+  perfil), y dentro del pilar elegido, **no repitas el mismo ángulo/hallazgo
+  de fondo** aunque cambie la marca, el título o la redacción.
+- El ángulo debe ser **concreto y accionable** para ecommerce (errores reales
+  de auditoría, mitos, hallazgos, tendencias, o la noticia de actualidad de
+  la sección 1.1) — pensado para que se entienda de principio a fin
+  (diagnóstico → por qué importa → qué se hace), con la solución completa
+  reservada a la guía de Notion (sección 4).
+- **Contado siempre en clave de ventas** (sección 0): antes de escribir nada,
+  responde primero "¿qué le pasa a la facturación de este ecommerce por este
+  problema?" — esa respuesta es la apertura. El pilar/mecanismo técnico es
+  el desarrollo, nunca el titular.
+- Si no hay ángulo libre razonable en ningún pilar (ni de actualidad ni del
+  menú fijo), no repitas — genera el resto del contenido con normalidad
+  pero avisa explícitamente a Jorge en la entrega de que hace falta que
+  pase un tema nuevo.
 
 **Registro obligatorio**: al terminar de generar todo el contenido del día,
 añade una fila nueva al final de la tabla de `TEMAS_TRATADOS.md` (fecha,
-mejora SEO, nota breve de la solución) y haz commit+push de ese archivo junto
-con la carpeta `content/<día>/` (mismo commit o el siguiente, pero siempre el
-mismo día). Nunca lo dejes para "el próximo día".
+**pilar**, mejora SEO, nota breve de la solución) y haz commit+push de ese
+archivo junto con la carpeta `content/<día>/` (mismo commit o el siguiente,
+pero siempre el mismo día). Nunca lo dejes para "el próximo día".
 
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
 0. **Titular de apertura** (obligatorio): primera línea del post, sola, en
-   su propio párrafo — corto y contundente, en términos de negocio (coste,
-   riesgo, ventaja competitiva) siempre que el tema lo permita. Mismo
-   titular que la portada del carrusel (sección 3) y el título de la
+   su propio párrafo — corto, contundente y **SIEMPRE en clave de ventas**
+   (sección 0: qué le pasa a la facturación, no qué error técnico hay —
+   tono exagerado permitido, anclado a un mecanismo real). Nunca abras con
+   un término SEO (canonical, hreflang, crawl budget, Merchant API...).
+   Mismo titular que la portada del carrusel (sección 3) y el título de la
    entrada que se añade a la guía de Notion (sección 4) — post, carrusel y
    guía deben "decir lo mismo" a primer golpe de vista.
-1. **Hook** (1-2 líneas, dato/situación sorprendente) — dirigido a quien toma
-   la decisión de negocio, no solo a quien lo implementaría técnicamente.
+1. **Hook** (1-2 líneas, dato/situación sorprendente) — sigue en clave de
+   ventas, dirigido a quien toma la decisión de negocio (Owner ecommerce /
+   Head of Ecommerce / Head of Marketing — sección 0), no a quien lo
+   implementaría técnicamente.
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
-3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
-4. **Por qué importa / qué está en juego** — coste de no arreglarlo en
-   términos de negocio, SIN dar los pasos de la solución (regla de la
+3. **El desarrollo** (el roast / mito / hallazgo del pilar SEO de hoy — sección
+   1 — con tono ligero pero riguroso; aquí sí aparece el mecanismo técnico,
+   pero subordinado a la consecuencia de ventas ya planteada arriba)
+4. **Por qué importa / qué está en juego** — impacto en VENTAS de no
+   arreglarlo (sección 0), SIN dar los pasos de la solución (regla de la
    sección 4 — la solución completa vive solo en la guía de Notion).
 5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada)
 6. **CTA de comentario**: invita a comentar una palabra clave concreta
@@ -96,9 +180,13 @@ mismo día). Nunca lo dejes para "el próximo día".
    coincidir con la que uses en el recuadro naranja de todas las slides del
    carrusel (sección 3).
 
-Tono: cercano, con personalidad, nunca acartonado. Nunca inventar cifras. El
-lector prioritario es un CEO o propietario de empresa. El rigor técnico no se
-pierde, pero nunca es el argumento de apertura.
+Tono: cercano, con personalidad, nunca acartonado — **y con permiso expreso
+de Jorge para exagerar el enfoque de ventas** en la apertura (sección 0).
+Nunca inventar cifras. El lector prioritario es el ICP de la sección 0
+(Owner ecommerce / Head of Ecommerce / Head of Marketing), no un perfil
+técnico. El rigor técnico no desaparece (da autoridad, vive en el
+desarrollo y sobre todo en la guía de Notion) pero nunca es el argumento de
+apertura ni el titular.
 
 **Longitud**: 150-200 palabras en total. Mismo esqueleto de 6-7 puntos, pero
 compacto — si un párrafo puede decir lo mismo en menos frases, recorta antes
@@ -178,6 +266,23 @@ Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
 importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
 preguntas de autochequeo) + 1 `closing`.
 
+**Titular de portada SIEMPRE en clave de ventas (redefinido el 03/09/2026,
+a petición expresa de Jorge — ver principio rector de la sección 0)**: el
+`title_lines` de la slide `cover` es la pieza que más gente ve — tiene que
+"oler a ventas" antes que a SEO, sea cual sea el pilar/tema técnico de
+fondo (sección 1). Nunca abrir con un término SEO. Banco de fórmulas de
+titular (rotar, no usar siempre la misma, adaptar al ángulo del día — tono
+exagerado permitido, sección 0):
+
+- "ESTÁS PERDIENDO VENTAS [EN <CANAL/SITUACIÓN>]"
+- "TU COMPETENCIA TE ESTÁ ROBANDO CLIENTES [POR ESTO]"
+- "ESTÁS REGALANDO VENTAS A TU COMPETENCIA"
+- "CADA DÍA QUE PASA, PIERDES FACTURACIÓN"
+- "TU WEB PODRÍA VENDER MÁS — Y NO LO HACE"
+
+El mecanismo SEO concreto (el pilar del día) va en el `subtitle` de la
+portada o en las slides siguientes, nunca en el titular.
+
 **Recuadro de la guía encima del título de portada (vigente desde el
 03/09/2026, a petición expresa de Jorge — sustituye a un primer intento
 el mismo día de meter el número en el `kicker` + una frase suelta en el
@@ -187,8 +292,10 @@ separación respecto al logo/avatar que en el primer ajuste — ver
 `GUIDE_BADGE_TOP`), un recuadro de esquinas redondeadas en **gris oscuro
 casi negro** (`GUIDE_BADGE_BG`, no naranja) con **texto en blanco**
 (`GUIDE_BADGE_TEXT`) para que resalte más, patrón fijo: `MEJORA Nº<N> ·
-Te doy acceso a una guía SEO para ecommerce, actualizada cada día.` — es
-el campo `guide_badge` (`number` + `line`) del slide `cover` en
+Te doy acceso a una guía para vender más con SEO, actualizada cada día.`
+— texto de `line` actualizado el 03/09/2026 (mismo día, en clave de
+ventas en vez de "guía SEO para ecommerce" genérico) — es el campo
+`guide_badge` (`number` + `line`) del slide `cover` en
 `scripts/generate_carousel_post.py` (ver `guide_badge()`, ya forma parte
 del motor de render, fijo). El `kicker` y el `subtitle` de la portada
 vuelven a ser los de siempre (sin número ni frase añadida — el recuadro
@@ -372,3 +479,39 @@ débil del plan anterior:
   rutina (sección 4). El resto del embudo (comentar palabra clave → DM
   manual de Jorge con URL de Mailchimp → la persona deja su email → llega a
   esta página) no cambia.
+
+## Nota de migración 3 (03/09/2026, mismo día) — ICP redefinido y giro a "ventas primero"
+
+Jorge revisó el enfoque de contenido tras ver el primer día de carrusel en
+marcha y pidió un cambio de fondo, no solo de estilo:
+
+- **ICP redefinido** (antes "CEOs y propietarios de cualquier industria,
+  foco especial en ecommerce" — nueva sección 0): ahora son tres roles
+  concretos, todos dentro de una empresa con ecommerce — Owner de
+  ecommerce, Head of Ecommerce, Head of Marketing. Nada de "cualquier
+  industria".
+- **Principio rector nuevo: VENTAS primero, siempre** (nueva sección 0) —
+  sustituye al marco "coste/riesgo/ventaja competitiva". A este ICP solo le
+  importa vender más (ojalá con tráfico orgánico) — no el mecanismo
+  técnico. Toda apertura (titular del post, portada del carrusel, título de
+  la entrada de Notion) tiene que sonar a consecuencia de ventas, nunca a
+  jerga SEO. Jorge dio permiso expreso para que el tono de apertura sea
+  exagerado/hiperbólico (siempre anclado a un mecanismo real, nunca a una
+  cifra inventada).
+- **Se abandona el modelo de "una mejora SEO suelta, no repetida" en favor
+  de un menú fijo de pilares SEO** (nueva sección 1.2: indexación/rastreo,
+  arquitectura/navegación, contenido de producto, velocidad/CWV, feeds y
+  canales, migraciones/redirecciones, datos estructurados, SEO
+  internacional, autoridad/marca) — cada día se elige un pilar y, dentro
+  de él, un ángulo no repetido, pero SIEMPRE contado en clave de ventas.
+  `TEMAS_TRATADOS.md` gana una columna de pilar (ver ese archivo).
+- **Revisión de actualidad antes de elegir pilar** (nueva sección 1.1, a
+  petición expresa de Jorge en un mensaje aparte el mismo día): cada día,
+  antes de tirar del menú fijo, busca si hay una noticia reciente de
+  SEO/ecommerce relevante para el ICP — si la hay, prioriza construirla
+  como contenido del día (más alcance por ser de actualidad); si no,
+  sigue el criterio normal de pilar + ángulo.
+- **Portada del carrusel**: nueva regla de titular siempre en clave de
+  ventas con banco de fórmulas de apertura (sección 3.3), y el texto fijo
+  del recuadro de la guía (`guide_badge`) pasa de "guía SEO para ecommerce"
+  a "guía para vender más con SEO".

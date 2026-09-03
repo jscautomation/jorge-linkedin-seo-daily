@@ -604,7 +604,7 @@ CONFIG = {
             "type": "cover",
             "guide_badge": {
                 "number": 1,  # día 1 desde el lanzamiento de la guía en Notion (03/09/2026), +1 cada día — ver AUTOMATION_BRIEF.md §3.3
-                "line": "Te doy acceso a una guia SEO para ecommerce, actualizada cada dia.",
+                "line": "Te doy acceso a una guia para vender mas con SEO, actualizada cada dia.",
             },
             "title_lines": [
                 [("5 SEÑALES", True)],
