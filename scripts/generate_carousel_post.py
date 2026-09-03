@@ -259,7 +259,9 @@ def kicker(d, text):
 
 GUIDE_BADGE_FONT_SIZE = 26  # FIJO, igual criterio que FOOTER_NOTE_FONT_SIZE — nunca se auto-ajusta al texto
 GUIDE_BADGE_LINE_H = 34
-GUIDE_BADGE_TOP = 140  # justo debajo del kicker (que vive en y=106)
+GUIDE_BADGE_TOP = 168  # deja más aire respecto al avatar/logo (vigente desde el 03/09/2026 — antes 140, pegado al kicker)
+GUIDE_BADGE_BG = (26, 26, 26)   # gris oscuro casi negro (vigente desde el 03/09/2026, antes fondo naranja) — distinto de INK/CREAM (17,17,17) para que se note que es un tono propio, no negro puro
+GUIDE_BADGE_TEXT = (255, 255, 255)  # blanco, para máximo contraste sobre el fondo oscuro
 
 
 def guide_badge(img, d, number, line):
@@ -268,12 +270,14 @@ def guide_badge(img, d, number, line):
     Jorge (sustituye al primer intento de meter el número en el kicker + una
     frase suelta en el subtitle, que no se veía suficientemente destacado).
 
-    Caja naranja de marca con esquinas redondeadas, texto en negro (INK),
-    ancho fijo (el ancho útil del canvas) y alto variable según cuántas
-    líneas ocupe el texto envuelto — mismo criterio que footer_gate_note:
-    el tamaño de letra NUNCA se auto-ajusta, lo que varía es cuánto espacio
-    ocupa la caja. Solo se usa en `cover`; el resto de slides ya tienen su
-    propio recuadro (footer_gate_note).
+    Caja de esquinas redondeadas en gris oscuro casi negro (GUIDE_BADGE_BG)
+    con texto en blanco (GUIDE_BADGE_TEXT) — a petición expresa de Jorge,
+    para que resalte más que si fuera naranja como el resto de recuadros de
+    la slide. Ancho fijo (el ancho útil del canvas) y alto variable según
+    cuántas líneas ocupe el texto envuelto — mismo criterio que
+    footer_gate_note: el tamaño de letra NUNCA se auto-ajusta, lo que varía
+    es cuánto espacio ocupa la caja. Solo se usa en `cover`; el resto de
+    slides ya tienen su propio recuadro (footer_gate_note).
 
     `number` es el número de la mejora dentro de la guía (arranca en 1 el
     día que se activó la guía en Notion, 03/09/2026, sube +1 cada día
@@ -287,10 +291,10 @@ def guide_badge(img, d, number, line):
     lines = wrap(d, text, font, max_w)
     box_h = pad_y * 2 + GUIDE_BADGE_LINE_H * len(lines)
     box = (MARGIN_X, GUIDE_BADGE_TOP, W - MARGIN_X, GUIDE_BADGE_TOP + box_h)
-    rr(d, box, radius=20, fill=ORANGE)
+    rr(d, box, radius=20, fill=GUIDE_BADGE_BG)
     ty = GUIDE_BADGE_TOP + pad_y
     for ln in lines:
-        d.text((MARGIN_X + pad_x, ty), ln, font=font, fill=INK)
+        d.text((MARGIN_X + pad_x, ty), ln, font=font, fill=GUIDE_BADGE_TEXT)
         ty += GUIDE_BADGE_LINE_H
     return GUIDE_BADGE_TOP + box_h + 32  # y de arranque del título, con margen
 

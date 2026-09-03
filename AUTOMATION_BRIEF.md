@@ -157,14 +157,17 @@ preguntas de autochequeo) + 1 `closing`.
 03/09/2026, a petición expresa de Jorge — sustituye a un primer intento
 el mismo día de meter el número en el `kicker` + una frase suelta en el
 `subtitle`, que no se veía suficientemente destacado)**: la slide `cover`
-lleva, ENCIMA del título (entre el kicker y el título grande), un
-recuadro naranja de esquinas redondeadas con texto en negro, patrón fijo:
-`MEJORA Nº<N> · Te doy acceso a una guía SEO para ecommerce, actualizada
-cada día.` — es el campo `guide_badge` (`number` + `line`) del slide
-`cover` en `scripts/generate_carousel_post.py` (ver `guide_badge()`, ya
-forma parte del motor de render, fijo). El `kicker` y el `subtitle` de la
-portada vuelven a ser los de siempre (sin número ni frase añadida — el
-recuadro ya lo dice todo).
+lleva, ENCIMA del título (entre el kicker y el título grande, con más
+separación respecto al logo/avatar que en el primer ajuste — ver
+`GUIDE_BADGE_TOP`), un recuadro de esquinas redondeadas en **gris oscuro
+casi negro** (`GUIDE_BADGE_BG`, no naranja) con **texto en blanco**
+(`GUIDE_BADGE_TEXT`) para que resalte más, patrón fijo: `MEJORA Nº<N> ·
+Te doy acceso a una guía SEO para ecommerce, actualizada cada día.` — es
+el campo `guide_badge` (`number` + `line`) del slide `cover` en
+`scripts/generate_carousel_post.py` (ver `guide_badge()`, ya forma parte
+del motor de render, fijo). El `kicker` y el `subtitle` de la portada
+vuelven a ser los de siempre (sin número ni frase añadida — el recuadro
+ya lo dice todo).
 
 `<N>` = número de la mejora **dentro de la guía de Notion**, no del
 histórico completo de `TEMAS_TRATADOS.md`: empieza en **1** el día en que
