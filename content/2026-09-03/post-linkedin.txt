@@ -1,0 +1,13 @@
+TU CATÁLOGO DEJÓ DE LLEGAR A GOOGLE.
+
+Si tu tienda usa una app o un plugin para sincronizar el catálogo con Google Shopping, es posible que lleve días sin actualizarse — y nadie te lo haya dicho.
+
+El 18 de agosto venció el plazo de Google para migrar de la vieja Content API for Shopping a la nueva Merchant API. Desde el 1 de septiembre, las peticiones que aún usan la API antigua empiezan a fallar. La mayoría de propietarios no llama a esa API en persona: lo hace la app de su plataforma o la herramienta de feeds que contrataron. Si ese proveedor no migró a tiempo, tu precio y tu stock en Shopping se quedan congelados en la última sincronización que sí funcionó.
+
+Esto no es un detalle técnico: un precio desactualizado en Shopping puede acabar en suspensión de listados por discrepancia, y cada día con el feed roto es tráfico y ventas que se lleva quien sí sincroniza bien.
+
+¿Cómo lo compruebas hoy mismo? Entra en Merchant Center → Diagnóstico y mira la fecha de última actualización de tus productos.
+
+Comenta "MERCHANT" y te escribo por privado con el enlace a la guía.
+
+#SEO #Ecommerce #WordPress #Shopify
