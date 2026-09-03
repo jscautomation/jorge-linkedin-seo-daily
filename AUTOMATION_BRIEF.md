@@ -146,6 +146,31 @@ deslizable) — los PNG son solo para revisar/editar cada slide a mano.
 Fuentes: ArchivoBlack (titulares) y Barlow-Bold (cuerpo/CTA), igual que
 siempre — sin cambios respecto al formato anterior.
 
+### 3.2bis Resolución de exportación — `SCALE` (fijo, doblado el 03/09/2026)
+
+Jorge reportó que el logo y el texto se veían blandos/pixelados al ver el
+carrusel más grande de su tamaño real (pantalla completa del visor de
+LinkedIn, pantallas de alta densidad). Comprobado que NO era el método de
+reescalado ni el archivo del logo, sino que el canvas de 1080x1080 se
+queda corto de resolución real una vez se muestra más grande de su
+tamaño nativo — y que "ampliar" la imagen ya generada no soluciona nada
+(no añade nitidez real, se probó con una muestra antes de decidir).
+
+**Solución adoptada**: el motor de `scripts/generate_carousel_post.py`
+redibuja todo el canvas al doble de resolución real — constante `SCALE = 2`
+al principio del archivo, que multiplica cada medida (fuentes, márgenes,
+líneas, radios, paddings...). El canvas pasa de 1080x1080 a **2160x2160**.
+El PDF sigue teniendo el mismo tamaño físico de página (285.75mm) — lo
+único que cambia es que ahora hay el doble de píxeles reales detrás de
+ese mismo tamaño (192 DPI efectivos en vez de 96).
+
+Si en el futuro Jorge pide más o menos nitidez, **solo hay que tocar la
+constante `SCALE`** — el resto del motor ya está escrito en función de
+ella. El avatar (`foto-jorge.jpg`) mejora algo con más resolución pero su
+blandura de origen no se arregla del todo por esta vía — ver nota en el
+propio `guide_badge()`/cabecera del script; si Jorge consigue una foto más
+nítida, sustituir el archivo sin tocar nada más.
+
 ### 3.3 Estructura de slides
 
 Tipos disponibles: `cover`, `statement`, `bullets`, `card`, `closing`.

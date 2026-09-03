@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Genera el carrusel/documento del post de LinkedIn — 1080x1080, estilo
-"documento negro con resaltados naranja". Adoptado como formato ESTANDAR
-de las publicaciones desde el 24/08/2026 (sustituye tanto al antiguo
-"stat hero" de `generate_post_image.py` como al primer intento de
-carrusel "captura anotada a mano" con garabatos), inspirado en el perfil
-de referencia Twinkle Chatterjee (ThriveCraft SEO) que Jorge señaló como
-modelo tras analizar datos de Apify de varios perfiles SEO de alto
-rendimiento en LinkedIn.
+Genera el carrusel/documento del post de LinkedIn — 2160x2160 (el doble de
+resolución real, ver nota de la sección SCALE más abajo), estilo "documento
+crema con resaltados naranja". Adoptado como formato ESTANDAR de las
+publicaciones desde el 24/08/2026 (sustituye tanto al antiguo "stat hero"
+de `generate_post_image.py` como al primer intento de carrusel "captura
+anotada a mano" con garabatos), inspirado en el perfil de referencia
+Twinkle Chatterjee (ThriveCraft SEO) que Jorge señaló como modelo tras
+analizar datos de Apify de varios perfiles SEO de alto rendimiento en
+LinkedIn.
 
 Cómo funciona (leer también AUTOMATION_BRIEF.md sección 3 — es la guía de
 estilo completa: paleta exacta, fuentes, límites de texto por tipo de
@@ -31,12 +32,30 @@ slide y por qué existen esos límites):
   respuesta completa NUNCA se da en el carrusel, solo el diagnóstico. La
   slide de cierre lleva el único CTA fuerte con el enlace al PDF.
 - La portada (`cover`) lleva, si el spec trae `guide_badge`, un recuadro
-  naranja ENCIMA del título con el número de la mejora dentro de la guía
-  de Notion y una frase de acceso (vigente desde el 03/09/2026, a
-  petición expresa de Jorge — ver `guide_badge()` y AUTOMATION_BRIEF.md
-  sección 3.3 para la fórmula del número).
+  ENCIMA del título con el número de la mejora dentro de la guía de
+  Notion y una frase de acceso (vigente desde el 03/09/2026, a petición
+  expresa de Jorge — ver `guide_badge()` y AUTOMATION_BRIEF.md sección
+  3.3 para la fórmula del número).
 
-Salida: `carrusel-1.png` ... `carrusel-N.png` (una por slide) +
+RESOLUCIÓN — SCALE (vigente desde el 03/09/2026, a petición expresa de
+Jorge, sustituye al canvas de 1080x1080 usado hasta entonces): Jorge
+reportó que el logo y el texto se veían blandos/pixelados al verse el
+carrusel más grande de su tamaño real (pantalla completa del visor de
+LinkedIn, pantallas de alta densidad). Se comprobó que NO era un problema
+del método de reescalado ni del archivo del logo en sí, sino de que 1080px
+es poca resolución real una vez la imagen se muestra más grande de su
+tamaño nativo. La solución NO es "ampliar" la imagen ya generada (eso no
+añade nitidez de verdad, se comprobó) sino redibujar TODO el motor con más
+píxeles reales desde el principio. `SCALE` (=2 desde el 03/09/2026)
+multiplica cada medida del motor (fuentes, márgenes, líneas, radios,
+paddings...) — el PDF sigue teniendo el MISMO tamaño físico de página
+(285.75mm, ver `build_pdf()`), así que lo único que cambia es que ahora
+hay el doble de píxeles reales detrás de ese mismo tamaño (192 DPI
+efectivos en vez de 96). Si Jorge pide más o menos nitidez en el futuro,
+cambiar SOLO la constante `SCALE` de abajo — el resto del motor ya está
+escrito en función de ella, no hay que retocar cada número a mano.
+
+Salida: `carrusel-1.png` ... `carrusel-N.png` (una por slide, 2160x2160) +
 `carrusel-post.pdf` (empaquetado SIN pérdida vía img2pdf — Pillow re-
 comprime a JPEG si se usa `Image.save(..., "PDF")`, se nota en las cajas
 resaltadas y el texto). **Sube el PDF a LinkedIn como publicación de tipo
@@ -64,11 +83,14 @@ OUT_DIR = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "content" / "c
 # de referencia y el razonamiento detrás de cada límite.
 # ============================================================
 
-W = H = 1080
-MARGIN_X = 56
+SCALE = 2  # multiplica CADA medida del motor — ver nota "RESOLUCIÓN" arriba. Único sitio a tocar para cambiar la nitidez de exportación.
+
+W = H = 1080 * SCALE
+MARGIN_X = 56 * SCALE
 
 # Paleta (hex de referencia entre paréntesis para cuando haga falta fuera
-# de Python, p.ej. en el HTML del formulario o en Figma):
+# de Python, p.ej. en el HTML del formulario o en Figma) — los colores NO
+# se escalan, solo las medidas en píxeles:
 BG = (255, 252, 244)       # #FFFCF4 — fondo crema (cambiado 03/09/2026, antes #0C0C0C negro)
 GRID = (230, 224, 210)     # gris claro sobre crema — líneas de la rejilla decorativa
 CREAM = (17, 17, 17)       # #111111 — texto principal oscuro sobre crema (nombre de variable heredado del formato negro anterior)
@@ -90,25 +112,26 @@ def F(name, size):
 
 # Tamaños de fuente por ROL (no por slide) — usa siempre el que
 # corresponda al rol, no un tamaño suelto, para que todos los días se
-# vean con la misma jerarquía visual:
-TITLE_XL = 84     # título grande multilínea: cover, statement, bullets
-LINE_H_XL = 132   # interlineado para TITLE_XL (deja hueco a la caja de resaltado)
-TITLE_L = 68      # título de 2 líneas de la slide de cierre
-LINE_H_L = 104
-TITLE_MED = 62    # etiqueta de una card ("SEÑAL 1:", "MITO:", "DATO 1:"...)
-HEADLINE = 50     # titular resaltado y envuelto dentro de una card
-LINE_H_HEADLINE = 100
-BODY = 28         # párrafo de cuerpo normal
-LINE_H_BODY = 38
-BULLET_SIZE = 26  # texto de items en listas (bullets/checks)
-SMALL = 20        # kicker, notas de pie, subtítulos de CTA
+# vean con la misma jerarquía visual. Ya multiplicados por SCALE:
+TITLE_XL = 84 * SCALE     # título grande multilínea: cover, statement, bullets
+LINE_H_XL = 132 * SCALE   # interlineado para TITLE_XL (deja hueco a la caja de resaltado)
+TITLE_L = 68 * SCALE      # título de 2 líneas de la slide de cierre
+LINE_H_L = 104 * SCALE
+TITLE_MED = 62 * SCALE    # etiqueta de una card ("SEÑAL 1:", "MITO:", "DATO 1:"...)
+HEADLINE = 50 * SCALE     # titular resaltado y envuelto dentro de una card
+LINE_H_HEADLINE = 100 * SCALE
+BODY = 28 * SCALE         # párrafo de cuerpo normal
+LINE_H_BODY = 38 * SCALE
+BULLET_SIZE = 26 * SCALE  # texto de items en listas (bullets/checks)
+SMALL = 20 * SCALE        # kicker, notas de pie, subtítulos de CTA
 
 # Zonas de seguridad (aprendidas a base de overflows reales al maquetar
-# el ejemplo — respétalas al escribir contenido nuevo):
-TITLE_SAFE_TOP = 150       # ninguna línea de título debe empezar antes de aquí
-FOOTER_SAFE_BOTTOM = 980   # ningún bloque de contenido debe bajar de aquí
-COVER_SUBTITLE_MAX_W = 800  # ancho máximo del subtítulo de portada — deja
-# libre la columna derecha (x > ~944) donde vive el indicador de deslizar
+# el ejemplo — respétalas al escribir contenido nuevo). Ya multiplicadas
+# por SCALE:
+TITLE_SAFE_TOP = 150 * SCALE       # ninguna línea de título debe empezar antes de aquí
+FOOTER_SAFE_BOTTOM = 980 * SCALE   # ningún bloque de contenido debe bajar de aquí
+COVER_SUBTITLE_MAX_W = 800 * SCALE  # ancho máximo del subtítulo de portada — deja
+# libre la columna derecha (x > ~944*SCALE) donde vive el indicador de deslizar
 # en la mitad inferior de la slide; usar un ancho mayor ahí hace que el
 # texto se meta debajo del circulo naranja y quede tapado.
 
@@ -120,11 +143,11 @@ def rr(draw, box, radius, fill=None, outline=None, width=1):
 def canvas():
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
-    step = 155
+    step = 155 * SCALE
     for x in range(0, W + 1, step):
-        d.line((x, 0, x, H), fill=GRID, width=1)
+        d.line((x, 0, x, H), fill=GRID, width=SCALE)
     for y in range(0, H + 1, step):
-        d.line((0, y, W, y), fill=GRID, width=1)
+        d.line((0, y, W, y), fill=GRID, width=SCALE)
     return img, d
 
 
@@ -155,7 +178,7 @@ def draw_wrapped(draw, xy, text, f, fill, max_w, line_h, align="left"):
     return y
 
 
-def draw_mixed_line(draw, x, y, parts, font, pad=9, radius=10, plain_fill=CREAM, measure_only=False):
+def draw_mixed_line(draw, x, y, parts, font, pad=9 * SCALE, radius=10 * SCALE, plain_fill=CREAM, measure_only=False):
     """parts: lista de (texto, es_resaltado). Dibuja en una sola línea,
     con caja naranja redondeada detrás de los fragmentos resaltados
     (texto en negro sobre naranja) — el efecto "subrayador" característico
@@ -172,15 +195,15 @@ def draw_mixed_line(draw, x, y, parts, font, pad=9, radius=10, plain_fill=CREAM,
     for text, hl in parts:
         bbox = draw.textbbox((cx, y), text, font=font)
         if hl:
-            box = (bbox[0] - pad, bbox[1] - 6, bbox[2] + pad, bbox[3] + 6)
+            box = (bbox[0] - pad, bbox[1] - 6 * SCALE, bbox[2] + pad, bbox[3] + 6 * SCALE)
             if not measure_only:
                 rr(draw, box, radius, fill=ORANGE)
                 draw.text((cx, y), text, font=font, fill=INK)
-            cx = box[2] + 12
+            cx = box[2] + 12 * SCALE
         else:
             if not measure_only:
                 draw.text((cx, y), text, font=font, fill=plain_fill)
-            cx = bbox[2] + 14
+            cx = bbox[2] + 14 * SCALE
     return cx
 
 
@@ -192,7 +215,7 @@ def assert_line_fits(d, parts, font, context=""):
     demasiado larga para el tamaño de fuente de su rol: acórtala o
     repártela en más líneas."""
     end_x = draw_mixed_line(d, MARGIN_X, 0, parts, font, measure_only=True)
-    limit = W - 24
+    limit = W - 24 * SCALE
     assert end_x <= limit, (
         f"Línea demasiado ancha ({end_x}px, máximo {limit}px) en {context or parts!r} "
         "— acorta el texto o pártelo en más líneas."
@@ -233,33 +256,33 @@ def header(img, d):
     """Logo arriba a la izquierda + foto de Jorge en círculo naranja
     arriba a la derecha — mismo sitio en TODAS las slides, incluida la
     de cierre."""
-    logo_h = 46
+    logo_h = 46 * SCALE
     ratio = logo_h / LOGO_DARK.height
     logo = LOGO_DARK.resize((int(LOGO_DARK.width * ratio), logo_h), Image.LANCZOS)
-    img.paste(logo, (56, 44), logo)
+    img.paste(logo, (56 * SCALE, 44 * SCALE), logo)
 
-    diam = 92
+    diam = 92 * SCALE
     photo = Image.open(PHOTO_PATH).convert("RGB")
     photo = ImageOps.fit(photo, (diam, diam), centering=(0.5, 0.25))
     mask = Image.new("L", (diam, diam), 0)
     ImageDraw.Draw(mask).ellipse((0, 0, diam, diam), fill=255)
-    ring_d = diam + 10
+    ring_d = diam + 10 * SCALE
     ring = Image.new("RGBA", (ring_d, ring_d), (0, 0, 0, 0))
     ImageDraw.Draw(ring).ellipse((0, 0, ring_d, ring_d), fill=ORANGE + (255,))
-    ring.paste(photo, (5, 5), mask)
-    img.paste(ring, (W - ring_d - 46, 30), ring)
+    ring.paste(photo, (5 * SCALE, 5 * SCALE), mask)
+    img.paste(ring, (W - ring_d - 46 * SCALE, 30 * SCALE), ring)
 
 
 def kicker(d, text):
     """Etiqueta pequeña centrada... no, alineada a la izquierda, debajo
     del logo — el tema/ángulo del día en mayúsculas (p.ej. "ROAST SEO ·
     ECOMMERCE", "MITO SEO · ECOMMERCE"). Misma en las N slides."""
-    d.text((56, 106), text, font=F(BOLD, SMALL), fill=GRAY)
+    d.text((56 * SCALE, 106 * SCALE), text, font=F(BOLD, SMALL), fill=GRAY)
 
 
-GUIDE_BADGE_FONT_SIZE = 26  # FIJO, igual criterio que FOOTER_NOTE_FONT_SIZE — nunca se auto-ajusta al texto
-GUIDE_BADGE_LINE_H = 34
-GUIDE_BADGE_TOP = 168  # deja más aire respecto al avatar/logo (vigente desde el 03/09/2026 — antes 140, pegado al kicker)
+GUIDE_BADGE_FONT_SIZE = 26 * SCALE  # FIJO, igual criterio que FOOTER_NOTE_FONT_SIZE — nunca se auto-ajusta al texto
+GUIDE_BADGE_LINE_H = 34 * SCALE
+GUIDE_BADGE_TOP = 168 * SCALE  # deja más aire respecto al avatar/logo (vigente desde el 03/09/2026 — antes 140, pegado al kicker)
 GUIDE_BADGE_BG = (26, 26, 26)   # gris oscuro casi negro (vigente desde el 03/09/2026, antes fondo naranja) — distinto de INK/CREAM (17,17,17) para que se note que es un tono propio, no negro puro
 GUIDE_BADGE_TEXT = (255, 255, 255)  # blanco, para máximo contraste sobre el fondo oscuro
 
@@ -286,21 +309,21 @@ def guide_badge(img, d, number, line):
     pide cambiar el texto, no el número)."""
     font = F(BOLD, GUIDE_BADGE_FONT_SIZE)
     text = f'MEJORA Nº{number} · {line}'
-    pad_x, pad_y = 28, 22
+    pad_x, pad_y = 28 * SCALE, 22 * SCALE
     max_w = W - 2 * MARGIN_X - 2 * pad_x
     lines = wrap(d, text, font, max_w)
     box_h = pad_y * 2 + GUIDE_BADGE_LINE_H * len(lines)
     box = (MARGIN_X, GUIDE_BADGE_TOP, W - MARGIN_X, GUIDE_BADGE_TOP + box_h)
-    rr(d, box, radius=20, fill=GUIDE_BADGE_BG)
+    rr(d, box, radius=20 * SCALE, fill=GUIDE_BADGE_BG)
     ty = GUIDE_BADGE_TOP + pad_y
     for ln in lines:
         d.text((MARGIN_X + pad_x, ty), ln, font=font, fill=GUIDE_BADGE_TEXT)
         ty += GUIDE_BADGE_LINE_H
-    return GUIDE_BADGE_TOP + box_h + 32  # y de arranque del título, con margen
+    return GUIDE_BADGE_TOP + box_h + 32 * SCALE  # y de arranque del título, con margen
 
 
 DEFAULT_FOOTER_NOTE = 'COMENTA "<PALABRA>" Y TE LO ENVÍO'  # sustituye <PALABRA> en CONFIG cada día
-FOOTER_NOTE_FONT_SIZE = 26  # FIJO — nunca variar entre slides ni auto-ajustar al ancho del texto
+FOOTER_NOTE_FONT_SIZE = 26 * SCALE  # FIJO — nunca variar entre slides ni auto-ajustar al ancho del texto
 
 
 def footer_gate_note(img, d, text=DEFAULT_FOOTER_NOTE):
@@ -318,8 +341,8 @@ def footer_gate_note(img, d, text=DEFAULT_FOOTER_NOTE):
     lo que varía de un día a otro es el ancho de la caja, no el tamaño de
     letra."""
     font = F(TITLE, FOOTER_NOTE_FONT_SIZE)
-    pad_x, pad_y = 22, 16
-    arrow_w = 34  # espacio reservado para la flecha dentro de la caja
+    pad_x, pad_y = 22 * SCALE, 16 * SCALE
+    arrow_w = 34 * SCALE  # espacio reservado para la flecha dentro de la caja
 
     bbox = d.textbbox((0, 0), text, font=font)
     text_w = bbox[2] - bbox[0]
@@ -327,15 +350,15 @@ def footer_gate_note(img, d, text=DEFAULT_FOOTER_NOTE):
 
     box_h = text_h + pad_y * 2
     box_w = arrow_w + text_w + pad_x * 2
-    x0, y0 = MARGIN_X, H - 40 - box_h
+    x0, y0 = MARGIN_X, H - 40 * SCALE - box_h
     x1, y1 = x0 + box_w, y0 + box_h
 
     rr(d, (x0, y0, x1, y1), radius=box_h // 2, fill=ORANGE)
 
-    ax, ay = x0 + pad_x + 9, y0 + box_h // 2 - 11
-    d.line((ax, ay, ax, ay + 22), fill=(255, 255, 255), width=5)
-    d.line((ax - 9, ay + 11, ax, ay + 22), fill=(255, 255, 255), width=5)
-    d.line((ax + 9, ay + 11, ax, ay + 22), fill=(255, 255, 255), width=5)
+    ax, ay = x0 + pad_x + 9 * SCALE, y0 + box_h // 2 - 11 * SCALE
+    d.line((ax, ay, ax, ay + 22 * SCALE), fill=(255, 255, 255), width=5 * SCALE)
+    d.line((ax - 9 * SCALE, ay + 11 * SCALE, ax, ay + 22 * SCALE), fill=(255, 255, 255), width=5 * SCALE)
+    d.line((ax + 9 * SCALE, ay + 11 * SCALE, ax, ay + 22 * SCALE), fill=(255, 255, 255), width=5 * SCALE)
 
     tx = x0 + pad_x + arrow_w
     ty = y0 + box_h // 2 - text_h // 2 - bbox[1]
@@ -346,9 +369,9 @@ def scroll_hint(img, last=False):
     """Barra degradada + flecha circular abajo a la derecha, indicando
     que hay más slides — en la última slide de contenido (justo antes del
     cierre) la flecha se convierte en un check. NUNCA coloques texto de
-    contenido en la zona aproximada x>930, y>680 de la mitad inferior de
-    la slide — es donde vive este elemento."""
-    bw, bh = 62, 190
+    contenido en la zona aproximada x>930*SCALE, y>680*SCALE de la mitad
+    inferior de la slide — es donde vive este elemento."""
+    bw, bh = 62 * SCALE, 190 * SCALE
     grad = Image.new("RGB", (1, bh), BG)
     for y in range(bh):
         t = y / (bh - 1)
@@ -357,40 +380,42 @@ def scroll_hint(img, last=False):
     grad = grad.resize((bw, bh))
     mask = Image.new("L", (bw, bh), 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, bw, bh), radius=bw // 2)
-    bx, by = W - bw - 74, 686
+    bx, by = W - bw - 74 * SCALE, 686 * SCALE
     img.paste(grad, (bx, by), mask)
 
-    cx, cy, r = bx + bw // 2, by + bh + 46, 42
+    cx, cy, r = bx + bw // 2, by + bh + 46 * SCALE, 42 * SCALE
     d = ImageDraw.Draw(img)
     d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=ORANGE)
     if last:
-        d.line((cx - 15, cy, cx - 4, cy + 13), fill=INK, width=7)
-        d.line((cx - 4, cy + 13, cx + 16, cy - 12), fill=INK, width=7)
+        d.line((cx - 15 * SCALE, cy, cx - 4 * SCALE, cy + 13 * SCALE), fill=INK, width=7 * SCALE)
+        d.line((cx - 4 * SCALE, cy + 13 * SCALE, cx + 16 * SCALE, cy - 12 * SCALE), fill=INK, width=7 * SCALE)
     else:
-        d.line((cx - 14, cy, cx + 14, cy), fill=INK, width=7)
-        d.line((cx + 4, cy - 11, cx + 15, cy), fill=INK, width=7)
-        d.line((cx + 4, cy + 11, cx + 15, cy), fill=INK, width=7)
+        d.line((cx - 14 * SCALE, cy, cx + 14 * SCALE, cy), fill=INK, width=7 * SCALE)
+        d.line((cx + 4 * SCALE, cy - 11 * SCALE, cx + 15 * SCALE, cy), fill=INK, width=7 * SCALE)
+        d.line((cx + 4 * SCALE, cy + 11 * SCALE, cx + 15 * SCALE, cy), fill=INK, width=7 * SCALE)
 
 
-def arrow_bullets(d, x, y, items, gap=62):
+def arrow_bullets(d, x, y, items, gap=62 * SCALE):
     """Lista con flecha dibujada a mano (no emoji/glyph — estas fuentes no
     tienen el carácter →) — para el tipo "bullets" (por qué importa)."""
     for line in items:
-        ay = y + 16
-        d.line((x, ay, x + 20, ay), fill=ORANGE, width=5)
-        d.line((x + 12, ay - 7, x + 22, ay), fill=ORANGE, width=5)
-        d.line((x + 12, ay + 7, x + 22, ay), fill=ORANGE, width=5)
-        y = draw_wrapped(d, (x + 42, y), line, F(BOLD, BULLET_SIZE), CREAM, W - x - 42 - 108, 32)
-        y += gap - 32
+        ay = y + 16 * SCALE
+        d.line((x, ay, x + 20 * SCALE, ay), fill=ORANGE, width=5 * SCALE)
+        d.line((x + 12 * SCALE, ay - 7 * SCALE, x + 22 * SCALE, ay), fill=ORANGE, width=5 * SCALE)
+        d.line((x + 12 * SCALE, ay + 7 * SCALE, x + 22 * SCALE, ay), fill=ORANGE, width=5 * SCALE)
+        y = draw_wrapped(d, (x + 42 * SCALE, y), line, F(BOLD, BULLET_SIZE), CREAM,
+                          W - x - 42 * SCALE - 108 * SCALE, 32 * SCALE)
+        y += gap - 32 * SCALE
     return y
 
 
-def ring_checks(d, x, y, items, gap=80):
+def ring_checks(d, x, y, items, gap=80 * SCALE):
     """Lista de preguntas de autocomprobación con un pequeño anillo — para
     el campo `checks` del tipo "card"."""
     for c in items:
-        d.ellipse((x, y + 10, x + 12, y + 22), outline=ORANGE, width=3)
-        draw_wrapped(d, (x + 36, y), c, F(BOLD, BULLET_SIZE), CREAM, W - x - 36 - 108, 34)
+        d.ellipse((x, y + 10 * SCALE, x + 12 * SCALE, y + 22 * SCALE), outline=ORANGE, width=3 * SCALE)
+        draw_wrapped(d, (x + 36 * SCALE, y), c, F(BOLD, BULLET_SIZE), CREAM,
+                     W - x - 36 * SCALE - 108 * SCALE, 34 * SCALE)
         y += gap
     return y
 
@@ -417,7 +442,7 @@ def render_cover(img, d, spec, index, total):
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
         y += LINE_H_XL
     if spec.get("subtitle"):
-        draw_wrapped(d, (MARGIN_X, y + 24), spec["subtitle"], F(BOLD, BODY), GRAY,
+        draw_wrapped(d, (MARGIN_X, y + 24 * SCALE), spec["subtitle"], F(BOLD, BODY), GRAY,
                      COVER_SUBTITLE_MAX_W, LINE_H_BODY)
 
 
@@ -437,10 +462,10 @@ def render_statement(img, d, spec, index, total):
     if spec.get("closing"):
         assert_line_fits(d, spec["closing"], F(TITLE, TITLE_MED), context=f"statement closing: {spec['closing']}")
     if spec.get("body"):
-        y += 34
-        y = draw_wrapped(d, (MARGIN_X, y), spec["body"], F(BOLD, 30), CREAM, W - 2 * MARGIN_X, 40)
+        y += 34 * SCALE
+        y = draw_wrapped(d, (MARGIN_X, y), spec["body"], F(BOLD, 30 * SCALE), CREAM, W - 2 * MARGIN_X, 40 * SCALE)
     if spec.get("closing"):
-        y += 40
+        y += 40 * SCALE
         draw_mixed_line(d, MARGIN_X, y, spec["closing"], F(TITLE, TITLE_MED))
 
 
@@ -455,14 +480,14 @@ def render_bullets(img, d, spec, index, total):
         assert_line_fits(d, line, F(TITLE, TITLE_XL), context=f"bullets: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
         y += LINE_H_XL
-    y += 40
+    y += 40 * SCALE
     if spec.get("intro"):
-        y = draw_wrapped(d, (MARGIN_X, y), spec["intro"], F(BOLD, BODY), CREAM, W - 2 * MARGIN_X, 36)
-        y += 34
+        y = draw_wrapped(d, (MARGIN_X, y), spec["intro"], F(BOLD, BODY), CREAM, W - 2 * MARGIN_X, 36 * SCALE)
+        y += 34 * SCALE
     y = arrow_bullets(d, MARGIN_X, y, spec["items"])
     if spec.get("closing"):
-        y += 20
-        draw_wrapped(d, (MARGIN_X, y), spec["closing"], F(BOLD, BODY), GRAY, W - 2 * MARGIN_X, 36)
+        y += 20 * SCALE
+        draw_wrapped(d, (MARGIN_X, y), spec["closing"], F(BOLD, BODY), GRAY, W - 2 * MARGIN_X, 36 * SCALE)
 
 
 def render_card(img, d, spec, index, total):
@@ -472,20 +497,20 @@ def render_card(img, d, spec, index, total):
     más se repite (el "documento" real: cada card es una página)."""
     checks = spec.get("checks") or []
     assert len(checks) <= 2, "card: máximo 2 items en `checks` (3+ empuja el contenido a la nota de pie)"
-    y = 150
+    y = 150 * SCALE
     label_line = [(spec["label"] + ":", False)]
     assert_line_fits(d, label_line, F(TITLE, TITLE_MED), context=f"card label: {spec['label']}")
     draw_mixed_line(d, MARGIN_X, y, label_line, F(TITLE, TITLE_MED))
-    y += 112
+    y += 112 * SCALE
     y = highlighted_wrapped(d, MARGIN_X, y, spec["headline"].upper(), F(TITLE, HEADLINE),
-                             W - MARGIN_X - 56, LINE_H_HEADLINE)
-    y += 40
+                             W - MARGIN_X - 56 * SCALE, LINE_H_HEADLINE)
+    y += 40 * SCALE
     if spec.get("body"):
         y = draw_wrapped(d, (MARGIN_X, y), spec["body"], F(BOLD, BODY), CREAM, W - 2 * MARGIN_X, LINE_H_BODY)
-        y += 110
+        y += 110 * SCALE
     if checks:
-        d.text((MARGIN_X, y), "Comprueba tu mismo:", font=F(BOLD, 24), fill=GRAY)
-        y += 56
+        d.text((MARGIN_X, y), "Comprueba tu mismo:", font=F(BOLD, 24 * SCALE), fill=GRAY)
+        y += 56 * SCALE
         ring_checks(d, MARGIN_X, y, checks)
 
 
@@ -499,25 +524,26 @@ def render_closing(img, d, spec, index, total):
     ctas = spec["ctas"]
     assert len(ctas) <= 3, "closing: máximo 3 CTAs (comentar / guardar / compartir)"
 
-    y = 150
+    y = 150 * SCALE
     for line in title_lines:
         assert_line_fits(d, line, F(TITLE, TITLE_L), context=f"closing: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_L))
         y += LINE_H_L
-    y += 44  # separación fija hasta el primer CTA (validada visualmente)
+    y += 44 * SCALE  # separación fija hasta el primer CTA (validada visualmente)
 
     for i, (title, sub) in enumerate(ctas, start=1):
-        d.ellipse((MARGIN_X, y, MARGIN_X + 40, y + 40), fill=ORANGE)
-        d.text((MARGIN_X + 20, y + 20), str(i), font=F(TITLE, 20), fill=INK, anchor="mm")
-        draw_mixed_line(d, MARGIN_X + 60, y + 2, [(title, False)], F(TITLE, 25))
-        draw_wrapped(d, (MARGIN_X + 60, y + 44), sub, F(BOLD, 19), GRAY, W - MARGIN_X - 60 - 56, 24)
-        y += 100
+        d.ellipse((MARGIN_X, y, MARGIN_X + 40 * SCALE, y + 40 * SCALE), fill=ORANGE)
+        d.text((MARGIN_X + 20 * SCALE, y + 20 * SCALE), str(i), font=F(TITLE, 20 * SCALE), fill=INK, anchor="mm")
+        draw_mixed_line(d, MARGIN_X + 60 * SCALE, y + 2 * SCALE, [(title, False)], F(TITLE, 25 * SCALE))
+        draw_wrapped(d, (MARGIN_X + 60 * SCALE, y + 44 * SCALE), sub, F(BOLD, 19 * SCALE), GRAY,
+                     W - MARGIN_X - 60 * SCALE - 56 * SCALE, 24 * SCALE)
+        y += 100 * SCALE
 
-    box = (MARGIN_X, y + 20, W - MARGIN_X, y + 220)
-    rr(d, box, 22, fill=ORANGE)
-    draw_wrapped(d, (box[0] + 32, box[1] + 26), spec["box_title"], F(TITLE, 25), INK,
-                 box[2] - box[0] - 64, 32)
-    d.text((box[0] + 32, box[3] - 60), spec["box_link"], font=F(TITLE, 22), fill=INK)
+    box = (MARGIN_X, y + 20 * SCALE, W - MARGIN_X, y + 220 * SCALE)
+    rr(d, box, 22 * SCALE, fill=ORANGE)
+    draw_wrapped(d, (box[0] + 32 * SCALE, box[1] + 26 * SCALE), spec["box_title"], F(TITLE, 25 * SCALE), INK,
+                 box[2] - box[0] - 64 * SCALE, 32 * SCALE)
+    d.text((box[0] + 32 * SCALE, box[3] - 60 * SCALE), spec["box_link"], font=F(TITLE, 22 * SCALE), fill=INK)
 
 
 RENDERERS = {
@@ -551,6 +577,10 @@ def render_all(config):
 def build_pdf(total):
     paths = [OUT_DIR / f"carrusel-{i}.png" for i in range(1, total + 1)]
     pdf_path = OUT_DIR / "carrusel-post.pdf"
+    # Tamaño FÍSICO de página sin cambios (285.75mm) aunque el canvas ahora
+    # tenga el doble de píxeles (ver nota "RESOLUCIÓN — SCALE" arriba) — es
+    # justo lo que hace que el PDF salga más nítido: misma página, más
+    # píxeles reales detrás.
     layout = img2pdf.get_layout_fun((img2pdf.mm_to_pt(285.75), img2pdf.mm_to_pt(285.75)))
     with open(pdf_path, "wb") as f:
         f.write(img2pdf.convert([str(p) for p in paths], layout_fun=layout))
