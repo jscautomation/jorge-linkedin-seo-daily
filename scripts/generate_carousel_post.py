@@ -64,12 +64,12 @@ MARGIN_X = 56
 
 # Paleta (hex de referencia entre paréntesis para cuando haga falta fuera
 # de Python, p.ej. en el HTML del formulario o en Figma):
-BG = (12, 12, 12)          # #0C0C0C — fondo
-GRID = (34, 34, 34)        # #222222 — líneas de la rejilla decorativa
-CREAM = (244, 238, 227)    # #F4EEE3 — texto principal sobre negro
-ORANGE = (255, 90, 31)     # #FF5A1F — color de marca; resaltados y acentos
+BG = (255, 252, 244)       # #FFFCF4 — fondo crema (cambiado 03/09/2026, antes #0C0C0C negro)
+GRID = (230, 224, 210)     # gris claro sobre crema — líneas de la rejilla decorativa
+CREAM = (17, 17, 17)       # #111111 — texto principal oscuro sobre crema (nombre de variable heredado del formato negro anterior)
+ORANGE = (255, 90, 31)     # #FF5A1F — color de marca; resaltados y acentos (sin cambios)
 INK = (17, 17, 17)         # #111111 — texto sobre fondo naranja/crema
-GRAY = (150, 150, 145)     # #969691 — texto secundario/kicker/footer
+GRAY = (120, 118, 110)     # gris oscuro sobre crema — texto secundario/kicker
 
 # Fuentes libres bundleadas (OFL), NO Arial/Windows. Igual que el resto
 # del proyecto, NO incluyen emoji — nunca uses 💬🔖🔁 etc. dentro de una
@@ -252,27 +252,47 @@ def kicker(d, text):
     d.text((56, 106), text, font=F(BOLD, SMALL), fill=GRAY)
 
 
-DEFAULT_FOOTER_NOTE = "DESCARGA LA GUÍA PDF EN COMENTARIOS"
+DEFAULT_FOOTER_NOTE = 'COMENTA "<PALABRA>" Y TE LO ENVÍO'  # sustituye <PALABRA> en CONFIG cada día
+FOOTER_NOTE_FONT_SIZE = 26  # FIJO — nunca variar entre slides ni auto-ajustar al ancho del texto
 
 
-def footer_gate_note(d, text=DEFAULT_FOOTER_NOTE):
-    """Recordatorio de la regla no negociable (brief 3bis): la solución
-    completa vive solo en el PDF gated, nunca en el carrusel. Va en TODAS
-    las slides de contenido (no en cover ni en closing).
+def footer_gate_note(img, d, text=DEFAULT_FOOTER_NOTE):
+    """Recordatorio de la regla no negociable (brief sección 2, punto 4): la
+    solución completa vive solo en la guía de Notion, nunca en el carrusel.
+    Va en TODAS las slides menos la de cierre (que ya lleva su propio CTA
+    grande con el mismo mensaje).
 
-    Versión "llamativa" vigente desde el 25/08/2026 a petición expresa de
-    Jorge (antes era una nota discreta en gris a tamaño pequeño): texto
-    grande en crema (el mismo casi-blanco del cuerpo del carrusel) +
-    flecha naranja hacia abajo dibujada a mano (nunca un glifo Unicode,
-    mismo criterio que arrow_bullets/ring_checks), señalando que la guía
-    está en la sección de comentarios, debajo del carrusel."""
-    font = F(BOLD, 30)
-    x, y = MARGIN_X, H - 66
-    ax, ay = x + 9, y + 2
-    d.line((ax, ay, ax, ay + 26), fill=ORANGE, width=6)
-    d.line((ax - 11, ay + 13, ax, ay + 26), fill=ORANGE, width=6)
-    d.line((ax + 11, ay + 13, ax, ay + 26), fill=ORANGE, width=6)
-    d.text((x + 40, y), text, font=font, fill=CREAM)
+    Versión "recuadro naranja" vigente desde el 03/09/2026 a petición expresa
+    de Jorge (antes era texto naranja suelto sobre el fondo, y antes de eso
+    texto discreto en gris — ver AUTOMATION_BRIEF.md para el historial):
+    caja naranja de marca con esquinas redondeadas + texto en BLANCO + flecha
+    blanca dibujada a mano, todo DENTRO de la caja. El tamaño de fuente es
+    fijo (FOOTER_NOTE_FONT_SIZE) — nunca se auto-ajusta al ancho del texto;
+    lo que varía de un día a otro es el ancho de la caja, no el tamaño de
+    letra."""
+    font = F(TITLE, FOOTER_NOTE_FONT_SIZE)
+    pad_x, pad_y = 22, 16
+    arrow_w = 34  # espacio reservado para la flecha dentro de la caja
+
+    bbox = d.textbbox((0, 0), text, font=font)
+    text_w = bbox[2] - bbox[0]
+    text_h = bbox[3] - bbox[1]
+
+    box_h = text_h + pad_y * 2
+    box_w = arrow_w + text_w + pad_x * 2
+    x0, y0 = MARGIN_X, H - 40 - box_h
+    x1, y1 = x0 + box_w, y0 + box_h
+
+    rr(d, (x0, y0, x1, y1), radius=box_h // 2, fill=ORANGE)
+
+    ax, ay = x0 + pad_x + 9, y0 + box_h // 2 - 11
+    d.line((ax, ay, ax, ay + 22), fill=(255, 255, 255), width=5)
+    d.line((ax - 9, ay + 11, ax, ay + 22), fill=(255, 255, 255), width=5)
+    d.line((ax + 9, ay + 11, ax, ay + 22), fill=(255, 255, 255), width=5)
+
+    tx = x0 + pad_x + arrow_w
+    ty = y0 + box_h // 2 - text_h // 2 - bbox[1]
+    d.text((tx, ty), text, font=font, fill=(255, 255, 255))
 
 
 def scroll_hint(img, last=False):
@@ -464,8 +484,8 @@ def render_all(config):
         header(img, d)
         kicker(d, config["kicker"])
         RENDERERS[spec["type"]](img, d, spec, i, total)
-        if spec["type"] not in ("cover", "closing"):
-            footer_gate_note(d, config.get("footer_note", DEFAULT_FOOTER_NOTE))
+        if spec["type"] != "closing":
+            footer_gate_note(img, d, config.get("footer_note", DEFAULT_FOOTER_NOTE))
         if spec["type"] != "closing":
             is_last_before_closing = (i == total - 1)
             scroll_hint(img, last=is_last_before_closing)
@@ -492,7 +512,8 @@ def build_pdf(total):
 # ============================================================
 
 CONFIG = {
-    "kicker": "AUDITORIA SEO · ECOMMERCE",
+    "kicker": "MEJORA SEO · ECOMMERCE",
+    "footer_note": 'COMENTA "INDEXACION" Y TE LO ENVÍO',  # editar cada día — misma palabra que en post-linkedin.txt
     "slides": [
         {
             "type": "cover",
@@ -604,7 +625,7 @@ CONFIG = {
                 ("Compartelo", "con quien lleve el SEO de un ecommerce"),
             ],
             "box_title": "El paso a paso completo para corregir las 5 señales:",
-            "box_link": "GUIA GRATIS EN EL COMENTARIO FIJADO ↓",
+            "box_link": 'COMENTA "INDEXACION" Y TE LO ENVÍO',
         },
     ],
 }
