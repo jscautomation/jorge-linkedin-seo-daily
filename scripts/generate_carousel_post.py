@@ -88,6 +88,9 @@ TEXT = (245, 244, 240)     # #F5F4F0 — texto principal, blanco roto sobre oscu
 ORANGE = (255, 90, 31)     # #FF5A1F — color de marca; resaltados, acentos, anillo de foto
 INK = (17, 17, 17)         # #111111 — texto sobre fondo naranja (contraste, sin cambios)
 GRAY = (139, 141, 147)     # #8B8D93 — texto secundario/kicker sobre oscuro
+GUIDE_BADGE_BG = (32, 35, 41)  # #202329 — recuadro de la guía en portada; gris
+# oscuro DISTINTO del fondo (para que resalte) y del naranja (para no competir
+# visualmente con el CTA) — ver AUTOMATION_BRIEF.md sección 3.3.
 
 TITLE = "ArchivoBlack-Regular.ttf"
 BOLD = "Barlow-Bold.ttf"
@@ -301,6 +304,36 @@ def kicker(d, text):
     draw_tracked(d, (MARGIN_X + 26, y), text, F(BOLD, SMALL), GRAY, tracking=3)
 
 
+GUIDE_BADGE_TOP = 196  # y donde empieza el recuadro, debajo del kicker
+GUIDE_BADGE_H = 84
+
+
+def guide_badge(d, spec):
+    """Recuadro de la guía en la portada (AUTOMATION_BRIEF.md sección 3.3):
+    gris oscuro (ni el fondo ni el naranja del CTA, para no competir con
+    ninguno de los dos), texto en blanco, patrón fijo `MEJORA Nº<N> · <line>`.
+    `spec` es el diccionario `guide_badge` del slide `cover`: {"number": N,
+    "line": "..."}. Devuelve la y donde puede empezar lo siguiente (el
+    título) — SIEMPRE se llama antes de dibujar el título en `render_cover`,
+    nunca al revés."""
+    box = (MARGIN_X, GUIDE_BADGE_TOP, W - MARGIN_X, GUIDE_BADGE_TOP + GUIDE_BADGE_H)
+    rr(d, box, radius=GUIDE_BADGE_H // 2, fill=GUIDE_BADGE_BG)
+    text = f'MEJORA Nº{spec["number"]} · {spec["line"]}'
+    font = F(BOLD, 27)
+    max_w = box[2] - box[0] - 56
+    lines = wrap(d, text, font, max_w)
+    assert len(lines) <= 2, (
+        f"guide_badge: el texto no cabe en 2 líneas dentro del recuadro ({text!r}) "
+        "— acorta `line` o sube GUIDE_BADGE_H."
+    )
+    line_h = 32
+    y0 = box[1] + GUIDE_BADGE_H // 2 - (len(lines) * line_h) // 2 + 4
+    for ln in lines:
+        d.text((box[0] + 28, y0), ln, font=font, fill=TEXT)
+        y0 += line_h
+    return box[3]
+
+
 DEFAULT_FOOTER_NOTE = 'COMENTA "<PALABRA>" Y TE LO ENVÍO'  # sustituye <PALABRA> en CONFIG cada día
 FOOTER_NOTE_FONT_SIZE = 34  # FIJO — nunca variar entre slides ni auto-ajustar al ancho del texto
 
@@ -392,14 +425,29 @@ def ring_checks(d, x, y, items, gap=106):
 # ------------------------------------------------------------------
 
 def render_cover(img, d, spec, index, total):
-    """Portada: título (máx. 3 líneas — deja hueco para la foto grande de
-    abajo), subtítulo opcional, y la foto de Jorge en grande, tipo
-    "medallón" con anillo naranja — la pieza visual fuerte que pidió Jorge,
-    en la línea de las publicaciones de referencia (una prueba/cara real
-    grande, no solo texto)."""
+    """Portada: recuadro de la guía (`guide_badge`, opcional pero estándar
+    desde el 03/09/2026 — sección 3.3), título (máx. 3 líneas — deja hueco
+    para la foto grande de abajo), subtítulo opcional, y la foto de Jorge en
+    grande, tipo "medallón" con anillo naranja — la pieza visual fuerte que
+    pidió Jorge, en la línea de las publicaciones de referencia (una
+    prueba/cara real grande, no solo texto).
+
+    Presupuesto vertical ajustado: con `guide_badge` Y `subtitle` a la vez,
+    más 3 líneas de título, el contenido puede empujar la foto grande fuera
+    del lienzo — por eso, si usas `guide_badge`, omite `subtitle` salvo que
+    el título ocupe menos de 3 líneas (el assert de abajo avisa si no cabe,
+    en vez de recortar la foto en silencio)."""
     title_lines = spec["title_lines"]
-    assert len(title_lines) <= 3, "cover: máximo 3 líneas de título (deja hueco a la foto grande)"
+    has_badge = bool(spec.get("guide_badge"))
+    max_lines = 2 if has_badge else 3
+    assert len(title_lines) <= max_lines, (
+        f"cover: máximo {max_lines} líneas de título "
+        f"({'con' if has_badge else 'sin'} guide_badge) — deja hueco a la foto grande"
+    )
     y = TITLE_SAFE_TOP
+    if has_badge:
+        badge_bottom = guide_badge(d, spec["guide_badge"])
+        y = badge_bottom + 40
     for line in title_lines:
         assert_line_fits(d, line, F(TITLE, TITLE_XL), context=f"cover: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
@@ -409,6 +457,12 @@ def render_cover(img, d, spec, index, total):
                           COVER_SUBTITLE_MAX_W, LINE_H_BODY)
     cx = W // 2
     top = max(y + 46, 800)
+    assert top + HERO_RING_D <= H - 150, (
+        f"cover: la foto grande no cabe (empezaría en y={top}, el lienzo mide "
+        f"{H}px y hay que dejar sitio al recuadro naranja de abajo) — quita el "
+        "`subtitle`, acorta el título a menos líneas, o prescinde del "
+        "`guide_badge` en este slide."
+    )
     img.paste(HERO_RING, (cx - HERO_RING_D // 2, top), HERO_RING)
 
 
@@ -555,13 +609,25 @@ CONFIG = {
     "slides": [
         {
             "type": "cover",
+            # guide_badge: recuadro gris de la portada (sección 3.3) — `number`
+            # sube +1 cada día publicado desde el 03/09/2026 (día 1), `line` es
+            # fija salvo instrucción expresa de Jorge.
+            "guide_badge": {
+                "number": 1,
+                "line": "Te doy acceso a una guía para vender más con SEO, actualizada cada día.",
+            },
+            # Titular SIEMPRE en clave de ventas (sección 0 y 3.3) — nunca abrir
+            # con un término SEO como "indexación"; el mecanismo técnico va en
+            # el subtitle o en las slides siguientes, nunca en el título.
+            # Con `guide_badge`, máximo 2 líneas de título (sin él, 3) — el
+            # assert de render_cover avisa si no cabe.
             "title_lines": [
-                [("5 SEÑALES", True)],
-                [("DE INDEXACIÓN", False)],
-                [("SILENCIOSA", True)],
+                [("ESTAS PERDIENDO", False)],
+                [("VENTAS", True)],
             ],
-            "subtitle": "Ninguna rompe la tienda. Ninguna da error. Por eso "
-                        "nadie las revisa — y por eso te cuestan trafico, mes tras mes.",
+            # Sin `subtitle`: con `guide_badge` ya no queda presupuesto
+            # vertical para él sin sacar la foto del lienzo (ver assert de
+            # render_cover).
         },
         {
             "type": "statement",
