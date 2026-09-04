@@ -259,18 +259,19 @@ ampliarlo no lo arregla, es el propio archivo. El logotipo de cabecera
 (≥1200px de ancho, o mejor un SVG) a `assets/branding/`, se puede volver a
 usar como imagen.
 
-**Foto de Jorge, más grande y con nitidez compensada**: la portada (`cover`)
-lleva ahora la foto de Jorge en grande (círculo con anillo naranja, ~410px
-de diámetro), no solo la insignia pequeña de cabecera — es la "prueba
-visual fuerte" que pidió Jorge, en la línea del perfil de referencia. **Va
-alineada a la derecha, debajo del título** (no centrada — ajuste del
-04/09/2026, a petición expresa de Jorge, para que quepa bien un título de
-hasta 3 líneas); en las slides de tipo `cover` no se dibuja la flecha de
-scroll de la esquina inferior derecha (la foto ocupa esa misma zona). El
-archivo de origen (`assets/branding/foto-jorge-circle.png`) es algo blando;
-el script le aplica un `UnsharpMask` moderado tras el redimensionado para
-compensarlo (`PHOTO_SHARPEN_PCT` en el motor) — ayuda, pero no sustituye a
-subir una foto más nítida si Jorge la tiene disponible.
+**Foto de Jorge, con nitidez compensada**: la portada (`cover`) lleva la
+foto de Jorge en círculo con anillo naranja (~270px de diámetro — bajado
+varias veces el 04/09/2026 a medida que se añadió más contenido fijo a la
+portada; ver notas de migración 8 y 9), no solo la insignia pequeña de
+cabecera. **Va alineada a la derecha, debajo de todo el bloque de texto**
+(no centrada — ajuste del 04/09/2026, a petición expresa de Jorge, para que
+quepa bien un título de hasta 3 líneas más la línea de suscripción); en las
+slides de tipo `cover` no se dibuja la flecha de scroll de la esquina
+inferior derecha (la foto ocupa esa misma zona). El archivo de origen
+(`assets/branding/foto-jorge-circle.png`) es algo blando; el script le
+aplica un `UnsharpMask` moderado tras el redimensionado para compensarlo
+(`PHOTO_SHARPEN_PCT` en el motor) — ayuda, pero no sustituye a subir una
+foto más nítida si Jorge la tiene disponible.
 
 ### 3.3 Estructura de slides
 
@@ -319,13 +320,26 @@ entonces. Fórmula: `N = (fecha de hoy − 03/09/2026 en días) + 1`
 (03/09/2026 → 1, 04/09/2026 → 2, y así cada día).
 
 La portada admite como máximo 3 líneas de título, con o sin `guide_badge`
-(el recuadro, cuando está, ocupa parte del espacio de arriba, y la foto
-grande de Jorge — alineada a la derecha, ver sección 3.2 — el de abajo); el
-`subtitle` es opcional y se puede omitir si el título ya ocupa las 3
-líneas. Ejemplo de titular de 3 líneas incluyendo a quién va dirigido (a
-petición expresa de Jorge, 04/09/2026): "TRUCO PARA / VENDER MÁS / EN TU
-ECOMMERCE" — la 3ª línea sin resaltar deja claro el destinatario sin robarle
-protagonismo al gancho de las dos primeras.
+(el recuadro, cuando está, ocupa parte del espacio de arriba, y la foto de
+Jorge — alineada a la derecha, ver sección 3.2 — el de abajo). Ejemplo de
+titular de 3 líneas incluyendo a quién va dirigido (a petición expresa de
+Jorge, 04/09/2026): "TRUCO PARA / VENDER MÁS / EN TU ECOMMERCE" — la 3ª
+línea sin resaltar deja claro el destinatario sin robarle protagonismo al
+gancho de las dos primeras.
+
+**Línea fija de suscripción bajo el título (`COVER_SUBSCRIBE_LINE`, nueva el
+04/09/2026, a petición expresa de Jorge)**: siempre que la portada lleve
+`guide_badge` (el caso estándar), se dibuja automáticamente, justo debajo
+del título, este texto fijo — no es editable por día ni depende de un
+campo `subtitle` en el `CONFIG`:
+
+> "Hoy en la guía hablamos de cómo algunas modificaciones súper sencillas
+> pueden tener un fuerte impacto en tus ventas online. Suscríbete a la
+> GUÍA DE VENTAS CON SEO que actualizo cada día de forma completamente
+> gratis."
+
+El campo `subtitle` libre de la portada solo se usa como alternativa si
+algún día se publica una `cover` SIN `guide_badge` (caso raro).
 
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
@@ -637,3 +651,17 @@ dos ajustes más, ambos ya aplicados en el motor de
   la esquina inferior derecha, y las slides de tipo `cover` dejan de llevar
   la flecha de scroll de esa esquina (la foto ya ocupa ese espacio y cumple
   la misma función de "sigue deslizando").
+
+## Nota de migración 9 (04/09/2026, mismo día) — línea fija de suscripción bajo el título
+
+Jorge pidió añadir, debajo del título de la portada, un texto de CTA de
+suscripción a la guía (ver sección 3.3 para el texto exacto —
+`COVER_SUBSCRIBE_LINE` en el motor). Al ser un texto largo (3 líneas a
+tamaño de cuerpo), el presupuesto vertical de la portada volvió a quedar
+ajustado con el título de 3 líneas + el `guide_badge` ya existentes — la
+foto de la derecha bajó de ~410px a ~270px de diámetro para que todo siga
+cabiendo sin salirse del lienzo. Sigue siendo notablemente más grande que
+la insignia pequeña de cabecera (118px). Si en el futuro se retira o
+acorta esta línea, se puede recuperar un diámetro mayor (ver
+`HERO_RING`/`HERO_RING_D` y el assert de `render_cover`, que avisa si algo
+no cabe en vez de recortarlo en silencio).
