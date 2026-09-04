@@ -287,6 +287,9 @@ día — tono exagerado permitido, sección 0):
 - "ESTÁS REGALANDO VENTAS A TU COMPETENCIA"
 - "CADA DÍA QUE PASA, PIERDES FACTURACIÓN"
 - "TU WEB PODRÍA VENDER MÁS — Y NO LO HACE"
+- "TRUCO PARA VENDER MÁS EN TU ECOMMERCE" (genérico/gancho de curiosidad,
+  sin mencionar el pilar del día — ver nota de migración 7; útil cuando el
+  ángulo del día no da pie a una fórmula más específica como las de arriba)
 
 El mecanismo SEO concreto (el pilar del día) va en el `subtitle` de la
 portada o en las slides siguientes, nunca en el titular.
@@ -294,17 +297,22 @@ portada o en las slides siguientes, nunca en el titular.
 **Recuadro de la guía encima del título de portada**: la slide `cover`
 lleva, entre el kicker y el título grande, un recuadro de esquinas
 redondeadas en **gris oscuro** (`GUIDE_BADGE_BG`, distinto del naranja del
-CTA — para no competir visualmente con él) con texto en blanco, patrón fijo:
-`MEJORA Nº<N> · Te doy acceso a una guía para vender más con SEO, actualizada
-cada día.` — es el campo `guide_badge` (`number` + `line`) del slide `cover`
-en `scripts/generate_carousel_post.py`.
+CTA — para no competir visualmente con él) con texto en blanco, patrón fijo
+(actualizado el 04/09/2026, a petición expresa de Jorge — sustituye al
+patrón anterior "MEJORA Nº<N> · Te doy acceso a..."):
+
+`Mejora nº<N>: GUÍA DE VENTAS CON SEO ACTUALIZADA CADA DÍA.`
+
+Es el campo `guide_badge` (solo `number`) del slide `cover` en
+`scripts/generate_carousel_post.py` — el texto es fijo
+(`GUIDE_BADGE_TEMPLATE` en el motor), ya no se edita por día ni lleva un
+campo `line` configurable.
 
 `<N>` = número de la mejora **dentro de la guía de Notion**, no del
 histórico completo de `TEMAS_TRATADOS.md`: empieza en **1** el día en que
 se lanzó la guía en Notion (03/09/2026) y sube +1 cada día publicado desde
 entonces. Fórmula: `N = (fecha de hoy − 03/09/2026 en días) + 1`
-(03/09/2026 → 1, 04/09/2026 → 2, y así cada día). La frase `line` es fija —
-cámbiala solo si Jorge pide explícitamente otro texto, nunca el número.
+(03/09/2026 → 1, 04/09/2026 → 2, y así cada día).
 
 Con `guide_badge`, la portada admite como máximo 3 líneas de título (el
 recuadro ocupa parte del espacio de arriba, y además deja hueco a la foto
@@ -581,3 +589,24 @@ ejecución del día siguiente, por mucho que esa sesión lo dé por hecho. Por
 eso la sección 6 deja explícito que el commit/push diario (y cualquier
 cambio de fondo al brief) tiene que llegar a `main` el mismo día — nunca
 dejarlo "pendiente de fusionar" de una sesión a la siguiente.
+
+## Nota de migración 7 (04/09/2026) — texto fijo del `guide_badge` y titular de portada más genérico/curiosidad
+
+Tras ver el carrusel del 04/09/2026 en el estilo tech oscuro con
+`guide_badge`, Jorge pidió dos ajustes puntuales:
+
+- **Texto del `guide_badge` (sección 3.3)**: pasa de "MEJORA Nº<N> · Te doy
+  acceso a una guía para vender más con SEO, actualizada cada día." a
+  "Mejora nº<N>: GUÍA DE VENTAS CON SEO ACTUALIZADA CADA DÍA." — más corto,
+  cabe en una sola línea del recuadro. El campo `guide_badge` del slide
+  `cover` ya no lleva `line` (era configurable); ahora es fijo en el motor
+  (`GUIDE_BADGE_TEMPLATE`), solo se pasa `number`.
+- **Titular de portada más "gancho de curiosidad" que específico del tema
+  del día**: Jorge propuso como ejemplo "TRUCO PARA VENDER MÁS EN TU
+  ECOMMERCE" para la portada — un titular genérico de scroll-stop, sin
+  mencionar el pilar/hallazgo concreto del día (eso queda para las slides
+  siguientes). No sustituye el banco de fórmulas de la sección 3.3 (que
+  siguen siendo válidas y más específicas), sino que lo amplía: cuando el
+  ángulo del día no dé pie a una fórmula concreta y potente, un titular
+  genérico tipo "TRUCO PARA VENDER MÁS EN TU ECOMMERCE" es una alternativa
+  válida — sigue "oliendo a ventas", nunca a jerga SEO.

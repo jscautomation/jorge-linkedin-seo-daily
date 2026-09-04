@@ -308,23 +308,28 @@ GUIDE_BADGE_TOP = 196  # y donde empieza el recuadro, debajo del kicker
 GUIDE_BADGE_H = 84
 
 
+GUIDE_BADGE_TEMPLATE = "Mejora nº{n}: GUÍA DE VENTAS CON SEO ACTUALIZADA CADA DÍA."
+# Texto FIJO (vigente desde el 04/09/2026, a petición expresa de Jorge —
+# sustituye al patrón anterior "MEJORA Nº<N> · Te doy acceso a..."). Solo
+# cambia `{n}`; no se edita por día salvo instrucción expresa de Jorge.
+
+
 def guide_badge(d, spec):
     """Recuadro de la guía en la portada (AUTOMATION_BRIEF.md sección 3.3):
     gris oscuro (ni el fondo ni el naranja del CTA, para no competir con
-    ninguno de los dos), texto en blanco, patrón fijo `MEJORA Nº<N> · <line>`.
-    `spec` es el diccionario `guide_badge` del slide `cover`: {"number": N,
-    "line": "..."}. Devuelve la y donde puede empezar lo siguiente (el
-    título) — SIEMPRE se llama antes de dibujar el título en `render_cover`,
-    nunca al revés."""
+    ninguno de los dos), texto en blanco, patrón fijo `GUIDE_BADGE_TEMPLATE`.
+    `spec` es el diccionario `guide_badge` del slide `cover`: {"number": N}.
+    Devuelve la y donde puede empezar lo siguiente (el título) — SIEMPRE se
+    llama antes de dibujar el título en `render_cover`, nunca al revés."""
     box = (MARGIN_X, GUIDE_BADGE_TOP, W - MARGIN_X, GUIDE_BADGE_TOP + GUIDE_BADGE_H)
     rr(d, box, radius=GUIDE_BADGE_H // 2, fill=GUIDE_BADGE_BG)
-    text = f'MEJORA Nº{spec["number"]} · {spec["line"]}'
+    text = GUIDE_BADGE_TEMPLATE.format(n=spec["number"])
     font = F(BOLD, 27)
     max_w = box[2] - box[0] - 56
     lines = wrap(d, text, font, max_w)
     assert len(lines) <= 2, (
         f"guide_badge: el texto no cabe en 2 líneas dentro del recuadro ({text!r}) "
-        "— acorta `line` o sube GUIDE_BADGE_H."
+        "— sube GUIDE_BADGE_H (el texto es fijo, GUIDE_BADGE_TEMPLATE)."
     )
     line_h = 32
     y0 = box[1] + GUIDE_BADGE_H // 2 - (len(lines) * line_h) // 2 + 4
@@ -609,12 +614,12 @@ CONFIG = {
     "slides": [
         {
             "type": "cover",
-            # guide_badge: recuadro gris de la portada (sección 3.3) — `number`
-            # sube +1 cada día publicado desde el 03/09/2026 (día 1), `line` es
-            # fija salvo instrucción expresa de Jorge.
+            # guide_badge: recuadro gris de la portada (sección 3.3) — solo
+            # `number`, que sube +1 cada día publicado desde el 03/09/2026
+            # (día 1). El texto es fijo (GUIDE_BADGE_TEMPLATE en el motor),
+            # no se edita por día.
             "guide_badge": {
                 "number": 1,
-                "line": "Te doy acceso a una guía para vender más con SEO, actualizada cada día.",
             },
             # Titular SIEMPRE en clave de ventas (sección 0 y 3.3) — nunca abrir
             # con un término SEO como "indexación"; el mecanismo técnico va en
