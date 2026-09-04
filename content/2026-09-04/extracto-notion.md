@@ -1,0 +1,17 @@
+# Tu ficha de producto tarda más en responder que tu competencia — y te cuesta ventas (04/09/2026)
+
+**Contexto/diagnóstico:** Desde marzo de 2024, Google sustituyó FID (First Input Delay) por INP (Interaction to Next Paint) como métrica oficial de Core Web Vitals. INP no mide cuánto tarda tu web en cargar, sino cuánto tarda en responder visualmente a una interacción real — un clic en "Añadir al carrito", un cambio de talla, abrir un desplegable de tallas. En la mayoría de auditorías de ecommerce, el problema no está en el código propio de la tienda: está en la acumulación de scripts de terceros (chat en vivo, widget de reseñas, carrusel de recomendados, píxeles de marketing) que se cargan de forma síncrona y compiten por el hilo principal del navegador justo en el momento en que el usuario interactúa con la ficha de producto.
+
+**Por qué importa en términos de negocio:** Dos consecuencias, no solo técnicas. (1) Ranking: INP es un factor de Core Web Vitals dentro de la experiencia de página — una ficha de producto con INP "deficiente" compite en desventaja frente a una con INP "bueno". (2) Conversión: Deloitte, en colaboración con Google ("Milliseconds Make Millions", 2020), midió que una mejora de solo 0,1 segundos en velocidad móvil elevó la tasa de conversión un 8,4% en retail. Un estudio anterior de Google con SOASTA sobre rendimiento móvil en retail encontró que la probabilidad de abandono aumenta un 32% cuando la carga pasa de 1 a 3 segundos. Si tu ficha de producto reacciona con retraso al interactuar, no es solo una señal de ranking peor: son ventas que se caen en el propio checkout.
+
+**Solución paso a paso:**
+1. Entra en Google Search Console → Informe de Core Web Vitals y filtra los grupos de URL correspondientes a fichas de producto (suele ser el grupo con más URLs y el que arrastra peor nota si el problema es de plantilla).
+2. Para las URLs marcadas "Necesita mejora" o "Deficiente" en INP, pasa una URL real de esa plantilla por PageSpeed Insights (pagespeed.web.dev) y revisa el desglose de INP en datos de campo (CrUX) — no solo el de laboratorio, que no siempre refleja el mismo cuello de botella.
+3. Abre esa misma URL con el panel Performance de Chrome DevTools, graba una interacción real (clic en "Añadir al carrito" o en el selector de talla) y localiza las "long tasks" (tareas de más de 50ms) que se disparan en ese instante — casi siempre corresponden a un script de terceros, no al código de la propia tienda.
+4. Identifica el origen de cada long task por su dominio/script (chat, reseñas, recomendador, tag manager, píxeles) y aplica la corrección según el caso: cargar el script con `defer` o `async`, retrasar su carga hasta que el usuario haga scroll hasta esa sección (lazy loading), o trocear su ejecución con `requestIdleCallback`/`requestAnimationFrame` si el propio proveedor no ofrece una versión más ligera.
+5. Revisa el gestor de etiquetas (Google Tag Manager u otro): es habitual que varios píxeles de marketing se disparen todos en el `head`, de forma síncrona, sin necesidad — muévelos a carga diferida siempre que el proveedor lo permita.
+6. Vuelve a medir en Search Console pasadas 2-4 semanas: los datos de campo (INP real de usuarios) se calculan sobre una ventana móvil de 28 días, así que la mejora no se refleja de un día para otro.
+
+**Herramientas usadas:** Google Search Console (Informe de Core Web Vitals), PageSpeed Insights / CrUX (Chrome UX Report), Chrome DevTools (panel Performance), Google Tag Manager.
+
+---

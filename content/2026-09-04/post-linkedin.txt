@@ -1,0 +1,13 @@
+TU FICHA DE PRODUCTO TARDA MÁS EN RESPONDER QUE TU COMPETENCIA — Y TE CUESTA VENTAS.
+
+Desde marzo de 2024, Google no solo mide cuánto tarda tu web en cargar: mide cuánto tarda en reaccionar cuando alguien hace clic. Se llama INP (Interaction to Next Paint) y ya es factor de posicionamiento.
+
+En la mayoría de auditorías, el cuello de botella no está en el código de la tienda. Está en el chat en vivo, el widget de reseñas, el carrusel de recomendados y los píxeles de marketing, todos cargando a la vez y peleando por el mismo hilo del navegador justo cuando alguien pulsa "Añadir al carrito" o cambia de talla.
+
+No hace falta un caso para ver el coste. Deloitte, con Google, lo midió en retail: mejorar la velocidad móvil solo 0,1 segundos subió la conversión un 8,4%. Y el propio estudio de Google con SOASTA es claro: pasar de 1 a 3 segundos de carga dispara el abandono un 32%.
+
+Revísalo en Search Console → Informe de Core Web Vitals, filtrando por tus fichas de producto.
+
+Comenta "INP" y te lo envío.
+
+#SEO #Ecommerce #WordPress #Shopify
