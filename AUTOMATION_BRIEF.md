@@ -36,6 +36,17 @@ antes que en jerga técnica por sí misma. El detalle técnico se mantiene (da
 autoridad) pero siempre subordinado a la consecuencia de negocio: nunca
 como apertura ni como único argumento.
 
+**El vocabulario de negocio, en concreto, debe girar en torno a ventas
+(vigente desde el 03/09/2026 — ver nota de migración 4)**: la métrica que
+abre y cierra cada pieza es siempre **ventas, facturación, conversión,
+ingresos, tráfico que compra** — no un genérico "coste/riesgo" sin
+concretar. El SEO técnico (indexación, canonicals, hreflang, crawl budget,
+JSON-LD...) es la explicación de fondo, nunca el titular; lo que abre y
+cierra el gancho es su efecto en ventas: "esto te está costando ventas",
+"esto es facturación que se recupera", "esto es conversión que se pierde
+sin que lo notes". Aplica por igual al post, al carrusel y a la guía de
+Notion.
+
 **La guía de Notion (destino final del embudo, ver sección 4)** también es
 de ecommerce/marketing de tiendas online — gente ocupada que valora algo
 accionable y rápido de aplicar por encima de la teoría.
@@ -53,9 +64,11 @@ A partir de ahora hay un único criterio, todos los días:
   tendencias), siempre aterrizada en "esto es lo que puedes implementar" —
   pensada para que un propietario de ecommerce la entienda y la aplique de
   principio a fin (diagnóstico → por qué importa → qué se hace).
-- Se plantea en términos de negocio (coste, riesgo, ventaja competitiva)
-  antes que jerga técnica — este enfoque, antes limitado a la nota "1ter",
-  ahora aplica siempre, sin distinción por día.
+- Se plantea en términos de negocio antes que jerga técnica — y, en
+  concreto, en vocabulario de **ventas, facturación, conversión, ingresos**
+  (ver sección 0), no en un genérico "coste/riesgo" sin aterrizar. Este
+  enfoque, antes limitado a la nota "1ter", ahora aplica siempre, sin
+  distinción por día.
 - **No repetida**: antes de elegir, lee `TEMAS_TRATADOS.md` (raíz del repo,
   ahora una lista única cronológica) y no repitas el mismo fondo del
   hallazgo aunque cambie la marca, el título o la redacción.
@@ -72,18 +85,20 @@ mismo día). Nunca lo dejes para "el próximo día".
 ## 2. Esqueleto del post de LinkedIn (siempre igual, cambia el contenido)
 
 0. **Titular de apertura** (obligatorio): primera línea del post, sola, en
-   su propio párrafo — corto y contundente, en términos de negocio (coste,
-   riesgo, ventaja competitiva) siempre que el tema lo permita. Mismo
-   titular que la portada del carrusel (sección 3) y el título de la
-   entrada que se añade a la guía de Notion (sección 4) — post, carrusel y
-   guía deben "decir lo mismo" a primer golpe de vista.
+   su propio párrafo — corto y contundente, en vocabulario de **ventas,
+   facturación o conversión** (ver sección 0) siempre que el tema lo
+   permita, antes que en coste/riesgo genérico. Mismo titular que la
+   portada del carrusel (sección 3) y el título de la entrada que se añade
+   a la guía de Notion (sección 4) — post, carrusel y guía deben "decir lo
+   mismo" a primer golpe de vista.
 1. **Hook** (1-2 líneas, dato/situación sorprendente) — dirigido a quien toma
    la decisión de negocio, no solo a quien lo implementaría técnicamente.
 2. **Contexto** (tipo de tienda/situación, siempre anonimizado si es un caso real)
 3. **El desarrollo** (el roast / mito / hallazgo, con tono ligero pero riguroso)
-4. **Por qué importa / qué está en juego** — coste de no arreglarlo en
-   términos de negocio, SIN dar los pasos de la solución (regla de la
-   sección 4 — la solución completa vive solo en la guía de Notion).
+4. **Por qué importa / qué está en juego** — el coste de no arreglarlo
+   expresado en **ventas, facturación o conversión perdida** (nunca solo
+   "riesgo técnico" en abstracto), SIN dar los pasos de la solución (regla
+   de la sección 4 — la solución completa vive solo en la guía de Notion).
 5. **Prueba** (cifra de mejora, cuando aplique — nunca inventada)
 6. **CTA de comentario**: invita a comentar una palabra clave concreta
    relacionada con el tema del día, dejando claro que Jorge responde por
@@ -106,13 +121,18 @@ de añadir matices extra.
 
 Guarda como `post-linkedin.txt`.
 
-## 3. El carrusel (formato principal, paleta crema desde el 03/09/2026)
+## 3. El carrusel (formato principal, estilo "tech oscuro" desde el 03/09/2026 tarde)
 
-**Vuelve a ser un carrusel** (sustituye a la imagen única que estuvo vigente
-del 28/08 al 02/09/2026 — ver nota de migración). Usa
-`scripts/generate_carousel_post.py`, el mismo motor "documento" que ya
-existía en el repo (estuvo desactivado, ahora vuelve a ser el generador
-oficial), con un cambio de paleta.
+Usa `scripts/generate_carousel_post.py`. **Segundo cambio de estilo el mismo
+día 03/09/2026** (por la mañana se había pasado de negro a crema; por la
+tarde, tras ver el resultado, Jorge pidió acercar el diseño al de un perfil
+de referencia — Pablo Rodríguez / GoToMarket — que le señaló por su
+estructura de alto impacto: fondo oscuro, foto real grande, cajas de
+resaltado muy visibles) — **manteniendo los colores corporativos propios**
+(negro + naranja de marca, nunca los colores del perfil de referencia) y
+corrigiendo el pixelado que se veía en el logo y el avatar del formato
+crema. Ver nota de migración 3 al final del documento para el detalle
+completo de qué cambió y por qué.
 
 ### 3.1 El motor es fijo, el contenido se edita cada día
 
@@ -132,19 +152,39 @@ Salida: `carrusel-1.png` … `carrusel-N.png` (una por slide) + `carrusel-post.p
 publicación de tipo Documento** (LinkedIn lo renderiza como visor
 deslizable) — los PNG son solo para revisar/editar cada slide a mano.
 
-### 3.2 Paleta (fijo — cambiada el 03/09/2026, fondo crema en vez de negro)
+### 3.2 Paleta y resolución (fijo — cambiado el 03/09/2026 por la tarde)
 
 | Elemento | Valor |
 |---|---|
-| Fondo (`BG`) | `#FFFCF4` (crema) |
-| Texto principal (`CREAM`, nombre heredado del formato antiguo) | `#111111` (negro) |
-| Rejilla decorativa (`GRID`) | `#E6E0D2` (gris claro sobre crema) |
-| Resaltados / acentos (`ORANGE`) | `#FF5A1F` (naranja de marca) |
-| Texto sobre cajas naranjas/crema (`INK`) | `#111111` |
-| Texto secundario / kicker (`GRAY`) | `#78766E` |
+| Fondo (`BG`) | `#0A0B0D` (negro azulado, no negro puro) |
+| Texto principal (`TEXT`) | `#F5F4F0` (blanco roto) |
+| Rejilla decorativa (`GRID`) | `#1A1C20`, en puntos (no líneas) sobre el fondo oscuro |
+| Resaltados / acentos / anillo de foto (`ORANGE`) | `#FF5A1F` (naranja de marca, sin cambios) |
+| Texto sobre cajas naranjas (`INK`) | `#111111` |
+| Texto secundario / kicker (`GRAY`) | `#8B8D93` |
 
-Fuentes: ArchivoBlack (titulares) y Barlow-Bold (cuerpo/CTA), igual que
-siempre — sin cambios respecto al formato anterior.
+Lienzo: **1440x1440** (antes 1080x1080, mismo formato 1:1) — sube la
+densidad de píxel para que no se vea pixelado al hacer zoom en LinkedIn; el
+PDF sigue maquetado al mismo tamaño físico (28.575 cm), así que el cambio
+real es más nitidez, no un formato distinto. Fuentes: ArchivoBlack
+(titulares) y Barlow-Bold (cuerpo/CTA), sin cambios.
+
+**Logo de marca → texto, no imagen**: el archivo `assets/branding/logo.png`
+es de baja resolución (300x213px) y se veía pixelado a cualquier tamaño —
+ampliarlo no lo arregla, es el propio archivo. El logotipo de cabecera
+("JORGE SEGOVIA") se dibuja ahora como texto con las fuentes de marca
+(nítido a cualquier tamaño). Si Jorge sube un logo de mayor resolución
+(≥1200px de ancho, o mejor un SVG) a `assets/branding/`, se puede volver a
+usar como imagen.
+
+**Foto de Jorge, más grande y con nitidez compensada**: la portada (`cover`)
+lleva ahora la foto de Jorge en grande (círculo con anillo naranja, ~460px
+de diámetro), no solo la insignia pequeña de cabecera — es la "prueba
+visual fuerte" que pidió Jorge, en la línea del perfil de referencia. El
+archivo de origen (`assets/branding/foto-jorge-circle.png`) es algo blando;
+el script le aplica un `UnsharpMask` moderado tras el redimensionado para
+compensarlo (`PHOTO_SHARPEN_PCT` en el motor) — ayuda, pero no sustituye a
+subir una foto más nítida si Jorge la tiene disponible.
 
 ### 3.3 Estructura de slides
 
@@ -152,6 +192,10 @@ Tipos disponibles: `cover`, `statement`, `bullets`, `card`, `closing`.
 Estructura recomendada: 1 `cover` + 1-2 `statement` + 1 `bullets` (por qué
 importa) + 3-5 `card` (una señal/paso de diagnóstico por slide, con 1-2
 preguntas de autochequeo) + 1 `closing`.
+
+**`cover` lleva máximo 3 líneas de título** (antes 5) — deja hueco vertical
+a la foto grande de Jorge que se pinta debajo automáticamente; el `subtitle`
+es opcional y se puede omitir si el título ya ocupa las 3 líneas.
 
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
@@ -210,7 +254,8 @@ separador antes del siguiente):
 - Encabezado con el título de la entrada (mismo o similar al titular del
   día — sección 2, punto 0) y la fecha
 - Contexto/diagnóstico breve
-- Por qué importa en términos de negocio
+- Por qué importa en términos de negocio — en vocabulario de ventas,
+  facturación o conversión (sección 0), igual que el post y el carrusel
 - Solución paso a paso, completa
 - Herramientas usadas para detectarlo/arreglarlo
 - Separador (`---`) antes de la siguiente entrada del día siguiente
@@ -320,3 +365,46 @@ débil del plan anterior:
   rutina (sección 4). El resto del embudo (comentar palabra clave → DM
   manual de Jorge con URL de Mailchimp → la persona deja su email → llega a
   esta página) no cambia.
+
+## Nota de migración 3 (03/09/2026, mismo día) — segundo cambio de estilo del carrusel
+
+Después de ver el primer resultado en paleta crema (nota de migración 1),
+Jorge pidió acercar el diseño a un perfil de LinkedIn de referencia (Pablo
+Rodríguez / GoToMarket) que le señaló por su estructura — no por su temática
+ni sus colores — y avisó de que el logo y el avatar se veían pixelados.
+Cambios aplicados en `scripts/generate_carousel_post.py` (detalle completo
+en la sección 3):
+
+- **Paleta**: vuelve a fondo oscuro (`#0A0B0D`, no el negro puro anterior al
+  28/08 ni el crema de esa misma mañana) con el naranja de marca como
+  acento — los colores siguen siendo los corporativos de Jorge, no los del
+  perfil de referencia.
+- **Motivos "tech"**: rejilla de puntos en vez de líneas, marcas de esquina
+  tipo visor/HUD, kicker con letter-spacing y punto de estado, panel con
+  borde fino detrás del contenido de cada `card` — buscan el aire "muy
+  tecnológico" que pidió Jorge sin copiar literalmente el diseño ajeno.
+- **Portada con foto grande**: la foto de Jorge (círculo con anillo
+  naranja, ~460px) pasa a ser una pieza visual fuerte en la portada, no solo
+  la insignia pequeña de cabecera — la "prueba real" que tienen las
+  publicaciones de referencia.
+- **Corrección del pixelado**: el logo pasa de imagen (300x213px, borroso a
+  cualquier tamaño) a texto dibujado con las fuentes de marca (nítido
+  siempre); la foto lleva un `UnsharpMask` de compensación; el lienzo sube
+  de 1080 a 1440px (mismo tamaño físico en el PDF, más densidad de píxel).
+- Pendiente si Jorge lo aporta más adelante: una foto de mayor nitidez y/o
+  un logo en alta resolución o SVG — mientras tanto, el logo de texto y el
+  `UnsharpMask` son la solución de este cambio.
+
+## Nota de migración 4 (03/09/2026, mismo día) — el vocabulario de negocio se concreta en ventas
+
+Jorge pidió dejar constancia explícita de que el enfoque de negocio (sección
+0, ya presente desde la reescritura del 03/09/2026) no se queda en
+"coste/riesgo/ventaja competitiva" en abstracto: tiene que concretarse
+siempre en **ventas, facturación, conversión, ingresos** — el vocabulario
+que de verdad le importa a quien dirige un ecommerce. No es un enfoque
+nuevo, es el mismo de la sección 0 pero con el vocabulario obligatorio
+explícito, para que no se diluya en frases genéricas de "impacto en el
+negocio" sin aterrizar a una palabra de venta concreta. Aplica al titular y
+al punto 4 del post (sección 2), al titular del carrusel (sección 3) y al
+"por qué importa" de la entrada de Notion (sección 4.2) — los tres deben
+usar ese vocabulario, no solo el post.
