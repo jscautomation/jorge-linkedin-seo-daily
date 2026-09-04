@@ -271,7 +271,7 @@ def circular_photo(diam, ring_width, centering=(0.5, 0.22)):
 
 
 BADGE_RING, BADGE_RING_D = circular_photo(diam=118, ring_width=6)
-HERO_RING, HERO_RING_D = circular_photo(diam=460, ring_width=14, centering=(0.5, 0.18))
+HERO_RING, HERO_RING_D = circular_photo(diam=410, ring_width=14, centering=(0.5, 0.18))
 
 
 def wordmark(d, x, y):
@@ -433,9 +433,10 @@ def render_cover(img, d, spec, index, total):
     """Portada: recuadro de la guía (`guide_badge`, opcional pero estándar
     desde el 03/09/2026 — sección 3.3), título (máx. 3 líneas — deja hueco
     para la foto grande de abajo), subtítulo opcional, y la foto de Jorge en
-    grande, tipo "medallón" con anillo naranja — la pieza visual fuerte que
-    pidió Jorge, en la línea de las publicaciones de referencia (una
-    prueba/cara real grande, no solo texto).
+    grande, tipo "medallón" con anillo naranja, ALINEADA A LA DERECHA (a
+    petición expresa de Jorge, 04/09/2026 — antes centrada) — la pieza
+    visual fuerte que pidió Jorge, en la línea de las publicaciones de
+    referencia (una prueba/cara real grande, no solo texto).
 
     Presupuesto vertical ajustado: con `guide_badge` Y `subtitle` a la vez,
     más 3 líneas de título, el contenido puede empujar la foto grande fuera
@@ -444,15 +445,11 @@ def render_cover(img, d, spec, index, total):
     en vez de recortar la foto en silencio)."""
     title_lines = spec["title_lines"]
     has_badge = bool(spec.get("guide_badge"))
-    max_lines = 2 if has_badge else 3
-    assert len(title_lines) <= max_lines, (
-        f"cover: máximo {max_lines} líneas de título "
-        f"({'con' if has_badge else 'sin'} guide_badge) — deja hueco a la foto grande"
-    )
+    assert len(title_lines) <= 3, "cover: máximo 3 líneas de título — deja hueco a la foto grande"
     y = TITLE_SAFE_TOP
     if has_badge:
         badge_bottom = guide_badge(d, spec["guide_badge"])
-        y = badge_bottom + 40
+        y = badge_bottom + 24
     for line in title_lines:
         assert_line_fits(d, line, F(TITLE, TITLE_XL), context=f"cover: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
@@ -460,15 +457,14 @@ def render_cover(img, d, spec, index, total):
     if spec.get("subtitle"):
         y = draw_wrapped(d, (MARGIN_X, y + 20), spec["subtitle"], F(BOLD, BODY), GRAY,
                           COVER_SUBTITLE_MAX_W, LINE_H_BODY)
-    cx = W // 2
-    top = max(y + 46, 800)
+    top = max(y + 20, 780)
     assert top + HERO_RING_D <= H - 150, (
         f"cover: la foto grande no cabe (empezaría en y={top}, el lienzo mide "
         f"{H}px y hay que dejar sitio al recuadro naranja de abajo) — quita el "
         "`subtitle`, acorta el título a menos líneas, o prescinde del "
         "`guide_badge` en este slide."
     )
-    img.paste(HERO_RING, (cx - HERO_RING_D // 2, top), HERO_RING)
+    img.paste(HERO_RING, (W - MARGIN_X - HERO_RING_D, top), HERO_RING)
 
 
 def render_statement(img, d, spec, index, total):
@@ -589,8 +585,11 @@ def render_all(config):
         RENDERERS[spec["type"]](img, d, spec, i, total)
         if spec["type"] != "closing":
             footer_gate_note(img, d, config.get("footer_note", DEFAULT_FOOTER_NOTE))
-            is_last_before_closing = (i == total - 1)
-            scroll_hint(img, last=is_last_before_closing)
+            # La portada no lleva flecha de scroll: la foto grande, alineada
+            # a la derecha (04/09/2026), ocupa esa misma esquina.
+            if spec["type"] != "cover":
+                is_last_before_closing = (i == total - 1)
+                scroll_hint(img, last=is_last_before_closing)
         img.save(OUT_DIR / f"carrusel-{i}.png")
     return total
 
@@ -624,11 +623,12 @@ CONFIG = {
             # Titular SIEMPRE en clave de ventas (sección 0 y 3.3) — nunca abrir
             # con un término SEO como "indexación"; el mecanismo técnico va en
             # el subtitle o en las slides siguientes, nunca en el título.
-            # Con `guide_badge`, máximo 2 líneas de título (sin él, 3) — el
-            # assert de render_cover avisa si no cabe.
+            # Máximo 3 líneas — el assert de render_cover avisa si no cabe
+            # (la foto grande, alineada a la derecha, va debajo del título).
             "title_lines": [
                 [("ESTAS PERDIENDO", False)],
                 [("VENTAS", True)],
+                [("EN TU ECOMMERCE", False)],
             ],
             # Sin `subtitle`: con `guide_badge` ya no queda presupuesto
             # vertical para él sin sacar la foto del lienzo (ver assert de

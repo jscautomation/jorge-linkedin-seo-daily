@@ -260,9 +260,13 @@ ampliarlo no lo arregla, es el propio archivo. El logotipo de cabecera
 usar como imagen.
 
 **Foto de Jorge, más grande y con nitidez compensada**: la portada (`cover`)
-lleva ahora la foto de Jorge en grande (círculo con anillo naranja, ~460px
+lleva ahora la foto de Jorge en grande (círculo con anillo naranja, ~410px
 de diámetro), no solo la insignia pequeña de cabecera — es la "prueba
-visual fuerte" que pidió Jorge, en la línea del perfil de referencia. El
+visual fuerte" que pidió Jorge, en la línea del perfil de referencia. **Va
+alineada a la derecha, debajo del título** (no centrada — ajuste del
+04/09/2026, a petición expresa de Jorge, para que quepa bien un título de
+hasta 3 líneas); en las slides de tipo `cover` no se dibuja la flecha de
+scroll de la esquina inferior derecha (la foto ocupa esa misma zona). El
 archivo de origen (`assets/branding/foto-jorge-circle.png`) es algo blando;
 el script le aplica un `UnsharpMask` moderado tras el redimensionado para
 compensarlo (`PHOTO_SHARPEN_PCT` en el motor) — ayuda, pero no sustituye a
@@ -314,10 +318,14 @@ se lanzó la guía en Notion (03/09/2026) y sube +1 cada día publicado desde
 entonces. Fórmula: `N = (fecha de hoy − 03/09/2026 en días) + 1`
 (03/09/2026 → 1, 04/09/2026 → 2, y así cada día).
 
-Con `guide_badge`, la portada admite como máximo 3 líneas de título (el
-recuadro ocupa parte del espacio de arriba, y además deja hueco a la foto
-grande de Jorge que se pinta debajo — ver sección 3.2); el `subtitle` es
-opcional y se puede omitir si el título ya ocupa las 3 líneas.
+La portada admite como máximo 3 líneas de título, con o sin `guide_badge`
+(el recuadro, cuando está, ocupa parte del espacio de arriba, y la foto
+grande de Jorge — alineada a la derecha, ver sección 3.2 — el de abajo); el
+`subtitle` es opcional y se puede omitir si el título ya ocupa las 3
+líneas. Ejemplo de titular de 3 líneas incluyendo a quién va dirigido (a
+petición expresa de Jorge, 04/09/2026): "TRUCO PARA / VENDER MÁS / EN TU
+ECOMMERCE" — la 3ª línea sin resaltar deja claro el destinatario sin robarle
+protagonismo al gancho de las dos primeras.
 
 **Slide de cierre (`closing`)**: mismo CTA que el post — `box_title`
 describe brevemente qué se recibe, `box_link` repite la palabra clave del
@@ -610,3 +618,22 @@ Tras ver el carrusel del 04/09/2026 en el estilo tech oscuro con
   ángulo del día no dé pie a una fórmula concreta y potente, un titular
   genérico tipo "TRUCO PARA VENDER MÁS EN TU ECOMMERCE" es una alternativa
   válida — sigue "oliendo a ventas", nunca a jerga SEO.
+
+## Nota de migración 8 (04/09/2026, mismo día) — "en tu ecommerce" en el titular + foto alineada a la derecha
+
+Al revisar la primera versión del titular genérico de la nota 7, Jorge pidió
+dos ajustes más, ambos ya aplicados en el motor de
+`scripts/generate_carousel_post.py`:
+
+- **El titular deja claro a quién va dirigido**: añade una 3ª línea sin
+  resaltar con el destinatario ("EN TU ECOMMERCE") — el ejemplo pasó de
+  "TRUCO PARA / VENDER MÁS" (2 líneas) a "TRUCO PARA / VENDER MÁS / EN TU
+  ECOMMERCE" (3 líneas). La portada ya admitía hasta 3 líneas de título; lo
+  que cambió es el criterio de uso, no el límite.
+- **La foto grande de la portada pasa de centrada a alineada a la
+  derecha**, debajo del título (sección 3.2) — dejó espacio para que un
+  título de 3 líneas quepa sin apreturas. Como consecuencia: el diámetro
+  del anillo baja ligeramente (~460px → ~410px) para que la foto no invada
+  la esquina inferior derecha, y las slides de tipo `cover` dejan de llevar
+  la flecha de scroll de esa esquina (la foto ya ocupa ese espacio y cumple
+  la misma función de "sigue deslizando").
