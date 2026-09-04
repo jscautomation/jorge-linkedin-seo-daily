@@ -271,7 +271,11 @@ def circular_photo(diam, ring_width, centering=(0.5, 0.22)):
 
 
 BADGE_RING, BADGE_RING_D = circular_photo(diam=118, ring_width=6)
-HERO_RING, HERO_RING_D = circular_photo(diam=410, ring_width=14, centering=(0.5, 0.18))
+HERO_RING, HERO_RING_D = circular_photo(diam=270, ring_width=12, centering=(0.5, 0.18))
+# Diámetro bajado de ~460 (03/09) a ~410 (04/09, foto a la derecha) a ~270
+# (04/09, mismo día, para dejar sitio a COVER_SUBSCRIBE_LINE bajo el
+# título) — sigue siendo notablemente más grande que la insignia de
+# cabecera (118px), pero ya no es un "hero" a toda pantalla.
 
 
 def wordmark(d, x, y):
@@ -312,6 +316,18 @@ GUIDE_BADGE_TEMPLATE = "Mejora nº{n}: GUÍA DE VENTAS CON SEO ACTUALIZADA CADA 
 # Texto FIJO (vigente desde el 04/09/2026, a petición expresa de Jorge —
 # sustituye al patrón anterior "MEJORA Nº<N> · Te doy acceso a..."). Solo
 # cambia `{n}`; no se edita por día salvo instrucción expresa de Jorge.
+
+COVER_SUBSCRIBE_LINE = (
+    "Hoy en la guía hablamos de cómo algunas modificaciones súper sencillas "
+    "pueden tener un fuerte impacto en tus ventas online. Suscríbete a la "
+    "GUÍA DE VENTAS CON SEO que actualizo cada día de forma completamente gratis."
+)
+# Texto FIJO bajo el título de la portada (vigente desde el 04/09/2026, a
+# petición expresa de Jorge) — se dibuja SIEMPRE que la slide `cover` lleve
+# `guide_badge` (que es el caso estándar desde el 03/09/2026), en vez del
+# campo `subtitle` libre. No se edita por día.
+COVER_SUBSCRIBE_FONT_SIZE = 28
+COVER_SUBSCRIBE_LINE_H = 36
 
 
 def guide_badge(d, spec):
@@ -431,21 +447,21 @@ def ring_checks(d, x, y, items, gap=106):
 
 def render_cover(img, d, spec, index, total):
     """Portada: recuadro de la guía (`guide_badge`, opcional pero estándar
-    desde el 03/09/2026 — sección 3.3), título (máx. 3 líneas — deja hueco
-    para la foto grande de abajo), subtítulo opcional, y la foto de Jorge en
-    grande, tipo "medallón" con anillo naranja, ALINEADA A LA DERECHA (a
+    desde el 03/09/2026 — sección 3.3), título (máx. 3 líneas), la línea fija
+    de suscripción (`COVER_SUBSCRIBE_LINE`, se dibuja siempre que haya
+    `guide_badge` — sustituye al campo `subtitle` libre en la portada), y la
+    foto de Jorge en círculo con anillo naranja, ALINEADA A LA DERECHA (a
     petición expresa de Jorge, 04/09/2026 — antes centrada) — la pieza
-    visual fuerte que pidió Jorge, en la línea de las publicaciones de
-    referencia (una prueba/cara real grande, no solo texto).
+    visual que da autoría real, no solo texto.
 
-    Presupuesto vertical ajustado: con `guide_badge` Y `subtitle` a la vez,
-    más 3 líneas de título, el contenido puede empujar la foto grande fuera
-    del lienzo — por eso, si usas `guide_badge`, omite `subtitle` salvo que
-    el título ocupe menos de 3 líneas (el assert de abajo avisa si no cabe,
-    en vez de recortar la foto en silencio)."""
+    Presupuesto vertical ajustado: con `guide_badge` (que añade su propio
+    recuadro Y la línea fija de suscripción) más 3 líneas de título, el
+    contenido puede empujar la foto fuera del lienzo si se toca cualquiera
+    de los tamaños de fuente/gaps de este bloque — el assert de abajo avisa
+    en vez de recortarla en silencio."""
     title_lines = spec["title_lines"]
     has_badge = bool(spec.get("guide_badge"))
-    assert len(title_lines) <= 3, "cover: máximo 3 líneas de título — deja hueco a la foto grande"
+    assert len(title_lines) <= 3, "cover: máximo 3 líneas de título — deja hueco a la foto"
     y = TITLE_SAFE_TOP
     if has_badge:
         badge_bottom = guide_badge(d, spec["guide_badge"])
@@ -454,15 +470,17 @@ def render_cover(img, d, spec, index, total):
         assert_line_fits(d, line, F(TITLE, TITLE_XL), context=f"cover: {line}")
         draw_mixed_line(d, MARGIN_X, y, line, F(TITLE, TITLE_XL))
         y += LINE_H_XL
-    if spec.get("subtitle"):
+    if has_badge:
+        y = draw_wrapped(d, (MARGIN_X, y + 12), COVER_SUBSCRIBE_LINE, F(BOLD, COVER_SUBSCRIBE_FONT_SIZE),
+                          GRAY, W - 2 * MARGIN_X, COVER_SUBSCRIBE_LINE_H)
+    elif spec.get("subtitle"):
         y = draw_wrapped(d, (MARGIN_X, y + 20), spec["subtitle"], F(BOLD, BODY), GRAY,
                           COVER_SUBTITLE_MAX_W, LINE_H_BODY)
-    top = max(y + 20, 780)
+    top = max(y + 16, 780)
     assert top + HERO_RING_D <= H - 150, (
-        f"cover: la foto grande no cabe (empezaría en y={top}, el lienzo mide "
-        f"{H}px y hay que dejar sitio al recuadro naranja de abajo) — quita el "
-        "`subtitle`, acorta el título a menos líneas, o prescinde del "
-        "`guide_badge` en este slide."
+        f"cover: la foto no cabe (empezaría en y={top}, el lienzo mide {H}px "
+        "y hay que dejar sitio al recuadro naranja de abajo) — acorta el "
+        "título a menos líneas."
     )
     img.paste(HERO_RING, (W - MARGIN_X - HERO_RING_D, top), HERO_RING)
 
@@ -616,7 +634,9 @@ CONFIG = {
             # guide_badge: recuadro gris de la portada (sección 3.3) — solo
             # `number`, que sube +1 cada día publicado desde el 03/09/2026
             # (día 1). El texto es fijo (GUIDE_BADGE_TEMPLATE en el motor),
-            # no se edita por día.
+            # no se edita por día. Con `guide_badge` se dibuja también,
+            # automáticamente, la línea fija COVER_SUBSCRIBE_LINE debajo
+            # del título — no hace falta (ni se puede) configurarla aquí.
             "guide_badge": {
                 "number": 1,
             },
@@ -624,15 +644,12 @@ CONFIG = {
             # con un término SEO como "indexación"; el mecanismo técnico va en
             # el subtitle o en las slides siguientes, nunca en el título.
             # Máximo 3 líneas — el assert de render_cover avisa si no cabe
-            # (la foto grande, alineada a la derecha, va debajo del título).
+            # (la foto, alineada a la derecha, va debajo de todo el bloque).
             "title_lines": [
                 [("ESTAS PERDIENDO", False)],
                 [("VENTAS", True)],
                 [("EN TU ECOMMERCE", False)],
             ],
-            # Sin `subtitle`: con `guide_badge` ya no queda presupuesto
-            # vertical para él sin sacar la foto del lienzo (ver assert de
-            # render_cover).
         },
         {
             "type": "statement",
