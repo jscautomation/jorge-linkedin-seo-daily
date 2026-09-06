@@ -1,0 +1,13 @@
+TU TIENDA EXISTE EN 5 PAÍSES. PARA GOOGLE, SOLO EN UNO.
+
+Cada mes factura menos de lo que podría en Francia, Italia o Alemania — y ni se entera, porque su web "sí está" en esos idiomas.
+
+En auditorías internacionales me encuentro siempre el mismo fallo: la web detecta la IP del visitante y le redirige automáticamente a "su" país... y hace exactamente lo mismo con Googlebot. Como la mayoría del rastreo de Google llega desde EE.UU., el bot nunca llega a ver ni indexar las versiones en francés, italiano o alemán. Están online, bien traducidas, y no existen para Google.
+
+El propio Google lo advierte en su documentación de SEO internacional: la redirección automática por geolocalización es de las formas más habituales de bloquear el rastreo de tus propios mercados. Nadie salta ninguna alarma porque las páginas "están ahí" — solo que nadie las encuentra buscando en su idioma.
+
+Si vendes en varios países y casi todo tu tráfico orgánico viene de uno solo, este suele ser el motivo.
+
+Comenta "GEOIP" y te lo envío.
+
+#SEO #Ecommerce #WordPress #Shopify
