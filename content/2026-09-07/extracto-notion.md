@@ -1,4 +1,4 @@
-## Tu tienda no existe en 3 países (06/09/2026)
+## Tu tienda no existe en 3 países (07/09/2026)
 
 **Contexto:** Un ecommerce que vende en varios mercados (España, Francia,
 Italia, por ejemplo) traduce su web a cada idioma y da por hecho que ya
