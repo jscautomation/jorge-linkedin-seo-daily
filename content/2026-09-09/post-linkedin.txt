@@ -1,0 +1,11 @@
+PRODUCTO NUEVO A LA VENTA. GOOGLE NO SABE.
+
+Subes la ficha, la promocionas, esperas las primeras búsquedas orgánicas del lanzamiento — y pasan días, a veces semanas, hasta que Google la indexa. Para cuando aparece, el pico de interés ya pasó.
+
+En auditorías de ecommerce con catálogo que rota (temporada, colección, reposiciones) me encuentro casi siempre la misma causa: el sitemap.xml se genera una vez al día, o incluso a mano, y encima sigue lleno de URLs de productos agotados o descatalogados desde hace meses. Google reparte su presupuesto de rastreo revisando páginas que ya no venden nada, en vez de descubrir cuanto antes la que sí.
+
+La propia documentación de Google es clara: el sitemap debe reflejar el catálogo real y actualizarse cuando cambia — no una vez al día, no con productos muertos dentro. Cada hora que un producto nuevo no está ahí es una hora menos de la ventana en la que más gente lo busca por su nombre.
+
+Comenta "SITEMAP" y te lo envío.
+
+#SEO #Ecommerce #WordPress #Shopify
