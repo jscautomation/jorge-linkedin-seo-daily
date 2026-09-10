@@ -1,0 +1,18 @@
+## Estás fabricando páginas para vender más. Google las está borrando en bloque. (10/09/2026)
+
+**Contexto:** En los últimos meses, muchos ecommerce han usado IA o plantillas automáticas para multiplicar páginas de categoría o producto — una por cada combinación de color, talla, temporada o ciudad — con el objetivo de captar más búsquedas de cola larga. El texto de estas páginas suele ser casi idéntico entre sí (cambia una palabra clave) y se publica en bloque, sin apenas revisión humana. Google lanzó en agosto de 2026 una actualización de spam centrada explícitamente en "contenido a escala" ("scaled content abuse"): páginas producidas en masa para manipular el posicionamiento, sin valor real para quien las lee — la política no distingue si el contenido lo escribió una IA o una persona, penaliza la falta de sustancia a volumen. El rollout de esa actualización fue el más rápido hasta la fecha: se completó a nivel mundial en menos de tres días.
+
+**Por qué importa (en términos de negocio):** Si el tráfico orgánico de un ecommerce depende de un volumen alto de páginas finas generadas por plantilla, ese canal de ventas puede desaparecer de un día para otro, sin previo aviso ni margen de reacción — no es una caída gradual de ranking, es una desindexación en bloque tras cada pasada de este tipo de actualización. Cuantas más páginas se hayan generado sin curación, mayor la exposición: se pierde de golpe el tráfico de cola larga (barato de captar) y las ventas que dependían de él, además de los meses de inversión (tiempo, herramientas, IA) que costó producir ese contenido.
+
+**Solución paso a paso:**
+1. Exporta con un rastreador (Screaming Frog u otro) el listado completo de URLs indexadas de categoría/producto generadas por plantilla o IA, y crúzalo con Google Search Console (rendimiento) para identificar qué páginas llevan 3-6 meses con impresiones y clics en cero.
+2. Clasifica cada grupo de páginas generadas por la misma plantilla en tres categorías: (a) aportan tráfico y conversión real, (b) indexadas pero sin tráfico, (c) contenido casi idéntico entre variantes (duplicado fino) — para (c), usa una revisión manual por muestreo o un comparador de similitud de texto.
+3. Para los grupos (b) y (c), decide entre reescribir con valor añadido real (datos, comparativas, contenido específico y verificado por combinación) o retirar la página (noindex o 410) si no hay volumen de búsqueda ni intención de compra real detrás.
+4. Cuando varias páginas casi duplicadas compitan por la misma intención de búsqueda, consolídalas en una única página fuerte y redirige (301) las eliminadas hacia ella, en vez de mantener decenas de variantes finas.
+5. Establece un proceso de revisión humana obligatorio antes de publicar cualquier página generada con IA o plantilla automática — ninguna publicación en bloque sin al menos una pasada de edición que confirme que aporta algo que no está ya en otra página del propio sitio.
+6. Documenta un límite de escala razonable por plantilla: cuántas páginas nuevas se pueden publicar sin superar la capacidad real de curación humana del equipo, para no volver a acumular el mismo riesgo.
+7. Monitoriza en Search Console (cobertura de indexación e informe "Descubierto/rastreado, actualmente no indexado") en las semanas posteriores a cualquier actualización de spam de Google, para detectar caídas en el grupo de páginas generadas a escala antes de que afecten a las ventas.
+
+**Herramientas usadas:** Screaming Frog (rastreo + extracción de URLs por plantilla), Google Search Console (rendimiento y cobertura de indexación), un comparador de similitud de contenido o revisión manual por muestreo, y el panel de analítica de la tienda para cruzar tráfico/conversión por URL.
+
+---
