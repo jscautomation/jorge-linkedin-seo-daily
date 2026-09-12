@@ -1,0 +1,15 @@
+ESTÁS REGALANDO VENTAS A TU COMPETENCIA
+
+Cada plataforma que migras sin cuidado es una oportunidad que le regalas a quien sí te vigila.
+
+Vi el caso hace poco en un ecommerce de moda: cambio de plataforma, lanzamiento en fin de semana, y las redirecciones 301 mapeadas con un patrón genérico en vez de URL por URL — "todo lo que no encaje exacto, va a la home".
+
+El problema: cuando un 301 lleva a una página sin relación real con el contenido original, Google no lo trata como "la misma página que cambió de sitio" — lo trata más parecido a un 404 suave. No hereda el ranking. Empieza de cero.
+
+Las fichas de producto más vendidas, las que llevaban meses posicionadas, dejaron de aparecer donde estaban. Ese hueco no se queda vacío: lo ocupa la competencia que sigue ahí. Cada semana sin corregirlo es facturación que se va a otro dominio, no solo posiciones que bajan.
+
+Google lo dice en su propia documentación: un redirect solo transmite autoridad cuando lleva a una página realmente equivalente.
+
+Te cuento cómo mapear bien una migración, paso a paso, en la guía gratis.
+
+Comenta "MAPEO" y te lo envío.
