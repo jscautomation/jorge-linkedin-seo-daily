@@ -1,0 +1,11 @@
+ESTÁS PERDIENDO VENTAS EN MÓVIL
+
+¿La última ficha de producto que abriste en el móvil tardó "un segundo de más" en enseñarte la foto? Ese segundo no suele ser casualidad.
+
+Caso típico: ecommerce de moda, contenido cuidado, sin errores visibles en Search Console... pero la imagen principal de la ficha — la que decide si el cliente sigue mirando o se va — lleva activada la "carga diferida" (lazy loading), pensada para fotos que están más abajo en la página, no para la primera que se ve.
+
+Resultado: esa imagen tarda de más en pintarse. Google lo mide con una métrica muy concreta (LCP) y penaliza que se retrase; el cliente, sin mirar ninguna métrica, simplemente se va. Según datos de Akamai, un retraso de solo 100 milisegundos puede bajar la conversión hasta un 7%.
+
+No hace falta rediseñar nada — hace falta revisar qué imagen se está cargando "diferida" por error, y arreglar solo esa.
+
+Comenta "CARGA" y te lo envío.
