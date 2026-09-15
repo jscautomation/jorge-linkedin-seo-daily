@@ -1,0 +1,11 @@
+VAS A PERDER LAS MISMAS VENTAS OTRA VEZ
+
+Si hace unos meses paraste una caída de ventas con el botón "Eliminar URLs" de Search Console, apunta la fecha en el calendario: el problema no se fue, solo se escondió, y tiene fecha de caducidad.
+
+Lo vemos con cierta frecuencia en auditorías de ecommerce: apareció contenido duplicado o fichas finas robándose tráfico entre sí, cayeron las ventas, y para frenar la sangría rápido se usó la ocultación de URLs de Search Console. Pánico resuelto... o eso parece.
+
+Esa herramienta no borra nada de Google — solo oculta la URL unos 6 meses mientras se aplica el arreglo real (noindex, redirección 410 o canonical). Si ese arreglo de fondo nunca llegó a hacerse, cuando la ocultación caduca la URL problemática reaparece indexada, compitiendo otra vez contra la ficha buena — y las ventas vuelven a caer, sin ninguna alarma que lo avise.
+
+Google lo documenta: la ocultación temporal dura unos 6 meses. Pasado ese plazo, sin arreglo de fondo, todo vuelve a empezar.
+
+Comenta "CADUCA" y te lo envío.
