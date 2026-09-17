@@ -1,0 +1,11 @@
+ESTÁS PERDIENDO VENTAS ANTES DE QUE ENTREN EN TU WEB
+
+Un comprador decide si te compra o no sin haber pisado tu tienda todavía. Solo mirando el resultado de Google.
+
+Lo vi hace poco en un ecommerce de moda: buena ficha, buen precio, buenas reseñas... pero ni rastro de la política de devoluciones en el propio resultado de búsqueda. Nada de "devoluciones gratis 30 días" junto al producto, como sí tiene su competencia directa.
+
+La causa no es de marketing, es de datos estructurados: falta (o está incompleta) la marca `MerchantReturnPolicy` en la ficha. Sin ella, Google no puede mostrar tus condiciones de devolución en el resultado ni optar a la insignia de tienda de calidad — y sin eso, para el comprador es una tienda "opaca" frente a otra que sí lo deja claro antes de hacer clic.
+
+El coste es venta que ni siquiera llega a tu web para abandonar el carrito: según UPS, hasta un 68% de compradores online revisa la política de devoluciones antes de decidirse, muchos antes de entrar en la ficha.
+
+Comenta "DEVOLUCIONES" y te lo envío.
