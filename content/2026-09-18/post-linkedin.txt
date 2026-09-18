@@ -1,0 +1,9 @@
+ESTÁS PERDIENDO VENTAS EN TUS OTROS PAÍSES
+
+Vendes en España, México y Colombia. Misma marca, mismo catálogo... pero solo uno de los tres mercados factura de verdad. Los otros dos apenas venden, aunque el producto y el precio sean buenos.
+
+Lo vi en un ecommerce de moda con tienda propia en los tres países: fichas de producto, categorías y meta descriptions calcadas entre las tres, cambiando solo el dominio. Google, al no encontrar diferenciación real de contenido, trata las páginas como duplicadas entre sí — aunque el hreflang esté técnicamente bien puesto — y termina posicionando solo una versión "fuerte" para los tres mercados a la vez, dejando a los otros dos casi invisibles en su propia búsqueda.
+
+Y cuando alguien sí entra, encuentra precios en la moneda equivocada o condiciones de envío que no son las suyas: según Capterra, el 13% de compradores internacionales abandona el carrito directamente si el precio no está en su moneda local.
+
+Comenta "MERCADOS" y te lo envío.
