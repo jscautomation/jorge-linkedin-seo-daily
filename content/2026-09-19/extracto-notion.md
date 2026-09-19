@@ -1,0 +1,16 @@
+## Tu competencia te está robando clientes en las respuestas de compra con IA (19/09/2026)
+
+**Contexto:** Esta semana Google ha hecho pública dentro de Merchant Center una nueva sección de informes —"AI performance insights"— que muestra, por primera vez, tu "cuota de voz": cuánto apareces tú frente a tiendas parecidas a la tuya en las respuestas de compra de AI Overviews, AI Mode y la app de Gemini, desglosado por fase del recorrido de compra. De momento está disponible con carácter general en EE.UU., Canadá, Australia, India y Nueva Zelanda — no en España todavía — pero, como ha pasado con el resto de funciones de IA de Google este año, es cuestión de semanas que se active en más mercados.
+
+**Por qué importa en términos de negocio:** Las respuestas de compra con IA ya no son un experimento — han pasado de aparecer en el 2,1% de las búsquedas de producto al 14% en solo cuatro meses, y Google no ha dado ninguna señal de frenar esa expansión. Cada vez que alguien pregunta a la IA qué comprar y tu tienda no aparece, esa venta no se pierde por precio ni por producto: se pierde porque la IA ni te tiene en cuenta, y hasta ahora no había forma de saberlo ni de compararte con tu competencia. El feed incompleto o desincronizado (precio, stock, GTIN, marca) que antes solo te penalizaba en Shopping clásico ahora también te deja fuera de este canal nuevo — con el agravante de que, a partir de esta semana, tu competencia sí puede medir la diferencia aunque tú no.
+
+**Solución paso a paso:**
+1. Entra en Merchant Center y busca la sección de informes de rendimiento en IA ("AI performance insights" / "Growth"). Si tu cuenta ya lo tiene activo, revisa tu cuota de voz por fase del recorrido de compra frente a tiendas similares a la tuya.
+2. Si tu cuenta todavía no lo ve (frecuente fuera de EE.UU./Canadá/Australia/India/Nueva Zelanda), audita a mano mientras tanto: pregunta directamente a la IA de Google (AI Mode / AI Overviews) por tus categorías o productos estrella con lenguaje de comprador real ("mejores mochilas para portátil de oficina", etc.) y anota si apareces tú, tu competencia, o ninguno de los dos.
+3. Repasa los fundamentos del feed en Merchant Center > Diagnóstico: GTIN, marca y categoría de Google completos, precio y stock sincronizados en tiempo real. Sin esto, ni el informe de cuota de voz ni la propia aparición en AI Overviews/AI Mode son posibles, por bueno que sea el SEO tradicional de la ficha.
+4. Si detectas hueco de cuota de voz frente a competidores directos (o si en la auditoría manual solo aparece la competencia), empieza por las fichas con datos de feed incompletos o desactualizados — suelen ser las que menos aparecen en estas respuestas.
+5. Repite la comprobación cada 2-4 semanas. Es un canal nuevo y en expansión muy rápida (de 2,1% a 14% de las búsquedas de compra en solo cuatro meses), así que la fotografía de hoy caduca rápido — y en cuanto el informe llegue a España, conviene tenerlo ya revisado con la vista puesta en activarlo el primer día.
+
+**Herramientas usadas para detectarlo/arreglarlo:** Google Merchant Center (informe "AI performance insights" y Diagnóstico del feed), búsquedas manuales directas en AI Mode / AI Overviews de Google, hoja de seguimiento propia mientras el informe no esté disponible en el mercado local.
+
+---
