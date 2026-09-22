@@ -1,0 +1,13 @@
+TU COMPETENCIA TE ESTÁ ROBANDO CLIENTES CON IA
+
+Google ya deja que un asistente de IA complete la compra sin que el cliente pise tu web: busca, compara, añade al carrito y paga, todo desde el chat.
+
+Lo curioso es que muchas tiendas ni se han enterado de que ese canal ya existe.
+
+Es el Universal Commerce Protocol (UCP): un estándar abierto de Google, ya integrado por Shopify, Target, Walmart o Etsy, que conecta el feed de tu Merchant Center directamente con agentes de IA como Gemini — el agente consulta precio y stock en tiempo real y cierra la venta él solo, con permiso del comprador.
+
+Si tu catálogo no está conectado, no es que aparezcas peor posicionado: directamente no existes para ese comprador. Y el que sí lo tenga listo se queda con esa venta antes de que tú sepas que esa opción existía.
+
+Por ahora el despliegue avanza en EEUU, Canadá y Australia — pero con socios de este tamaño detrás, llega rápido.
+
+Comenta "AGENTES" y te lo envío.

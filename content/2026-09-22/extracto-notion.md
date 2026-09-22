@@ -1,0 +1,16 @@
+## Tu competencia te está robando clientes con IA (22/09/2026)
+
+**Contexto:** Google ha abierto un nuevo canal de compra que no pasa por la web de la tienda: el Universal Commerce Protocol (UCP), un estándar abierto que conecta el feed de Google Merchant Center directamente con agentes de IA (Gemini y, a través del ecosistema de socios, otros asistentes). El agente consulta precio y disponibilidad en tiempo real directamente sobre el feed del comerciante, añade productos al carrito y puede completar la compra con permiso del comprador, sin que este visite nunca la web de la tienda. Google lo está construyendo con socios grandes ya integrados (Shopify, Target, Walmart, Etsy, entre más de 20 partners del ecosistema), lo que sube rápido el listón de lo que se considera "normal" en el sector. El despliegue vía Merchant Center avanza de forma gradual, por ahora en EEUU, Canadá y Australia — España aún no está en el rollout, pero el formulario de interés ya está abierto.
+
+**Por qué importa en términos de negocio:** Este no es un canal más a optimizar — es un canal donde, si el catálogo no está conectado, la tienda directamente no es candidata a la venta: no aparece peor posicionada, no existe para ese comprador. El agente solo puede vender lo que puede leer en un feed correctamente estructurado y sincronizado; un feed desactualizado o incompleto elimina a la tienda de esa conversación sin que nadie lo note hasta que la competencia, ya integrada, se quede con esa demanda. Cuanto antes esté el feed listo para este tipo de consumo automatizado, antes empieza a capturar la parte de la demanda que ya se decide y se cierra fuera de la web tradicional.
+
+**Solución paso a paso:**
+1. **Audita el estado actual de tu feed en Google Merchant Center** (Diagnóstico): completitud de atributos clave (GTIN, marca, categoría, disponibilidad, precio) y frecuencia real de actualización de precio/stock — cuanto más cerca de tiempo real, mejor preparado está el feed para ser leído por un agente.
+2. **Revisa si tu cuenta de Merchant Center ya tiene acceso o candidatura a UCP** en la sección de novedades/programas de Merchant Center, y si no, **rellena el formulario de interés** para el programa de onboarding (rollout gradual, hoy en EEUU/Canadá/Australia).
+3. **Pregunta explícitamente a tu plataforma (Shopify, WooCommerce, u otra) y a tu proveedor de feeds** si ya soportan UCP o lo tienen en su hoja de ruta — varias plataformas grandes (Shopify entre ellas) ya están integradas del lado del protocolo.
+4. **Corrige lo básico del feed que cualquier agente necesita para poder vender bien tu producto**: precio y stock sincronizados de verdad (no una vez al día), atributos obligatorios completos (GTIN/marca/categoría), y descripciones de producto claras y no ambiguas.
+5. **Repite la comprobación cada 2-4 semanas** mientras el rollout avanza — es un despliegue progresivo por país, y el objetivo es que el feed esté listo antes de que el canal llegue a España, no después.
+
+**Herramientas usadas:** Google Merchant Center (Diagnóstico y programas/novedades), formulario de interés de UCP en Merchant Center, y la documentación pública de Google para desarrolladores sobre Universal Commerce Protocol.
+
+---
