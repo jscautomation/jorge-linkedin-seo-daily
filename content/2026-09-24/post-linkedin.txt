@@ -1,0 +1,13 @@
+ESTÁS PERDIENDO VENTAS QUE NI SIQUIERA VES
+
+Tu categoría mejor trabajada — la que has optimizado, con buenas fotos y filtros — puede que ni sea la página que Google enseña cuando alguien te busca por ese producto.
+
+Lo he visto en auditorías de varios ecommerce (moda, hogar, deporte): el buscador interno de la web genera una URL por cada búsqueda («/buscar?q=zapatillas-running»), y esa URL —sin filtros, sin buen diseño, a veces sin stock actualizado— termina indexada y compitiendo con tu categoría real por la misma consulta.
+
+El problema no es solo técnico: si Google enseña esa página en vez de la tuya, el cliente aterriza en la versión peor de tu catálogo —la que menos convierte— y tú ni te enteras de que la estás perdiendo.
+
+Compruébalo tú mismo: en Google, escribe site:tudominio.com inurl:buscar (o el patrón de tu buscador). Si aparecen resultados, ahí tienes ventas que se están yendo solas.
+
+Solución rápida: noindex en esas URLs, nunca bloqueo directo por robots.txt hasta que Google confirme el noindex, y canonical a la categoría real cuando exista una equivalente.
+
+Comenta "BUSCADOR" y te lo envío.
