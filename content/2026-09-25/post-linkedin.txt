@@ -1,0 +1,13 @@
+CADA DÍA QUE PASA, PIERDES FACTURACIÓN
+
+Si acabas de migrar de plataforma (o de dominio) y las ventas no remontan aunque "ya hiciste las redirecciones", puede que Google todavía ni las esté viendo.
+
+Lo he encontrado en migraciones reales de Prestashop/WooCommerce a Shopify: el desarrollador implementó las redirecciones con JavaScript (window.location) en vez de en el servidor, porque era más rápido de programar y "funcionaba" al probarlo en el navegador.
+
+El problema es que Googlebot no procesa el JavaScript al mismo ritmo que el HTML. Una redirección 301 de servidor transfiere el posicionamiento en el siguiente rastreo; una redirección por JavaScript puede tardar semanas en procesarse, o no seguirse nunca en el primer rastreo. Mientras tanto tu web antigua se desindexa, la nueva no la sustituye, y ese hueco de posiciones lo ocupa tu competencia.
+
+Google lo dice en su propia guía de migraciones: recomienda 301 del lado del servidor, nunca vía JavaScript.
+
+Si migraste en los últimos meses, revisa esto antes que cualquier otra cosa.
+
+Comenta "MIGRACION" y te lo envío.
