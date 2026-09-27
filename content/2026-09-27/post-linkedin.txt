@@ -1,0 +1,15 @@
+TUS ANUNCIOS TE QUITAN VENTAS ORGÁNICAS
+
+Cada euro que inviertes en Ads puede estar debilitando el posicionamiento que ya tenías gratis.
+
+Lo he visto en varios ecommerce de moda que lanzan campañas de Google Ads y Meta: cada anuncio añade parámetros de seguimiento (utm_source, gclid, fbclid...) a la URL de la ficha o categoría de destino.
+
+El problema es que muchas de esas URLs con parámetros acaban rastreadas igual que la limpia — y si no hay un canonical bien puesto en la plantilla, Google las trata como páginas distintas de la misma ficha. La autoridad que debería concentrarse en una sola URL se reparte entre varias versiones casi idénticas.
+
+Google lo dice en su propia guía de gestión de rastreo: las URLs con parámetros están entre las causas más habituales de rastreo desperdiciado en sitios grandes.
+
+El resultado: pagas por tráfico y, sin darte cuenta, le restas fuerza al posicionamiento orgánico de la misma página que estás promocionando.
+
+Si lanzas campañas de pago hacia fichas o categorías, revisa esto antes de subir presupuesto.
+
+Comenta "TRACKING" y te lo envío.

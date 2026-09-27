@@ -1,0 +1,17 @@
+# Mejora nº25: Parámetros de tracking de campañas de pago creando URLs indexadas duplicadas (27/09/2026)
+
+**Contexto/diagnóstico:** Es habitual en ecommerce que invierten en Google Ads y Meta Ads: cada anuncio añade parámetros de seguimiento a la URL de destino (`utm_source`, `utm_campaign`, `gclid`, `fbclid`...) para poder medir la campaña en analítica. El problema aparece cuando esas URLs con parámetros se comparten, se enlazan desde otros sitios o simplemente Google las rastrea igual que la versión limpia de la ficha o categoría — y si la plantilla no declara un canonical consistente hacia la URL sin parámetros, Google puede llegar a tratarlas como páginas distintas de un mismo contenido. Google señala en su propia guía de gestión de rastreo que las URLs con parámetros están entre las causas más habituales de rastreo desperdiciado en sitios grandes.
+
+**Por qué importa en términos de negocio:** La autoridad/relevancia que Google debería concentrar en una única URL de ficha o categoría se reparte entre varias versiones casi idénticas de la misma página, cada una con su propio parámetro. El resultado es que la web paga dos veces por el mismo tráfico: una vez en la puja de Ads, y otra en posiciones orgánicas que pierde fuerza precisamente en las páginas que más campañas reciben — normalmente las de mayor intención de compra. Cuantas más campañas se lancen sin corregir esto, más se diluye la señal, justo en el peor momento (temporada alta, lanzamientos de producto).
+
+**Solución paso a paso:**
+1. **Detecta el alcance real**: busca en Google `site:tudominio.com inurl:utm_` (repite con `inurl:gclid`, `inurl:fbclid`) y revisa en Search Console, dentro de Páginas, cuántas URLs con parámetros de campaña ha indexado Google.
+2. **Audita el canonical con Screaming Frog**, rastreando con los parámetros incluidos (no en modo por defecto, que a veces los ignora): comprueba si la versión con parámetros declara canonical hacia la URL limpia, se autorreferencia (el error real) o no lleva canonical en absoluto.
+3. **Corrige el canonical a nivel de plantilla**, no por campaña: cada ficha o categoría debe declarar siempre canonical hacia su URL limpia, independientemente de qué parámetros lleve la petición — se configura una vez en el tema/CMS y cubre todas las campañas presentes y futuras.
+4. **Revisa cómo se generan los enlaces de campaña**: activa el etiquetado automático de Google Ads (parámetro `gclid` vía "Etiquetado automático", sin construir la URL a mano) y fija una nomenclatura UTM única para Meta y el resto de canales, en vez de dejar que cada persona/agencia construya la URL a su manera.
+5. **No uses robots.txt para esto**: bloquear por robots.txt no soluciona nada si esas URLs ya están indexadas (Google no vería un noindex/canonical puesto ahí) — el canonical sigue siendo la señal correcta.
+6. **Confirma la consolidación semanas después**: usa la Inspección de URLs de Search Console sobre una muestra de URLs con parámetros para comprobar que Google ya respeta el canonical, y repite la comprobación cada vez que se lance una campaña con una estructura de URL nueva.
+
+**Herramientas usadas para detectarlo/arreglarlo:** Búsqueda en Google con operadores `site:`/`inurl:`, Google Search Console (informe de Páginas, Inspección de URLs), Screaming Frog (rastreo incluyendo parámetros), configuración de etiquetado automático de Google Ads, y la plantilla/tema del CMS para el canonical.
+
+---
