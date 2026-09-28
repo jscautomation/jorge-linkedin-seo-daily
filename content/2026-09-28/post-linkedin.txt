@@ -1,0 +1,13 @@
+ESTÁS PERDIENDO VENTAS EN MÓVIL
+
+Tu cliente va a pulsar "añadir al carrito" en el móvil. Y justo en ese instante, la pantalla se mueve. El dedo aterriza en otro sitio. Se va.
+
+Lo he visto en fichas de producto de varios ecommerce de moda: un aviso de "quedan pocas unidades", el banner de cookies o el widget de chat se cargan tarde y empujan el contenido hacia abajo justo cuando el comprador ya iba a tocar el botón.
+
+Eso tiene nombre técnico — Cumulative Layout Shift (CLS), uno de los Core Web Vitals de Google — y pasa casi siempre por no reservar el espacio de los elementos que cargan después.
+
+El resultado en ventas: toques accidentales, carritos abandonados por error, frustración justo en el paso que más te importa — y la mayoría de tu tráfico de ecommerce entra por móvil.
+
+Google lo mide y lo premia: las páginas que cumplen el umbral recomendado de CLS ven un 24% menos de abandono de carga por parte de los usuarios.
+
+Comenta "TOQUE" y te lo envío.
