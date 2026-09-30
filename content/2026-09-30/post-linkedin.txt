@@ -1,0 +1,13 @@
+ESTÁS REGALANDO VENTAS A TU COMPETENCIA
+
+Tu categoría tiene 300 productos. Google solo ve los 24 primeros. El resto, para él, no existe — y nadie los va a encontrar buscando.
+
+Lo veo en tiendas de moda con catálogos grandes: un botón de "cargar más" o un scroll infinito que solo funciona con JavaScript, o páginas 2, 3 y 4 que apuntan su canonical a la página 1. El comprador ve el catálogo entero. Google, no.
+
+El mecanismo técnico es la paginación: si las páginas siguientes no tienen su propia URL rastreable, o le dices a Google que son copia de la primera, esas fichas pierden su puerta de entrada desde la categoría.
+
+Lo que está en juego: productos de cola larga y colecciones enteras que podrían vender con tráfico gratis y se quedan sin visibilidad, mientras tu competencia con la paginación bien resuelta aparece en su lugar.
+
+Y lo peor: no salta ninguna alarma. La web funciona, el checkout funciona. Solo dejas de vender lo que nadie llega a ver.
+
+Comenta "PAGINACION" y te lo envío.
