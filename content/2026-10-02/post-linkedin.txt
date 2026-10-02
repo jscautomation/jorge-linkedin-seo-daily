@@ -1,0 +1,13 @@
+TU SHOPIFY PUEDE PERDER VENTAS EL 1 DE MARZO
+
+Una parte de lo que hoy te trae clientes desde Google está colgando de un código que Shopify va a apagar. Y no avisa nadie.
+
+Tienda de moda en Shopify, varias apps instaladas: reseñas, recomendados, píxeles. Todas funcionan. Pero muchas inyectan su código con "script tags", un método antiguo.
+
+Shopify bloqueó el 1 de octubre crear nuevos script tags, y el 1 de marzo de 2027 dejará de ejecutar los que existen. Si una app no ha migrado, lo que pintaba en tu ficha (estrellas, datos de producto, píxeles de conversión) desaparece sin error visible.
+
+Lo que está en juego: estrellas que dejan de salir en Google, medición de campañas rota y fichas menos atractivas para quien compra. Menos clics, menos conversión, y tú sin saber por qué.
+
+Aún hay tiempo. Pero quien lo revise ahora lo arregla con calma; quien espere a marzo lo arreglará con las ventas ya cayendo.
+
+Comenta "SHOPIFY" y te lo envío.
