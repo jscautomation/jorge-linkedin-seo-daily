@@ -1,0 +1,13 @@
+TU COMPETENCIA TE ROBA CLIENTES ANTES DEL CLIC
+
+Un comprador busca tu producto en Google. Ve tu precio más barato... y al entrar, la talla que quiere cuesta más o está agotada. Se va. Ni rebota en tu analítica como venta perdida: simplemente no compra.
+
+Me pasa en tiendas de moda y calzado con muchas tallas y colores. La ficha tiene datos estructurados, "todo en verde", pero describen una sola variante (la primera) como si fuera todo el producto.
+
+El mecanismo: sin una agrupación correcta de variantes, Google lee un único precio y una única disponibilidad para la ficha entera, y puede mostrar en el resultado datos que no coinciden con lo que el cliente encuentra.
+
+Lo que está en juego: clics de gente con intención de compra que llegan y se sienten engañados, ventas que se van al competidor con el dato fiable, y fichas que Google trata con menos confianza.
+
+Nada falla en el checkout. Solo vendes menos de lo que podrías.
+
+Comenta "VARIANTES" y te lo envío.
