@@ -1,0 +1,13 @@
+TUS VENTAS DESDE LA IA ESTÁN LLEGANDO. Y NO LAS ESTÁS VIENDO.
+
+Un cliente te encuentra en Gemini, entra en tu tienda y compra. En tus informes figura como "tráfico directo". Para ti, esa venta no tiene origen.
+
+Pasa en tiendas de moda y calzado: se invierte en contenido y fichas bien optimizadas, pero el tráfico que llega desde asistentes de IA se mezcla con el directo en Google Analytics. Sin origen, no sabes qué productos te recomienda la IA ni cuánto factura ese canal.
+
+Esta semana Google ha empezado a añadir parámetros UTM a los enlaces que salen de Gemini. Es decir: por fin puedes medirlo, pero solo si tu analítica está preparada para leerlo.
+
+Lo que está en juego: decidir presupuesto, catálogo y contenido a ciegas. Quien mide este canal antes que su competencia sabe dónde reforzar; el resto sigue pensando que "la IA no vende".
+
+Y no hace falta tocar la web: es una configuración de analítica de una tarde.
+
+Comenta "TRAFICOIA" y te lo envío.
