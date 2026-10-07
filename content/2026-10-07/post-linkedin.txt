@@ -1,0 +1,13 @@
+TUS CATEGORÍAS NO VENDEN PORQUE GOOGLE NO ENTIENDE DÓNDE ESTÁN TUS PRODUCTOS
+
+Tu categoría estrella tiene cientos de fichas. Pero Google las ve como páginas sueltas, sin una jerarquía clara que las una a ella.
+
+Ecommerce de moda con árbol de categorías bien pensado. En la web, el cliente navega sin problema. Pero en la ficha no hay migas de pan (Inicio > Mujer > Vestidos > Vestido lino), o están hechas solo con diseño, sin enlaces reales ni marcado `BreadcrumbList`.
+
+Resultado: la ficha no refuerza a su categoría con un enlace interno, Google entiende peor cómo se organiza tu catálogo y en el resultado de búsqueda muestra una URL cruda en vez de una ruta que invite a hacer clic.
+
+Lo que está en juego: las categorías son las páginas con más volumen de búsqueda y más intención de compra de tu tienda. Si no reciben la fuerza de cientos de fichas, posicionan menos y venden menos, sin que ningún error lo avise.
+
+Se arregla una vez, en la plantilla, y beneficia a todo el catálogo.
+
+Comenta "MIGAS" y te lo envío.
