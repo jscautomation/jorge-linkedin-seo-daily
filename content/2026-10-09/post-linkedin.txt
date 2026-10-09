@@ -1,0 +1,15 @@
+Lanzaste tu web nueva. Y tus ventas orgánicas desaparecieron.
+
+Imagina estrenar tienda, rediseño o migración, y que las ventas de Google caigan en picado justo la semana que más esperabas.
+
+Caso típico: ecommerce de moda que migra a una plataforma nueva. El equipo trabaja en un entorno de pruebas con una instrucción para que Google no lo vea (un "noindex" o un bloqueo total). Es lo correcto... hasta el día del lanzamiento. Con la web, viaja también esa instrucción. Producción sale al aire diciéndole a Google: "no me muestres".
+
+Nada se rompe. La web carga, el checkout funciona, el equipo celebra. Pero las categorías y fichas que ya vendían empiezan a desaparecer del buscador, una a una, sin ningún aviso.
+
+En cuanto Google las retira, esas ventas gratuitas pasan a la competencia que sigue visible. Cada día de retraso es facturación orgánica que no vuelve sola.
+
+Lo peor: se arregla en minutos si lo miras el primer día, y cuesta semanas si lo descubres tarde.
+
+La checklist de 10 minutos para revisarlo el día del lanzamiento está en la guía.
+
+Comenta "LANZAMIENTO" y te lo envío.
