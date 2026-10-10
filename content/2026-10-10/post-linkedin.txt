@@ -1,0 +1,15 @@
+TUS OFERTAS NO SE VEN EN GOOGLE: TU COMPETENCIA SE LLEVA LA VENTA
+
+Rebajas en tu web. Precio normal en Google. Y quien compara precios en Shopping solo ve lo que dice tu feed.
+
+Una tienda de moda lanza un 30% en toda la colección. En la web, precio tachado y banner. En Google Shopping, el precio de siempre, porque el feed de Merchant Center no declara la oferta o se actualiza tarde. Al lado, un competidor con el mismo producto enseña el precio rebajado.
+
+El comprador compara en segundos. Gana el que parece más barato, no el que de verdad lo es.
+
+Lo que está en juego: pagas descuento (margen) sin cobrar el tráfico que la oferta debería traerte. Y si el precio del feed no coincide con el de la ficha, además arriesgas que te suspendan productos.
+
+Mecanismo: el atributo sale_price del feed y que el precio coincida siempre con la ficha.
+
+Revisarlo antes de cada campaña lleva menos de una hora. Perderlo en plena campaña sale mucho más caro.
+
+Comenta "OFERTAS" y te lo envío.
