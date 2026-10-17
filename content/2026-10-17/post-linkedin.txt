@@ -1,0 +1,13 @@
+LANZASTE TU TIENDA NUEVA... Y GOOGLE SIGUE SIN ENTERARSE
+
+Tres meses de trabajo, una web preciosa, campaña de lanzamiento en marcha. Y las ventas orgánicas, en caída libre desde el día uno.
+
+Caso típico: un ecommerce de moda rehace su tienda en un entorno de pruebas. Para que Google no lo vea, lo bloquea con una etiqueta de "no indexar". El día del lanzamiento se copia todo a producción... y la etiqueta viaja con él.
+
+Resultado: la tienda nueva funciona perfecta para el cliente que entra por anuncios o email, pero para Google es invisible. Las categorías que traían tráfico gratis van desapareciendo del buscador, una a una, sin ningún aviso en pantalla.
+
+Lo que está en juego: cada semana con el candado puesto es tráfico que compra regalado a tu competencia, y recuperar posiciones lleva mucho más que perderlas.
+
+Lo peor: se detecta en 5 minutos, pero casi nadie lo comprueba el día del lanzamiento. Lo suelen descubrir cuando el informe del mes sale en rojo.
+
+Comenta "LANZAMIENTO" y te lo envío.
